@@ -6,28 +6,28 @@ Esta es nuestra colección de usuarios
 
 ### Request 
 
-'''
+"""
 GET /users
-'''
+"""
 
 ### Response
 
-'''
+"""
 [{
     "id": int
     "": ""
 },{
     "": ""
 }]
-'''
+"""
 
 ## Get Users
 
 ### Request
 
-```
+"""
 GET /users/<int:id>
-```
+"""
 ### Response
 {
     "":""
@@ -37,15 +37,18 @@ GET /users/<int:id>
 
 ### Request
 
-```
+"""
 POST /users
-'''
+"""
 ### Body
+"""
 {
     "":""
 }
-
+"""
 ### Response
+"""
 {
     "":""
 }
+"""
