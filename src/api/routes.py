@@ -17,34 +17,35 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-"""" empiezo a definir los endpoint """"
+""" empiezo a definir los endpoint """
 
-@api.route("/users", method=["GET"])
+@api.route("/users", methods=["GET"])
 def handle_list_all_users():
-    """" Return List of user"""
+    """ Return List of user"""
+    print('List all users')
     return "List all users"
 
-@api.route("/user/<int:id>", method= ["GET"])
+@api.route("/users/<int:id>", methods= ["GET"])
 def handle_get_user(id):
-    """" Return one single user """"
+    """ Return one single user """
     return "Get #{} user.".format(id)
 
-@api.route("/user", method= ["POST"])
+@api.route("/users", methods= ["POST"])
 def handle_create_user():
-    """" Create user """"
+    """ Create user """
     payload= request.get_json()
     print(payload)
     return "User created"
 
 
-@api.route("/users/<int:id>", method= ["PUT"])
+@api.route("/users/<int:id>", methods= ["PUT"])
 def handle_update_user(id):
-    """" Update existing user """"
-   response = {'message': 'success'}
-   return jsonify(response)
+    """ Update existing user """
+    response = {'message': 'success'}
+    return jsonify(response)
 
 
-@api.route("/user/<int:id>", method = ["DELETE"])
+@api.route("/users/<int:id>", methods=["DELETE"])
 def handle_delete_user(id):
     """Delete user"""
     response = {'message': 'success'}
@@ -53,32 +54,32 @@ def handle_delete_user(id):
 
 # Diseases
 
-@api.route("/diseases", method=["GET"])
+@api.route("/diseases", methods=["GET"])
 def handle_list_all_diseases():
-    """" Return List of diseases"""
+    """ Return List of diseases"""
     return "List all diseases"
 
-@api.route("/disease/<int:id>", method= ["GET"])
+@api.route("/diseases/<int:id>", methods=["GET"])
 def handle_get_disease(id):
-    """" Return one single disease """"
+    """ Return one single disease """
     return "Get #{} disease.".format(id)
 
-@api.route("/disease", method= ["POST"])
+@api.route("/diseases", methods= ["POST"])
 def handle_create_disease():
-    """" Create disease """"
+    """ Create disease """
     payload= request.get_json()
     print(payload)
     return "Disease created"
 
 
-@api.route("/disease/<int:id>", method= ["PUT"])
+@api.route("/diseases/<int:id>", methods=["PUT"])
 def handle_update_disease(id):
-    """" Update existing disease """"
-   response = {'message': 'success'}
-   return jsonify(response)
+    """ Update existing disease """
+    response = {'message': 'success'}
+    return jsonify(response)
 
 
-@api.route("/disease/<int:id>", method = ["DELETE"])
+@api.route("/diseases/<int:id>", methods=["DELETE"])
 def handle_delete_disease(id):
     """Delete disease"""
     response = {'message': 'success'}
@@ -86,32 +87,32 @@ def handle_delete_disease(id):
 
 # Posts 
 
-@api.route("/posts", method=["GET"])
+@api.route("/posts", methods=["GET"])
 def handle_list_all_posts():
-    """" Return List of posts"""
+    """ Return List of posts"""
     return "List all posts"
 
-@api.route("/post/<int:id>", method= ["GET"])
+@api.route("/posts/<int:id>", methods= ["GET"])
 def handle_get_post(id):
-    """" Return one single post """"
+    """ Return one single post """
     return "Get #{} post.".format(id)
 
-@api.route("/post", method= ["POST"])
+@api.route("/posts", methods= ["POST"])
 def handle_create_post():
-    """" Create post """"
+    """ Create post """
     payload= request.get_json()
     print(payload)
     return "Post created"
 
 
-@api.route("/post/<int:id>", method= ["PUT"])
+@api.route("/posts/<int:id>", methods= ["PUT"])
 def handle_update_post(id):
-    """" Update existing post """"
-   response = {'message': 'success'}
-   return jsonify(response)
+    """ Update existing post """
+    response = {'message': 'success'}
+    return jsonify(response)
 
 
-@api.route("/post/<int:id>", method = ["DELETE"])
+@api.route("/posts/<int:id>", methods = ["DELETE"])
 def handle_delete_post(id):
     """Delete post"""
     response = {'message': 'success'}
@@ -120,19 +121,24 @@ def handle_delete_post(id):
 # Donations
 
 
-@api.route("/donations", method=["GET"])
+@api.route("/donations", methods=["GET"])
 def handle_list_all_donations():
-    """" Return List of donations"""
+    """ Return List of donations"""
     return "List all donations"
 
-@api.route("/donations/<int:user_id/int:disease_id>", method= ["GET"])
-def handle_get_donation(id):
-    """" Return one single donation """"
-    return "Get #{} donation.".format(id)
+@api.route("/diseases/<int:disease_id>/donations", methods= ["GET"])
+def handle_get_donation(disease_id):
+    """ Return the list of donations selected by disease """
+    return "Get donation for #{} .".format(disease_id)
 
-@api.route("/donations/<int:user_id/int:disease_id>", method= ["POST"])
+@api.route("/users/<int:user_id>/donations", methods= ["GET"])
+def handle_get_donation(user_id):
+    """ Return the list of donations selected by user"""
+    return "Get donation made by #{} user.".format(user_id)
+
+@api.route("/donations", methods= ["POST"])
 def handle_create_donation():
-    """" Create Donation """"
+    """ Create Donation """
     payload= request.get_json()
     print(payload)
     return "Donation created"
@@ -140,33 +146,41 @@ def handle_create_donation():
 # Follows
 
 
-@api.route("/follows", method=["GET"])
+@api.route("/follows", methods=["GET"])
 def handle_list_all_follows():
-    """" Return List of follows"""
+    """ Return List of follows"""
     return "List all follows"
 
-@api.route("/follow/<int:user_id/int:disease_id>", method= ["GET"])
-def handle_get_follow(id):
-    """" Return one single follow """"
-    return "Get #{} follow.".format(id)
 
-@api.route("/follow", method= ["POST"])
+@api.route("/diseases/<int:disease_id>/follows", methods= ["GET"])
+def handle_get_follow(id):
+    """ Return the list of follows of one disease """
+    return "Get the follows of disease #{} .".format(disease_id)
+
+
+@api.route("/users/<int:user_id>/follows", methods= ["GET"])
+def handle_get_follow(id):
+    """ Return the list of follows of one user """
+    return "Get the follows of disease #{} .".format(disease_id)
+
+
+@api.route("/follows", methods= ["POST"])
 def handle_create_follow():
-    """" Create follow """"
+    """ Create follow """
     payload= request.get_json()
     print(payload)
     return "follow created"
 
 
-@api.route("/follow/<int:user_id/int:disease_id>", method= ["PUT"])
-def handle_update_follow(id):
-    """" Update existing follow """"
-   response = {'message': 'success'}
-   return jsonify(response)
+# @api.route("/follows/<int:user_id>/<int:disease_id>", methods= ["PUT"])
+# def handle_update_follow(user_id, disease_id):
+#     """ Update existing follow """
+#     response = {'message': 'success'}
+#     return jsonify(response)
 
 
-@api.route("/follow/<int:user_id/int:disease_id>", method = ["DELETE"])
-def handle_delete_follow(id):
+@api.route("/diseases/<int:disease_id>/follows", methods = ["DELETE"])
+def handle_delete_follow(disease_id):
     """Delete follow"""
     response = {'message': 'success'}
     return jsonify(response)
@@ -174,32 +188,39 @@ def handle_delete_follow(id):
 
 # Relationships
 
-@api.route("/follows", method=["GET"])
-def handle_list_all_follows():
-    """" Return List of follows"""
+@api.route("/relationships", methods=["GET"])
+def handle_list_all_roles():
+    """ Return List of follows"""
     return "List all follows"
 
-@api.route("/follow/<int:user_id/int:disease_id>", method= ["GET"])
-def handle_get_follow(id):
-    """" Return one single follow """"
-    return "Get #{} follow.".format(id)
+@api.route("/users/<int:user_id>/relationships", methods= ["GET"])
+def handle_get_user_roles(user_id):
+    """ Return the amount of roles of an user"""
+    return "Get roles of #{} user.".format(user_id)
 
-@api.route("/follow", method= ["POST"])
+
+@api.route("/diseases/<int:disease_id>/relationships", methods= ["GET"])
+def handle_get_disease_roles(disease_id):
+    """ Return the amount of roles of a disease"""
+    return "Get roles of #{} disease.".format(disease_id)
+
+
+@api.route("/relationships", methods= ["POST"])
 def handle_create_follow():
-    """" Create follow """"
+    """ Create relationships """
     payload= request.get_json()
     print(payload)
     return "follow created"
 
 
-@api.route("/follow/<int:user_id/int:disease_id>", method= ["PUT"])
+@api.route("/users/<int:user_id/int:disease_id>", methods= ["PUT"])
 def handle_update_follow(id):
-    """" Update existing follow """"
-   response = {'message': 'success'}
-   return jsonify(response)
+    """ Update existing follow """
+    response = {'message': 'success'}
+    return jsonify(response)
 
 
-@api.route("/follow/<int:user_id/int:disease_id>", method = ["DELETE"])
+@api.route("/follow/<int:user_id/int:disease_id>", methods = ["DELETE"])
 def handle_delete_follow(id):
     """Delete follow"""
     response = {'message': 'success'}
