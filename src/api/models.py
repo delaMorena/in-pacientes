@@ -6,97 +6,100 @@ from sqlalchemy import ForeignKey
 db = SQLAlchemy()
 
 class Users(db.Model):
-    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.timestamp)
-    updated_at = db.Column(db.timestamp)
-    deteled_at = db.Column(db.timestamp, nullable=True)
-    avatar = db.Column(db.string, nullable=True)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
+    deteled_at = db.Column(db.DateTime)
+    first_name = db.Column(db.String(80), nullable=False)
+    last_name = db.Column(db.String(120))
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    nick_name = db.Column(db.String(120), unique=True, nullable=False)
-    first_name = db.Column(db.String(80), unique=False, nullable=False)
-    last_name = db.Column(db.String(120), unique=False, nullable=True)
+    nickname = db.Column(db.String(120), unique=True, nullable=False)
+    avatar = db.Column(db.String(255))
+
+    diseases = db.relationship("Diseases")
+    posts = db.relationship("Posts")
+    donations = db.relationship("Donations")
+
 
 class Diseases(db.Model):
-    __tablename__ = 'diseases'
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.timestamp)
-    updated_at = db.Column(db.timestamp)
-    deteled_at = db.Column(db.timestamp, nullable=True) 
-    owner_id =  db.Column(db.Integer, ForeignKey('users.id')) 
-    scientific_name = db.Column(db.String(320), unique=True, nullable=False) 
-    title = db.Column(db.String(220), unique=True, nullable=False)
-    description = db.Column(db.String(1000), unique=True, nullable=False)
-    slug = db.Column(db.String(320), unique=True, nullable=False)
-    diseases = relationship(Users)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
+    deteled_at = db.Column(db.DateTime)
+    owner_id = db.Column(db.Integer, ForeignKey('users.id')) 
+    scientific_name = db.Column(db.String(255), nullable=False) 
+    slug = db.Column(db.String(255), unique=True, nullable=False)
+    title = db.Column(db.String(120), nullable=False)
+    description = db.Column(db.Text)
+
+    owner = db.relationship("Users")
+    posts = db.relationship("Posts")
+    donations = db.relationship("Donations")
+    
 
 class Posts(db.Model): 
-    __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.timestamp)
-    updated_at = db.Column(db.timestamp)
-    deteled_at = db.Column(db.timestamp, nullable=True)
     publisher_id = db.Column(db.Integer, ForeignKey('users.id'))
-    posts = relationship(Users)
     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
-    posts = relationship(Diseases)
-    text = db.Column(db.String(1000), nullable=False) 
-    imagen_url = db.Column(db.String(1000), nullable=True)
-    # posts = relationship(Users, Diseases)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
+    deteled_at = db.Column(db.DateTime)
+    text = db.Column(db.Text, nullable=False) 
+    imagen = db.Column(db.String(255), nullable=True)
+
+    publisher = db.relationship("Users")
+    disease = db.relationship("Diseases")
+    comments = db.relationship("Comments")
+
 
 class Comments(db.Model):
-    __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.timestamp)
-    updated_at = db.Column(db.timestamp)
-    deteled_at = db.Column(db.timestamp, nullable=True)
     post_id = db.Column(db.Integer,ForeignKey('posts.id'))
-    comments = relationship(Posts)
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    comments = relationship(Users)
-    text = db.Column(db.String(1000), unique=False, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
+    deteled_at = db.Column(db.DateTime)
+    text = db.Column(db.Text, nullable=False)
+
+    post = db.relationship("Posts")
+    user = db.relationship("Users")
+
 
 class Donations(db.Model):
-    __tablename__ = 'donations'
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    donations = relationship(Users)
     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
-    donations = relationship(Diseases)
-    created_at = db.Column(db.timestamp)
-    updated_at = db.Column(db.timestamp)
-    deteled_at = db.Column(db.timestamp, nullable=True)
-    quantity = db.Column(db.integer, nullable = False)
-    currency = db.Column(db.integer, nullable = False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
+    deteled_at = db.Column(db.DateTime)
+    amount = db.Column(db.Integer, nullable=False)
+    currency = db.Column(db.String(3), nullable=False)
+
+    user = db.relationship("Users")
+    disease = db.relationship("Diseases")
+
 
 class Follows(db.Model):
-    __tablename__ = 'follows'
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    follows = relationship(Users)
     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
-    follows = relationship(Diseases)
-    created_at = db.Column(db.timestamp)
-    updated_at = db.Column(db.timestamp)
-    deteled_at = db.Column(db.timestamp, nullable=True)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
+    deteled_at = db.Column(db.DateTime)
+
+    user = db.relationship("Users")
+    disease = db.relationship("Diseases")
+
 
 class Relationships(db.Model):
-    __tablename__ = 'relationships'
-    created_at = db.Column(db.timestamp)
-    updated_at = db.Column(db.timestamp)
-    deteled_at = db.Column(db.timestamp, nullable=True)
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    relationships = relationship(Users)
     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
-    relationships = relationship(Diseases)
-    type = db.Column(db.String(80), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
+    deteled_at = db.Column(db.DateTime)
+    role = db.Column(db.String(80), nullable=False)
 
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            # do not serialize the password, its a security breach
-        }
+    user = db.relationship("Users")
+    disease = db.relationship("Diseases")
