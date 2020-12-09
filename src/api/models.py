@@ -23,7 +23,7 @@ class Users(db.Model):
 
 
     def __str__(self):
-        return '{}:{}' .format(self.first_name, self.nickname)
+        return '{}:{}' .format(self.nickname, self.email)
     
 
     def serialize(self):
@@ -54,14 +54,15 @@ class Diseases(db.Model):
 
 
     def __str__(self):
-            return '{}:{}' .format(self.owner.first_name, self.owner.nickname, self.slug, self.donations.amount, self.donations.currency)
+            return '{}: {}' .format(self.title, self.description)
         
 
     def serialize(self):
         return {
             "id": self.id,
-            "first_name": self.slug,
-            "last_name": self.last_name,
+            "title": self.title,
+            "slug": self.slug,
+            "owner_nickname": self.owner.nickname,
             "donations": self.donations.amount,
             "currency": self.donations.currency,
             "description": self.description
@@ -75,14 +76,26 @@ class Posts(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     deleted_at = db.Column(db.DateTime) 
-    updated_at = db.Column(db.DateTime, nullable=False)
-    deteled_at = db.Column(db.DateTime)
     text = db.Column(db.Text, nullable=False) 
     imagen = db.Column(db.String(255), nullable=True)
 
     publisher = db.relationship("Users")
     disease = db.relationship("Diseases")
     comments = db.relationship("Comments")
+
+
+    def __str__(self):
+        return '{}: {}' .format(self.publisher.nickname, self.text)
+    
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "publisher": self.publisher.nickname,
+            "publisher_email": self.publisher.nickname,
+            "text": self.text,
+            "imagen": self.imagen
+        }
 
 
 class Comments(db.Model):
@@ -96,6 +109,19 @@ class Comments(db.Model):
 
     post = db.relationship("Posts")
     user = db.relationship("Users")
+
+
+    def __str__(self):
+        return '{}: {}' .format(self.post.text, self.text)
+    
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user.nickname,
+            "user_email": self.user.nickname,
+            "text": self.text
+        }
 
 
 class Donations(db.Model):
