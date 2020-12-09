@@ -127,12 +127,12 @@ def handle_list_all_donations():
     return "List all donations"
 
 @api.route("/diseases/<int:disease_id>/donations", methods= ["GET"])
-def handle_get_donation(disease_id):
+def handle_get_donation_by_disease(disease_id):
     """ Return the list of donations selected by disease """
     return "Get donation for #{} .".format(disease_id)
 
 @api.route("/users/<int:user_id>/donations", methods= ["GET"])
-def handle_get_donation(user_id):
+def handle_get_donation_by_user(user_id):
     """ Return the list of donations selected by user"""
     return "Get donation made by #{} user.".format(user_id)
 
@@ -153,13 +153,13 @@ def handle_list_all_follows():
 
 
 @api.route("/diseases/<int:disease_id>/follows", methods= ["GET"])
-def handle_get_follow(id):
+def handle_get_follow_by_disease(disease_id):
     """ Return the list of follows of one disease """
     return "Get the follows of disease #{} .".format(disease_id)
 
 
 @api.route("/users/<int:user_id>/follows", methods= ["GET"])
-def handle_get_follow(id):
+def handle_get_follow_by_user(user_id):
     """ Return the list of follows of one user """
     return "Get the follows of disease #{} .".format(disease_id)
 
@@ -205,23 +205,23 @@ def handle_get_disease_roles(disease_id):
     return "Get roles of #{} disease.".format(disease_id)
 
 
-@api.route("/relationships", methods= ["POST"])
-def handle_create_follow():
-    """ Create relationships """
+@api.route("/diseases/<int:disease_id>/relationships", methods= ["POST"])
+def handle_create_role_for_disease():
+    """ Create role for disease """
     payload= request.get_json()
     print(payload)
-    return "follow created"
+    return "Role created"
 
 
-@api.route("/users/<int:user_id/int:disease_id>", methods= ["PUT"])
-def handle_update_follow(id):
-    """ Update existing follow """
+@api.route("/diseases/<int:disease_id>/relationships", methods= ["PUT"])
+def handle_update_role(disease_id):
+    """ Update existing role """
     response = {'message': 'success'}
     return jsonify(response)
 
 
-@api.route("/follow/<int:user_id/int:disease_id>", methods = ["DELETE"])
-def handle_delete_follow(id):
-    """Delete follow"""
-    response = {'message': 'success'}
-    return jsonify(response)
+# @api.route("/follow/<int:user_id/int:disease_id>", methods = ["DELETE"])
+# def handle_delete_follow(id):
+#     """Delete R"""
+#     response = {'message': 'success'}
+#     return jsonify(response)
