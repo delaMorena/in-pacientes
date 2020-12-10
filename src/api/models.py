@@ -38,11 +38,12 @@ class Users(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
             "nickname": self.nickname,
-            "avatar": self.avatar
+            "avatar": self.avatar   
         }
 
 
@@ -69,10 +70,13 @@ class Diseases(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
             "title": self.title,
+            "scientific_name": self.scientific_name,
+            "description": self.description,
             "slug": self.slug,
-            "owner_nickname": self.owner.nickname,
-            "description": self.description
+            "owner_nickname": self.owner.nickname
         }
     
 
@@ -98,6 +102,7 @@ class Posts(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "publisher": self.publisher.nickname,
             "publisher_email": self.publisher.email,
             "text": self.text,
@@ -125,6 +130,7 @@ class Comments(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "user": self.user.nickname,
             "user_email": self.user.email,
             "text": self.text
@@ -150,6 +156,7 @@ class Donations(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "user": self.user.serialize(),
             "disease": self.disease.serialize(),
             "amount": self.amount,
@@ -199,5 +206,6 @@ class Relationships(db.Model):
         return {
             "id": self.id,
             "user": self.user.serialize(),
-            "disease": self.disease.serialize()
+            "disease": self.disease.serialize(),
+            "role": self.role
         }
