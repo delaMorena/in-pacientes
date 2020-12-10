@@ -3,7 +3,16 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 from sqlalchemy.sql import func
 
+import enum
+
 db = SQLAlchemy()
+
+class Roles(enum.Enum):
+    Pacient = 1
+    Researcher = 2
+    Doctor = 3
+    Relative = 4
+    
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,17 +32,18 @@ class Users(db.Model):
 
 
     def __str__(self):
-        return '{}:{}' .format(self.nickname, self.email)
+        return '{} <{}>' .format(self.nickname, self.email)
     
 
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
             "nickname": self.nickname,
-            "avatar": self.avatar
+            "avatar": self.avatar   
         }
 
 
@@ -60,12 +70,13 @@ class Diseases(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
             "title": self.title,
+            "scientific_name": self.scientific_name,
+            "description": self.description,
             "slug": self.slug,
-            "owner_nickname": self.owner.nickname,
-            "donations": self.donations.amount,
-            "currency": self.donations.currency,
-            "description": self.description
+            "owner_nickname": self.owner.nickname
         }
     
 
@@ -91,8 +102,9 @@ class Posts(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "publisher": self.publisher.nickname,
-            "publisher_email": self.publisher.nickname,
+            "publisher_email": self.publisher.email,
             "text": self.text,
             "imagen": self.imagen
         }
@@ -112,14 +124,15 @@ class Comments(db.Model):
 
 
     def __str__(self):
-        return '{}: {}' .format(self.post.text, self.text)
+        return 'Sobre el post {} el usuario {} ha comentado: {}' .format(self.post.text, self.user.nickname, self.text)
     
 
     def serialize(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "user": self.user.nickname,
-            "user_email": self.user.nickname,
+            "user_email": self.user.email,
             "text": self.text
         }
 
@@ -137,6 +150,20 @@ class Donations(db.Model):
     user = db.relationship("Users")
     disease = db.relationship("Diseases")
 
+    def __str__(self):
+        return 'El usuario {} dona a {} la cantidad de {} {}' .format(self.user.nickname, self.disease.title, self.amount, self.currency)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "created_at": self.created_at,
+            "user": self.user.serialize(),
+            "disease": self.disease.serialize(),
+            "amount": self.amount,
+            "currency": self.currency
+        }
+
+
 
 class Follows(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -149,6 +176,16 @@ class Follows(db.Model):
     user = db.relationship("Users")
     disease = db.relationship("Diseases")
 
+    def __str__(self):
+        return 'El usuario {} sigue a la enfermedad {}' .format(self.user.nickname, self.disease.title)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user.serialize(),
+            "disease": self.disease.serialize(),
+        }
+
 
 class Relationships(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -157,7 +194,18 @@ class Relationships(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     deleted_at = db.Column(db.DateTime)
-    role = db.Column(db.String(80), nullable=False)
+    role = db.Column(db.Enum(Roles), nullable=False)
 
     user = db.relationship("Users")
     disease = db.relationship("Diseases")
+
+    def __str__(self):
+        return 'El usuario {} tiene el rol {} de la enfermedad {}' .format(self.user.nickname, self.role, self.disease.title)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user.serialize(),
+            "disease": self.disease.serialize(),
+            "role": self.role
+        }
