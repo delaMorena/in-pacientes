@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db
+from api.models import db, Users, Diseases, Posts, Comments, Donations, Follows, Relationships
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -17,25 +17,36 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-""" empiezo a definir los endpoint """
+####################################### USERS #######################################
 
 @api.route("/users", methods=["GET"])
 def handle_list_all_users():
-    """ Return List of user"""
-    print('List all users')
-    return "List all users"
+    users = []
+
+    for user in Users.query.all():
+        users.append(user.serialize())
+    return jsonify(users), 200
 
 @api.route("/users/<int:id>", methods= ["GET"])
 def handle_get_user(id):
-    """ Return one single user """
-    return "Get #{} user.".format(id)
+    user = Users.query.get(id)
+
+    if not user:
+        return "User not found", 404
+
+    return jsonify(user.serialize())
 
 @api.route("/users", methods= ["POST"])
 def handle_create_user():
-    """ Create user """
     payload= request.get_json()
-    print(payload)
-    return "User created"
+
+    user = Users(**payload)
+
+    db.session.add(user)
+    db.session.commit()
+    print(payload, user)
+    
+    return jsonify(user.serialize()), 201
 
 
 @api.route("/users/<int:id>", methods= ["PUT"])
@@ -52,12 +63,15 @@ def handle_delete_user(id):
     return jsonify(response)
 
 
-# Diseases
+######################################## Diseases #######################################
 
 @api.route("/diseases", methods=["GET"])
 def handle_list_all_diseases():
-    """ Return List of diseases"""
-    return "List all diseases"
+    diseases = []
+
+    for disease in Diseases.query.all():
+        diseases.append(disease.serialize())
+    return jsonify(diseases), 200
 
 @api.route("/diseases/<int:id>", methods=["GET"])
 def handle_get_disease(id):
@@ -85,7 +99,7 @@ def handle_delete_disease(id):
     response = {'message': 'success'}
     return jsonify(response)
 
-# Posts 
+######################################## Posts  #######################################
 
 @api.route("/posts", methods=["GET"])
 def handle_list_all_posts():
@@ -118,7 +132,7 @@ def handle_delete_post(id):
     response = {'message': 'success'}
     return jsonify(response)
 
-# Donations
+######################################## Donations #######################################
 
 
 @api.route("/donations", methods=["GET"])
@@ -143,7 +157,7 @@ def handle_create_donation():
     print(payload)
     return "Donation created"
 
-# Follows
+######################################## Follows #######################################
 
 
 @api.route("/follows", methods=["GET"])
@@ -186,7 +200,7 @@ def handle_delete_follow(disease_id):
     return jsonify(response)
 
 
-# Relationships
+######################################## Relationships #######################################
 
 @api.route("/relationships", methods=["GET"])
 def handle_list_all_roles():
@@ -220,8 +234,8 @@ def handle_update_role(disease_id):
     return jsonify(response)
 
 
-# @api.route("/follow/<int:user_id/int:disease_id>", methods = ["DELETE"])
-# def handle_delete_follow(id):
-#     """Delete R"""
+# @api.route("/diseases/<int:disease_id>/relationships", methods = ["DELETE"])
+# def handle_delete_role(id):
+#     """Delete Role"""
 #     response = {'message': 'success'}
 #     return jsonify(response)

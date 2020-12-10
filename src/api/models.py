@@ -76,7 +76,10 @@ class Diseases(db.Model):
             "scientific_name": self.scientific_name,
             "description": self.description,
             "slug": self.slug,
-            "owner_nickname": self.owner.nickname
+            # "owner_nickname": self.owner.nickname esto da problemas. 
+            ## Además, creí que ayer lo cambiamos a:
+            ## "owner" : self.serialize()
+            ## aunque lo he probado pero tampoco funciono.
         }
     
 
