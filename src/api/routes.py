@@ -44,16 +44,28 @@ def handle_create_user():
 
     db.session.add(user)
     db.session.commit()
-    print(payload, user)
     
     return jsonify(user.serialize()), 201
 
 
 @api.route("/users/<int:id>", methods= ["PUT"])
 def handle_update_user(id):
-    """ Update existing user """
-    response = {'message': 'success'}
-    return jsonify(response)
+    user = Users.query.get(id)
+
+    if not user:
+        return "User not found", 404
+
+    payload = request.get_json()
+
+    user.first_name = payload["first_name"]
+    user.last_name = payload["last_name"]
+    user.email = payload["email"]
+    
+
+
+    db.session.add(user)
+    db.session.commit()
+    return jsonify(user.serialize()), 200
 
 
 @api.route("/users/<int:id>", methods=["DELETE"])

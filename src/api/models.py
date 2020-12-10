@@ -43,7 +43,8 @@ class Users(db.Model):
             "last_name": self.last_name,
             "email": self.email,
             "nickname": self.nickname,
-            "avatar": self.avatar   
+            "avatar": self.avatar, 
+            "password": self.password
         }
 
 
