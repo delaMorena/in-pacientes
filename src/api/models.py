@@ -43,7 +43,9 @@ class Users(db.Model):
             "last_name": self.last_name,
             "email": self.email,
             "nickname": self.nickname,
-            "avatar": self.avatar   
+            "avatar": self.avatar, 
+            # "password": self.password 
+            # al probar en insomnia me daba error porque es campo nullable = False
         }
 
 
@@ -76,7 +78,10 @@ class Diseases(db.Model):
             "scientific_name": self.scientific_name,
             "description": self.description,
             "slug": self.slug,
-            "owner_nickname": self.owner.nickname
+            # "owner_nickname": self.owner.nickname esto da problemas. 
+            ## Además, creí que ayer lo cambiamos a:
+            ## "owner" : self.owner.serialize()
+            ## aunque lo he probado pero tampoco funciono.
         }
     
 
