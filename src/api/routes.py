@@ -194,13 +194,25 @@ def handle_create_post():
     db.session.commit()
 
     return jsonify(post.serialize()), 201
-
+    
 
 @api.route("/posts/<int:id>", methods=["PUT"])
 def handle_update_post(id):
-    """ Update existing post """
-    response = {'message': 'success'}
-    return jsonify(response)
+
+    post = Posts.query.get(id)
+
+    if not post:
+        return "Post not found", 404
+
+    payload = request.get_json()
+
+    post.text = payload['text']
+    # post.publisher_id = payload['publisher_id']
+    post.disease_id = payload['disease_id']
+
+    db.session.add(post)
+    db.session.commit()
+    return jsonify(post.serialize()), 200
 
 
 @api.route("/posts/<int:id>", methods =["DELETE"])
