@@ -87,7 +87,7 @@ class Diseases(db.Model):
 
 class Posts(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
-    publisher_id = db.Column(db.Integer, ForeignKey('users.id'))
+    publisher_id = db.Column(db.Integer, ForeignKey('users.id')) # cuidado con el tipo de dato que tiene para el cuerpo de la peticion
     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())

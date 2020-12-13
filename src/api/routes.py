@@ -27,7 +27,7 @@ def handle_list_all_users():
         users.append(user.serialize())
     return jsonify(users), 200
 
-@api.route("/users/<int:id>", methods= ["GET"])
+@api.route("/users/<int:id>", methods=["GET"])
 def handle_get_user(id):
     user = Users.query.get(id)
 
@@ -36,10 +36,9 @@ def handle_get_user(id):
 
     return jsonify(user.serialize())
 
-@api.route("/users", methods= ["POST"])
+@api.route("/users", methods=["POST"])
 def handle_create_user():
     payload= request.get_json()
-
     user = Users(**payload)
 
     db.session.add(user)
@@ -48,7 +47,7 @@ def handle_create_user():
     return jsonify(user.serialize()), 201
 
 
-@api.route("/users/<int:id>", methods= ["PUT"])
+@api.route("/users/<int:id>", methods=["PUT"])
 def handle_update_user(id):
     user = Users.query.get(id)
 
@@ -60,7 +59,7 @@ def handle_update_user(id):
     user.first_name = payload["first_name"]
     user.last_name = payload["last_name"]
     user.email = payload["email"]
-    
+    # Hay que incluir estas tres claves dentro del dict de la peticion
 
 
     db.session.add(user)
@@ -70,79 +69,167 @@ def handle_update_user(id):
 
 @api.route("/users/<int:id>", methods=["DELETE"])
 def handle_delete_user(id):
-    """Delete user"""
-    response = {'message': 'success'}
-    return jsonify(response)
+
+    user = Users.query.get(id)
+
+    if not user:
+        return "User not found", 404
+
+    data = user.serialize()
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify(data), 200
 
 
 ######################################## Diseases #######################################
 
 @api.route("/diseases", methods=["GET"])
 def handle_list_all_diseases():
+
     diseases = []
 
     for disease in Diseases.query.all():
         diseases.append(disease.serialize())
+
     return jsonify(diseases), 200
+
 
 @api.route("/diseases/<int:id>", methods=["GET"])
 def handle_get_disease(id):
-    """ Return one single disease """
-    return "Get #{} disease.".format(id)
+
+    disease = Diseases.query.get(id)
+
+    if not disease:
+        return "User not found", 404
+
+    return jsonify(disease.serialize())
+
 
 @api.route("/diseases", methods= ["POST"])
 def handle_create_disease():
-    """ Create disease """
-    payload= request.get_json()
-    print(payload)
-    return "Disease created"
+
+    payload = request.get_json()
+    disease = Diseases(**payload)
+
+    db.session.add(disease)
+    db.session.commit()
+
+    return jsonify(disease.serialize()), 201
 
 
 @api.route("/diseases/<int:id>", methods=["PUT"])
 def handle_update_disease(id):
-    """ Update existing disease """
-    response = {'message': 'success'}
-    return jsonify(response)
 
+    disease = Diseases.query.get(id)
+
+    if not disease:
+        return "User not found", 404
+    
+    # cuerpo de la peticion
+    # "title": self.title,
+    # "scientific_name": self.scientific_name,
+    # "description": self.description,
+
+    payload = request.get_json()
+
+    disease.title = payload['title']
+    disease.scientific_name = payload['scientific_name']
+    disease.description = payload['description']
+
+    db.session.add(disease)
+    db.session.commit()
+
+    return jsonify(disease.serialize()), 200
+    
 
 @api.route("/diseases/<int:id>", methods=["DELETE"])
 def handle_delete_disease(id):
-    """Delete disease"""
-    response = {'message': 'success'}
-    return jsonify(response)
+
+    disease = Diseases.query.get(id)
+
+    if not disease:
+        return "User not found", 404
+
+    data = disease.serialize()
+
+    db.session.delete(disease)
+    db.session.commit()
+
+    return jsonify(data), 200
+   
 
 ######################################## Posts  #######################################
 
 @api.route("/posts", methods=["GET"])
 def handle_list_all_posts():
-    """ Return List of posts"""
-    return "List all posts"
+   
+    posts = []
 
-@api.route("/posts/<int:id>", methods= ["GET"])
+    for post in Posts.query.all():
+        posts.append(post.serialize())
+        
+    return jsonify(posts), 200
+
+
+@api.route("/posts/<int:id>", methods=["GET"])
 def handle_get_post(id):
-    """ Return one single post """
-    return "Get #{} post.".format(id)
+
+    post = Posts.query.get(id)
+
+    if not post:
+        return "User not found", 404
+
+    return jsonify(post.serialize())
+
 
 @api.route("/posts", methods= ["POST"])
 def handle_create_post():
-    """ Create post """
-    payload= request.get_json()
-    print(payload)
-    return "Post created"
 
+    payload = request.get_json()
+    post = Posts(**payload)
 
-@api.route("/posts/<int:id>", methods= ["PUT"])
+    db.session.add(post)
+    db.session.commit()
+
+    return jsonify(post.serialize()), 201
+    
+
+@api.route("/posts/<int:id>", methods=["PUT"])
 def handle_update_post(id):
-    """ Update existing post """
-    response = {'message': 'success'}
-    return jsonify(response)
+
+    post = Posts.query.get(id)
+
+    if not post:
+        return "Post not found", 404
+
+    payload = request.get_json()
+
+    post.text = payload['text']
+    # post.publisher_id = payload['publisher_id']
+    post.disease_id = payload['disease_id']
+
+    db.session.add(post)
+    db.session.commit()
+    return jsonify(post.serialize()), 200
 
 
-@api.route("/posts/<int:id>", methods = ["DELETE"])
+@api.route("/posts/<int:id>", methods =["DELETE"])
 def handle_delete_post(id):
-    """Delete post"""
-    response = {'message': 'success'}
-    return jsonify(response)
+    
+    post = Posts.query.get(id)
+
+    if not post:
+        return "User not found", 404
+
+    data = post.serialize()
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return jsonify(data), 200
+
 
 ######################################## Donations #######################################
 
@@ -152,17 +239,17 @@ def handle_list_all_donations():
     """ Return List of donations"""
     return "List all donations"
 
-@api.route("/diseases/<int:disease_id>/donations", methods= ["GET"])
+@api.route("/diseases/<int:disease_id>/donations", methods=["GET"])
 def handle_get_donation_by_disease(disease_id):
     """ Return the list of donations selected by disease """
     return "Get donation for #{} .".format(disease_id)
 
-@api.route("/users/<int:user_id>/donations", methods= ["GET"])
+@api.route("/users/<int:user_id>/donations", methods=["GET"])
 def handle_get_donation_by_user(user_id):
     """ Return the list of donations selected by user"""
     return "Get donation made by #{} user.".format(user_id)
 
-@api.route("/donations", methods= ["POST"])
+@api.route("/donations", methods=["POST"])
 def handle_create_donation():
     """ Create Donation """
     payload= request.get_json()
@@ -178,19 +265,19 @@ def handle_list_all_follows():
     return "List all follows"
 
 
-@api.route("/diseases/<int:disease_id>/follows", methods= ["GET"])
+@api.route("/diseases/<int:disease_id>/follows", methods=["GET"])
 def handle_get_follow_by_disease(disease_id):
     """ Return the list of follows of one disease """
     return "Get the follows of disease #{} .".format(disease_id)
 
 
-@api.route("/users/<int:user_id>/follows", methods= ["GET"])
+@api.route("/users/<int:user_id>/follows", methods=["GET"])
 def handle_get_follow_by_user(user_id):
     """ Return the list of follows of one user """
     return "Get the follows of disease #{} .".format(disease_id)
 
 
-@api.route("/follows", methods= ["POST"])
+@api.route("/follows", methods=["POST"])
 def handle_create_follow():
     """ Create follow """
     payload= request.get_json()
@@ -205,7 +292,7 @@ def handle_create_follow():
 #     return jsonify(response)
 
 
-@api.route("/diseases/<int:disease_id>/follows", methods = ["DELETE"])
+@api.route("/diseases/<int:disease_id>/follows", methods =["DELETE"])
 def handle_delete_follow(disease_id):
     """Delete follow"""
     response = {'message': 'success'}
@@ -219,19 +306,19 @@ def handle_list_all_roles():
     """ Return List of follows"""
     return "List all follows"
 
-@api.route("/users/<int:user_id>/relationships", methods= ["GET"])
+@api.route("/users/<int:user_id>/relationships", methods=["GET"])
 def handle_get_user_roles(user_id):
     """ Return the amount of roles of an user"""
     return "Get roles of #{} user.".format(user_id)
 
 
-@api.route("/diseases/<int:disease_id>/relationships", methods= ["GET"])
+@api.route("/diseases/<int:disease_id>/relationships", methods=["GET"])
 def handle_get_disease_roles(disease_id):
     """ Return the amount of roles of a disease"""
     return "Get roles of #{} disease.".format(disease_id)
 
 
-@api.route("/diseases/<int:disease_id>/relationships", methods= ["POST"])
+@api.route("/diseases/<int:disease_id>/relationships", methods=["POST"])
 def handle_create_role_for_disease():
     """ Create role for disease """
     payload= request.get_json()
@@ -239,7 +326,7 @@ def handle_create_role_for_disease():
     return "Role created"
 
 
-@api.route("/diseases/<int:disease_id>/relationships", methods= ["PUT"])
+@api.route("/diseases/<int:disease_id>/relationships", methods=["PUT"])
 def handle_update_role(disease_id):
     """ Update existing role """
     response = {'message': 'success'}
