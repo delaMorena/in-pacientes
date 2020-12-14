@@ -105,13 +105,19 @@ class Posts(db.Model):
     
 
     def serialize(self):
+        list_comments = []
+        for comment in self.comments:
+            list_comments.append(comment.serialize())
+
         return {
             "id": self.id,
             "created_at": self.created_at,
             "publisher": self.publisher.nickname,
             "publisher_email": self.publisher.email,
             "text": self.text,
-            "imagen": self.imagen
+            "imagen": self.imagen,
+            "disease_name": self.disease.title,
+            "comments": list_comments
         }
 
 
@@ -126,6 +132,7 @@ class Comments(db.Model):
 
     post = db.relationship("Posts")
     user = db.relationship("Users")
+    
 
 
     def __str__(self):
@@ -138,7 +145,8 @@ class Comments(db.Model):
             "created_at": self.created_at,
             "user": self.user.nickname,
             "user_email": self.user.email,
-            "text": self.text
+            "text": self.text,
+            # "disease_name": self.post.disease.title,
         }
 
 

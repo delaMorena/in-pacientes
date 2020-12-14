@@ -56,6 +56,7 @@ def handle_update_user(id):
 
     payload = request.get_json()
 
+    # Añadir un if para cada clave del payload
     user.first_name = payload["first_name"]
     user.last_name = payload["last_name"]
     user.email = payload["email"]
@@ -134,6 +135,7 @@ def handle_update_disease(id):
 
     payload = request.get_json()
 
+    # Añadir un if para cada clave del payload
     disease.title = payload['title']
     disease.scientific_name = payload['scientific_name']
     disease.description = payload['description']
@@ -162,26 +164,32 @@ def handle_delete_disease(id):
 
 ######################################## Posts  #######################################
 
-@api.route("/posts", methods=["GET"])
-def handle_list_all_posts():
-   
+@api.route("/users/<int:id>/posts", methods=["GET"])
+def handle_list_posts_from_user(id):
+    user = Users.query.get(id)
     posts = []
 
-    for post in Posts.query.all():
+    if not user:
+        return "User not found", 404
+
+    for post in user.posts:
         posts.append(post.serialize())
         
     return jsonify(posts), 200
 
 
-@api.route("/posts/<int:id>", methods=["GET"])
-def handle_get_post(id):
+@api.route("/diseases/<int:id>/posts", methods=["GET"])
+def handle_list_posts_from_disease(id):
+    disease = Diseases.query.get(id)
+    posts = []
 
-    post = Posts.query.get(id)
+    if not disease:
+        return "Disease not found", 404
 
-    if not post:
-        return "User not found", 404
-
-    return jsonify(post.serialize())
+    for post in disease.posts:
+        posts.append(post.serialize())
+        
+    return jsonify(posts), 200
 
 
 @api.route("/posts", methods= ["POST"])
@@ -206,8 +214,9 @@ def handle_update_post(id):
 
     payload = request.get_json()
 
+    # Añadir un if para cada clave del payload
     post.text = payload['text']
-    # post.publisher_id = payload['publisher_id']
+    post.publisher_id = payload['publisher_id']
     post.disease_id = payload['disease_id']
 
     db.session.add(post)
@@ -236,8 +245,13 @@ def handle_delete_post(id):
 
 @api.route("/donations", methods=["GET"])
 def handle_list_all_donations():
-    """ Return List of donations"""
-    return "List all donations"
+    
+    donations = []
+
+    for donation in Donations.query.all():
+        donations.append(donation.serialize())
+
+    return jsonify(donations), 200
 
 @api.route("/diseases/<int:disease_id>/donations", methods=["GET"])
 def handle_get_donation_by_disease(disease_id):
