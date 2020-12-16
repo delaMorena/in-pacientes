@@ -7,6 +7,23 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+def get_one_or_404(model, id):
+    row = model.query.get(id)
+
+    if not row:
+        return row.capitalize()+" not found", 404
+
+    return jsonify(row.serialize()), 200
+
+
+def get_all_from_models(newList, model):
+    newList = []
+
+    for item in model.query.all():
+        newList.append(item.serialize())
+
+    return jsonify(newList), 200
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -21,20 +38,25 @@ def handle_hello():
 
 @api.route("/users", methods=["GET"])
 def handle_list_all_users():
-    users = []
+    # users = []
 
-    for user in Users.query.all():
-        users.append(user.serialize())
-    return jsonify(users), 200
+    # for user in Users.query.all():
+    #     users.append(user.serialize())
+    # return jsonify(users), 200
+
+    return get_all_from_models(users, Users)
 
 @api.route("/users/<int:id>", methods=["GET"])
 def handle_get_user(id):
-    user = Users.query.get(id)
+    # user = Users.query.get(id)
 
-    if not user:
-        return "User not found", 404
+    # if not user:
+    #     return "User not found", 404
 
-    return jsonify(user.serialize())
+    # return jsonify(user.serialize())
+    return get_one_or_404(Users, id)
+
+    
 
 @api.route("/users", methods=["POST"])
 def handle_create_user():
@@ -89,23 +111,26 @@ def handle_delete_user(id):
 @api.route("/diseases", methods=["GET"])
 def handle_list_all_diseases():
 
-    diseases = []
+    # diseases = []
 
-    for disease in Diseases.query.all():
-        diseases.append(disease.serialize())
+    # for disease in Diseases.query.all():
+    #     diseases.append(disease.serialize())
 
-    return jsonify(diseases), 200
+    # return jsonify(diseases), 200
+
+    return get_all_from_models(diseases, Diseases)
 
 
 @api.route("/diseases/<int:id>", methods=["GET"])
 def handle_get_disease(id):
 
-    disease = Diseases.query.get(id)
+    # disease = Diseases.query.get(id)
 
-    if not disease:
-        return "User not found", 404
+    # if not disease:
+    #     return "User not found", 404
 
-    return jsonify(disease.serialize())
+    # return jsonify(disease.serialize())
+    return get_one_or_404(Diseases, id)
 
 
 @api.route("/diseases", methods= ["POST"])
