@@ -56,12 +56,20 @@ def handle_update_user(id):
 
     payload = request.get_json()
 
-    # Añadir un if para cada clave del payload
-    user.first_name = payload["first_name"]
-    user.last_name = payload["last_name"]
-    user.email = payload["email"]
-    # Hay que incluir estas tres claves dentro del dict de la peticion
+    if "first_name" in payload:
+        user.first_name = payload["first_name"]
 
+    if "last_name" in payload:
+        user.last_name = payload["last_name"]
+
+    if "email" in payload:
+        user.email = payload["email"]
+
+    if "nickname" in payload:
+        user.nickname = payload["nickname"]
+
+    if "avatar" in payload:
+        user.avatar = payload["avatar"]
 
     db.session.add(user)
     db.session.commit()
@@ -136,9 +144,17 @@ def handle_update_disease(id):
     payload = request.get_json()
 
     # Añadir un if para cada clave del payload
-    disease.title = payload['title']
-    disease.scientific_name = payload['scientific_name']
-    disease.description = payload['description']
+    if "title" in payload:
+        disease.title = payload['title']
+
+    if "scientific_name" in payload:
+        disease.scientific_name = payload['scientific_name']
+
+    if "description" in payload:
+        disease.description = payload['description']
+
+    if "slug" in payload:
+        disease.slug = payload['slug']
 
     db.session.add(disease)
     db.session.commit()
