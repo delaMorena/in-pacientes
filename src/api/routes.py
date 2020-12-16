@@ -1,29 +1,48 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+import datetime
+
+from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from api.models import db, Users, Diseases, Posts, Comments, Donations, Follows, Relationships
 from api.utils import generate_sitemap, APIException
 
+
 api = Blueprint('api', __name__)
 
+
+
 def get_one_or_404(model, id):
-    row = model.query.get(id)
+    row = model.query.filter_by(id=id, deleted_at=None).first()
 
     if not row:
-        return row.capitalize()+" not found", 404
-
+        abort(404)
+        # return "{} not found".format(model), 404 # PENDIENTE DE CONCATENAR EL NOMBRE DE LA TABLA
+        
     return jsonify(row.serialize()), 200
 
 
-def get_all_from_models(newList, model):
+def get_all_from_models(model):
     newList = []
 
-    for item in model.query.all():
+    for item in model.query.filter_by(deleted_at=None).all():
         newList.append(item.serialize())
 
     return jsonify(newList), 200
 
+
+def delete_one_from_models(model):
+    row = model.query.filter_by(id=id, deleted_at=None).first()
+
+    if not row:
+        abort(404)
+
+    row.deleted_at = datetime.datetime.utcnow()
+
+    db.session.add(row)
+    db.session.commit()
+
+    return jsonify(row.serialize()), 200
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -38,22 +57,13 @@ def handle_hello():
 
 @api.route("/users", methods=["GET"])
 def handle_list_all_users():
-    # users = []
+    
+    return get_all_from_models(Users)
 
-    # for user in Users.query.all():
-    #     users.append(user.serialize())
-    # return jsonify(users), 200
-
-    return get_all_from_models(users, Users)
 
 @api.route("/users/<int:id>", methods=["GET"])
 def handle_get_user(id):
-    # user = Users.query.get(id)
-
-    # if not user:
-    #     return "User not found", 404
-
-    # return jsonify(user.serialize())
+    
     return get_one_or_404(Users, id)
 
     
@@ -62,7 +72,11 @@ def handle_get_user(id):
 def handle_create_user():
     payload= request.get_json()
     user = Users(**payload)
-
+    user.name = "alex"
+    
+    user2 = Users(**payload)
+    user2.name = "marta"
+    print(user.name, user2.name)
     db.session.add(user)
     db.session.commit()
     
@@ -71,9 +85,9 @@ def handle_create_user():
 
 @api.route("/users/<int:id>", methods=["PUT"])
 def handle_update_user(id):
-    user = Users.query.get(id)
+    user = Users.query.filter_by(id=id, deleted_at=None)
 
-    if not user:
+    if not user or user.deleted_at is not None:
         return "User not found", 404
 
     payload = request.get_json()
@@ -92,18 +106,24 @@ def handle_update_user(id):
 
 @api.route("/users/<int:id>", methods=["DELETE"])
 def handle_delete_user(id):
-
-    user = Users.query.get(id)
+    user = Users.query.filter_by(id=id, deleted_at=None).first()
 
     if not user:
         return "User not found", 404
 
-    data = user.serialize()
+    user.deleted_at = datetime.datetime.utcnow()
 
-    db.session.delete(user)
+    db.session.add(user)
     db.session.commit()
 
-    return jsonify(data), 200
+    return jsonify(user.serialize()), 200
+
+    # data = user.serialize()
+
+    # db.session.delete(user)
+    # db.session.commit()
+
+    # return jsonify(data), 200
 
 
 ######################################## Diseases #######################################
@@ -111,25 +131,12 @@ def handle_delete_user(id):
 @api.route("/diseases", methods=["GET"])
 def handle_list_all_diseases():
 
-    # diseases = []
-
-    # for disease in Diseases.query.all():
-    #     diseases.append(disease.serialize())
-
-    # return jsonify(diseases), 200
-
-    return get_all_from_models(diseases, Diseases)
+    return get_all_from_models(Diseases)
 
 
 @api.route("/diseases/<int:id>", methods=["GET"])
 def handle_get_disease(id):
 
-    # disease = Diseases.query.get(id)
-
-    # if not disease:
-    #     return "User not found", 404
-
-    # return jsonify(disease.serialize())
     return get_one_or_404(Diseases, id)
 
 
@@ -174,17 +181,29 @@ def handle_update_disease(id):
 @api.route("/diseases/<int:id>", methods=["DELETE"])
 def handle_delete_disease(id):
 
-    disease = Diseases.query.get(id)
+    # disease = Diseases.query.get(id)
+
+    # if not disease:
+    #     return "User not found", 404
+
+    # data = disease.serialize()
+
+    # db.session.delete(disease)
+    # db.session.commit()
+
+    # return jsonify(data), 200
+
+    disease = Diseases.query.filter_by(id=id, deleted_at=None).first()
 
     if not disease:
-        return "User not found", 404
+        return "Disease not found", 404
 
-    data = disease.serialize()
+    disease.deleted_at = datetime.datetime.utcnow()
 
-    db.session.delete(disease)
+    db.session.add(disease)
     db.session.commit()
 
-    return jsonify(data), 200
+    return jsonify(disease.serialize()), 200
    
 
 ######################################## Posts  #######################################
@@ -205,6 +224,13 @@ def handle_list_posts_from_user(id):
 
 @api.route("/diseases/<int:id>/posts", methods=["GET"])
 def handle_list_posts_from_disease(id):
+    
+    Posts.query.filter_by(
+        user_id=id,
+        deleted_at=None
+    ).all()
+
+
     disease = Diseases.query.get(id)
     posts = []
 
