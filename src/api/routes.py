@@ -72,11 +72,7 @@ def handle_get_user(id):
 def handle_create_user():
     payload= request.get_json()
     user = Users(**payload)
-    user.name = "alex"
     
-    user2 = Users(**payload)
-    user2.name = "marta"
-    print(user.name, user2.name)
     db.session.add(user)
     db.session.commit()
     
