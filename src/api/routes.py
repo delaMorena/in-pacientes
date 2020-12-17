@@ -56,12 +56,20 @@ def handle_update_user(id):
 
     payload = request.get_json()
 
-    # Añadir un if para cada clave del payload
-    user.first_name = payload["first_name"]
-    user.last_name = payload["last_name"]
-    user.email = payload["email"]
-    # Hay que incluir estas tres claves dentro del dict de la peticion
+    if "first_name" in payload:
+        user.first_name = payload["first_name"]
 
+    if "last_name" in payload:
+        user.last_name = payload["last_name"]
+
+    if "email" in payload:
+        user.email = payload["email"]
+
+    if "nickname" in payload:
+        user.nickname = payload["nickname"]
+
+    if "avatar" in payload:
+        user.avatar = payload["avatar"]
 
     db.session.add(user)
     db.session.commit()
@@ -135,10 +143,18 @@ def handle_update_disease(id):
 
     payload = request.get_json()
 
-    # Añadir un if para cada clave del payload
-    disease.title = payload['title']
-    disease.scientific_name = payload['scientific_name']
-    disease.description = payload['description']
+    # Añadido un if para cada clave del payload
+    if "title" in payload:
+        disease.title = payload['title']
+
+    if "scientific_name" in payload:
+        disease.scientific_name = payload['scientific_name']
+
+    if "description" in payload:
+        disease.description = payload['description']
+
+    if "slug" in payload:
+        disease.slug = payload['slug']
 
     db.session.add(disease)
     db.session.commit()
@@ -214,10 +230,15 @@ def handle_update_post(id):
 
     payload = request.get_json()
 
-    # Añadir un if para cada clave del payload
-    post.text = payload['text']
-    post.publisher_id = payload['publisher_id']
-    post.disease_id = payload['disease_id']
+    # Añadido un if para cada clave del payload
+    if "text" in payload:
+        post.text = payload['text']
+    
+    if "publisher_id" in payload:
+        post.publisher_id = payload['publisher_id']
+
+    if "disease_id" in payload:
+        post.disease_id = payload['disease_id']
 
     db.session.add(post)
     db.session.commit()
@@ -298,7 +319,7 @@ def handle_create_follow():
     print(payload)
     return "follow created"
 
-
+# Tiene sentido editar un follow? como se marca y se desmarca? es un borrado o un put?:
 # @api.route("/follows/<int:user_id>/<int:disease_id>", methods= ["PUT"])
 # def handle_update_follow(user_id, disease_id):
 #     """ Update existing follow """
@@ -320,17 +341,48 @@ def handle_list_all_roles():
     """ Return List of follows"""
     return "List all follows"
 
+
+# def handle_list_all_relationships():
+#     relationships = []
+
+#     for relationship in Relationships.query.all():
+#         relationship.append(user.serialize())
+#     return jsonify(relationships), 200
+
 @api.route("/users/<int:user_id>/relationships", methods=["GET"])
 def handle_get_user_roles(user_id):
     """ Return the amount of roles of an user"""
     return "Get roles of #{} user.".format(user_id)
 
 
+# def handle_list_roles_from_user(id):
+#     user = Users.query.get(id)
+#     relationships = []
+
+#     if not user:
+#         return "User not found", 404
+
+#     for relationship in user.relationship:
+#         relationships.append(relationship.serialize())
+        
+#     return jsonify(relationships), 200
+
+
 @api.route("/diseases/<int:disease_id>/relationships", methods=["GET"])
 def handle_get_disease_roles(disease_id):
     """ Return the amount of roles of a disease"""
     return "Get roles of #{} disease.".format(disease_id)
+# def handle_list_relationships_from_disease(id):
+#     disease = Diseases.query.get(id)
+#     relationships = []
 
+#     if not disease:
+#         return "Disease not found", 404
+
+#     for relationship in disease.relationships:
+#         relationships.append(relationship.serialize())
+        
+#     return jsonify(relationships), 200
 
 @api.route("/diseases/<int:disease_id>/relationships", methods=["POST"])
 def handle_create_role_for_disease():
