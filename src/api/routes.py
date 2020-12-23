@@ -31,18 +31,20 @@ def get_all_from_models(model):
     return jsonify(newList), 200
 
 
-def delete_one_from_models(model):
-    row = model.query.filter_by(id=id, deleted_at=None).first()
+# def delete_one_from_models(model):
+#     row = model.query.filter_by(id=id, deleted_at=None).first()
 
-    if not row:
-        abort(404)
+#     if not row:
+#         abort(404)
 
-    row.deleted_at = datetime.datetime.utcnow()
+#     row.deleted_at = datetime.datetime.utcnow()
 
-    db.session.add(row)
-    db.session.commit()
+#     db.session.add(row)
+#     db.session.commit()
 
-    return jsonify(row.serialize()), 200
+#     return jsonify(row.serialize()), 200
+
+# NO RECONOCE EL PARAMETRO model COMO UNA CLASE ==> PENDIENTE DE REVISION POR MENTOR
 
 ####################################### USERS #######################################
 
@@ -90,7 +92,7 @@ def handle_create_user():
 
 @api.route("/users/<int:id>", methods=["PUT"])
 def handle_update_user(id):
-    user = Users.query.filter_by(id=id, deleted_at=None)
+    user = Users.query.filter_by(id=id, deleted_at=None).first()
 
     if not user or user.deleted_at is not None:
         return "User not found", 404
@@ -131,7 +133,9 @@ def handle_delete_user(id):
     db.session.commit()
 
     return jsonify(user.serialize()), 200
-    # return delete_one_from_models(Users)
+    # return delete_one_from_models(Users) 
+
+
 
 ######################################## Diseases #######################################
 
@@ -224,9 +228,10 @@ def handle_delete_disease(id):
 
 ######################################## Posts  #######################################
 
+# OBTENER POST QUE CREA UN USUARIO
 @api.route("/users/<int:id>/posts", methods=["GET"])
 def handle_list_posts_from_user(id):
-    user = Users.query.get(id)
+    user = Users.query.filter_by(id=id, deleted_at=None).first()
     posts = []
 
     if not user:
@@ -237,17 +242,10 @@ def handle_list_posts_from_user(id):
         
     return jsonify(posts), 200
 
-
+# OBTENER POST QUE SE CREAN SOBRE UNA ENFERMEDAD
 @api.route("/diseases/<int:id>/posts", methods=["GET"])
 def handle_list_posts_from_disease(id):
-    
-    Posts.query.filter_by(
-        user_id=id,
-        deleted_at=None
-    ).all()
-
-
-    disease = Diseases.query.get(id)
+    disease = Diseases.query.filter_by(id=id, deleted_at=None).first()
     posts = []
 
     if not disease:
@@ -258,7 +256,7 @@ def handle_list_posts_from_disease(id):
         
     return jsonify(posts), 200
 
-
+# GENERAR UN POST
 @api.route("/posts", methods= ["POST"])
 def handle_create_post():
 
@@ -286,7 +284,7 @@ def handle_create_post():
 
     return jsonify(post.serialize()), 201
     
-
+# EDITA UN POST, PERO EN NINGUNO DE LOS METODOS GET ANTERIORES SE OBTIENE EL ID PROPIO DEL POST
 @api.route("/posts/<int:id>", methods=["PUT"])
 def handle_update_post(id):
 
@@ -313,20 +311,33 @@ def handle_update_post(id):
     return jsonify(post.serialize()), 200
 
 
+# ELIMINA UN POST, PERO EN NINGUNO DE LOS METODOS GET ANTERIORES SE OBTIENE EL ID PROPIO DEL POST,
 @api.route("/posts/<int:id>", methods =["DELETE"])
 def handle_delete_post(id):
     
-    post = Posts.query.get(id)
+    # post = Posts.query.get(id)
+
+    # if not post:
+    #     return "User not found", 404
+
+    # data = post.serialize()
+
+    # db.session.delete(post)
+    # db.session.commit()
+
+    # return jsonify(data), 200
+
+    post = Posts.query.filter_by(id=id, deleted_at=None).first()
 
     if not post:
-        return "User not found", 404
+        return "Post not found", 404
 
-    data = post.serialize()
+    post.deleted_at = datetime.datetime.utcnow()
 
-    db.session.delete(post)
+    db.session.add(post)
     db.session.commit()
 
-    return jsonify(data), 200
+    return jsonify(post.serialize()), 200
 
 
 ######################################## Donations #######################################
@@ -341,23 +352,69 @@ def handle_list_all_donations():
         donations.append(donation.serialize())
 
     return jsonify(donations), 200
+    # DEBATIR SOBRE LA NECESIDAD DE OBTENER TODAS LAS DONACIONES
 
-@api.route("/diseases/<int:disease_id>/donations", methods=["GET"])
-def handle_get_donation_by_disease(disease_id):
-    """ Return the list of donations selected by disease """
-    return "Get donation for #{} .".format(disease_id)
+@api.route("/users/<int:id>/donations", methods=["GET"])
+def handle_get_donation_by_user(id):
+    # """ Return the list of donations selected by user"""
+    # return "Get donation made by #{} user.".format(user_id)
 
-@api.route("/users/<int:user_id>/donations", methods=["GET"])
-def handle_get_donation_by_user(user_id):
-    """ Return the list of donations selected by user"""
-    return "Get donation made by #{} user.".format(user_id)
+    user = Users.query.filter_by(id=id, deleted_at=None).first()
+    donations = []
 
+    if not user:
+        return "User not found", 404
+
+    for donation in user.donations:
+        donations.append(donation.serialize())
+        
+    return jsonify(donations), 200
+
+
+@api.route("/diseases/<int:id>/donations", methods=["GET"])
+def handle_get_donation_by_disease(id):
+    # """ Return the list of donations selected by disease """
+    # return "Get donation for #{} .".format(disease_id)
+
+    disease = Diseases.query.filter_by(id=id, deleted_at=None).first()
+    donations = []
+
+    if not disease:
+        return "Disease not found", 404
+
+    for donation in disease.donations:
+        donations.append(donation.serialize())
+        
+    return jsonify(donations), 200
+
+# ESTE METODO FALLA
 @api.route("/donations", methods=["POST"])
 def handle_create_donation():
-    """ Create Donation """
-    payload= request.get_json()
-    print(payload)
-    return "Donation created"
+
+    payload = request.get_json()
+
+    required = ['amount', 'currency']
+    # disease_id and user_id is required??
+
+    types = {
+        'amount': int, 
+        'currency': str, 
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
+    donation = Donations(**payload)
+
+    db.session.add(donation)
+    db.session.commit()
+
+    return jsonify(donation.serialize()), 201
 
 ######################################## Follows #######################################
 
