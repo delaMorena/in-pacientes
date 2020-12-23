@@ -44,15 +44,6 @@ def delete_one_from_models(model):
 
     return jsonify(row.serialize()), 200
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
-
-    return jsonify(response_body), 200
-
 ####################################### USERS #######################################
 
 @api.route("/users", methods=["GET"])
@@ -71,6 +62,24 @@ def handle_get_user(id):
 @api.route("/users", methods=["POST"])
 def handle_create_user():
     payload= request.get_json()
+
+    required = ['first_name', 'email', 'nickname', 'password']
+
+    types = {
+        'first_name': str, 
+        'email': str, 
+        'nickname': str,
+        'password': str
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
     user = Users(**payload)
     
     db.session.add(user)
@@ -105,6 +114,7 @@ def handle_update_user(id):
 
     db.session.add(user)
     db.session.commit()
+
     return jsonify(user.serialize()), 200
 
 
@@ -121,14 +131,7 @@ def handle_delete_user(id):
     db.session.commit()
 
     return jsonify(user.serialize()), 200
-
-    # data = user.serialize()
-
-    # db.session.delete(user)
-    # db.session.commit()
-
-    # return jsonify(data), 200
-
+    # return delete_one_from_models(Users)
 
 ######################################## Diseases #######################################
 
@@ -148,6 +151,24 @@ def handle_get_disease(id):
 def handle_create_disease():
 
     payload = request.get_json()
+
+    required = ['scientific_name', 'slug', 'title']
+    # owner_id required??
+
+    types = {
+        'scientific_name': str, 
+        'slug': str, 
+        'title': str,
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
     disease = Diseases(**payload)
 
     db.session.add(disease)
@@ -159,15 +180,10 @@ def handle_create_disease():
 @api.route("/diseases/<int:id>", methods=["PUT"])
 def handle_update_disease(id):
 
-    disease = Diseases.query.get(id)
-
-    if not disease:
-        return "User not found", 404
+    disease = Diseases.query.filter_by(id=id, deleted_at=None).first()
     
-    # cuerpo de la peticion
-    # "title": self.title,
-    # "scientific_name": self.scientific_name,
-    # "description": self.description,
+    if not disease or disease.deleted_at is not None:
+        return "disease not found", 404 
 
     payload = request.get_json()
 
@@ -192,18 +208,6 @@ def handle_update_disease(id):
 
 @api.route("/diseases/<int:id>", methods=["DELETE"])
 def handle_delete_disease(id):
-
-    # disease = Diseases.query.get(id)
-
-    # if not disease:
-    #     return "User not found", 404
-
-    # data = disease.serialize()
-
-    # db.session.delete(disease)
-    # db.session.commit()
-
-    # return jsonify(data), 200
 
     disease = Diseases.query.filter_by(id=id, deleted_at=None).first()
 
@@ -259,6 +263,22 @@ def handle_list_posts_from_disease(id):
 def handle_create_post():
 
     payload = request.get_json()
+
+    required = ['text']
+    # publisher_id, creater_id required?
+
+    types = {
+        'text': str, 
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
     post = Posts(**payload)
 
     db.session.add(post)
@@ -270,10 +290,10 @@ def handle_create_post():
 @api.route("/posts/<int:id>", methods=["PUT"])
 def handle_update_post(id):
 
-    post = Posts.query.get(id)
+    post = Posts.query.filter_by(id=id, deleted_at=None).first()
 
-    if not post:
-        return "Post not found", 404
+    if not post or post.deleted_at is not None:
+        return "post not found", 404 
 
     payload = request.get_json()
 
@@ -289,6 +309,7 @@ def handle_update_post(id):
 
     db.session.add(post)
     db.session.commit()
+    
     return jsonify(post.serialize()), 200
 
 
