@@ -314,18 +314,6 @@ def handle_update_post(id):
 # ELIMINA UN POST, PERO EN NINGUNO DE LOS METODOS GET ANTERIORES SE OBTIENE EL ID PROPIO DEL POST,
 @api.route("/posts/<int:id>", methods =["DELETE"])
 def handle_delete_post(id):
-    
-    # post = Posts.query.get(id)
-
-    # if not post:
-    #     return "User not found", 404
-
-    # data = post.serialize()
-
-    # db.session.delete(post)
-    # db.session.commit()
-
-    # return jsonify(data), 200
 
     post = Posts.query.filter_by(id=id, deleted_at=None).first()
 
@@ -341,7 +329,6 @@ def handle_delete_post(id):
 
 
 ######################################## Donations #######################################
-
 
 @api.route("/donations", methods=["GET"])
 def handle_list_all_donations():
@@ -387,18 +374,21 @@ def handle_get_donation_by_disease(id):
         
     return jsonify(donations), 200
 
-# ESTE METODO FALLA
+# ESTE METODO FALLA ==> pendiente de insertar en el cuerpo de la peticion los id del usuario y de la enfermedad
+# REVISAR RUTA PARA PASAR A LA FUNCION VALORES DE ID DESDE LA URL
 @api.route("/donations", methods=["POST"])
 def handle_create_donation():
 
     payload = request.get_json()
 
-    required = ['amount', 'currency']
+    required = ['amount', 'currency', 'id_user', 'id_disease']
     # disease_id and user_id is required??
 
     types = {
-        'amount': int, 
+        'amount': str, 
         'currency': str, 
+        'id_user': int,
+        'id_disease': int
     }
 
     for key, value in payload.items():
