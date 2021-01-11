@@ -30,7 +30,7 @@ class Users(db.Model):
 
     diseases = db.relationship("Diseases")
     posts = db.relationship("Posts")
-    donations = db.relationship("Donations")
+    # donations = db.relationship("Donations")
 
 
     def __str__(self):
@@ -64,7 +64,7 @@ class Diseases(db.Model):
 
     owner = db.relationship("Users")
     posts = db.relationship("Posts")
-    donations = db.relationship("Donations")
+    # donations = db.relationship("Donations")
 
 
     def __str__(self):
@@ -150,32 +150,61 @@ class Comments(db.Model):
         }
 
 
-class Donations(db.Model):
+# class Donations(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
+#     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'), nullable=False)
+#     created_at = db.Column(db.DateTime, server_default=func.now())
+#     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
+#     deleted_at = db.Column(db.DateTime) 
+#     amount = db.Column(db.Integer, nullable=False)
+#     currency = db.Column(db.String(3), nullable=False)
+
+#     user = db.relationship("Users")
+#     disease = db.relationship("Diseases")
+
+#     def __str__(self):
+#         return 'El usuario {} dona a {} la cantidad de {} {}' .format(self.user.nickname, self.disease.title, self.amount, self.currency)
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "created_at": self.created_at,
+#             "user": self.user.serialize(),
+#             "disease": self.disease.serialize(),
+#             "amount": self.amount,
+#             "currency": self.currency
+#         }
+
+class Associations(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
-    disease_id = db.Column(db.Integer, ForeignKey('diseases.id'), nullable=False)
+    # user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
+    # disease_id = db.Column(db.Integer, ForeignKey('diseases.id'), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     deleted_at = db.Column(db.DateTime) 
-    amount = db.Column(db.Integer, nullable=False)
-    currency = db.Column(db.String(3), nullable=False)
+    association_name = db.Column(db.String(255))
+    location = db.Column(db.String(80))
+    description = db.Column(db.Text)
+    data_donation_IBAN = db.Column(db.String(255))
+    data_donation_bizum = db.Column(db.String(255))
 
-    user = db.relationship("Users")
-    disease = db.relationship("Diseases")
+    # user = db.relationship("Users")
+    # disease = db.relationship("Diseases")
 
     def __str__(self):
-        return 'El usuario {} dona a {} la cantidad de {} {}' .format(self.user.nickname, self.disease.title, self.amount, self.currency)
+        return 'Asociacion {}' .format(self.association_name)
 
     def serialize(self):
         return {
             "id": self.id,
             "created_at": self.created_at,
-            "user": self.user.serialize(),
-            "disease": self.disease.serialize(),
-            "amount": self.amount,
-            "currency": self.currency
+            "name": self.association_name,
+            "location": self.location,
+            "description": self.description,
+            "IBAN": self.data_donation_IBAN,
+            "bizum": self.data_donation_bizum
         }
-
 
 
 class Follows(db.Model):
