@@ -12,6 +12,8 @@ class Roles(enum.Enum):
     Researcher = 2
     Doctor = 3
     Relative = 4
+    Professional = 5 
+    Association = 6
     
 
 class Users(db.Model):
@@ -133,8 +135,6 @@ class Comments(db.Model):
     post = db.relationship("Posts")
     user = db.relationship("Users")
     
-
-
     def __str__(self):
         return 'Sobre el post {} el usuario {} ha comentado: {}' .format(self.post.text, self.user.nickname, self.text)
     
@@ -152,8 +152,8 @@ class Comments(db.Model):
 
 class Donations(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
+    user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
+    disease_id = db.Column(db.Integer, ForeignKey('diseases.id'), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     deleted_at = db.Column(db.DateTime) 
