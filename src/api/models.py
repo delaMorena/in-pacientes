@@ -25,7 +25,7 @@ class Users(db.Model):
     last_name = db.Column(db.String(120))
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    nickname = db.Column(db.String(120), unique=True, nullable=False)
+    username = db.Column(db.String(120), unique=True, nullable=False)
     avatar = db.Column(db.String(255))
 
     diseases = db.relationship("Diseases")
@@ -34,7 +34,7 @@ class Users(db.Model):
 
 
     def __str__(self):
-        return '{} <{}>' .format(self.nickname, self.email)
+        return '{} <{}>' .format(self.username, self.email)
     
 
     def serialize(self):
@@ -44,7 +44,7 @@ class Users(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
-            "nickname": self.nickname,
+            "username": self.username,
             "avatar": self.avatar, 
             # "password": self.password 
             # al probar en insomnia me daba error porque es campo nullable = False
@@ -80,7 +80,7 @@ class Diseases(db.Model):
             "scientific_name": self.scientific_name,
             "description": self.description,
             "slug": self.slug,
-            # "owner_nickname": self.owner.nickname esto da problemas. 
+            # "owner_nickname": self.owner.username esto da problemas. 
             ## Además, creí que ayer lo cambiamos a:
             ## "owner" : self.owner.serialize()
             ## aunque lo he probado pero tampoco funciono.
@@ -103,7 +103,7 @@ class Posts(db.Model):
 
 
     def __str__(self):
-        return '{}: {}' .format(self.publisher.nickname, self.text)
+        return '{}: {}' .format(self.publisher.username, self.text)
     
 
     def serialize(self):
@@ -114,7 +114,7 @@ class Posts(db.Model):
         return {
             "id": self.id,
             "created_at": self.created_at,
-            "publisher": self.publisher.nickname,
+            "publisher": self.publisher.username,
             "publisher_email": self.publisher.email,
             "text": self.text,
             "imagen": self.imagen,
@@ -136,14 +136,14 @@ class Comments(db.Model):
     user = db.relationship("Users")
     
     def __str__(self):
-        return 'Sobre el post {} el usuario {} ha comentado: {}' .format(self.post.text, self.user.nickname, self.text)
+        return 'Sobre el post {} el usuario {} ha comentado: {}' .format(self.post.text, self.user.username, self.text)
     
 
     def serialize(self):
         return {
             "id": self.id,
             "created_at": self.created_at,
-            "user": self.user.nickname,
+            "user": self.user.username,
             "user_email": self.user.email,
             "text": self.text,
             # "disease_name": self.post.disease.title,
@@ -164,7 +164,7 @@ class Comments(db.Model):
 #     disease = db.relationship("Diseases")
 
 #     def __str__(self):
-#         return 'El usuario {} dona a {} la cantidad de {} {}' .format(self.user.nickname, self.disease.title, self.amount, self.currency)
+#         return 'El usuario {} dona a {} la cantidad de {} {}' .format(self.user.username, self.disease.title, self.amount, self.currency)
 
 #     def serialize(self):
 #         return {
@@ -219,7 +219,7 @@ class Follows(db.Model):
     disease = db.relationship("Diseases")
 
     def __str__(self):
-        return 'El usuario {} sigue a la enfermedad {}' .format(self.user.nickname, self.disease.title)
+        return 'El usuario {} sigue a la enfermedad {}' .format(self.user.username, self.disease.title)
 
     def serialize(self):
         return {
@@ -242,7 +242,7 @@ class Relationships(db.Model):
     disease = db.relationship("Diseases")
 
     def __str__(self):
-        return 'El usuario {} tiene el rol {} de la enfermedad {}' .format(self.user.nickname, self.role, self.disease.title)
+        return 'El usuario {} tiene el rol {} de la enfermedad {}' .format(self.user.username, self.role, self.disease.title)
 
     def serialize(self):
         return {
