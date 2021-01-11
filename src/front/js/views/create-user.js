@@ -3,8 +3,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
 export const CreateUser = () => {
-    const { store, actions } = useContext(Context);
-    
+	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="container">
