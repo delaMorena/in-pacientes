@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home} from "./views/home";
+import { Home } from "./views/home";
 import { CreateUser } from "./views/create-user";
 import { CreatePost } from "./views/create-post";
 import { Feed } from "./views/feed";
@@ -53,7 +53,7 @@ const Layout = () => {
 						<Route exact path="/signup">
 							<SignUp />
 						</Route>
-                        <Route exact path="/login">
+						<Route exact path="/login">
 							<LogIn />
 						</Route>
 						<Route>

@@ -8,7 +8,7 @@ export const Post = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Crea tu enfermedad</h1>
+			<h1>Esto es un post</h1>
 		</div>
 	);
 };
