@@ -4,7 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import datetime
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
-from api.models import db, Users, Diseases, Posts, Comments, Donations, Follows, Relationships
+from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Relationships
 from api.utils import generate_sitemap, APIException
 
 
