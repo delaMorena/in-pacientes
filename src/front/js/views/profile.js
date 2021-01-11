@@ -1,14 +1,13 @@
-// PAGINA DONDE INSERTAR TODOS LOS POST DE LAS ENFERMEDADES SEGUIDAS POR EL USUARIO (RESUMEN DE LOS POST)
+// PAGINA DE USUARIO CON LOS POST QUE HAS PUBLICADO USANDO LAS VISTAS DE cardFeed.js
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.scss";
 
-export const Home = () => {
+export const Profile = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Feed de inicio</h1>
+			<h1>Perfil de usuario</h1>
 		</div>
 	);
 };

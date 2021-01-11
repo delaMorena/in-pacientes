@@ -1,14 +1,13 @@
-// PAGINA DONDE INSERTAR TODOS LOS POST DE LAS ENFERMEDADES SEGUIDAS POR EL USUARIO (RESUMEN DE LOS POST)
+// CREAR PERFIL DE USUARIO CON LOS DATOS DE NOMBRE, APELLIDO, EDAD, ENFERMEDAD, ROL, ETC...
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.scss";
 
-export const Home = () => {
+export const CreateUser = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Feed de inicio</h1>
+			<h1>Crea tu usuario</h1>
 		</div>
 	);
 };

@@ -3,9 +3,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
-import { HomeStart } from "./views/homeStart";
+import { CreateUser } from "./views/create-user";
+import { CreatePost } from "./views/create-post";
+import { Feed } from "./views/feed";
+import { Post } from "./views/post";
+import { Disease } from "./views/disease";
+import { Profile } from "./views/profile";
+import { SignUp } from "./views/sign-up";
+import { LogIn } from "./views/log-in";
 
 import injectContext from "./store/appContext";
 
@@ -25,13 +30,31 @@ const Layout = () => {
 					<Navbar />
 					<Switch>
 						<Route exact path="/">
-							<HomeStart />
+							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+						<Route exact path="/createuser">
+							<CreateUser />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/createpost">
+							<CreatePost />
+						</Route>
+						<Route exact path="/feed">
+							<Feed />
+						</Route>
+						<Route exact path="/post">
+							<Post />
+						</Route>
+						<Route exact path="/disease">
+							<Disease />
+						</Route>
+						<Route exact path="/profile">
+							<Profile />
+						</Route>
+						<Route exact path="/signup">
+							<SignUp />
+						</Route>
+						<Route exact path="/login">
+							<LogIn />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
