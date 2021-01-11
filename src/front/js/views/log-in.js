@@ -13,7 +13,6 @@ export const LogIn = () => {
 	};
 
 	return (
-
 		<div className="container">
 			<div className="text-center mt-5">
 				<h1>Iniciar sesion</h1>
@@ -54,7 +53,6 @@ export const LogIn = () => {
 					Submit
 				</button>
 			</form>
-
 		</div>
 	);
 };
