@@ -1,14 +1,13 @@
-// PAGINA DONDE INSERTAR TODOS LOS POST DE LAS ENFERMEDADES SEGUIDAS POR EL USUARIO (RESUMEN DE LOS POST)
+// MUESTRA TODOS LOS POST DE UNA ENFERMEDAD. AÑADIR BOTON DE SEGUIR ENFERMEDAD.
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.scss";
 
-export const Home = () => {
+export const Disease = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Feed de inicio</h1>
+			<h1>Perfil de usuario</h1>
 		</div>
 	);
 };
