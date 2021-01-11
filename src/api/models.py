@@ -12,6 +12,8 @@ class Roles(enum.Enum):
     Researcher = 2
     Doctor = 3
     Relative = 4
+    Professional = 5 
+    Association = 6
     
 
 class Users(db.Model):
@@ -133,8 +135,6 @@ class Comments(db.Model):
     post = db.relationship("Posts")
     user = db.relationship("Users")
     
-
-
     def __str__(self):
         return 'Sobre el post {} el usuario {} ha comentado: {}' .format(self.post.text, self.user.nickname, self.text)
     
