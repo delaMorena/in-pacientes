@@ -7,7 +7,11 @@ export const Header = () => {
 			<div className="card mb-3" id="card-header">
 				<div className="row no-gutters">
 					<div className="col-md-4">
-						<img src="https://picsum.photos/500/500?random=3" className="card-img" alt="..." />
+						<img
+							src="https://picsum.photos/500/500?random=3"
+							className="card-img rounded-circle"
+							alt="..."
+						/>
 					</div>
 					<div className="col-md-8">
 						<div className="card-body">
