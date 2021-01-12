@@ -9,6 +9,7 @@ export const CreatePost = () => {
 
 	const OnSubmit = event => {
 		console.log("Post: ", text);
+		console.log("Enlace: ", url);
 	};
 	return (
 		<div className="container">
