@@ -5,10 +5,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			createUser: data => {
-				const endpoint = "https://3001-ba4b1410-a093-4c8a-bcc2-4ac068dfd64c.ws-eu03.gitpod.io/api/users";
+				const endpoint = "https://3001-ab259a27-521c-4c37-a16c-1a60e58f3765.ws-eu03.gitpod.io/api/users/";
 				const method = "POST";
 				const config = {
 					method: method,
+					mode: "cors",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(data)
 				};

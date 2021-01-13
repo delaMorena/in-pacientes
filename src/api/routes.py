@@ -2,6 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import datetime
+import hashlib
+import hmac
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Relationships
@@ -10,7 +12,7 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
-
+MAC = "QjBWRdMUn8xSenf9xY9bzLemsWqdL28B"
 
 def get_one_or_404(model, id):
     row = model.query.filter_by(id=id, deleted_at=None).first()
@@ -80,6 +82,12 @@ def handle_create_user():
         if field not in payload or payload[field] is None:
             abort(400)
 
+    key = MAC.encode('utf-8')
+    msg = payload['password'].encode('utf-8')
+    algo = hashlib.sha512
+
+    payload['password'] = hmac.new(key, msg, algo).hexdigest()
+    
     user = Users(**payload)
     
     db.session.add(user)
