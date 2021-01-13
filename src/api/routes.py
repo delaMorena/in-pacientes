@@ -86,8 +86,8 @@ def handle_create_user():
     msg = payload['password'].encode('utf-8')
     algo = hashlib.sha512
 
-    payload['password'] = hmac.new(key, msg, algo).hexdigest()
-    
+    ['password'] = hmac.new(key, msg, algo).hexdigest()
+
     user = Users(**payload)
     
     db.session.add(user)
