@@ -21,11 +21,11 @@ class Users(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     deleted_at = db.Column(db.DateTime) 
-    first_name = db.Column(db.String(80), nullable=False)
+    first_name = db.Column(db.String(80))
     last_name = db.Column(db.String(120))
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    username = db.Column(db.String(120), unique=True, nullable=False)
+    username = db.Column(db.String(120), unique=True)
     avatar = db.Column(db.String(255))
 
     diseases = db.relationship("Diseases")

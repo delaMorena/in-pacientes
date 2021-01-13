@@ -8,8 +8,11 @@ export const SignUp = () => {
 	const [password, setPassword] = useState("");
 
 	const HandleClick = event => {
-		console.log("email: ", email);
-		console.log("password: ", password);
+		const payload = {
+			email: email,
+			password: password
+		};
+		actions.createUser(payload);
 	};
 
 	return (
