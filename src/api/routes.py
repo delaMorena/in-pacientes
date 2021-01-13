@@ -65,12 +65,10 @@ def handle_get_user(id):
 def handle_create_user():
     payload= request.get_json()
 
-    required = ['first_name', 'email', 'nickname', 'password']
+    required = ['email', 'password']
 
     types = {
-        'first_name': str, 
         'email': str, 
-        'nickname': str,
         'password': str
     }
 
