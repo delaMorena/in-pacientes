@@ -5,7 +5,7 @@ import "../../styles/card-feed.scss";
 export const CardFeed = () => {
 	return (
 		<div className="col-4">
-			<div className="card" id="card-width">
+			<div id="card-width">
 				<img src="https://picsum.photos/300/200?random=1" className="card-img-top" alt="..." />
 				<div className="card-body">
 					<p className="card-text">
