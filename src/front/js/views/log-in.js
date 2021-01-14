@@ -4,12 +4,15 @@ import { Context } from "../store/appContext";
 
 export const LogIn = () => {
 	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("alex@gmail.com");
+	const [password, setPassword] = useState("12345");
 
 	const HandleClick = event => {
-		console.log("email: ", email);
-		console.log("password: ", password);
+		const payload = {
+			email: email,
+			password: password
+		};
+		actions.userLogin(payload);
 	};
 
 	return (
