@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import datetime
 import hashlib
 import hmac
+import jwt
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Relationships
@@ -13,6 +14,7 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 MAC = "QjBWRdMUn8xSenf9xY9bzLemsWqdL28B"
+JWT_SECRET = "y4YMFBeBhMMYxGJMpW2L2rpQkJgY7PeW"
 
 def get_one_or_404(model, id):
     row = model.query.filter_by(id=id, deleted_at=None).first()
@@ -67,6 +69,7 @@ def handle_get_user(id):
 def handle_create_user():
     payload= request.get_json()
 
+   
     required = ['email', 'password']
 
     types = {
@@ -86,7 +89,10 @@ def handle_create_user():
     msg = payload['password'].encode('utf-8')
     algo = hashlib.sha512
 
+    print("password: ", msg)
     payload['password'] = hmac.new(key, msg, algo).hexdigest()
+    print("hash: ", payload['password'])
+
 
     user = Users(**payload)
     
@@ -94,6 +100,37 @@ def handle_create_user():
     db.session.commit()
     
     return jsonify(user.serialize()), 201
+
+
+@api.route("/login", methods=["POST"]) # no es un GET porque el metodo get no deja pasar nada en el body
+def login():
+    payload= request.get_json()
+
+    email = payload['email']
+    password = payload['password']
+
+    user = Users.query.filter_by(email=email, deleted_at=None).first()
+
+    if not user:
+        return "Forbidden", 403
+
+    key = MAC.encode('utf-8')
+    msg = payload['password'].encode('utf-8')
+    algo = hashlib.sha512
+
+    hashed_password = hmac.new(key, msg, algo).hexdigest()
+
+    if hashed_password != user.password:
+        return "Forbidden", 403
+    
+    secret = JWT_SECRET.encode('utf-8')
+    payload = {"sub": user.email}
+    algo = "HS256"
+    token = jwt.encode(payload, secret, algorithm=algo)
+
+    # print(payload)
+    # print(user.serialize())
+    return jsonify({"token": token}), 201
 
 
 @api.route("/users/<int:id>", methods=["PUT"])
