@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import datetime
 import hashlib
 import hmac
+import jwt
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Relationships
@@ -13,6 +14,7 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 MAC = "QjBWRdMUn8xSenf9xY9bzLemsWqdL28B"
+JWT_SECRET = "y4YMFBeBhMMYxGJMpW2L2rpQkJgY7PeW"
 
 def get_one_or_404(model, id):
     row = model.query.filter_by(id=id, deleted_at=None).first()
@@ -121,9 +123,14 @@ def login():
     if hashed_password != user.password:
         return "Forbidden", 403
     
-    print(payload)
-    print(user.serialize())
-    return jsonify(user.serialize()), 201
+    secret = JWT_SECRET.encode('utf-8')
+    payload = {"sub": user.email}
+    algo = "HS256"
+    token = jwt.encode(payload, secret, algorithm=algo)
+
+    # print(payload)
+    # print(user.serialize())
+    return jsonify({"token": token}), 201
 
 
 @api.route("/users/<int:id>", methods=["PUT"])

@@ -19,6 +19,7 @@ gunicorn = "*"
 mysqlclient = "*"
 cloudinary = "*"
 flask-admin = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.8"
