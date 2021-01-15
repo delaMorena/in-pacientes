@@ -102,7 +102,7 @@ def handle_create_user():
     return jsonify(user.serialize()), 201
 
 def authorized_user():
-    authorization = request.headers['Authorization']
+    authorization = request.headers.get('Authorization')
 
     if not authorization:
         abort(403)

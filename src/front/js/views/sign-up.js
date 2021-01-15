@@ -12,7 +12,9 @@ export const SignUp = () => {
 			email: email,
 			password: password
 		};
-		actions.createUser(payload);
+		actions.createUser(payload, () => {
+			history.push("/login");
+		});
 		console.log(payload);
 	};
 

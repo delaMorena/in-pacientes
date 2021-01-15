@@ -1,13 +1,27 @@
 // CREAR PERFIL DE USUARIO CON LOS DATOS DE NOMBRE, APELLIDO, EDAD, ENFERMEDAD, ROL, ETC...
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const CreateUser = () => {
 	const { store, actions } = useContext(Context);
+	const history = useHistory();
 	const [name, setName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [userName, setUserName] = useState("");
 	const [avatar, setAvatar] = useState("");
+
+	useEffect(() => {
+		const init = async () => {
+			if (store.token) {
+				await actions.test();
+			} else {
+				history.push("/login");
+			}
+		};
+
+		init();
+	}, []);
 
 	const OnSubmit = event => {
 		console.log("Name: ", name, "Last name: ", lastName, "User name: ", userName);
