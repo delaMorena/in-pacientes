@@ -101,6 +101,26 @@ def handle_create_user():
     
     return jsonify(user.serialize()), 201
 
+def authorized_user():
+    authorization = request.headers['Authorization']
+
+    if not authorization:
+        abort(403)
+
+    token = authorization[7:]
+    secret = JWT_SECRET.encode('utf-8')
+    algo = "HS256"
+
+    payload = jwt.decode(token, secret, algorithms= [algo])
+    user = Users.query.filter_by(email=payload["sub"], deleted_at=None).first()
+
+    return user
+
+@api.route("/test", methods=['GET'])
+def test():
+    user = authorized_user()
+
+    return jsonify(user.serialize()), 200
 
 @api.route("/login", methods=["POST"]) # no es un GET porque el metodo get no deja pasar nada en el body
 def login():
