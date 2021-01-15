@@ -1,11 +1,11 @@
-const baseUrl = "https://3001-f9120fab-9114-4cd3-be35-26ffcc7c1bd1.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-e4288aac-3683-4c3e-9942-e3dc0e9f9be1.ws-eu03.gitpod.io/api";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null
 		},
 		actions: {
-			createUser: input => {
+			createUser: (input, callback) => {
 				const endpoint = `${baseUrl}/users`;
 				const method = "POST";
 				const config = {
@@ -19,10 +19,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch(endpoint, config).then(response => {
 					console.log(response);
+					callback();
 				});
 			},
 
-			userLogin: input => {
+			userLogin: async input => {
 				const actions = getActions();
 				const endpoint = `${baseUrl}/login`;
 				const method = "POST";
@@ -33,27 +34,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(input)
 				};
-				fetch(endpoint, config)
+				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
+						console.log("Respuesta del login");
 						setStore({ token: data.token });
-						actions.test();
 					})
 					.catch(error => console.error("error: ", error)); // imprime el tipo error que se ha producido
 			},
-			test() {
+			async test() {
 				const store = getStore();
-				console.log("tokem: ", store.token);
+				console.log("token: ", store.token);
 				const endpoint = `${baseUrl}/test`;
 				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
 				const config = {
 					method: method,
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${store.token}`
-					}
+					headers: headers
 				};
-				fetch(endpoint, config)
+				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => console.log(data));
 			}
