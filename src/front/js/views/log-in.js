@@ -1,18 +1,23 @@
 // CREAR USERNAME Y EMAIL
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const LogIn = () => {
 	const { store, actions } = useContext(Context);
+	const history = useHistory();
+
 	const [email, setEmail] = useState("alex@gmail.com");
 	const [password, setPassword] = useState("12345");
 
-	const HandleClick = event => {
+	const HandleClick = async event => {
 		const payload = {
 			email: email,
 			password: password
 		};
-		actions.userLogin(payload);
+
+		await actions.userLogin(payload); // HASTA QUE NO SE EJECUTA ESTA FUNCION NO PASA A LA SIGUIENTE LINEA DE CODIGO
+		history.push("/createuser");
 	};
 
 	return (
