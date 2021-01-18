@@ -10,6 +10,7 @@ export const Profile = () => {
 	return (
 		<div className="text-center mt-5">
 			<h1>Perfil de usuario</h1>
+			<h1>{store.user.email}</h1>
 			<Header />
 			<div role="tabpanel" aria-labelledby="pills-grid">
 				<div className="container my-3">

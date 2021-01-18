@@ -103,7 +103,7 @@ def handle_create_user():
 
 def authorized_user():
     authorization = request.headers.get('Authorization')
-
+    print(authorization)
     if not authorization:
         abort(403)
 
@@ -153,9 +153,12 @@ def login():
     return jsonify({"token": token}), 201
 
 
-@api.route("/users/<int:id>", methods=["PUT"])
+@api.route("/users", methods=["PUT"])
 def handle_update_user(id):
-    user = Users.query.filter_by(id=id, deleted_at=None).first()
+    # user = Users.query.filter_by(id=id, deleted_at=None).first()
+
+    user = authorized_user()
+    print("se imprime")
 
     if not user or user.deleted_at is not None:
         return "User not found", 404
@@ -171,8 +174,8 @@ def handle_update_user(id):
     if "email" in payload:
         user.email = payload["email"]
 
-    if "nickname" in payload:
-        user.nickname = payload["nickname"]
+    if "username" in payload:
+        user.username = payload["username"]
 
     if "avatar" in payload:
         user.avatar = payload["avatar"]

@@ -1,15 +1,16 @@
 // CREAR PERFIL DE USUARIO CON LOS DATOS DE NOMBRE, APELLIDO, EDAD, ENFERMEDAD, ROL, ETC...
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const CreateUser = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
-	const [name, setName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [userName, setUserName] = useState("");
-	const [avatar, setAvatar] = useState("");
+
+	const [firstName, setFirstName] = useState("Alex");
+	const [lastName, setLastName] = useState("Redondo");
+	const [userName, setUserName] = useState("alexredondo");
+	const [avatar, setAvatar] = useState("www.as.com");
 
 	useEffect(() => {
 		const init = async () => {
@@ -19,12 +20,18 @@ export const CreateUser = () => {
 				history.push("/login");
 			}
 		};
-
 		init();
 	}, []);
 
 	const OnSubmit = event => {
-		console.log("Name: ", name, "Last name: ", lastName, "User name: ", userName);
+		console.log("Name: ", firstName, "Last name: ", lastName, "User name: ", userName);
+		const payload = {
+			firstName: firstName,
+			lastName: lastName,
+			userName: userName,
+			avatar: avatar
+		};
+		actions.editUser(payload);
 	};
 
 	return (
@@ -34,13 +41,13 @@ export const CreateUser = () => {
 			</div>
 			<form>
 				<div className="form-group">
-					<label htmlFor="exampleInputName">Name</label>
+					<label htmlFor="exampleInputName">First name</label>
 					<input
 						type="text"
 						className="form-control"
 						placeholder="First name"
-						value={name}
-						onChange={event => setName(event.target.value)}
+						value={firstName}
+						onChange={event => setFirstName(event.target.value)}
 					/>
 				</div>
 				<div className="form-group">
