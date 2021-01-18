@@ -15,7 +15,7 @@ export const CreateUser = () => {
 	useEffect(() => {
 		const init = async () => {
 			if (store.token) {
-				await actions.test();
+				await actions.getUser();
 			} else {
 				history.push("/login");
 			}
