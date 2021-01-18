@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-cf49b234-b006-4345-9b0f-5b0fc2832740.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-eb31c1ff-8013-4e3e-940f-aa2bcbce8f61.ws-eu03.gitpod.io/api";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -16,7 +16,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 						// "Access-Control-Allow-Origin": "*"
 					},
-					body: JSON.stringify(input)
+					body: JSON.stringify({
+						email: input.email,
+						password: input.password,
+						first_name: input.firstName,
+						last_name: input.lastName,
+						username: input.userName,
+						avatar: input.avatar
+					})
 				};
 				fetch(endpoint, config).then(response => {
 					console.log(response);

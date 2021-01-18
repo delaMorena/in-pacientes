@@ -17,7 +17,7 @@ export const LogIn = () => {
 		};
 
 		await actions.userLogin(payload); // HASTA QUE NO SE EJECUTA ESTA FUNCION NO PASA A LA SIGUIENTE LINEA DE CODIGO
-		history.push("/users");
+		history.push("/createuser");
 	};
 
 	return (
