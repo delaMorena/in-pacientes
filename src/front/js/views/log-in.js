@@ -15,9 +15,17 @@ export const LogIn = () => {
 			email: email,
 			password: password
 		};
-
 		await actions.userLogin(payload); // HASTA QUE NO SE EJECUTA ESTA FUNCION NO PASA A LA SIGUIENTE LINEA DE CODIGO
-		history.push("/users");
+		await actions.getUser();
+
+		console.log(store.user.created_at);
+		console.log(store.user.updated_at);
+
+		if (store.user.updated_at === store.user.created_at) {
+			history.push("/createuser");
+		} else {
+			history.push("/feed");
+		}
 	};
 
 	return (

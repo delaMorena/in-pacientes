@@ -35,6 +35,21 @@ def get_all_from_models(model):
     return jsonify(newList), 200
 
 
+def authorized_user():
+    authorization = request.headers.get('Authorization')
+
+    if not authorization:
+        abort(403)
+
+    token = authorization[7:]
+    secret = JWT_SECRET.encode('utf-8')
+    algo = "HS256"
+
+    payload = jwt.decode(token, secret, algorithms= [algo])
+    user = Users.query.filter_by(email=payload["sub"], deleted_at=None).first()
+
+    return user
+
 # def delete_one_from_models(model):
 #     row = model.query.filter_by(id=id, deleted_at=None).first()
 
@@ -64,7 +79,6 @@ def handle_get_user(id):
     return get_one_or_404(Users, id)
 
     
-
 @api.route("/users", methods=["POST"])
 def handle_create_user():
     payload= request.get_json()
@@ -101,20 +115,6 @@ def handle_create_user():
     
     return jsonify(user.serialize()), 201
 
-def authorized_user():
-    authorization = request.headers.get('Authorization')
-    print(authorization)
-    if not authorization:
-        abort(403)
-
-    token = authorization[7:]
-    secret = JWT_SECRET.encode('utf-8')
-    algo = "HS256"
-
-    payload = jwt.decode(token, secret, algorithms= [algo])
-    user = Users.query.filter_by(email=payload["sub"], deleted_at=None).first()
-
-    return user
 
 @api.route("/test", methods=['GET'])
 def test():
@@ -152,13 +152,12 @@ def login():
     # print(user.serialize())
     return jsonify({"token": token}), 201
 
-
 @api.route("/users", methods=["PUT"])
-def handle_update_user(id):
-    # user = Users.query.filter_by(id=id, deleted_at=None).first()
+def handle_update_user():
 
     user = authorized_user()
-    print("se imprime")
+
+    user.id
 
     if not user or user.deleted_at is not None:
         return "User not found", 404
@@ -207,6 +206,11 @@ def handle_delete_user(id):
 
 @api.route("/diseases", methods=["GET"])
 def handle_list_all_diseases():
+    
+    user = authorized_user()
+
+    if not user:
+        return "User not found", 404
 
     return get_all_from_models(Diseases)
 
@@ -295,13 +299,15 @@ def handle_delete_disease(id):
 ######################################## Posts  #######################################
 
 # OBTENER POST QUE CREA UN USUARIO
-@api.route("/users/<int:id>/posts", methods=["GET"])
-def handle_list_posts_from_user(id):
-    user = Users.query.filter_by(id=id, deleted_at=None).first()
-    posts = []
+@api.route("/users/posts", methods=["GET"])
+def handle_list_posts_from_user():
+
+    user = authorized_user()
 
     if not user:
         return "User not found", 404
+ 
+    posts = []
 
     for post in user.posts:
         posts.append(post.serialize())
@@ -309,8 +315,9 @@ def handle_list_posts_from_user(id):
     return jsonify(posts), 200
 
 # OBTENER POST QUE SE CREAN SOBRE UNA ENFERMEDAD
-@api.route("/diseases/<int:id>/posts", methods=["GET"])
+@api.route("/diseases/posts", methods=["GET"])
 def handle_list_posts_from_disease(id):
+
     disease = Diseases.query.filter_by(id=id, deleted_at=None).first()
     posts = []
 
