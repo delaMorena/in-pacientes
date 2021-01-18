@@ -1,8 +1,9 @@
-const baseUrl = "https://3001-e4288aac-3683-4c3e-9942-e3dc0e9f9be1.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-cf49b234-b006-4345-9b0f-5b0fc2832740.ws-eu03.gitpod.io/api";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null
+			token: null,
+			user: {}
 		},
 		actions: {
 			createUser: (input, callback) => {
@@ -37,8 +38,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log("Respuesta del login");
-						setStore({ token: data.token });
+						setStore({
+							token: data.token
+						});
+						// console.log(store.token);
 					})
 					.catch(error => console.error("error: ", error)); // imprime el tipo error que se ha producido
 			},
@@ -59,7 +62,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				await fetch(endpoint, config)
 					.then(response => response.json())
-					.then(data => console.log(data));
+					.then(data => {
+						// console.log(data)
+						setStore({ user: data });
+						console.log("contacto", store.user);
+					});
+			},
+			editUser(input) {
+				const endpoint = `${baseUrl}/users`;
+				const method = "PUT";
+				const config = {
+					method: method,
+					headers: {
+						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin": "*"
+					},
+					body: JSON.stringify({
+						first_name: input.firstName,
+						last_name: input.lastName,
+						username: input.userName,
+						avatar: input.avatar
+					})
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => console.error("error: ", error));
 			}
 		}
 	};

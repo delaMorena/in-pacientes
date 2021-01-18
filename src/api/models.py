@@ -41,6 +41,8 @@ class Users(db.Model):
         return {
             "id": self.id,
             "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "deleted_at": self.deleted_at,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
