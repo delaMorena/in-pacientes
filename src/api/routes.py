@@ -581,12 +581,34 @@ def handle_get_disease_roles(disease_id):
         
 #     return jsonify(relationships), 200
 
-@api.route("/diseases/<int:disease_id>/relationships", methods=["POST"])
+@api.route("/relationships", methods=["POST"])
 def handle_create_role_for_disease():
-    """ Create role for disease """
-    payload= request.get_json()
-    print(payload)
-    return "Role created"
+    payload = request.get_json()
+
+    required = ['user_id', 'disease_id', 'role']
+    # disease_id and user_id is required??
+
+    types = {
+        'user_id': int,
+        'disease_id': int,
+        'role': str
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
+    # donation = Donations(**payload)
+    relation = Relationships(**payload)
+
+    db.session.add(relation)
+    db.session.commit()
+
+    return jsonify(relation.serialize()), 201
 
 
 @api.route("/diseases/<int:disease_id>/relationships", methods=["PUT"])
@@ -601,3 +623,15 @@ def handle_update_role(disease_id):
 #     """Delete Role"""
 #     response = {'message': 'success'}
 #     return jsonify(response)
+
+########################################### Associations ########################################
+
+@api.route("/associations", methods=["GET"])
+def handle_list_all_associations():
+    
+    user = authorized_user()
+
+    if not user:
+        return "User not found", 404
+
+    return get_all_from_models(Associations)
