@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const CreateUser = () => {
+export const Follow = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
@@ -18,7 +18,6 @@ export const CreateUser = () => {
 	// 	init();
 	// }, []);
 
-
 	// const OnSubmit = event => {
 	// 	console.log("Name: ", firstName, "Last name: ", lastName, "User name: ", userName);
 	// 	const payload = {
@@ -30,7 +29,6 @@ export const CreateUser = () => {
 	// 	actions.editUser(payload);
 	// };
 	const OnSubmit = event => {};
-
 
 	return (
 		<div className="container">

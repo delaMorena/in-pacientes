@@ -9,35 +9,24 @@ export const Profile = () => {
 
 	useEffect(() => {
 		actions.getPostUser();
+		actions.getUser();
 	}, []);
 
+	const cardItems = store.userPosts.map((post, index) => {
+		console.log(post.comments);
+
+		return <CardFeed key={index} post={post} />;
+	});
+
 	return (
-		<div className="text-center mt-5">
+		<div className="container text-center mt-5">
 			<h1>Perfil de usuario</h1>
-			<h1>{store.user.email}</h1>
+			<h1>{store.user.username}</h1>
 			<Header />
-			<div className="text-center">
-				{store.userPosts.map((value, index) => {
-					return (
-						<p key={index}>
-							{value.text}
-							{/* <button onClick={(event) => deleteTask(item.id)} type="button" className="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button> */}
-						</p>
-					);
-				})}
-			</div>
+			<div className="text-center" />
 			<div role="tabpanel" aria-labelledby="pills-grid">
-				<div className="container my-3">
-					<div className="row no-gutters">
-						<CardFeed />
-						<CardFeed />
-						<CardFeed />
-						<CardFeed />
-						<CardFeed />
-						<CardFeed />
-					</div>
+				<div className="my-3">
+					<div className="row no-gutters">{cardItems}</div>
 				</div>
 			</div>
 		</div>
