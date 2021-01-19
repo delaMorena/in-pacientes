@@ -335,6 +335,8 @@ def handle_create_post():
 
     payload = request.get_json()
 
+    user = authorized_user()
+
     required = ['text']
     # publisher_id, creater_id required?
 
@@ -483,9 +485,16 @@ def handle_create_donation():
 
 
 @api.route("/follows", methods=["GET"])
-def handle_list_all_follows():
-    """ Return List of follows"""
-    return "List all follows"
+def handle_follow_by_user():
+
+    user = authorized_user()
+    list_diseases_follow = []
+    follow_by_user = Follows.query.filter_by(user_id=user.id, deleted_at=None).all()
+
+    for follow in follow_by_user:
+        list_diseases_follow.append(follow.serialize())
+
+    return jsonify(list_diseases_follow), 200
 
 
 @api.route("/diseases/<int:disease_id>/follows", methods=["GET"])

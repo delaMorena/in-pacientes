@@ -23,7 +23,7 @@ export const SignUp = () => {
 			avatar: avatar
 		};
 		actions.createUser(payload, () => {
-			history.push("/createuser");
+			history.push("/follow");
 			//pagina para elegir enfermedades y roles
 		});
 		// actions.editUser(payload);

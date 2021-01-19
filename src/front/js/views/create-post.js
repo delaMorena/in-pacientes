@@ -1,16 +1,30 @@
 // CREAR UN NUEVO POST
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 
 export const CreatePost = () => {
 	const { store, actions } = useContext(Context);
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
+	const [] = useState("");
+
+	useEffect(() => {
+		actions.getFollow();
+	}, []);
 
 	const OnSubmit = event => {
 		console.log("Post: ", text);
 		console.log("Enlace: ", url);
 	};
+
+	const diseasesOption = store.follows.map((follow, index) => {
+		// console.log(follow.disease.title);
+		return (
+			<option key={index} value={follow.disease.id}>
+				{follow.disease.title}
+			</option>
+		);
+	});
 	return (
 		<div className="container">
 			<div className="text-center mt-5">
@@ -19,12 +33,8 @@ export const CreatePost = () => {
 			<form>
 				<div className="form-group">
 					<label htmlFor="exampleFormControlSelect1">Enfermedad</label>
-					<select className="form-control">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+					<select className="form-control" onChange={e => console.log(e.target.value)}>
+						{diseasesOption}
 					</select>
 				</div>
 				<div className="form-group">
