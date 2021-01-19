@@ -16,16 +16,10 @@ export const LogIn = () => {
 			password: password
 		};
 		await actions.userLogin(payload); // HASTA QUE NO SE EJECUTA ESTA FUNCION NO PASA A LA SIGUIENTE LINEA DE CODIGO
-		await actions.getUser();
 
-		console.log(store.user.created_at);
-		console.log(store.user.updated_at);
+		history.push("/createuser");
 
-		if (store.user.updated_at === store.user.created_at) {
-			history.push("/createuser");
-		} else {
-			history.push("/feed");
-		}
+		
 	};
 
 	return (

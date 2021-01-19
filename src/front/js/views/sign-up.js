@@ -7,17 +7,26 @@ export const SignUp = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("alex@gmail.com");
 	const [password, setPassword] = useState("12345");
-
+	const [firstName, setFirstName] = useState("Alex");
+	const [lastName, setLastName] = useState("Redondo");
+	const [userName, setUserName] = useState("alexredondo");
+	const [avatar, setAvatar] = useState("www.as.com");
 	const history = useHistory();
 
 	const HandleClick = event => {
 		const payload = {
 			email: email,
-			password: password
+			password: password,
+			firstName: firstName,
+			lastName: lastName,
+			userName: userName,
+			avatar: avatar
 		};
 		actions.createUser(payload, () => {
-			history.push("/login");
+			history.push("/createuser");
+			//pagina para elegir enfermedades y roles
 		});
+		// actions.editUser(payload);
 		console.log(payload);
 	};
 
@@ -28,6 +37,46 @@ export const SignUp = () => {
 			</div>
 
 			<form>
+				<div className="form-group">
+					<label htmlFor="exampleInputName">First name</label>
+					<input
+						type="text"
+						className="form-control"
+						placeholder="First name"
+						value={firstName}
+						onChange={event => setFirstName(event.target.value)}
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="exampleInputLastName">Last Name</label>
+					<input
+						type="text"
+						className="form-control"
+						placeholder="Last name"
+						value={lastName}
+						onChange={event => setLastName(event.target.value)}
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="exampleInputUsername">User name</label>
+					<input
+						type="text"
+						className="form-control"
+						placeholder="User name"
+						value={userName}
+						onChange={event => setUserName(event.target.value)}
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="exampleInputUsername">Avatar</label>
+					<input
+						type="url"
+						className="form-control"
+						placeholder="input your url"
+						value={avatar}
+						onChange={event => setAvatar(event.target.value)}
+					/>
+				</div>
 				<div className="form-group">
 					<label htmlFor={email}>Email</label>
 					<input
