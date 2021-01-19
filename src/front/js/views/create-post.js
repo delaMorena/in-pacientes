@@ -6,7 +6,6 @@ export const CreatePost = () => {
 	const { store, actions } = useContext(Context);
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
-	const [] = useState("");
 
 	useEffect(() => {
 		actions.getFollow();
@@ -34,6 +33,7 @@ export const CreatePost = () => {
 				<div className="form-group">
 					<label htmlFor="exampleFormControlSelect1">Enfermedad</label>
 					<select className="form-control" onChange={e => console.log(e.target.value)}>
+						<option defaultValue>Choose...</option>
 						{diseasesOption}
 					</select>
 				</div>

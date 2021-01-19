@@ -25,7 +25,11 @@ export const Navbar = () => {
 					<span>Enfermedades</span>
 				</Link>
 			</div>
-			<div className="p-2 bd-highlight">Asociaciones</div>
+			<div className="p-2 bd-highlight">
+				<Link to="/associations">
+					<span>Asociaciones</span>
+				</Link>
+			</div>
 		</nav>
 	);
 };

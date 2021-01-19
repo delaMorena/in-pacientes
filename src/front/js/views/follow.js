@@ -7,28 +7,25 @@ export const Follow = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
-	// useEffect(() => {
-	// 	const init = async () => {
-	// 		if (store.token) {
-	// 			await actions.test();
-	// 		} else {
-	// 			history.push("/profile");
-	// 		}
-	// 	};
-	// 	init();
-	// }, []);
+	const [id, setId] = useState("");
+	const [role, setRole] = useState("");
 
-	// const OnSubmit = event => {
-	// 	console.log("Name: ", firstName, "Last name: ", lastName, "User name: ", userName);
-	// 	const payload = {
-	// 		firstName: firstName,
-	// 		lastName: lastName,
-	// 		userName: userName,
-	// 		avatar: avatar
-	// 	};
-	// 	actions.editUser(payload);
-	// };
-	const OnSubmit = event => {};
+	useEffect(() => {
+		actions.getDiseases();
+	}, []);
+
+	const diseasesOption = store.diseases.map((disease, index) => {
+		console.log("map", disease.title);
+		return (
+			<option key={index} value={disease.id}>
+				{disease.title}
+			</option>
+		);
+	});
+
+	const OnSubmit = e => {
+		console.log("id de enfermedad seleccionada", id);
+	};
 
 	return (
 		<div className="container">
@@ -38,20 +35,18 @@ export const Follow = () => {
 			<form>
 				<div className="row">
 					<div className="form-group col-6">
-						<label htmlFor="exampleFormControlSelect2">Chose at least one disease to follow</label>
+						<label>Chose at least one disease to follow</label>
 						<div className="input-group ">
-							<select multiple className="form-control" aria-label="Example select with button addon">
+							<select className="custom-select" onChange={e => setId(e.target.value)}>
 								<option defaultValue>Choose...</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+								{diseasesOption}
 							</select>
 						</div>
 					</div>
 					<div className="form-group col-6">
 						<label>Select your role</label>
-						<div className="input-group ">
-							<select className="custom-select" id="inputGroupSelect01">
+						<div className="input-group">
+							<select className="custom-select">
 								<option defaultValue>Choose...</option>
 								<option value="1">Pacient</option>
 								<option value="2">Researcher</option>

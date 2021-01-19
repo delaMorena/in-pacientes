@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-d0414ef7-6a6b-4c14-9af7-0fcc99e588e9.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-ff88cf18-aeb8-4686-8df8-78fdd687cd5a.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -6,8 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: token,
 			user: {},
-			list: ["elemento1", "elemento2", "elemento3"],
 			diseases: [],
+			associations: [],
 			userPosts: [],
 			follows: []
 		},
@@ -182,6 +182,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// console.log(data)
 						setStore({ follows: data });
 						console.log(store.follows);
+					});
+			},
+			getAssociations() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/associations`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log(data)
+						setStore({ associations: data });
+						console.log(store.associations);
 					});
 			}
 		}

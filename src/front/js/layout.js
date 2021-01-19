@@ -12,6 +12,7 @@ import { Profile } from "./views/profile";
 import { SignUp } from "./views/sign-up";
 import { LogIn } from "./views/log-in";
 import { ListDiseases } from "./views/diseases-list";
+import { ListAssociation } from "./views/associations-list";
 
 import injectContext from "./store/appContext";
 
@@ -59,6 +60,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/login">
 							<LogIn />
+						</Route>
+						<Route exact path="/associations">
+							<ListAssociation />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
