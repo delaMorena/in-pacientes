@@ -18,6 +18,7 @@ export const CreateUser = () => {
 	// 	init();
 	// }, []);
 
+
 	// const OnSubmit = event => {
 	// 	console.log("Name: ", firstName, "Last name: ", lastName, "User name: ", userName);
 	// 	const payload = {
@@ -29,6 +30,7 @@ export const CreateUser = () => {
 	// 	actions.editUser(payload);
 	// };
 	const OnSubmit = event => {};
+
 
 	return (
 		<div className="container">

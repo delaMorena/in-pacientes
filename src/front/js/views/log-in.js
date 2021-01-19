@@ -15,9 +15,11 @@ export const LogIn = () => {
 			email: email,
 			password: password
 		};
-
 		await actions.userLogin(payload); // HASTA QUE NO SE EJECUTA ESTA FUNCION NO PASA A LA SIGUIENTE LINEA DE CODIGO
+
 		history.push("/createuser");
+
+		
 	};
 
 	return (

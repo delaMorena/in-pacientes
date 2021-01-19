@@ -1,11 +1,21 @@
+
 const baseUrl = "https://3001-eb31c1ff-8013-4e3e-940f-aa2bcbce8f61.ws-eu03.gitpod.io/api";
+
 const getState = ({ getStore, getActions, setStore }) => {
+	const token = localStorage.getItem("token");
 	return {
 		store: {
-			token: null,
-			user: {}
+			token: token,
+			user: {},
+			list: ["elemento1", "elemento2", "elemento3"],
+			diseases: [],
+			userPosts: []
 		},
 		actions: {
+			logout() {
+				localStorage.removeItem("token");
+				setStore({ token: null });
+			},
 			createUser: (input, callback) => {
 				const endpoint = `${baseUrl}/users`;
 				const method = "POST";
@@ -45,16 +55,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						setStore({
-							token: data.token
-						});
+						localStorage.setItem("token", data.token);
+						setStore({ token: data.token });
 						// console.log(store.token);
 					})
 					.catch(error => console.error("error: ", error)); // imprime el tipo error que se ha producido
 			},
-			async test() {
+			async getUser() {
 				const store = getStore();
-				console.log("token: ", store.token);
+				// console.log("token: ", store.token);
 				const endpoint = `${baseUrl}/test`;
 				const method = "GET";
 				const headers = { "Content-Type": "application/json" };
@@ -73,17 +82,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// console.log(data)
 						setStore({ user: data });
 						console.log("contacto", store.user);
+						console.log(store.token);
 					});
 			},
+
 			editUser(input) {
+				const store = getStore();
 				const endpoint = `${baseUrl}/users`;
 				const method = "PUT";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
 				const config = {
 					method: method,
-					headers: {
-						"Content-Type": "application/json",
-						"Access-Control-Allow-Origin": "*"
-					},
+					headers: headers,
 					body: JSON.stringify({
 						first_name: input.firstName,
 						last_name: input.lastName,
@@ -97,6 +112,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
+			},
+			getDiseases() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/diseases`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log(data)
+						setStore({ diseases: data });
+						console.log(store.diseases);
+
+						// console.log("contacto", store.user);
+					});
+			},
+			getPostUser() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/users/posts`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log(data)
+						setStore({ userPosts: data });
+						console.log("posts de un usuario", store.userPosts);
+						console.log(store.token);
+
+						// console.log("contacto", store.user);
+					});
 			}
 		}
 	};

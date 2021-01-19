@@ -20,6 +20,11 @@ export const Navbar = () => {
 					<span>Perfil</span>
 				</Link>
 			</div>
+			<div className="p-2 bd-highlight">
+				<Link to="/diseases">
+					<span>Enfermedades</span>
+				</Link>
+			</div>
 			<div className="p-2 bd-highlight">Asociaciones</div>
 		</nav>
 	);
