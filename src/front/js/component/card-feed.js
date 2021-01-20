@@ -30,5 +30,6 @@ export const CardFeed = props => {
 };
 
 CardFeed.propTypes = {
-	post: PropTypes.object
+	post: PropTypes.object,
+	postDisease: PropTypes.object
 };

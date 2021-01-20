@@ -7,7 +7,7 @@ import { Follow } from "./views/follow";
 import { CreatePost } from "./views/create-post";
 import { Feed } from "./views/feed";
 import { Post } from "./views/post";
-import { Disease } from "./views/disease";
+import { OneDisease } from "./views/one-disease";
 import { Profile } from "./views/profile";
 import { SignUp } from "./views/sign-up";
 import { LogIn } from "./views/log-in";
@@ -47,8 +47,8 @@ const Layout = () => {
 						<Route exact path="/post/:id">
 							<Post />
 						</Route>
-						<Route exact path="/disease/:id">
-							<Disease />
+						<Route exact path="/OneDisease/:id">
+							<OneDisease />
 						</Route>
 						<Route exact path="/diseases">
 							<ListDiseases />

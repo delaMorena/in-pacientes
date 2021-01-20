@@ -11,7 +11,7 @@ export const Profile = () => {
 	useEffect(() => {
 		actions.getPostUser();
 		actions.getUser();
-		actions.getPostsDisease(1);
+		// actions.getPostsDisease(1);
 	}, []);
 
 	const cardItems = store.userPosts.map((post, index) => {

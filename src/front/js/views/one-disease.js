@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 import { Header } from "../component/header.js";
 import { CardFeed } from "../component/card-feed.js";
 
-export const Disease = () => {
+export const OneDisease = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 
@@ -14,11 +14,11 @@ export const Disease = () => {
 	}, []);
 
 	const cardItemsFeedDisease = store.diseasePost.map((postDisease, index) => {
-		console.log(postDisease);
+		console.log("postDisease: ", postDisease);
 
 		return (
-			<Link key={index} to={`/post/${post.id}`}>
-				<CardFeed postDisease={postDisease} />
+			<Link key={index} to={`/post/${postDisease.id}`}>
+				<CardFeed post={postDisease} />
 			</Link>
 		);
 	});
