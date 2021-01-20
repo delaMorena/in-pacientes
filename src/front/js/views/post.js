@@ -18,7 +18,7 @@ export const Post = () => {
 			comment: comment,
 			postId: parseInt(params.id)
 		};
-		console.log(payload["postId"]);
+		// console.log(payload["postId"]);
 
 		if (payload["comment"] == "") {
 			alert("No has introducido texto");
@@ -58,7 +58,7 @@ export const Post = () => {
 					<textarea
 						value={comment}
 						className="form-control"
-						rows="5"
+						rows="3"
 						onChange={event => setComment(event.target.value)}
 					/>
 					{postComments}

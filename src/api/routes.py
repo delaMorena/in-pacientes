@@ -361,7 +361,7 @@ def handle_create_post():
         'disease_id': int,
         'imagen': str
     }
-    print(payload)
+    
     for key, value in payload.items():
         if key in types and not isinstance(value, types[key]):
             abort(400, f"{key} is not {types[key]}")
@@ -438,7 +438,7 @@ def handle_create_comment():
         'user_id': int,
         'post_id': int
     }
-    print(payload)
+    
     for key, value in payload.items():
         if key in types and not isinstance(value, types[key]):
             abort(400, f"{key} is not {types[key]}")
@@ -547,6 +547,25 @@ def handle_follow_by_user():
 
     return jsonify(list_diseases_follow), 200
 
+
+@api.route("/feed", methods=["GET"])
+def handle_feed():
+    user = authorized_user()
+
+    if not user:
+        abort(404)
+
+    newList = []
+    
+    post_list = Follows.query.filter_by(user_id=user.id, deleted_at=None).all()
+
+    for item in post_list:
+        for post in item.disease.posts:
+            newList.append(post.serialize())
+
+  
+   
+    return jsonify(newList), 201
 
 @api.route("/diseases/<int:disease_id>/follows", methods=["GET"])
 def handle_get_follow_by_disease(disease_id):
@@ -663,8 +682,8 @@ def handle_create_role_for_disease():
 
     db.session.add(relation)
     db.session.commit()
-
-    return "Rol created", 201
+    print(relation.serialize())
+    return jsonify(relation.serialize()), 201
 
 
 @api.route("/diseases/<int:disease_id>/relationships", methods=["PUT"])

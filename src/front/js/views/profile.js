@@ -14,8 +14,6 @@ export const Profile = () => {
 	}, []);
 
 	const cardItems = store.userPosts.map((post, index) => {
-		console.log(post.comments);
-
 		return (
 			<Link key={index} to={`/post/${post.id}`}>
 				<CardFeed post={post} />
