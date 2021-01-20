@@ -1,13 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/header.scss";
+import PropTypes from "prop-types";
 
-export const Header = () => {
+export const Header = props => {
 	const { store, actions } = useContext(Context);
+	const { user, disease } = props;
 
 	useEffect(() => {
 		actions.getPostUser();
 		actions.getUser();
+		actions.getDiseases();
 	}, []);
 
 	return (
@@ -23,7 +26,10 @@ export const Header = () => {
 					</div>
 					<div className="col-md-8">
 						<div className="card-body">
-							<h5 className="card-title">{store.user.username}</h5>
+							<h5 className="card-title">
+								{store.user.username}
+								{/* {user.username} */}
+							</h5>
 							<p className="card-text">número de posts</p>
 							<p>número de seguidores</p>
 							<p className="card-text">
@@ -35,4 +41,8 @@ export const Header = () => {
 			</div>
 		</div>
 	);
+};
+Header.propTypes = {
+	user: PropTypes.object,
+	disease: PropTypes.object
 };

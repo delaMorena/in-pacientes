@@ -19,6 +19,7 @@ export const CardFeed = props => {
 	return (
 		<div className="col-4">
 			<div id="card-width">
+				meter el nombre de la enfermedad y de la persona que escribe el post.
 				<img src="https://picsum.photos/300/200?random=1" className="card-img-top" alt="..." />
 				<div className="card-body">
 					<p className="card-text">{post.text}</p>
