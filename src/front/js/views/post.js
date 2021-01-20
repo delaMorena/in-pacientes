@@ -1,40 +1,49 @@
 // MUESTRA INFORMACION SOBRE UN POST, ARRASTRANDO SUS COMENTARIOS Y DANDO LA FUNCIONALIDAD DE CREAR NUEVOS COMENTARIOS.
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { useParams } from "react-router-dom";
 import "../../styles/post.scss";
 
 export const Post = () => {
 	const { store, actions } = useContext(Context);
 	const [comment, setComment] = useState("");
+	const params = useParams();
+
+	useEffect(() => {
+		actions.getOnePost(params.id);
+	}, []);
 
 	const HandleClick = event => {
-		console.log("comment: ", comment);
+		const payload = {
+			comment: comment,
+			postId: parseInt(params.id)
+		};
+		actions.createComment(payload);
 	};
 
+	const postComments = store.comments.map((comment, index) => (
+		<div key={index}>
+			<span>{comment.text}</span>
+		</div>
+	));
 	return (
 		<div className="card">
 			<div>
-				<h5>User name</h5>
-				<h5>Disease</h5>
+				<h5>{store.post.publisher}</h5>
+				<h5>{store.post.disease}</h5>
 			</div>
 			<img src="https://picsum.photos/600/500?random=9" className="card-img-top" alt="..." />
 			<div className="card-body">
-				<h5 className="card-title">Card title</h5>
-				<p className="card-text">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
-				</p>
+				<p className="card-text">{store.post.text}</p>
 				<div className="form-group">
-					<label>Comments</label>
+					<label>Comentarios</label>
 					<textarea
 						value={comment}
 						className="form-control"
 						rows="1"
 						onChange={event => setComment(event.target.value)}
 					/>
+					{postComments}
 				</div>
 				<a href="#" className="btn btn-primary" onClick={HandleClick}>
 					Publish your comment

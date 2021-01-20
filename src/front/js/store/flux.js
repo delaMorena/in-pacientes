@@ -9,7 +9,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			diseases: [],
 			associations: [],
 			userPosts: [],
-			follows: []
+			follows: [],
+			post: {},
+			comments: []
 		},
 		actions: {
 			logout() {
@@ -161,6 +163,82 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						// console.log("contacto", store.user);
 					});
+			},
+			getOnePost(id) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/posts/${id}`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						setStore({
+							post: data,
+							comments: data.comments
+						});
+						console.log("un post", store.post);
+						console.log("comentarios", store.post.comments);
+					});
+			},
+			createPost(input) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/posts`;
+				const method = "POST";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers,
+					body: JSON.stringify({
+						disease_id: input.diseaseId,
+						text: input.text,
+						imagen: input.url
+					})
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => console.error("error: ", error));
+			},
+			createComment(input) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/comments`;
+				const method = "POST";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers,
+					body: JSON.stringify({
+						post_id: input.postId,
+						text: input.text
+					})
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => console.error("error: ", error));
 			},
 			getFollow() {
 				const store = getStore();
