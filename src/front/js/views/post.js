@@ -30,9 +30,18 @@ export const Post = () => {
 	};
 
 	const postComments = store.comments.map((comment, index) => (
-		<div key={index}>
-			<span>{comment.user}</span>
-			<p>{comment.text}</p>
+		// <div key={index}>
+		// 	<span>{comment.user}</span>
+		// 	<p>{comment.text}</p>
+		// </div>
+		<div className="text-left" key={index}>
+			<div className="card-body">
+				<h5 className="card-title">{comment.user}</h5>
+				<p className="card-text">{comment.text}</p>
+				<p className="card-text">
+					<small className="text-muted">{comment.created_at}</small>
+				</p>
+			</div>
 		</div>
 	));
 	return (
@@ -49,7 +58,7 @@ export const Post = () => {
 					<textarea
 						value={comment}
 						className="form-control"
-						rows="1"
+						rows="5"
 						onChange={event => setComment(event.target.value)}
 					/>
 					{postComments}
