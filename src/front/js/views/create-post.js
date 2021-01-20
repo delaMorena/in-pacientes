@@ -21,6 +21,8 @@ export const CreatePost = () => {
 			diseaseId: parseInt(diseaseId)
 		};
 		actions.createPost(payload);
+		setText("");
+		setUrl("");
 	};
 
 	const diseasesOption = store.follows.map((follow, index) => {

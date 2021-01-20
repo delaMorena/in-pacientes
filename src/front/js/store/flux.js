@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-e81ae58c-29b0-4261-b298-d88589f01b0b.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-b14fdae9-8a7c-4bda-95bf-c9395403d741.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -215,7 +215,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("error: ", error));
 			},
-			createComment(input) {
+			async createComment(input) {
 				const store = getStore();
 				const endpoint = `${baseUrl}/comments`;
 				const method = "POST";
@@ -230,10 +230,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: headers,
 					body: JSON.stringify({
 						post_id: input.postId,
-						text: input.text
+						text: input.comment
 					})
 				};
-				fetch(endpoint, config)
+				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
 						console.log(data);

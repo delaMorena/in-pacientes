@@ -13,17 +13,26 @@ export const Post = () => {
 		actions.getOnePost(params.id);
 	}, []);
 
-	const HandleClick = event => {
+	const HandleClick = async event => {
 		const payload = {
 			comment: comment,
 			postId: parseInt(params.id)
 		};
-		actions.createComment(payload);
+		console.log(payload["postId"]);
+
+		if (payload["comment"] == "") {
+			alert("No has introducido texto");
+		} else {
+			await actions.createComment(payload);
+			setComment("");
+			actions.getOnePost(params.id);
+		}
 	};
 
 	const postComments = store.comments.map((comment, index) => (
 		<div key={index}>
-			<span>{comment.text}</span>
+			<span>{comment.user}</span>
+			<p>{comment.text}</p>
 		</div>
 	));
 	return (
