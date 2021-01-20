@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-e81ae58c-29b0-4261-b298-d88589f01b0b.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-e3e78a9f-a14e-43df-96b7-d253e3c07f3e.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -215,7 +215,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("error: ", error));
 			},
-			createComment(input) {
+			async createComment(input) {
 				const store = getStore();
 				const endpoint = `${baseUrl}/comments`;
 				const method = "POST";
@@ -230,10 +230,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: headers,
 					body: JSON.stringify({
 						post_id: input.postId,
-						text: input.text
+						text: input.comment
 					})
 				};
-				fetch(endpoint, config)
+				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
 						console.log(data);
@@ -261,6 +261,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ follows: data });
 						console.log("store.follows flux: ", store.follows);
 					});
+			},
+			createRole(input) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/relationships`;
+				const method = "POST";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers,
+					body: JSON.stringify({
+						disease_id: input.diseaseId,
+						role: role
+					})
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => console.error("error: ", error));
 			},
 			getAssociations() {
 				const store = getStore();

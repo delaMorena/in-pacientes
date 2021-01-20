@@ -24,7 +24,14 @@ export const Follow = () => {
 	});
 
 	const OnSubmit = e => {
-		console.log("id de enfermedad seleccionada", id);
+		const payload = {
+			role: role,
+			diseaseId: parseInt(id)
+		};
+
+		actions.createRole(payload);
+		// console.log("id de enfermedad seleccionada", id);
+		console.log(payload);
 	};
 
 	return (
@@ -46,7 +53,7 @@ export const Follow = () => {
 					<div className="form-group col-6">
 						<label>Select your role</label>
 						<div className="input-group">
-							<select className="custom-select">
+							<select className="custom-select" onChange={e => setRole(e.target.value)}>
 								<option defaultValue>Choose...</option>
 								<option value="1">Pacient</option>
 								<option value="2">Researcher</option>

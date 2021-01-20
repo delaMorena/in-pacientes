@@ -634,10 +634,15 @@ def handle_get_disease_roles(disease_id):
 
 @api.route("/relationships", methods=["POST"])
 def handle_create_role_for_disease():
+
+    user = authorized_user()
+    if not user:
+        return "User not found", 404
+
     payload = request.get_json()
+    payload['user_id'] = user.id
 
     required = ['user_id', 'disease_id', 'role']
-    # disease_id and user_id is required??
 
     types = {
         'user_id': int,
@@ -659,7 +664,7 @@ def handle_create_role_for_disease():
     db.session.add(relation)
     db.session.commit()
 
-    return "todo correcto en roles", 201
+    return "Rol created", 201
 
 
 @api.route("/diseases/<int:disease_id>/relationships", methods=["PUT"])
