@@ -13,6 +13,7 @@ import { SignUp } from "./views/sign-up";
 import { LogIn } from "./views/log-in";
 import { ListDiseases } from "./views/diseases-list";
 import { ListAssociation } from "./views/associations-list";
+import { Welcome } from "./views/welcome";
 
 import injectContext from "./store/appContext";
 
@@ -46,7 +47,7 @@ const Layout = () => {
 						<Route exact path="/post/:id">
 							<Post />
 						</Route>
-						<Route exact path="/disease">
+						<Route exact path="/disease/:id">
 							<Disease />
 						</Route>
 						<Route exact path="/diseases">
@@ -57,6 +58,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/signup">
 							<SignUp />
+						</Route>
+						<Route exact path="/welcome">
+							<Welcome />
 						</Route>
 						<Route exact path="/login">
 							<LogIn />

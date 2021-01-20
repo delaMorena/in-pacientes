@@ -330,7 +330,7 @@ def handle_get_post(id):
     return jsonify(post.serialize()), 200
 
 # OBTENER POST QUE SE CREAN SOBRE UNA ENFERMEDAD
-@api.route("/diseases/posts", methods=["GET"])
+@api.route("/disease/<int:id>", methods=["GET"])
 def handle_list_posts_from_disease(id):
 
     disease = Diseases.query.filter_by(id=id, deleted_at=None).first()

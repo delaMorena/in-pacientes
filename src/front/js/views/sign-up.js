@@ -23,8 +23,8 @@ export const SignUp = () => {
 			avatar: avatar
 		};
 		actions.createUser(payload, () => {
-			history.push("/follow");
-			//pagina para elegir enfermedades y roles
+			history.push("/welcome");
+			//pagina de bienvenida para logearte
 		});
 		// actions.editUser(payload);
 		console.log(payload);
