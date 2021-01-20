@@ -6,24 +6,24 @@ export const CreatePost = () => {
 	const { store, actions } = useContext(Context);
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
+	const [diseaseId, setDiseaseId] = useState();
 
 	useEffect(() => {
-		actions.getUser();
-		console.log("store.user: ", store.user);
-		//Cuando lo he estado probando no se traía las diseases y tampoco hacía el map. actions.getFollow() daba un array vacío. Las otras funcionalidades sí funcionan pero no sé si al hacer el payload = {text: text} va a apuntar al post con el id correspondiente
-		actions.getDiseases();
 		console.log("store.diseases: ", store.diseases, store.user);
 
 		actions.getFollow();
 	}, []);
 
 	const OnSubmit = event => {
-		console.log("Post: ", text);
-		console.log("Enlace: ", url);
+		const payload = {
+			text: text,
+			url: url,
+			diseaseId: parseInt(diseaseId)
+		};
+		actions.createPost(payload);
 	};
 
 	const diseasesOption = store.follows.map((follow, index) => {
-		console.log("follow.disease.title; ", follow.disease.title);
 		return (
 			<option key={index} value={follow.disease.id}>
 				{follow.disease.title}
@@ -38,7 +38,7 @@ export const CreatePost = () => {
 			<form>
 				<div className="form-group">
 					<label htmlFor="exampleFormControlSelect1">Enfermedad</label>
-					<select className="form-control" onChange={e => console.log(e.target.value)}>
+					<select className="form-control" onChange={e => setDiseaseId(e.target.value)}>
 						<option defaultValue>Choose...</option>
 						{diseasesOption}
 					</select>

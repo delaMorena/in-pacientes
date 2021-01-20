@@ -314,6 +314,21 @@ def handle_list_posts_from_user():
         
     return jsonify(posts), 200
 
+@api.route("/posts/<int:id>", methods=["GET"])
+def handle_get_post(id):
+
+    user = authorized_user()
+
+    if not user:
+        return "User not authorized", 403
+
+    post = Posts.query.filter_by(id=id, deleted_at=None).first()
+
+    if not post:
+        return "Post not found", 404
+        
+    return jsonify(post.serialize()), 200
+
 # OBTENER POST QUE SE CREAN SOBRE UNA ENFERMEDAD
 @api.route("/diseases/posts", methods=["GET"])
 def handle_list_posts_from_disease(id):
@@ -337,13 +352,16 @@ def handle_create_post():
 
     user = authorized_user()
 
-    required = ['text']
-    # publisher_id, creater_id required?
+    payload['publisher_id'] = user.id
+    required = ['text', 'publisher_id', 'disease_id']
+   
 
     types = {
-        'text': str, 
+        'text': str,
+        'disease_id': int,
+        'imagen': str
     }
-
+    print(payload)
     for key, value in payload.items():
         if key in types and not isinstance(value, types[key]):
             abort(400, f"{key} is not {types[key]}")
@@ -402,6 +420,39 @@ def handle_delete_post(id):
 
     return jsonify(post.serialize()), 200
 
+###########################COMMENTS##########################################
+
+@api.route("/comments", methods= ["POST"])
+def handle_create_comment():
+
+    payload = request.get_json()
+
+    user = authorized_user()
+
+    payload['user_id'] = user.id
+    required = ['text', 'user_id', 'post_id']
+   
+
+    types = {
+        'text': str,
+        'user_id': int,
+        'post_id': int
+    }
+    print(payload)
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
+    comment = Comments(**payload)
+
+    db.session.add(comment)
+    db.session.commit()
+
+    return jsonify(comment.serialize()), 201
 
 ######################################## Donations #######################################
 
@@ -608,7 +659,7 @@ def handle_create_role_for_disease():
     db.session.add(relation)
     db.session.commit()
 
-    return jsonify(relation.serialize()), 201
+    return "todo correcto en roles", 201
 
 
 @api.route("/diseases/<int:disease_id>/relationships", methods=["PUT"])

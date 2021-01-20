@@ -1,5 +1,6 @@
 // PAGINA DE USUARIO CON LOS POST QUE HAS PUBLICADO USANDO LAS VISTAS DE cardFeed.js
 import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Header } from "../component/header.js";
 import { CardFeed } from "../component/card-feed.js";
@@ -15,7 +16,11 @@ export const Profile = () => {
 	const cardItems = store.userPosts.map((post, index) => {
 		console.log(post.comments);
 
-		return <CardFeed key={index} post={post} />;
+		return (
+			<Link key={index} to={`/post/${post.id}`}>
+				<CardFeed post={post} />
+			</Link>
+		);
 	});
 
 	return (
