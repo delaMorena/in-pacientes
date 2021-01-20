@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-ff88cf18-aeb8-4686-8df8-78fdd687cd5a.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-e81ae58c-29b0-4261-b298-d88589f01b0b.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -181,7 +181,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ follows: data });
-						console.log(store.follows);
+						console.log("store.follows flux: ", store.follows);
 					});
 			},
 			getAssociations() {
