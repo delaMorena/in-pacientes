@@ -10,6 +10,11 @@ export const Navbar = () => {
 					<h3>In-Pacients</h3>
 				</Link>
 			</div>
+			<div className="p-2 bd-highlight">
+				<Link to="/feed">
+					<span>Feed</span>
+				</Link>
+			</div>
 			<div className="p-2 bd-highlight prueba">
 				<Link to="/createpost">
 					<span>Crear Post</span>

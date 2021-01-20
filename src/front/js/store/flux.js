@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-e3e78a9f-a14e-43df-96b7-d253e3c07f3e.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-b43e9af1-1aa8-41f5-91be-a74346df54da.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -11,7 +11,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userPosts: [],
 			follows: [],
 			post: {},
-			comments: []
+			comments: [],
+			feed: []
 		},
 		actions: {
 			logout() {
@@ -38,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				fetch(endpoint, config).then(response => {
-					console.log(response);
+					// console.log(response);
 					callback();
 				});
 			},
@@ -83,8 +84,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ user: data });
-						console.log("contacto", store.user);
-						console.log(store.token);
+						// console.log("contacto", store.user);
+						// console.log(store.token);
 					});
 			},
 
@@ -109,10 +110,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				fetch(endpoint, config)
-					.then(response => response.json())
-					.then(data => {
-						console.log(data);
-					})
+					// .then(response => response.json())
+					// .then(data => {
+					// 	console.log(data);
+					// })
 					.catch(error => console.error("error: ", error));
 			},
 			getDiseases() {
@@ -134,7 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ diseases: data });
-						console.log(store.diseases);
+						// console.log(store.diseases);
 
 						// console.log("contacto", store.user);
 					});
@@ -158,8 +159,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ userPosts: data });
-						console.log("posts de un usuario", store.userPosts);
-						console.log(store.token);
+						// console.log("posts de un usuario", store.userPosts);
+						// console.log(store.token);
 
 						// console.log("contacto", store.user);
 					});
@@ -185,8 +186,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							post: data,
 							comments: data.comments
 						});
-						console.log("un post", store.post);
-						console.log("comentarios", store.post.comments);
+						// console.log("un post", store.post);
+						// console.log("comentarios", store.post.comments);
 					});
 			},
 			createPost(input) {
@@ -211,7 +212,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
+						// console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -236,7 +237,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
+						// console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -259,7 +260,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ follows: data });
-						console.log("store.follows flux: ", store.follows);
+						// console.log("store.follows flux: ", store.follows);
+					});
+			},
+			getFeed() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/feed`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log("para el feed", data);
+						setStore({ feed: data });
+						console.log(store.feed);
 					});
 			},
 			createRole(input) {
@@ -277,13 +300,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: headers,
 					body: JSON.stringify({
 						disease_id: input.diseaseId,
-						role: role
+						role: input.role
 					})
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
+						// console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -306,7 +329,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ associations: data });
-						console.log(store.associations);
+						// console.log(store.associations);
 					});
 			}
 		}

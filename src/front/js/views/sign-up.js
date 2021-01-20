@@ -27,7 +27,7 @@ export const SignUp = () => {
 			//pagina para elegir enfermedades y roles
 		});
 		// actions.editUser(payload);
-		console.log(payload);
+		// console.log(payload);
 	};
 
 	return (
