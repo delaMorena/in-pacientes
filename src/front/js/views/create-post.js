@@ -81,9 +81,11 @@ export const CreatePost = () => {
 							onChange={event => setUrl(event.target.value)}
 						/>
 					</div>
-					<button type="button" className="btn btn-primary" onClick={OnSubmit}>
-						Submit
-					</button>
+					<Link to="/profile">
+            <button type="button" className="btn btn-primary" onClick={OnSubmit}>
+              Submit
+            </button>
+				</Link>
 				</form>
 			</div>
 		);
