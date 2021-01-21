@@ -1,5 +1,6 @@
 const baseUrl = "https://3001-e81ae58c-29b0-4261-b298-d88589f01b0b.ws-eu03.gitpod.io/api";
 
+
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
 	return {
@@ -12,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			diseasePost: [],
 			follows: [],
 			post: {},
-			comments: []
+			comments: [],
+			feed: []
 		},
 		actions: {
 			logout() {
@@ -39,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				fetch(endpoint, config).then(response => {
-					console.log(response);
+					// console.log(response);
 					callback();
 				});
 			},
@@ -84,8 +86,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ user: data });
-						console.log("contacto", store.user);
-						console.log(store.token);
+						// console.log("contacto", store.user);
+						// console.log(store.token);
 					});
 			},
 
@@ -110,10 +112,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				fetch(endpoint, config)
-					.then(response => response.json())
-					.then(data => {
-						console.log(data);
-					})
+					// .then(response => response.json())
+					// .then(data => {
+					// 	console.log(data);
+					// })
 					.catch(error => console.error("error: ", error));
 			},
 			getDiseases() {
@@ -135,7 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ diseases: data });
-						console.log(store.diseases);
+						// console.log(store.diseases);
 
 						// console.log("contacto", store.user);
 					});
@@ -159,8 +161,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ userPosts: data });
-						console.log("posts de un usuario", store.userPosts);
-						console.log(store.token);
+						// console.log("posts de un usuario", store.userPosts);
+						// console.log(store.token);
 
 						// console.log("contacto", store.user);
 					});
@@ -211,8 +213,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							post: data,
 							comments: data.comments
 						});
-						console.log("un post", store.post);
-						console.log("comentarios", store.post.comments);
+						// console.log("un post", store.post);
+						// console.log("comentarios", store.post.comments);
 					});
 			},
 			createPost(input) {
@@ -237,7 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
+						// console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -262,7 +264,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
+						// console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -285,7 +287,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ follows: data });
-						console.log("store.follows flux: ", store.follows);
+						// console.log("store.follows flux: ", store.follows);
+					});
+			},
+			getFeed() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/feed`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log("para el feed", data);
+						setStore({ feed: data });
+						console.log(store.feed);
 					});
 			},
 			createRole(input) {
@@ -303,13 +327,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: headers,
 					body: JSON.stringify({
 						disease_id: input.diseaseId,
-						role: role
+						role: input.role
 					})
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
+						// console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -332,7 +356,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ associations: data });
-						console.log(store.associations);
+						// console.log(store.associations);
 					});
 			}
 		}

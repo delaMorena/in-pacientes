@@ -10,7 +10,7 @@ export const ListAssociation = () => {
 	}, []);
 
 	const cardItem = store.associations.map((association, index) => {
-		console.log(association);
+		// console.log(association);
 		return <CardAssociation key={index} association={association} />;
 	});
 

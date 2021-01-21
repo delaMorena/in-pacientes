@@ -27,7 +27,7 @@ export const SignUp = () => {
 			//pagina de bienvenida para logearte
 		});
 		// actions.editUser(payload);
-		console.log(payload);
+		// console.log(payload);
 	};
 
 	return (

@@ -122,6 +122,7 @@ class Posts(db.Model):
             "imagen": self.imagen,
             "disease_name": self.disease.title,
             "disease_id": self.disease_id,
+
             "comments": list_comments
         }
 
@@ -248,9 +249,10 @@ class Relationships(db.Model):
         return 'El usuario {} tiene el rol {} de la enfermedad {}' .format(self.user.username, self.role, self.disease.title)
 
     def serialize(self):
+        print(self.role.value)
         return {
             "id": self.id,
             "user": self.user.serialize(),
             "disease": self.disease.serialize(),
-            "role": self.role
+            "role": self.role.value
         }

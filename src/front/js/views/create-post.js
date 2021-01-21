@@ -9,7 +9,7 @@ export const CreatePost = () => {
 	const [diseaseId, setDiseaseId] = useState();
 
 	useEffect(() => {
-		console.log("store.diseases: ", store.diseases, store.user);
+		// console.log("store.diseases: ", store.diseases, store.user);
 
 		actions.getFollow();
 	}, []);

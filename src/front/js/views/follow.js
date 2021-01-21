@@ -15,7 +15,6 @@ export const Follow = () => {
 	}, []);
 
 	const diseasesOption = store.diseases.map((disease, index) => {
-		console.log("map", disease.title);
 		return (
 			<option key={index} value={disease.id}>
 				{disease.title}
@@ -31,7 +30,7 @@ export const Follow = () => {
 
 		actions.createRole(payload);
 		// console.log("id de enfermedad seleccionada", id);
-		console.log(payload);
+		// console.log(payload);
 	};
 
 	return (
