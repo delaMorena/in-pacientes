@@ -19,14 +19,31 @@ export const Feed = () => {
 		);
 	});
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Feed de inicio</h1>
-			<div role="tabpanel" aria-labelledby="pills-grid">
-				<div className="container my-3">
-					<div className="row no-gutters">{cardItemsFeed}</div>
+	if (store.token == null) {
+		return (
+			<div className="container">
+				<div className="row justify-content-center">
+					<h1>Es necesario iniciar sesion para acceder a esta pagina</h1>
+				</div>
+				<div className="row justify-content-center">
+					<Link to="/login">
+						<button type="button" className="btn btn-primary">
+							Iniciar Sesión
+						</button>
+					</Link>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<div className="text-center mt-5">
+				<h1>Feed de inicio</h1>
+				<div role="tabpanel" aria-labelledby="pills-grid">
+					<div className="container my-3">
+						<div className="row no-gutters">{cardItemsFeed}</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 };
