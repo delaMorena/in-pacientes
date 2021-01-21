@@ -57,7 +57,7 @@ export const LogIn = () => {
 						Recuerdame
 					</label>
 				</div>
-				<button type="button" className="btn btn-primary" onClick={HandleClick}>
+				<button type="button" className="btn btn-info btn-lg" onClick={HandleClick}>
 					Submit
 				</button>
 			</form>

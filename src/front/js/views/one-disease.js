@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Header } from "../component/header.js";
 import { CardFeed } from "../component/card-feed.js";
+import { NoToken } from "../component/no-token";
 
 export const OneDisease = () => {
 	const { store, actions } = useContext(Context);
@@ -22,16 +23,20 @@ export const OneDisease = () => {
 		);
 	});
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Perfil de enfermedad</h1>
-			<h1>{store.oneDisease.title}</h1>
-			<Header />
-			<div role="tabpanel" aria-labelledby="pills-grid">
-				<div className="container my-3">
-					<div className="row no-gutters">{cardItemsFeedDisease}</div>
+	if (store.token == null) {
+		return <NoToken />;
+	} else {
+		return (
+			<div className="text-center mt-5">
+				<h1>Perfil de enfermedad</h1>
+				<h1>{store.oneDisease.title}</h1>
+				<Header />
+				<div role="tabpanel" aria-labelledby="pills-grid">
+					<div className="container my-3">
+						<div className="row no-gutters">{cardItemsFeedDisease}</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 };

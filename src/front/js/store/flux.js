@@ -238,7 +238,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						console.log("un post", store.post);
 						console.log("comentarios", store.post.comments);
-					});
+					})
+					// .catch(error => console.error("error: ", error));
+					.catch(error => alert("error: ", error));
 			},
 			createPost(input) {
 				const store = getStore();

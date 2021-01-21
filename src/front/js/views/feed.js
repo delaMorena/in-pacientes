@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { CardFeed } from "../component/card-feed.js";
+import { NoToken } from "../component/no-token";
 
 export const Feed = () => {
 	const { store, actions } = useContext(Context);
@@ -20,20 +21,7 @@ export const Feed = () => {
 	});
 
 	if (store.token == null) {
-		return (
-			<div className="container">
-				<div className="row justify-content-center">
-					<h1>Es necesario iniciar sesion para acceder a esta pagina</h1>
-				</div>
-				<div className="row justify-content-center">
-					<Link to="/login">
-						<button type="button" className="btn btn-primary">
-							Iniciar Sesión
-						</button>
-					</Link>
-				</div>
-			</div>
-		);
+		return <NoToken />;
 	} else {
 		return (
 			<div className="text-center mt-5">

@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import { NoToken } from "../component/no-token";
 
 import "../../styles/post.scss";
 
@@ -45,31 +46,36 @@ export const Post = () => {
 			</div>
 		</div>
 	));
-	return (
-		<div className="card">
-			<div>
-				<h5>{store.post.publisher}</h5>
-				<Link to={`/onedisease/${store.post.disease_id}`}>
-					<h5>{store.post.disease_name}</h5>
-				</Link>
-			</div>
-			<img src="https://picsum.photos/600/500?random=9" className="card-img-top" alt="..." />
-			<div className="card-body">
-				<p className="card-text">{store.post.text}</p>
-				<div className="form-group">
-					<label>Comentarios</label>
-					<textarea
-						value={comment}
-						className="form-control"
-						rows="3"
-						onChange={event => setComment(event.target.value)}
-					/>
-					{postComments}
+
+	if (store.token == null) {
+		return <NoToken />;
+	} else {
+		return (
+			<div className="card">
+				<div>
+					<h5>{store.post.publisher}</h5>
+					<Link to={`/onedisease/${store.post.disease_id}`}>
+						<h5>{store.post.disease_name}</h5>
+					</Link>
 				</div>
-				<a href="#" className="btn btn-primary" onClick={HandleClick}>
-					Publish your comment
-				</a>
+				<img src="https://picsum.photos/600/500?random=9" className="card-img-top" alt="..." />
+				<div className="card-body">
+					<p className="card-text">{store.post.text}</p>
+					<div className="form-group">
+						<label>Comentarios</label>
+						<textarea
+							value={comment}
+							className="form-control"
+							rows="3"
+							onChange={event => setComment(event.target.value)}
+						/>
+						{postComments}
+					</div>
+					<a href="#" className="btn btn-primary" onClick={HandleClick}>
+						Publish your comment
+					</a>
+				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 };

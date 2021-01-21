@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { NoToken } from "../component/no-token";
 
 export const CreatePost = () => {
 	const { store, actions } = useContext(Context);
@@ -34,20 +35,7 @@ export const CreatePost = () => {
 	});
 
 	if (store.token == null) {
-		return (
-			<div className="container">
-				<div className="row justify-content-center">
-					<h1>Es necesario iniciar sesion para acceder a esta pagina</h1>
-				</div>
-				<div className="row justify-content-center">
-					<Link to="/login">
-						<button type="button" className="btn btn-primary">
-							Iniciar Sesión
-						</button>
-					</Link>
-				</div>
-			</div>
-		);
+		return <NoToken />;
 	} else {
 		return (
 			<div className="container">
