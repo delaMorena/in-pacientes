@@ -9,7 +9,7 @@ export const Home = () => {
 
 	return (
 		<div className="fluid-container">
-			<div className="jumbotron text-center">
+			<div className="jumbotron text-center bg-white">
 				<h1 className="display-4">In-Pacientes</h1>
 				<p className="lead">LOOKING FOR YOU</p>
 
@@ -20,12 +20,16 @@ export const Home = () => {
 				<div className="row d-flex justify-content-around">
 					<div className="col-4">
 						<Link to="/login">
-							<button className="btn btn-lg">Iniciar Sesión</button>
+							<button type="button" className="btn btn-info btn-lg">
+								Iniciar Sesión
+							</button>
 						</Link>
 					</div>
 					<div className="col-4">
 						<Link to="/signup">
-							<button className="btn btn-lg">Registrarme</button>
+							<button type="button" className="btn btn-info btn-lg">
+								Registrarme
+							</button>
 						</Link>
 					</div>
 				</div>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Header } from "../component/header.js";
 import { CardFeed } from "../component/card-feed.js";
+import { NoToken } from "../component/no-token";
 
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
@@ -23,38 +24,23 @@ export const Profile = () => {
 	});
 
 	if (store.token == null) {
+		return <NoToken />;
+	} else {
 		return (
-			<div className="container">
-				<div className="row justify-content-center">
-					<h1>Es necesario iniciar sesion para acceder a esta pagina</h1>
-				</div>
-				<div className="row justify-content-center">
-					<Link to="/login">
+			<>
+				<div className="container text-center mt-5">
+					<h1>Perfil de usuario</h1>
+					<h1>{store.user.username}</h1>
+					<Header />
+					<Link to="/follow">
 						<button type="button" className="btn btn-primary">
-							Iniciar Sesión
+							Busca la enfermedad que te interese
 						</button>
 					</Link>
 				</div>
-			</div>
-		);
-	} else {
-		return (
-			<div className="container text-center mt-5">
-				<h1>Perfil de usuario</h1>
-				<h1>{store.user.username}</h1>
-				<Header />
-				<Link to="/follow">
-					<button type="button" className="btn btn-primary">
-						Busca la enfermedad que te interese
-					</button>
-				</Link>
-				<div className="text-center" />
-				<div role="tabpanel" aria-labelledby="pills-grid">
-					<div className="my-3">
-						<div className="row no-gutters">{cardItems}</div>
-					</div>
-				</div>
-			</div>
+
+				<div className="row no-gutters">{cardItems}</div>
+			</>
 		);
 	}
 };

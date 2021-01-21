@@ -207,10 +207,10 @@ def handle_delete_user(id):
 @api.route("/diseases", methods=["GET"])
 def handle_list_all_diseases():
     
-    user = authorized_user()
+    # user = authorized_user()
 
-    if not user:
-        return "User not found", 404
+    # if not user:
+    #     return "User not found", 404
 
     return get_all_from_models(Diseases)
 

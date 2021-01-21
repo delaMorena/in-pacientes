@@ -6,11 +6,9 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
-	console.log(store.token);
-
 	if (store.token == null) {
 		return (
-			<nav className="navbar mb-3">
+			<nav className="navbar mb-3 text-info">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<h3>In-Pacients</h3>
