@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/header.scss";
 import PropTypes from "prop-types";
 
 export const Header = props => {

@@ -24,13 +24,12 @@ export const Feed = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="text-center mt-5">
-				<h1>Feed de inicio</h1>
-				<div role="tabpanel" aria-labelledby="pills-grid">
-					<div className="container my-3">
-						<div className="row no-gutters">{cardItemsFeed}</div>
-					</div>
+			<div className="container">
+				<div className="row">
+					<h1>Feed de inicio</h1>
 				</div>
+
+				<div className="card-deck d-flex justify-content-between">{cardItemsFeed}</div>
 			</div>
 		);
 	}

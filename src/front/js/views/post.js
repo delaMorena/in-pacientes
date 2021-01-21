@@ -4,8 +4,6 @@ import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 import { NoToken } from "../component/no-token";
 
-import "../../styles/post.scss";
-
 export const Post = () => {
 	const { store, actions } = useContext(Context);
 	const [comment, setComment] = useState("");
@@ -36,7 +34,7 @@ export const Post = () => {
 		// 	<span>{comment.user}</span>
 		// 	<p>{comment.text}</p>
 		// </div>
-		<div className="text-left" key={index}>
+		<div className="row text-left" key={index}>
 			<div className="card-body">
 				<h5 className="card-title">{comment.user}</h5>
 				<p className="card-text">{comment.text}</p>
@@ -51,16 +49,19 @@ export const Post = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="card">
-				<div>
-					<h5>{store.post.publisher}</h5>
-					<Link to={`/onedisease/${store.post.disease_id}`}>
-						<h5>{store.post.disease_name}</h5>
-					</Link>
+			<div className="container">
+				<div className="row">
+					<h5>{store.post.disease_name}</h5>
 				</div>
-				<img src="https://picsum.photos/600/500?random=9" className="card-img-top" alt="..." />
-				<div className="card-body">
-					<p className="card-text">{store.post.text}</p>
+				<div className="row">
+					<h5>{store.post.publisher}</h5>
+				</div>
+				<div className="row">
+					<div className="card-body">
+						<p className="card-text">{store.post.text}</p>
+					</div>
+				</div>
+				<div className="row">
 					<div className="form-group">
 						<label>Comentarios</label>
 						<textarea
@@ -71,9 +72,11 @@ export const Post = () => {
 						/>
 						{postComments}
 					</div>
-					<a href="#" className="btn btn-primary" onClick={HandleClick}>
-						Publish your comment
-					</a>
+				</div>
+				<div className="row">
+					<button type="button" className="btn btn-primary" onClick={HandleClick}>
+						Comentar
+					</button>
 				</div>
 			</div>
 		);
