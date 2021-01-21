@@ -7,7 +7,7 @@ import hmac
 import jwt
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
-from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Relationships
+from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows
 from api.utils import generate_sitemap, APIException
 
 
@@ -579,12 +579,40 @@ def handle_get_follow_by_user(user_id):
     return "Get the follows of disease #{} .".format(disease_id)
 
 
+
 @api.route("/follows", methods=["POST"])
-def handle_create_follow():
-    """ Create follow """
-    payload= request.get_json()
-    print(payload)
-    return "follow created"
+def handle_follow_for_disease():
+
+    user = authorized_user()
+    if not user:
+        return "User not found", 404
+
+    payload = request.get_json()
+    payload['user_id'] = user.id
+
+    required = ['user_id', 'disease_id', 'role']
+
+    types = {
+        'user_id': int,
+        'disease_id': int,
+        'role': str
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
+    follow = Follows(**payload)
+
+    db.session.add(follow)
+    db.session.commit()
+
+    print(follow.serialize())
+    return jsonify(follow.serialize()), 201
 
 # Tiene sentido editar un follow? como se marca y se desmarca? es un borrado o un put?:
 # @api.route("/follows/<int:user_id>/<int:disease_id>", methods= ["PUT"])

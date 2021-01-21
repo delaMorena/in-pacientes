@@ -313,7 +313,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createRole(input) {
 				const store = getStore();
-				const endpoint = `${baseUrl}/relationships`;
+				const endpoint = `${baseUrl}/follows`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
 
@@ -332,7 +332,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						// console.log(data);
+						console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},

@@ -217,7 +217,8 @@ class Follows(db.Model):
     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
-    deleted_at = db.Column(db.DateTime) 
+    deleted_at = db.Column(db.DateTime)
+    role = db.Column(db.Enum(Roles), nullable=False)
 
     user = db.relationship("Users")
     disease = db.relationship("Diseases")
@@ -233,26 +234,26 @@ class Follows(db.Model):
         }
 
 
-class Relationships(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
-    created_at = db.Column(db.DateTime, server_default=func.now())
-    updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
-    deleted_at = db.Column(db.DateTime)
-    role = db.Column(db.Enum(Roles), nullable=False)
+# class Relationships(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, ForeignKey('users.id'))
+#     disease_id = db.Column(db.Integer, ForeignKey('diseases.id'))
+#     created_at = db.Column(db.DateTime, server_default=func.now())
+#     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
+#     deleted_at = db.Column(db.DateTime)
+#     role = db.Column(db.Enum(Roles), nullable=False)
 
-    user = db.relationship("Users")
-    disease = db.relationship("Diseases")
+#     user = db.relationship("Users")
+#     disease = db.relationship("Diseases")
 
-    def __str__(self):
-        return 'El usuario {} tiene el rol {} de la enfermedad {}' .format(self.user.username, self.role, self.disease.title)
+#     def __str__(self):
+#         return 'El usuario {} tiene el rol {} de la enfermedad {}' .format(self.user.username, self.role, self.disease.title)
 
-    def serialize(self):
-        print(self.role.value)
-        return {
-            "id": self.id,
-            "user": self.user.serialize(),
-            "disease": self.disease.serialize(),
-            "role": self.role.value
-        }
+#     def serialize(self):
+#         print(self.role.value)
+#         return {
+#             "id": self.id,
+#             "user": self.user.serialize(),
+#             "disease": self.disease.serialize(),
+#             "role": self.role.value
+#         }
