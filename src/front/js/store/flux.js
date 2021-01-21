@@ -1,5 +1,4 @@
-const baseUrl = "https://3001-e81ae58c-29b0-4261-b298-d88589f01b0b.ws-eu03.gitpod.io/api";
-
+const baseUrl = "https://3001-c70d6c27-81cb-4d30-bdaf-ba1475fa29c5.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -137,7 +136,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ diseases: data });
-						// console.log(store.diseases);
+						console.log(store.diseases);
 
 						// console.log("contacto", store.user);
 					});
@@ -213,8 +212,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							post: data,
 							comments: data.comments
 						});
-						// console.log("un post", store.post);
-						// console.log("comentarios", store.post.comments);
+						console.log("un post", store.post);
+						console.log("comentarios", store.post.comments);
 					});
 			},
 			createPost(input) {
@@ -314,7 +313,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createRole(input) {
 				const store = getStore();
-				const endpoint = `${baseUrl}/relationships`;
+				const endpoint = `${baseUrl}/follows`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
 
@@ -333,7 +332,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						// console.log(data);
+						console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
 			},

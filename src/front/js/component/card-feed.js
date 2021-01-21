@@ -6,23 +6,21 @@ import PropTypes from "prop-types";
 export const CardFeed = props => {
 	const { post } = props;
 
-	const commentList = post.comments.map((
-		comment,
-		index // los parentesis hacen la funcion del return
-	) => (
-		<div key={index}>
-			<span>{comment.user}</span>
-			{comment.text}
-		</div>
-	));
+	// const commentList = post.comments.map((
+	// 	comment,
+	// 	index // los parentesis hacen la funcion del return
+	// ) => (
+	// 	<div key={index}>
+	// 		<span>{comment.user}</span>
+	// 		{comment.text}
+	// 	</div>
+	// ));
 
 	return (
-
 		<div className="col-4">
 			<div id="card-width">
 				meter el nombre de la enfermedad y de la persona que escribe el post.
 				<img src="https://picsum.photos/300/200?random=1" className="card-img-top" alt="..." />
-
 				<div className="card-body">
 					<h5 className="card-title">{post.disease_name}</h5>
 					<h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -40,6 +38,5 @@ export const CardFeed = props => {
 };
 
 CardFeed.propTypes = {
-	post: PropTypes.object,
-	postDisease: PropTypes.object
+	post: PropTypes.object
 };
