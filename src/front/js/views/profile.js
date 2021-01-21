@@ -11,6 +11,7 @@ export const Profile = () => {
 	useEffect(() => {
 		actions.getPostUser();
 		actions.getUser();
+		// actions.getPostsDisease(1);
 	}, []);
 
 	const cardItems = store.userPosts.map((post, index) => {
@@ -26,6 +27,11 @@ export const Profile = () => {
 			<h1>Perfil de usuario</h1>
 			<h1>{store.user.username}</h1>
 			<Header />
+			<Link to="/follow">
+				<button type="button" className="btn btn-primary">
+					Busca la enfermedad que te interese
+				</button>
+			</Link>
 			<div className="text-center" />
 			<div role="tabpanel" aria-labelledby="pills-grid">
 				<div className="my-3">

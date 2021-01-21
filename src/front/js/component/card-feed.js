@@ -17,18 +17,12 @@ export const CardFeed = props => {
 	));
 
 	return (
-		<div className="container">
-			{/* <div className="col-4">
-				<div id="card-width">
-					<h5 className="card-title">{post.disease_name}</h5>
-					<img src="https://picsum.photos/300/200?random=1" className="card-img-top" alt="..." />
-					<div className="card-body">
-						<p className="card-text">{post.text}</p>
-					</div>
-					<div className="card-footer">{commentList}</div>
-				</div>
-			</div> */}
-			<div className="card" id="card-width">
+
+		<div className="col-4">
+			<div id="card-width">
+				meter el nombre de la enfermedad y de la persona que escribe el post.
+				<img src="https://picsum.photos/300/200?random=1" className="card-img-top" alt="..." />
+
 				<div className="card-body">
 					<h5 className="card-title">{post.disease_name}</h5>
 					<h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -46,5 +40,6 @@ export const CardFeed = props => {
 };
 
 CardFeed.propTypes = {
-	post: PropTypes.object
+	post: PropTypes.object,
+	postDisease: PropTypes.object
 };
