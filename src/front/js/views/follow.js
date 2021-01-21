@@ -1,6 +1,6 @@
 // CREAR PERFIL DE USUARIO CON LOS DATOS DE NOMBRE, APELLIDO, EDAD, ENFERMEDAD, ROL, ETC...
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Follow = () => {
@@ -65,9 +65,11 @@ export const Follow = () => {
 					</div>
 				</div>
 			</form>
-			<button type="submit" className="btn btn-primary" onClick={OnSubmit}>
-				Submit
-			</button>
+			<Link to={`/onedisease/${id}`}>
+				<button type="submit" className="btn btn-primary" onClick={OnSubmit}>
+					Submit
+				</button>
+			</Link>
 		</div>
 	);
 };

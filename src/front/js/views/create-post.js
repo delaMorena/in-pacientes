@@ -1,6 +1,7 @@
 // CREAR UN NUEVO POST
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const CreatePost = () => {
 	const { store, actions } = useContext(Context);
@@ -65,9 +66,11 @@ export const CreatePost = () => {
 						onChange={event => setUrl(event.target.value)}
 					/>
 				</div>
-				<button type="button" className="btn btn-primary" onClick={OnSubmit}>
-					Submit
-				</button>
+				<Link to="/profile">
+					<button type="button" className="btn btn-primary" onClick={OnSubmit}>
+						Submit
+					</button>
+				</Link>
 			</form>
 		</div>
 	);
