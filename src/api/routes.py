@@ -226,12 +226,11 @@ def handle_create_disease():
 
     payload = request.get_json()
 
-    required = ['scientific_name', 'slug', 'title']
+    required = ['scientific_name', 'title']
     # owner_id required??
 
     types = {
         'scientific_name': str, 
-        'slug': str, 
         'title': str,
     }
 
@@ -270,9 +269,6 @@ def handle_update_disease(id):
 
     if "description" in payload:
         disease.description = payload['description']
-
-    if "slug" in payload:
-        disease.slug = payload['slug']
 
     db.session.add(disease)
     db.session.commit()

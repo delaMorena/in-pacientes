@@ -60,7 +60,6 @@ class Diseases(db.Model):
     deleted_at = db.Column(db.DateTime) 
     owner_id = db.Column(db.Integer, ForeignKey('users.id')) 
     scientific_name = db.Column(db.String(255), nullable=False) 
-    slug = db.Column(db.String(255), unique=True, nullable=False)
     title = db.Column(db.String(120), nullable=False)
     description = db.Column(db.Text)
 
@@ -80,8 +79,7 @@ class Diseases(db.Model):
             "updated_at": self.updated_at,
             "title": self.title,
             "scientific_name": self.scientific_name,
-            "description": self.description,
-            "slug": self.slug,
+            "description": self.description
             # "owner_nickname": self.owner.username esto da problemas. 
             ## Además, creí que ayer lo cambiamos a:
             ## "owner" : self.owner.serialize()
