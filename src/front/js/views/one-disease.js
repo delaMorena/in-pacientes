@@ -11,11 +11,10 @@ export const OneDisease = () => {
 
 	useEffect(() => {
 		actions.getPostsDisease(params.id);
+		actions.getOneDisease(params.id);
 	}, []);
 
 	const cardItemsFeedDisease = store.diseasePost.map((postDisease, index) => {
-		console.log("postDisease: ", postDisease);
-
 		return (
 			<Link key={index} to={`/post/${postDisease.id}`}>
 				<CardFeed post={postDisease} />
@@ -26,6 +25,7 @@ export const OneDisease = () => {
 	return (
 		<div className="text-center mt-5">
 			<h1>Perfil de enfermedad</h1>
+			<h1>{store.oneDisease.title}</h1>
 			<Header />
 			<div role="tabpanel" aria-labelledby="pills-grid">
 				<div className="container my-3">

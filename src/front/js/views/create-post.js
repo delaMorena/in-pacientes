@@ -82,10 +82,10 @@ export const CreatePost = () => {
 						/>
 					</div>
 					<Link to="/profile">
-            <button type="button" className="btn btn-primary" onClick={OnSubmit}>
-              Submit
-            </button>
-				</Link>
+						<button type="button" className="btn btn-primary" onClick={OnSubmit}>
+							Submit
+						</button>
+					</Link>
 				</form>
 			</div>
 		);

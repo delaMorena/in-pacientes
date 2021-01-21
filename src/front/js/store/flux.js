@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-ebf25d47-1cfc-4738-a883-eaa6f6283262.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-d1e21eab-1855-4ba2-bc2b-6e3af5498095.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: token,
 			user: {},
 			diseases: [],
+			oneDisease: {},
 			associations: [],
 			userPosts: [],
 			diseasePost: [],
@@ -117,15 +118,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// })
 					.catch(error => console.error("error: ", error));
 			},
-			getDiseases() {
+			getOneDisease(id) {
 				const store = getStore();
-				const endpoint = `${baseUrl}/diseases`;
+				const endpoint = `${baseUrl}/diseases/${id}`;
 				const method = "GET";
 				const headers = { "Content-Type": "application/json" };
 
 				if (store.token) {
 					headers["Authorization"] = `Bearer ${store.token}`;
 				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log(data)
+						setStore({ oneDisease: data });
+						console.log("info enfermedad", store.oneDisease);
+						// console.log(store.token);
+					});
+			},
+			getDiseases() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/diseases`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				// if (store.token) {
+				// 	headers["Authorization"] = `Bearer ${store.token}`;
+				// }
 
 				const config = {
 					method: method,
