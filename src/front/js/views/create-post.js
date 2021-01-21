@@ -10,7 +10,6 @@ export const CreatePost = () => {
 
 	useEffect(() => {
 		// console.log("store.diseases: ", store.diseases, store.user);
-
 		actions.getFollow();
 	}, []);
 
@@ -32,6 +31,8 @@ export const CreatePost = () => {
 			</option>
 		);
 	});
+	console.log("token", store.token);
+
 	return (
 		<div className="container">
 			<div className="text-center mt-5">

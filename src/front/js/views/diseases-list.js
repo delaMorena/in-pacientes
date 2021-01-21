@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const ListDiseases = () => {
 	const { store, actions } = useContext(Context);
@@ -13,12 +14,9 @@ export const ListDiseases = () => {
 			<h1>Lista Enfermedades</h1>
 			{store.diseases.map((value, index) => {
 				return (
-					<p key={index}>
-						{value.slug}
-						{/* <button onClick={(event) => deleteTask(item.id)} type="button" className="close" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button> */}
-					</p>
+					<Link key={index} to={`/onedisease/${value.id}`}>
+						<p>{value.title}</p>
+					</Link>
 				);
 			})}
 		</div>

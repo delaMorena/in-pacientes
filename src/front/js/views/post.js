@@ -1,7 +1,8 @@
 // MUESTRA INFORMACION SOBRE UN POST, ARRASTRANDO SUS COMENTARIOS Y DANDO LA FUNCIONALIDAD DE CREAR NUEVOS COMENTARIOS.
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
 import "../../styles/post.scss";
 
 export const Post = () => {
@@ -48,7 +49,9 @@ export const Post = () => {
 		<div className="card">
 			<div>
 				<h5>{store.post.publisher}</h5>
-				<h5>{store.post.disease}</h5>
+				<Link to={`/onedisease/${store.post.disease_id}`}>
+					<h5>{store.post.disease_name}</h5>
+				</Link>
 			</div>
 			<img src="https://picsum.photos/600/500?random=9" className="card-img-top" alt="..." />
 			<div className="card-body">
