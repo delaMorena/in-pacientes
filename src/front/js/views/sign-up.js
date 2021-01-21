@@ -26,8 +26,6 @@ export const SignUp = () => {
 			history.push("/welcome");
 			//pagina de bienvenida para logearte
 		});
-		// actions.editUser(payload);
-		// console.log(payload);
 	};
 
 	return (
