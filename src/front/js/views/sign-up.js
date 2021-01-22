@@ -5,12 +5,12 @@ import { useHistory } from "react-router-dom";
 
 export const SignUp = () => {
 	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState("alex@gmail.com");
-	const [password, setPassword] = useState("12345");
-	const [firstName, setFirstName] = useState("Alex");
-	const [lastName, setLastName] = useState("Redondo");
-	const [userName, setUserName] = useState("alexredondo");
-	const [avatar, setAvatar] = useState("www.as.com");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [userName, setUserName] = useState("");
+	const [avatar, setAvatar] = useState("");
 	const history = useHistory();
 
 	const HandleClick = event => {
@@ -84,11 +84,11 @@ export const SignUp = () => {
 						value={email}
 						onChange={event => setEmail(event.target.value)}
 					/>
-					<small id="emailHelp" className="form-text text-muted">
+					{/* <small id="emailHelp" className="form-text text-muted">
 						We
 						{"'"}
 						ll never share your email with anyone else.
-					</small>
+					</small> */}
 				</div>
 				<div className="form-group">
 					<label htmlFor="exampleInputPassword1">Contraseña</label>
@@ -99,8 +99,8 @@ export const SignUp = () => {
 						onChange={event => setPassword(event.target.value)}
 					/>
 				</div>
-				<button type="button" className="btn btn-primary" onClick={HandleClick}>
-					Submit
+				<button type="button" className="btn btn-info btn-lg" onClick={HandleClick}>
+					Registrarse
 				</button>
 			</form>
 		</div>

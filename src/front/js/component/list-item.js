@@ -23,12 +23,12 @@ export const ListItem = props => {
 	};
 
 	return (
-		<div className="card text-center widthListItem mt-4">
+		<div className="card text-center widthListItem mt-4 bg-light">
 			<div className="card-body">
 				<h5 className="card-title">{diseaseName}</h5>
 				<p className="card-text text-justify">{textTruncate(diseaseDesc)}</p>
 				<Link to={`/onedisease/${id}`}>
-					<button type="button" className="btn btn-primary">
+					<button type="button" className="btn btn-info">
 						Perfil
 					</button>
 				</Link>

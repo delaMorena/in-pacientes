@@ -8,7 +8,7 @@ export const CardAssociation = props => {
 	const { association } = props;
 
 	return (
-		<div className="card widthListItem mt-4">
+		<div className="card widthListItem mt-4 bg-light">
 			<div className="card-body">
 				<h5 className="card-title text-center">{association.name}</h5>
 				<h6 className="card-subtitle mb-2 text-muted text-center">{association.location}</h6>

@@ -58,22 +58,24 @@ export const Follow = () => {
 							<div className="input-group">
 								<select className="custom-select" onChange={e => setRole(e.target.value)}>
 									<option defaultValue>Choose...</option>
-									<option value="1">Pacient</option>
-									<option value="2">Researcher</option>
+									<option value="1">Paciente</option>
+									<option value="2">Investigador</option>
 									<option value="3">Doctor</option>
-									<option value="4">Relative</option>
-									<option value="5">Professional</option>
-									<option value="6">Association</option>
+									<option value="4">Familiar</option>
+									<option value="5">Profesional</option>
+									<option value="6">Asociación</option>
 								</select>
 							</div>
 						</div>
 					</div>
 				</form>
-				<Link to={`/onedisease/${id}`}>
-					<button type="submit" className="btn btn-primary" onClick={OnSubmit}>
-						Submit
-					</button>
-				</Link>
+				<div className="row justify-content-center">
+					<Link to={`/onedisease/${id}`}>
+						<button type="submit" className="btn btn-info" onClick={OnSubmit}>
+							Submit
+						</button>
+					</Link>
+				</div>
 			</div>
 		);
 	}

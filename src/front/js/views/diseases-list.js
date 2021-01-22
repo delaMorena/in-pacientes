@@ -21,9 +21,9 @@ export const ListDiseases = () => {
 			<div className="row justify-content-center">
 				<ul className="list-group">{diseaseList}</ul>
 			</div>
-			<div className="row justify-content-center">
+			<div className="row justify-content-center my-5">
 				<Link to="/request/disease">
-					<button type="button" className="btn btn-info btn-lg">
+					<button type="button" className="btn btn-info">
 						¿No esta la enfermedad que te interesa? Solicita su creación ahora!
 					</button>
 				</Link>

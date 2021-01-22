@@ -44,11 +44,15 @@ export const Profile = () => {
 
 	const listFollows = store.follows.map((follow, index) => {
 		return (
-			<li key={index} className="list-group-item">
+			<li key={index} className="list-group-item bg-light">
 				{" "}
 				<div className="row">
-					<div className="col-8 text-center">{follow.disease.title}</div>
-					<div className="col-4 text-center">{convRol(follow.role)}</div>
+					<div className="col-8 text-center">
+						<h5>{follow.disease.title}</h5>
+					</div>
+					<div className="col-4 text-center">
+						<h5>{convRol(follow.role)}</h5>
+					</div>
 				</div>
 			</li>
 		);
@@ -59,15 +63,15 @@ export const Profile = () => {
 	} else {
 		return (
 			<div className="container">
-				<div className="row mb-2 justify-content-center">
+				{/* <div className="row mb-2 justify-content-center">
 					<h1>Perfil de usuario</h1>
-				</div>
+				</div> */}
 				<div className="row mb-2 justify-content-center">
 					<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
 				</div>
 				<div className="row mb-2 justify-content-center">
 					<Link to="/follow">
-						<button type="button" className="btn btn-primary">
+						<button type="button" className="btn btn-info">
 							Busca la enfermedad que te interese
 						</button>
 					</Link>
@@ -77,10 +81,10 @@ export const Profile = () => {
 						<li className="list-group-item">
 							<div className="row justify-content-center">
 								<div className="col-8 text-center">
-									<h5>Enfermedad</h5>
+									<h4>Enfermedad</h4>
 								</div>
 								<div className="col-4 text-center">
-									<h5>Rol</h5>
+									<h4>Rol</h4>
 								</div>
 							</div>
 						</li>

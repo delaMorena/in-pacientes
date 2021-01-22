@@ -368,9 +368,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const method = "GET";
 				const headers = { "Content-Type": "application/json" };
 
-				if (store.token) {
-					headers["Authorization"] = `Bearer ${store.token}`;
-				}
+				// if (store.token) {
+				// 	headers["Authorization"] = `Bearer ${store.token}`;
+				// }
 
 				const config = {
 					method: method,

@@ -25,7 +25,7 @@ export const CardFeed = props => {
 	};
 
 	return (
-		<div className="card" id="styleCardFeed">
+		<div className="card bg-light" id="styleCardFeed">
 			<div className="card-body">
 				<h5 className="card-title text-center">{post.disease_name}</h5>
 				<h6 className="card-subtitle mb-2 text-muted text-center">{post.publisher}</h6>
