@@ -30,42 +30,40 @@ export const SignUp = () => {
 
 	return (
 		<div className="container">
-			<div className="text-center mt-5">
+			<div className="text-center my-5">
 				<h1>Registrar nuevo usuario</h1>
 			</div>
 
 			<form>
 				<div className="form-group">
-					<label htmlFor="exampleInputName">First name</label>
 					<input
 						type="text"
 						className="form-control"
-						placeholder="First name"
+						placeholder="Nombre"
 						value={firstName}
 						onChange={event => setFirstName(event.target.value)}
 					/>
 				</div>
 				<div className="form-group">
-					<label htmlFor="exampleInputLastName">Last Name</label>
 					<input
 						type="text"
 						className="form-control"
-						placeholder="Last name"
+						placeholder="Apellidos"
 						value={lastName}
 						onChange={event => setLastName(event.target.value)}
 					/>
 				</div>
 				<div className="form-group">
-					<label htmlFor="exampleInputUsername">User name</label>
+					{/* <label htmlFor="exampleInputUsername">Username</label> */}
 					<input
 						type="text"
 						className="form-control"
-						placeholder="User name"
+						placeholder="Username"
 						value={userName}
 						onChange={event => setUserName(event.target.value)}
 					/>
 				</div>
-				<div className="form-group">
+				{/* <div className="form-group">
 					<label htmlFor="exampleInputUsername">Avatar</label>
 					<input
 						type="url"
@@ -74,11 +72,12 @@ export const SignUp = () => {
 						value={avatar}
 						onChange={event => setAvatar(event.target.value)}
 					/>
-				</div>
+				</div> */}
 				<div className="form-group">
-					<label htmlFor={email}>Email</label>
+					{/* <label htmlFor={email}>Email</label> */}
 					<input
 						type="email"
+						placeholder="Email"
 						className="form-control"
 						aria-describedby="emailHelp"
 						value={email}
@@ -91,9 +90,10 @@ export const SignUp = () => {
 					</small> */}
 				</div>
 				<div className="form-group">
-					<label htmlFor="exampleInputPassword1">Contraseña</label>
+					{/* <label htmlFor="exampleInputPassword1">Contraseña</label> */}
 					<input
 						type="password"
+						placeholder="Contraseña"
 						className="form-control"
 						value={password}
 						onChange={event => setPassword(event.target.value)}

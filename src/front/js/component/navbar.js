@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 // import Logo from "../../img/logo.jpg";
@@ -8,6 +8,17 @@ import "../../styles/navbar.scss";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+
+	useEffect(() => {
+		actions.getUser();
+	}, []);
+
+	useEffect(
+		() => {
+			actions.getUser();
+		},
+		[store.user]
+	);
 
 	if (store.token == null) {
 		return (
@@ -37,16 +48,15 @@ export const Navbar = () => {
 						<img id="smlogo" src={logonavbar} />
 					</Link>
 				</div>
+				<div className="p-2 bd-highlight color-username">
+					<span>{store.user.username}</span>
+				</div>
 				<div className="p-2 bd-highlight">
 					<Link to="/feed">
 						<span>Feed</span>
 					</Link>
 				</div>
-				{/* <div className="p-2 bd-highlight">
-					<Link to="/createpost">
-						<span>Crear Post</span>
-					</Link>
-				</div> */}
+
 				<div className="p-2 bd-highlight">
 					<Link to="/profile">
 						<span>Perfil</span>

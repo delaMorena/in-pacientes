@@ -28,8 +28,8 @@ export const LogIn = () => {
 
 			<form>
 				<div className="form-group">
-					<label htmlFor={email}>Email</label>
 					<input
+						placeholder="Email"
 						type="email"
 						className="form-control"
 						aria-describedby="emailHelp"
@@ -43,9 +43,9 @@ export const LogIn = () => {
 					</small> */}
 				</div>
 				<div className="form-group">
-					<label htmlFor="exampleInputPassword1">Contraseña</label>
 					<input
 						type="password"
+						placeholder="Contraseña"
 						className="form-control"
 						value={password}
 						onChange={event => setPassword(event.target.value)}

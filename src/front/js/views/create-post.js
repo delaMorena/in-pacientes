@@ -64,7 +64,7 @@ export const CreatePost = () => {
 							onChange={event => setText(event.target.value)}
 						/>
 					</div>
-					<div className="form-group">
+					{/* <div className="form-group">
 						<label htmlFor="exampleFormControlInput1">URL imagen</label>
 						<input
 							type="url"
@@ -73,7 +73,7 @@ export const CreatePost = () => {
 							value={url}
 							onChange={event => setUrl(event.target.value)}
 						/>
-					</div>
+					</div> */}
 					<div className="row justify-content-center">
 						<button type="button" className="btn btn-info btn-lg" onClick={OnSubmit}>
 							Publicar
