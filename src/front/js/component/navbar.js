@@ -11,7 +11,7 @@ export const Navbar = () => {
 
 	if (store.token == null) {
 		return (
-			<nav className="navbar mb-3 mx-2">
+			<nav className="navbar mb-3 mx-2 bg-light">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<img id="smlogo" src={logonavbar} />
@@ -31,7 +31,7 @@ export const Navbar = () => {
 		);
 	} else {
 		return (
-			<nav className="navbar mb-3">
+			<nav className="navbar mb-3 bg-light">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<img id="smlogo" src={logonavbar} />
@@ -42,11 +42,11 @@ export const Navbar = () => {
 						<span>Feed</span>
 					</Link>
 				</div>
-				<div className="p-2 bd-highlight">
+				{/* <div className="p-2 bd-highlight">
 					<Link to="/createpost">
 						<span>Crear Post</span>
 					</Link>
-				</div>
+				</div> */}
 				<div className="p-2 bd-highlight">
 					<Link to="/profile">
 						<span>Perfil</span>
