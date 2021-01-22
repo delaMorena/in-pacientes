@@ -12,12 +12,12 @@ export const Feed = () => {
 		actions.getFeed();
 	}, []);
 
-	useEffect(
-		() => {
-			actions.getFeed();
-		},
-		[store.feed]
-	);
+	// useEffect(
+	// 	() => {
+	// 		actions.getFeed();
+	// 	},
+	// 	[store.feed]
+	// );
 
 	const cardItemsFeed = store.feed.map((post, index) => {
 		return (

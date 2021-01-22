@@ -13,12 +13,12 @@ export const Navbar = () => {
 		actions.getUser();
 	}, []);
 
-	useEffect(
-		() => {
-			actions.getUser();
-		},
-		[store.user]
-	);
+	// useEffect(
+	// 	() => {
+	// 		actions.getUser();
+	// 	},
+	// 	[store.user]
+	// );
 
 	if (store.token == null) {
 		return (
