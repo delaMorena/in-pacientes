@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 import { NoToken } from "../component/no-token";
+import "../../styles/post.scss";
 
 export const Post = () => {
 	const { store, actions } = useContext(Context);
@@ -30,7 +31,7 @@ export const Post = () => {
 	};
 
 	const postComments = store.comments.map((comment, index) => (
-		<div className="row text-left" key={index}>
+		<div className="row" key={index}>
 			<div className="card-body">
 				<h5 className="card-title">{comment.user}</h5>
 				<p className="card-text">{comment.text}</p>
@@ -45,37 +46,43 @@ export const Post = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="container">
-				<div className="row">
-					<Link to={`/onedisease/${store.post.disease_id}`}>
-						<h5>{store.post.disease_name}</h5>
-					</Link>
-					{/* <h5>{store.post.disease_name}</h5> */}
-				</div>
-				<div className="row">
-					<h5>{store.post.publisher}</h5>
-				</div>
-				<div className="row">
+			<div className="container" id="post-width">
+				<div className="card">
+					<div className="card-header">
+						<div className="row justify-content-center">
+							<Link to={`/onedisease/${store.post.disease_id}`}>
+								<h3>{store.post.disease_name}</h3>
+							</Link>
+						</div>
+						<div className="row justify-content-center">
+							<h5>{store.post.publisher}</h5>
+						</div>
+					</div>
 					<div className="card-body">
 						<p className="card-text">{store.post.text}</p>
 					</div>
-				</div>
-				<div className="row">
-					<div className="form-group">
-						<label>Comentarios</label>
-						<textarea
-							value={comment}
-							className="form-control"
-							rows="3"
-							onChange={event => setComment(event.target.value)}
-						/>
-						{postComments}
+					<div className="card-footer">
+						<div className="row justify-content-center">
+							<div className="form-group">
+								<label>Haz un comentario</label>
+								<textarea
+									value={comment}
+									className="form-control"
+									rows="3"
+									cols="200"
+									onChange={event => setComment(event.target.value)}
+								/>
+
+								<h5>Comentarios</h5>
+								{postComments}
+							</div>
+						</div>
+						<div className="row">
+							<button type="button" className="btn btn-primary" onClick={HandleClick}>
+								Comentar
+							</button>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<button type="button" className="btn btn-primary" onClick={HandleClick}>
-						Comentar
-					</button>
 				</div>
 			</div>
 		);
