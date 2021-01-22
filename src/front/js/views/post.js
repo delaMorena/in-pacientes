@@ -30,10 +30,6 @@ export const Post = () => {
 	};
 
 	const postComments = store.comments.map((comment, index) => (
-		// <div key={index}>
-		// 	<span>{comment.user}</span>
-		// 	<p>{comment.text}</p>
-		// </div>
 		<div className="row text-left" key={index}>
 			<div className="card-body">
 				<h5 className="card-title">{comment.user}</h5>

@@ -14,9 +14,9 @@ export const CardAssociation = props => {
 				<h6 className="card-subtitle mb-2 text-muted text-center">{association.location}</h6>
 				<p className="card-text text-justify">{association.description}</p>
 				<div className="row justify-content-center">
-					<a href="#" className="card-link">
-						Web
-					</a>
+					<button type="button" className="btn btn-primary">
+						Ir a la web
+					</button>
 				</div>
 			</div>
 		</div>

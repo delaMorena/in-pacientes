@@ -18,7 +18,7 @@ export const CardFeed = props => {
 
 	const textTruncate = input => {
 		if (input.length >= 250) {
-			return input.substring(0, 250) + " ...Leer más.";
+			return input.substring(0, 250) + " ... Leer más.";
 		} else {
 			return input;
 		}

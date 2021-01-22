@@ -229,6 +229,7 @@ class Follows(db.Model):
             "id": self.id,
             "user": self.user.serialize(),
             "disease": self.disease.serialize(),
+            "role": self.role.value
         }
 
 
