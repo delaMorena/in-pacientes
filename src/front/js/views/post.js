@@ -51,7 +51,10 @@ export const Post = () => {
 		return (
 			<div className="container">
 				<div className="row">
-					<h5>{store.post.disease_name}</h5>
+					<Link to={`/onedisease/${store.post.disease_id}`}>
+						<h5>{store.post.disease_name}</h5>
+					</Link>
+					{/* <h5>{store.post.disease_name}</h5> */}
 				</div>
 				<div className="row">
 					<h5>{store.post.publisher}</h5>

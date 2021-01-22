@@ -86,7 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ user: data });
-						// console.log("contacto", store.user);
+						console.log("contacto", store.user);
 						// console.log(store.token);
 					});
 			},
@@ -184,7 +184,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ userPosts: data });
-						// console.log("posts de un usuario", store.userPosts);
+						console.log("posts de un usuario", store.userPosts);
 						// console.log(store.token);
 
 						// console.log("contacto", store.user);

@@ -32,10 +32,14 @@ export const Profile = () => {
 					<h1>Perfil de usuario</h1>
 				</div>
 				<div className="row mb-2 justify-content-center">
-					<Header />
+					<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
 				</div>
 				<div className="row mb-2 justify-content-center">
-					<h1>{store.user.username}</h1>
+					<Link to="/follow">
+						<button type="button" className="btn btn-primary">
+							Busca la enfermedad que te interese
+						</button>
+					</Link>
 				</div>
 				<div className="card-deck d-flex align-content-around flex-wrap">{cardItems}</div>
 			</div>
