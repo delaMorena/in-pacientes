@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-a7c38cc6-cff6-4e3b-9c99-61230f8053a4.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-f96208bb-1348-4395-a0a8-5d42eb48ff99.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");

@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+// import Logo from "../../img/logo.jpg";
+// import Smlogo from "../../img/smlogo.jpg";
+import logonavbar from "../../img/logonavbar.jpg";
+import "../../styles/navbar.scss";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -10,7 +14,7 @@ export const Navbar = () => {
 			<nav className="navbar mb-3 mx-2">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
-						<h3>In-Pacients</h3>
+						<img id="smlogo" src={logonavbar} />
 					</Link>
 				</div>
 				<div className="p-2 bd-highlight">
@@ -30,7 +34,7 @@ export const Navbar = () => {
 			<nav className="navbar mb-3">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
-						<h3>In-Pacients</h3>
+						<img id="smlogo" src={logonavbar} />
 					</Link>
 				</div>
 				<div className="p-2 bd-highlight">
