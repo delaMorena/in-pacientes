@@ -27,20 +27,18 @@ export const Profile = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<>
-				<div className="container text-center mt-5">
+			<div className="container">
+				<div className="row mb-2 justify-content-center">
 					<h1>Perfil de usuario</h1>
-					<h1>{store.user.username}</h1>
-					<Header />
-					<Link to="/follow">
-						<button type="button" className="btn btn-primary">
-							Busca la enfermedad que te interese
-						</button>
-					</Link>
 				</div>
-
-				<div className="row no-gutters">{cardItems}</div>
-			</>
+				<div className="row mb-2 justify-content-center">
+					<Header />
+				</div>
+				<div className="row mb-2 justify-content-center">
+					<h1>{store.user.username}</h1>
+				</div>
+				<div className="card-deck d-flex align-content-around flex-wrap">{cardItems}</div>
+			</div>
 		);
 	}
 };

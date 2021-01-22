@@ -25,11 +25,10 @@ export const Feed = () => {
 	} else {
 		return (
 			<div className="container">
-				<div className="row">
+				<div className="row mb-2 justify-content-center">
 					<h1>Feed de inicio</h1>
 				</div>
-
-				<div className="card-deck d-flex justify-content-between">{cardItemsFeed}</div>
+				<div className="card-deck d-flex align-content-around flex-wrap">{cardItemsFeed}</div>
 			</div>
 		);
 	}
