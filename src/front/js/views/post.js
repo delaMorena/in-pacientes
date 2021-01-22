@@ -64,7 +64,7 @@ export const Post = () => {
 					<div className="card-footer">
 						<div className="row justify-content-center">
 							<div className="form-group">
-								<label>Haz un comentario</label>
+								<label>Comentarios</label>
 								<textarea
 									value={comment}
 									className="form-control"
@@ -72,15 +72,13 @@ export const Post = () => {
 									cols="200"
 									onChange={event => setComment(event.target.value)}
 								/>
-
-								<h5>Comentarios</h5>
+								<div className="row justify-content-center mt-3">
+									<button type="button" className="btn btn-primary" onClick={HandleClick}>
+										Comentar
+									</button>
+								</div>
 								{postComments}
 							</div>
-						</div>
-						<div className="row">
-							<button type="button" className="btn btn-primary" onClick={HandleClick}>
-								Comentar
-							</button>
 						</div>
 					</div>
 				</div>
