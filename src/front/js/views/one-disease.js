@@ -44,6 +44,13 @@ export const OneDisease = () => {
 				<div className="row mb-2 justify-content-center">
 					<Header itemName={store.oneDisease.title} qtyPost={store.diseasePost.length} />
 				</div>
+				<div className="row mb-2 justify-content-center">
+					<Link to="/follow">
+						<button type="button" className="btn btn-primary">
+							Añade esta enfermedad a tu lista de seguimiento
+						</button>
+					</Link>
+				</div>
 				<div className="card-deck d-flex align-content-around flex-wrap">{cardItemsFeedDisease}</div>
 			</div>
 		);
