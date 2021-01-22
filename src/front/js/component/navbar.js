@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/navbar.scss";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
@@ -8,7 +7,7 @@ export const Navbar = () => {
 
 	if (store.token == null) {
 		return (
-			<nav className="navbar mb-3 text-info">
+			<nav className="navbar mb-3 mx-2">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<h3>In-Pacients</h3>
@@ -39,7 +38,7 @@ export const Navbar = () => {
 						<span>Feed</span>
 					</Link>
 				</div>
-				<div className="p-2 bd-highlight prueba">
+				<div className="p-2 bd-highlight">
 					<Link to="/createpost">
 						<span>Crear Post</span>
 					</Link>

@@ -1,6 +1,5 @@
 // PLANTILLA PARA MOSTRAR UN RESUMEN DE LOS POST DE LAS ENFERMEDADES QUE SIGUES
 import React from "react";
-import "../../styles/card-association.scss";
 import PropTypes from "prop-types";
 
 export const CardAssociation = props => {

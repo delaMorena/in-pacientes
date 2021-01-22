@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-d1e21eab-1855-4ba2-bc2b-6e3af5498095.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-a7c38cc6-cff6-4e3b-9c99-61230f8053a4.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -86,7 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ user: data });
-						// console.log("contacto", store.user);
+						console.log("contacto", store.user);
 						// console.log(store.token);
 					});
 			},
@@ -184,7 +184,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ userPosts: data });
-						// console.log("posts de un usuario", store.userPosts);
+						console.log("posts de un usuario", store.userPosts);
 						// console.log(store.token);
 
 						// console.log("contacto", store.user);

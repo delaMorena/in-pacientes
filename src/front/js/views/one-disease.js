@@ -27,15 +27,24 @@ export const OneDisease = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="text-center mt-5">
-				<h1>Perfil de enfermedad</h1>
-				<h1>{store.oneDisease.title}</h1>
-				<Header />
-				<div role="tabpanel" aria-labelledby="pills-grid">
-					<div className="container my-3">
-						<div className="row no-gutters">{cardItemsFeedDisease}</div>
-					</div>
+			// <div className="text-center mt-5">
+			// 	<h1>Perfil de enfermedad</h1>
+			// 	<h1>{store.oneDisease.title}</h1>
+			// 	<Header />
+			// 	<div role="tabpanel" aria-labelledby="pills-grid">
+			// 		<div className="container my-3">
+			// 			<div className="row no-gutters">{cardItemsFeedDisease}</div>
+			// 		</div>
+			// 	</div>
+			// </div>
+			<div className="container">
+				<div className="row mb-2 justify-content-center">
+					<h1>Perfil de enfermedad</h1>
 				</div>
+				<div className="row mb-2 justify-content-center">
+					<Header itemName={store.oneDisease.title} qtyPost={store.diseasePost.length} />
+				</div>
+				<div className="card-deck d-flex align-content-around flex-wrap">{cardItemsFeedDisease}</div>
 			</div>
 		);
 	}

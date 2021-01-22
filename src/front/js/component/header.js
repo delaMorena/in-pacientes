@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/header.scss";
 import PropTypes from "prop-types";
+import "../../styles/header.scss";
 
 export const Header = props => {
 	const { store, actions } = useContext(Context);
-	const { user, disease } = props;
+	const { itemName, qtyPost } = props;
 
 	useEffect(() => {
 		actions.getPostUser();
@@ -14,28 +14,15 @@ export const Header = props => {
 	}, []);
 
 	return (
-		<div className="jumbotron">
-			<div className="card mb-3" id="card-header">
-				<div className="row no-gutters">
-					<div className="col-md-4">
-						<img
-							src="https://picsum.photos/500/500?random=3"
-							className="card-img rounded-circle"
-							alt="..."
-						/>
-					</div>
-					<div className="col-md-8">
-						<div className="card-body">
-							<h5 className="card-title">
-								{store.user.username}
-								{/* {user.username} */}
-							</h5>
-							<p className="card-text">número de posts</p>
-							<p>número de seguidores</p>
-							<p className="card-text">
-								<small className="text-muted">{store.user.updated_at}</small>
-							</p>
-						</div>
+		<div className="card mb-3" id="styleHeader">
+			<div className="row no-gutters">
+				<div className="col-4">
+					<img src="https://source.unsplash.com/random/175x200" className="card-img" alt="avatar" />
+				</div>
+				<div className="col-8">
+					<div className="card-body">
+						<h5 className="card-title">{itemName}</h5>
+						<p className="card-text">Numero de posts: {qtyPost}</p>
 					</div>
 				</div>
 			</div>
@@ -43,6 +30,6 @@ export const Header = props => {
 	);
 };
 Header.propTypes = {
-	user: PropTypes.object,
-	disease: PropTypes.object
+	itemName: PropTypes.string,
+	qtyPost: PropTypes.number
 };
