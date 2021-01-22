@@ -312,7 +312,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ follows: data });
-						// console.log("store.follows flux: ", store.follows);
+						console.log("store.follows flux: ", store.follows);
 					});
 			},
 			getFeed() {

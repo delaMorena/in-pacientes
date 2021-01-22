@@ -15,9 +15,11 @@ export const ListAssociation = () => {
 	});
 
 	return (
-		<div className="text-center mt-5">
-			<h1>Lista Asociaciones</h1>
-			{cardItem}
+		<div className="container">
+			<div className="row justify-content-center">
+				<h1>Lista Asociaciones</h1>
+			</div>
+			<div className="row justify-content-center">{cardItem}</div>
 		</div>
 	);
 };

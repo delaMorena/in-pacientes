@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { ListItem } from "../component/list-item";
 
 export const ListDiseases = () => {
 	const { store, actions } = useContext(Context);
@@ -9,16 +10,17 @@ export const ListDiseases = () => {
 		actions.getDiseases();
 	}, []);
 
+	const diseaseList = store.diseases.map((disease, index) => {
+		return <ListItem key={index} id={disease.id} diseaseName={disease.title} diseaseDesc={disease.description} />;
+	});
 	return (
-		<div className="text-center mt-5">
-			<h1>Lista Enfermedades</h1>
-			{store.diseases.map((value, index) => {
-				return (
-					<Link key={index} to={`/onedisease/${value.id}`}>
-						<p>{value.title}</p>
-					</Link>
-				);
-			})}
+		<div className="container">
+			<div className="row justify-content-center">
+				<h1>Lista Enfermedades</h1>
+			</div>
+			<div className="row justify-content-center">
+				<ul className="list-group">{diseaseList}</ul>
+			</div>
 		</div>
 	);
 };

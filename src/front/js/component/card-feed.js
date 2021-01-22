@@ -18,7 +18,7 @@ export const CardFeed = props => {
 
 	const textTruncate = input => {
 		if (input.length >= 250) {
-			return input.substring(0, 250) + " ...Leer más.";
+			return input.substring(0, 250) + " ... Leer más.";
 		} else {
 			return input;
 		}
@@ -27,8 +27,8 @@ export const CardFeed = props => {
 	return (
 		<div className="card" id="styleCardFeed">
 			<div className="card-body">
-				<h5 className="card-title">{post.disease_name}</h5>
-				<h6 className="card-subtitle mb-2 text-muted">{post.publisher}</h6>
+				<h5 className="card-title text-center">{post.disease_name}</h5>
+				<h6 className="card-subtitle mb-2 text-muted text-center">{post.publisher}</h6>
 				<p className="card-text text-justify">{textTruncate(post.text)}</p>
 			</div>
 		</div>

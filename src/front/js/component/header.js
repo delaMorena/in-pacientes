@@ -7,22 +7,22 @@ export const Header = props => {
 	const { store, actions } = useContext(Context);
 	const { itemName, qtyPost } = props;
 
-	useEffect(() => {
-		actions.getPostUser();
-		actions.getUser();
-		actions.getDiseases();
-	}, []);
+	// useEffect(() => {
+	// 	actions.getPostUser();
+	// 	actions.getUser();
+	// 	actions.getDiseases();
+	// }, []);
 
 	return (
-		<div className="card mb-3" id="styleHeader">
-			<div className="row no-gutters">
+		<div className="card my-3" id="styleHeader">
+			<div className="row no-gutters align-items-center">
 				<div className="col-4">
-					<img src="https://source.unsplash.com/random/175x200" className="card-img" alt="avatar" />
+					<img src="https://source.unsplash.com/random/125x150" className="card-img" alt="avatar" />
 				</div>
-				<div className="col-8">
+				<div className="col-8 text-center">
 					<div className="card-body">
-						<h5 className="card-title">{itemName}</h5>
-						<p className="card-text">Numero de posts: {qtyPost}</p>
+						<h3 className="card-title">{itemName}</h3>
+						<h5 className="card-text">Numero de posts: {qtyPost}</h5>
 					</div>
 				</div>
 			</div>

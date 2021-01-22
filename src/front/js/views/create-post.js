@@ -1,7 +1,7 @@
 // CREAR UN NUEVO POST
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { NoToken } from "../component/no-token";
 
 export const CreatePost = () => {
@@ -9,6 +9,7 @@ export const CreatePost = () => {
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
 	const [diseaseId, setDiseaseId] = useState();
+	const history = useHistory();
 
 	useEffect(() => {
 		// console.log("store.diseases: ", store.diseases, store.user);
@@ -24,6 +25,7 @@ export const CreatePost = () => {
 		actions.createPost(payload);
 		setText("");
 		setUrl("");
+		history.push("/feed");
 	};
 
 	const diseasesOption = store.follows.map((follow, index) => {
