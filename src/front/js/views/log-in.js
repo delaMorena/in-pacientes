@@ -7,8 +7,8 @@ export const LogIn = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
-	const [email, setEmail] = useState("alex@gmail.com");
-	const [password, setPassword] = useState("12345");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const HandleClick = async event => {
 		const payload = {
@@ -28,24 +28,24 @@ export const LogIn = () => {
 
 			<form>
 				<div className="form-group">
-					<label htmlFor={email}>Email</label>
 					<input
+						placeholder="Email"
 						type="email"
 						className="form-control"
 						aria-describedby="emailHelp"
 						value={email}
 						onChange={event => setEmail(event.target.value)}
 					/>
-					<small id="emailHelp" className="form-text text-muted">
+					{/* <small id="emailHelp" className="form-text text-muted">
 						We
 						{"'"}
 						ll never share your email with anyone else.
-					</small>
+					</small> */}
 				</div>
 				<div className="form-group">
-					<label htmlFor="exampleInputPassword1">Contraseña</label>
 					<input
 						type="password"
+						placeholder="Contraseña"
 						className="form-control"
 						value={password}
 						onChange={event => setPassword(event.target.value)}
@@ -58,7 +58,7 @@ export const LogIn = () => {
 					</label>
 				</div>
 				<button type="button" className="btn btn-info btn-lg" onClick={HandleClick}>
-					Submit
+					Iniciar Sesión
 				</button>
 			</form>
 		</div>

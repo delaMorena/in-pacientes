@@ -12,6 +12,13 @@ export const Feed = () => {
 		actions.getFeed();
 	}, []);
 
+	useEffect(
+		() => {
+			actions.getFeed();
+		},
+		[store.feed]
+	);
+
 	const cardItemsFeed = store.feed.map((post, index) => {
 		return (
 			<Link key={index} to={`/post/${post.id}`}>
@@ -27,6 +34,13 @@ export const Feed = () => {
 			<div className="container">
 				<div className="row mb-2 justify-content-center">
 					<h1>Feed de inicio</h1>
+				</div>
+				<div className="row mb-2 justify-content-center">
+					<Link to="/createpost">
+						<button type="button" className="btn btn-info">
+							Crear Post
+						</button>
+					</Link>
 				</div>
 				<div className="card-deck d-flex align-content-around flex-wrap">{cardItemsFeed}</div>
 			</div>

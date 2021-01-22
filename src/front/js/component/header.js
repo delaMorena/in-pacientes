@@ -14,7 +14,7 @@ export const Header = props => {
 	// }, []);
 
 	return (
-		<div className="card my-3" id="styleHeader">
+		<div className="card my-3 bg-light" id="styleHeader">
 			<div className="row no-gutters align-items-center">
 				<div className="col-4">
 					<img src="https://source.unsplash.com/random/125x150" className="card-img" alt="avatar" />

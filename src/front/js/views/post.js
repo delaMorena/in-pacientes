@@ -46,7 +46,7 @@ export const Post = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="container" id="post-width">
+			<div className="container mb-5" id="post-width">
 				<div className="card">
 					<div className="card-header">
 						<div className="row justify-content-center">

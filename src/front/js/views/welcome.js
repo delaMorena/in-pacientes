@@ -22,20 +22,26 @@ export const Welcome = () => {
 
 	return (
 		<div className="container">
-			<div className="text-center mt-5">
-				<h1>Bienvenido In-paciente</h1>
+			<div className="row justify-content-center">
+				<div className="text-center mt-5">
+					<h1>Bienvenido In-paciente</h1>
+				</div>
 			</div>
-			<div className="Jumbotron">
-				<h3>
-					Acabas de registrate correctamente. Inicia sesión con tu correo y tu contraseña y comienza a seguir
-					las enfermedades en las que estés interesado
-				</h3>
+			<div className="row my-5">
+				<div className="Jumbotron">
+					<h3>
+						Acabas de registrate correctamente. Inicia sesión con tu correo y tu contraseña y comienza a
+						seguir las enfermedades en las que estés interesado
+					</h3>
+				</div>
 			</div>
-			<Link to="/login">
-				<button type="button" className="btn btn-primary">
-					Iniciar sesión
-				</button>
-			</Link>
+			<div className="row justify-content-center my-3">
+				<Link to="/login">
+					<button type="button" className="btn btn-info btn-lg">
+						Iniciar sesión
+					</button>
+				</Link>
+			</div>
 
 			{/* <form>
 				<div className="form-group">

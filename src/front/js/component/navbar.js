@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 // import Logo from "../../img/logo.jpg";
@@ -9,9 +9,20 @@ import "../../styles/navbar.scss";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
+	useEffect(() => {
+		actions.getUser();
+	}, []);
+
+	useEffect(
+		() => {
+			actions.getUser();
+		},
+		[store.user]
+	);
+
 	if (store.token == null) {
 		return (
-			<nav className="navbar mb-3 mx-2">
+			<nav className="navbar mb-3 mx-2 bg-light">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<img id="smlogo" src={logonavbar} />
@@ -31,22 +42,21 @@ export const Navbar = () => {
 		);
 	} else {
 		return (
-			<nav className="navbar mb-3">
+			<nav className="navbar mb-3 bg-light">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<img id="smlogo" src={logonavbar} />
 					</Link>
+				</div>
+				<div className="p-2 bd-highlight color-username">
+					<span>{store.user.username}</span>
 				</div>
 				<div className="p-2 bd-highlight">
 					<Link to="/feed">
 						<span>Feed</span>
 					</Link>
 				</div>
-				<div className="p-2 bd-highlight">
-					<Link to="/createpost">
-						<span>Crear Post</span>
-					</Link>
-				</div>
+
 				<div className="p-2 bd-highlight">
 					<Link to="/profile">
 						<span>Perfil</span>

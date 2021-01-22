@@ -44,7 +44,7 @@ export const OneDisease = () => {
 				</div>
 				<div className="row my-4 justify-content-center">
 					<Link to="/follow">
-						<button type="button" className="btn btn-primary">
+						<button type="button" className="btn btn-info">
 							Añade esta enfermedad a tu lista de seguimiento
 						</button>
 					</Link>

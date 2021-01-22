@@ -23,8 +23,11 @@ export const CreatePost = () => {
 			diseaseId: parseInt(diseaseId)
 		};
 		actions.createPost(payload);
+		actions.getFeed();
+		actions.getPostUser();
 		setText("");
 		setUrl("");
+		// alert("Post creado correctamente");
 		history.push("/feed");
 	};
 
@@ -61,7 +64,7 @@ export const CreatePost = () => {
 							onChange={event => setText(event.target.value)}
 						/>
 					</div>
-					<div className="form-group">
+					{/* <div className="form-group">
 						<label htmlFor="exampleFormControlInput1">URL imagen</label>
 						<input
 							type="url"
@@ -70,12 +73,12 @@ export const CreatePost = () => {
 							value={url}
 							onChange={event => setUrl(event.target.value)}
 						/>
-					</div>
-					<Link to="/profile">
-						<button type="button" className="btn btn-primary" onClick={OnSubmit}>
-							Submit
+					</div> */}
+					<div className="row justify-content-center">
+						<button type="button" className="btn btn-info btn-lg" onClick={OnSubmit}>
+							Publicar
 						</button>
-					</Link>
+					</div>
 				</form>
 			</div>
 		);

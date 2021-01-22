@@ -728,9 +728,9 @@ def handle_update_role(disease_id):
 @api.route("/associations", methods=["GET"])
 def handle_list_all_associations():
     
-    user = authorized_user()
+    # user = authorized_user()
 
-    if not user:
-        return "User not found", 404
+    # if not user:
+    #     return "User not found", 404
 
     return get_all_from_models(Associations)
