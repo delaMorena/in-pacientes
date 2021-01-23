@@ -31,7 +31,7 @@ export const Welcome = () => {
 				<div className="Jumbotron">
 					<h3>
 						Acabas de registrate correctamente. Inicia sesión con tu correo y tu contraseña y comienza a
-						seguir las enfermedades en las que estés interesado
+						seguir las enfermedades que te interesen
 					</h3>
 				</div>
 			</div>

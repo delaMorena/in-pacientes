@@ -12,8 +12,11 @@ export const Home = () => {
 			<div className="jumbotron text-center bg-white mt-5">
 				<img src={Logo} />
 				<p>
-					We want to be your tribe. We are looking for you. Join us in this journey that will improve your
-					life. FOR SURE
+					Sabemos que padecer una enfermedad rara no es tan raro. También sabemos que puedes sentir una gran
+					soledad porque quizá no encuentres a otras personas en tu misma situación en tu entorno más cercano.
+					Estamos impacientes porque te unas y entre todas las personas interesadas o que padecejn directa o
+					indirectamente una enfermedad rara podamos crear una tribu cada vez mayor.
+					<span>Te estamos buscando a tí</span>
 				</p>
 				<div className="row d-flex justify-content-around mt-5">
 					<div className="col-4">

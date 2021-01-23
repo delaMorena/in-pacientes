@@ -13,12 +13,12 @@ export const Navbar = () => {
 		actions.getUser();
 	}, []);
 
-	useEffect(
-		() => {
-			actions.getUser();
-		},
-		[store.user]
-	);
+	// useEffect(
+	// 	() => {
+	// 		actions.getUser();
+	// 	},
+	// 	[store.user]
+	// );
 
 	if (store.token == null) {
 		return (
@@ -48,18 +48,17 @@ export const Navbar = () => {
 						<img id="smlogo" src={logonavbar} />
 					</Link>
 				</div>
-				<div className="p-2 bd-highlight color-username">
+				{/* <div className="p-2 bd-highlight color-username">
 					<span>{store.user.username}</span>
+				</div> */}
+				<div className="">
+					<Link to="/profile" className="p-2 bd-highlight color-username">
+						<span>{store.user.username}</span>
+					</Link>
 				</div>
 				<div className="p-2 bd-highlight">
 					<Link to="/feed">
-						<span>Feed</span>
-					</Link>
-				</div>
-
-				<div className="p-2 bd-highlight">
-					<Link to="/profile">
-						<span>Perfil</span>
+						<span>Publicaciones</span>
 					</Link>
 				</div>
 				<div className="p-2 bd-highlight">
@@ -70,6 +69,11 @@ export const Navbar = () => {
 				<div className="p-2 bd-highlight">
 					<Link to="/associations">
 						<span>Asociaciones</span>
+					</Link>
+				</div>
+				<div className="p-2 bd-highlight">
+					<Link to="/" type="button" onClick={() => actions.logout()} style={{ color: "grey" }}>
+						Cerrar sesión
 					</Link>
 				</div>
 			</nav>
