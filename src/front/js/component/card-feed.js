@@ -2,6 +2,7 @@
 import React from "react";
 import "../../styles/card-feed.scss";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const CardFeed = props => {
 	const { post } = props;

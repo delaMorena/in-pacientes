@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#style-container {
+    margin: 0 30px;
+}
+
+#layout-boxes {
+    display: flex;
+    
+}
+
+.box-size {
+    height: auto;
+}
+
+#box-left {
+    background-color: lightblue;
+    width: 27.5%;
+}
+
+#box-center {
+    background-color: lightsalmon;
+    width: 45%;
+}
+
+#box-right {
+    background-color: lightslategrey;
+    width: 27.5%;
+}

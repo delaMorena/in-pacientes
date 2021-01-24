@@ -7,8 +7,8 @@ export const LogIn = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("marta@gmail.com");
+	const [password, setPassword] = useState("12345");
 
 	const HandleClick = async event => {
 		const payload = {
