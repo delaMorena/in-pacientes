@@ -18,6 +18,7 @@ import { SolDisease } from "./views/solicitud-enf";
 import { SolAssociation } from "./views/solicitud-asc";
 import { AboutUs } from "./views/about-us";
 import { Bye } from "./views/bye";
+import { Test } from "./views/test";
 
 import injectContext from "./store/appContext";
 
@@ -84,11 +85,14 @@ const Layout = () => {
 						<Route exact path="/about-us">
 							<AboutUs />
 						</Route>
+						<Route exact path="/test">
+							<Test />
+						</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
-					<Footer />
+					{/* <Footer /> */}
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

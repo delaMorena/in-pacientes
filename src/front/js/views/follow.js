@@ -45,19 +45,19 @@ export const Follow = () => {
 				<form>
 					<div className="row">
 						<div className="form-group col-6">
-							<label>Chose at least one disease to follow</label>
+							<label>Elige la enfermedad que quieres empezar a seguir</label>
 							<div className="input-group ">
 								<select className="custom-select" onChange={e => setId(e.target.value)}>
-									<option defaultValue>Choose...</option>
+									<option defaultValue>Elige ...</option>
 									{diseasesOption}
 								</select>
 							</div>
 						</div>
 						<div className="form-group col-6">
-							<label>Select your role</label>
+							<label>Selecciona tu rol</label>
 							<div className="input-group">
 								<select className="custom-select" onChange={e => setRole(e.target.value)}>
-									<option defaultValue>Choose...</option>
+									<option defaultValue>Elige ...</option>
 									<option value="1">Paciente</option>
 									<option value="2">Investigador</option>
 									<option value="3">Doctor</option>
