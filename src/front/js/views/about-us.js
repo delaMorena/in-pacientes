@@ -13,7 +13,7 @@ export const AboutUs = () => {
 					<div className="overlay">
 						<div className="about-us-text">
 							<h3>Alex Redondo</h3>
-							<span>Gaditano hasta la médula. Luchador y positivo en las duras y las maduras</span>
+							<span>Jerezano hasta la médula. Luchador y positivo en las duras y las maduras</span>
 						</div>
 					</div>
 				</div>
