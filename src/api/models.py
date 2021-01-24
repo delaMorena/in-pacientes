@@ -114,6 +114,7 @@ class Posts(db.Model):
         return {
             "id": self.id,
             "created_at": self.created_at,
+            "updated_at": self.updated_at,
             "publisher": self.publisher.username,
             "publisher_email": self.publisher.email,
             "text": self.text,

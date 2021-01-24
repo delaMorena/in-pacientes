@@ -13,13 +13,6 @@ export const Navbar = () => {
 		actions.getUser();
 	}, []);
 
-	// useEffect(
-	// 	() => {
-	// 		actions.getUser();
-	// 	},
-	// 	[store.user]
-	// );
-
 	if (store.token == null) {
 		return (
 			<nav className="navbar mb-3 mx-2 bg-light">
