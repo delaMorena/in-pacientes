@@ -9,9 +9,12 @@ import "../../styles/navbar.scss";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
-		actions.getUser();
-	}, []);
+	useEffect(
+		() => {
+			actions.getUser();
+		},
+		[store.token]
+	);
 
 	if (store.token == null) {
 		return (
@@ -41,12 +44,10 @@ export const Navbar = () => {
 						<img id="smlogo" src={logonavbar} />
 					</Link>
 				</div>
-				{/* <div className="p-2 bd-highlight color-username">
-					<span>{store.user.username}</span>
-				</div> */}
-				<div className="">
-					<Link to="/profile" className="p-2 bd-highlight color-username">
-						<span>{store.user.username}</span>
+
+				<div className="p-2 bd-highlight">
+					<Link to="/test">
+						<span>Test</span>
 					</Link>
 				</div>
 				<div className="p-2 bd-highlight">
@@ -62,6 +63,11 @@ export const Navbar = () => {
 				<div className="p-2 bd-highlight">
 					<Link to="/associations">
 						<span>Asociaciones</span>
+					</Link>
+				</div>
+				<div className="">
+					<Link to="/profile" className="p-2 bd-highlight color-username">
+						<span>{store.user.username}</span>
 					</Link>
 				</div>
 				<div className="p-2 bd-highlight">

@@ -96,7 +96,7 @@ export const Profile = () => {
 				<div className="row mb-2 justify-content-center">
 					<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
 				</div>
-				{/* <div className="row  justify-content-center my-3">
+				<div className="row  justify-content-center my-3">
 					<ul className="list-group" id="list-width">
 						<li className="list-group-item">
 							<div className="row justify-content-center">
@@ -110,7 +110,7 @@ export const Profile = () => {
 						</li>
 						{listFollows}
 					</ul>
-				</div> */}
+				</div>
 				<div className="card-deck d-flex align-content-around flex-wrap">{cardItems}</div>
 				{/* <div className="row mt-2 justify-content-center">
 					<Link to="/follow">
