@@ -16,6 +16,8 @@ import { ListAssociation } from "./views/associations-list";
 import { Welcome } from "./views/welcome";
 import { SolDisease } from "./views/solicitud-enf";
 import { SolAssociation } from "./views/solicitud-asc";
+import { AboutUs } from "./views/about-us";
+import { Bye } from "./views/bye";
 
 import injectContext from "./store/appContext";
 
@@ -76,11 +78,17 @@ const Layout = () => {
 						<Route exact path="/request/association">
 							<SolAssociation />
 						</Route>
+						<Route exact path="/bye">
+							<Bye />
+						</Route>
+						<Route exact path="/about-us">
+							<AboutUs />
+						</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
-					{/* <Footer /> */}
+					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

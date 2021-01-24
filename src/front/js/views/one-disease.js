@@ -27,7 +27,7 @@ export const OneDisease = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="container">
+			<div className="container minh-100">
 				<div className="row mb-2 justify-content-center">
 					<h1>Perfil de enfermedad</h1>
 				</div>
@@ -42,13 +42,13 @@ export const OneDisease = () => {
 						<p>{store.oneDisease.description}</p>
 					</div>
 				</div>
-				<div className="row my-4 justify-content-center">
+				{/* <div className="row my-4 justify-content-center">
 					<Link to="/follow">
 						<button type="button" className="btn btn-info">
-							Añade esta enfermedad a tu lista de seguimiento
+							Sigue esta enfermedad
 						</button>
 					</Link>
-				</div>
+				</div> */}
 				<div className="card-deck d-flex align-content-around flex-wrap">{cardItemsFeedDisease}</div>
 			</div>
 		);

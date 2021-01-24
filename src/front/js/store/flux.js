@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-c8dc52b3-10d1-4f42-a7a4-75a87ce59749.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-e2aec854-3f8b-493c-a6e4-f4cdd9f27fa2.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -334,7 +334,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log("para el feed", data);
 						setStore({ feed: data });
-						console.log(store.feed);
+						console.log("store.feed: ", store.feed);
 					});
 			},
 			createRole(input) {

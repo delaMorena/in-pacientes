@@ -12,12 +12,12 @@ export const Feed = () => {
 		actions.getFeed();
 	}, []);
 
-	useEffect(
-		() => {
-			actions.getFeed();
-		},
-		[store.feed]
-	);
+	// useEffect(
+	// 	() => {
+	// 		actions.getFeed();
+	// 	},
+	// 	[store.feed]
+	// );
 
 	const cardItemsFeed = store.feed.map((post, index) => {
 		return (
@@ -33,7 +33,7 @@ export const Feed = () => {
 		return (
 			<div className="container">
 				<div className="row mb-2 justify-content-center">
-					<h1>Feed de inicio</h1>
+					<h3>Estos son las publicaciones de las enfermedades que sigues</h3>
 				</div>
 				<div className="row mb-2 justify-content-center">
 					<Link to="/createpost">
