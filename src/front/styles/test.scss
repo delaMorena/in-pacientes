@@ -15,11 +15,13 @@
 
 .box-size {
     height: auto;
+    
 }
 
 #box-left {
     background-color: lightblue;
     width: 27.5%;
+    height: 800px;
 }
 
 #box-center {
@@ -30,4 +32,16 @@
 #box-right {
     background-color: lightslategrey;
     width: 27.5%;
+}
+
+#form-style {
+    width: 90%;
+}
+
+.form-container {
+    background-color: red;
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
+    
 }
