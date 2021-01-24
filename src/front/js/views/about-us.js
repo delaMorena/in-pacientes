@@ -22,7 +22,9 @@ export const AboutUs = () => {
 					<div className="overlay">
 						<div className="about-us-text">
 							<h3>Marta de la Morena</h3>
-							<span>Madrileña recién mudada a las montañas pirenaicas. Inquieta y curiosa.</span>
+							<span>
+								Madrileña recién mudada a las montañas pirenaicas. Curiosa, enamorada de la vida.
+							</span>
 						</div>
 					</div>
 				</div>
