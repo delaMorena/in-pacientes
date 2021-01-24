@@ -18,17 +18,21 @@ export const CardFeedCenter = props => {
 	return (
 		<div className="card" id="style-card-feed">
 			<div className="card-header">
-				<h5 className="row">{post.disease_name}</h5>
-				<h5 className="row">{post.publisher}</h5>
+				<h5 className="row justify-content-center">{post.disease_name}</h5>
+				<h5 className="row justify-content-center text-muted">Publicado por: {post.publisher}</h5>
 			</div>
 
 			<div className="card-body">
-				<p className="card-text">{textTruncate(post.text)}</p>
-				<Link to={`/post/${post.id}`}>
-					<button type="button" className="btn btn-info">
-						Ir a la publicación
-					</button>
-				</Link>
+				<div className="row">
+					<p className="card-text">{textTruncate(post.text)}</p>
+				</div>
+				<div className="row justify-content-center mt-3">
+					<Link to={`/post/${post.id}`}>
+						<button type="button" className="btn btn-info">
+							Ir a la publicación
+						</button>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);
