@@ -559,7 +559,9 @@ def handle_feed():
         for post in item.disease.posts:
             newList.append(post.serialize())
 
-  
+    
+    newList.sort(key=lambda x: x.get("updated_at"),reverse=True)
+   
    
     return jsonify(newList), 201
 
