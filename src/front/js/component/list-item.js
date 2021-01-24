@@ -29,7 +29,7 @@ export const ListItem = props => {
 				<p className="card-text text-justify">{textTruncate(diseaseDesc)}</p>
 				<Link to={`/onedisease/${id}`}>
 					<button type="button" className="btn btn-info">
-						Perfil
+						Seguir
 					</button>
 				</Link>
 			</div>

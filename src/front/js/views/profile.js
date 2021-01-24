@@ -34,13 +34,38 @@ export const Profile = () => {
 		}
 	};
 
-	const cardItems = store.userPosts.map((post, index) => {
-		return (
-			<Link key={index} to={`/post/${post.id}`}>
-				<CardFeed post={post} />
-			</Link>
+	let cardItems = "";
+	if (store.follows.length == 0) {
+		cardItems = (
+			<div className="card pt-3 mt-3 text-center">
+				<p>Aún no sigues ninguna enfermedad y no puedes ver las publicaciones</p>
+				<div className="row my-3 justify-content-center">
+					<Link to="/follow">
+						<button type="button" className="btn btn-info">
+							Busca la enfermedad que te interese
+						</button>
+					</Link>
+				</div>
+			</div>
 		);
-	});
+	} else {
+		cardItems = store.userPosts.map((post, index) => {
+			return (
+				<div key={index}>
+					<Link to={`/post/${post.id}`}>
+						<CardFeed post={post} />
+					</Link>
+				</div>
+			);
+		});
+	}
+	// const cardItems = store.userPosts.map((post, index) => {
+	// 	return (
+	// 		<Link key={index} to={`/post/${post.id}`}>
+	// 			<CardFeed post={post} />
+	// 		</Link>
+	// 	);
+	// });
 
 	const listFollows = store.follows.map((follow, index) => {
 		return (
@@ -48,7 +73,9 @@ export const Profile = () => {
 				{" "}
 				<div className="row">
 					<div className="col-8 text-center">
-						<h5>{follow.disease.title}</h5>
+						<Link to={`/onedisease/${follow.disease.id}`}>
+							<h5>{follow.disease.title}</h5>
+						</Link>
 					</div>
 					<div className="col-4 text-center">
 						<h5>{convRol(follow.role)}</h5>
@@ -69,14 +96,7 @@ export const Profile = () => {
 				<div className="row mb-2 justify-content-center">
 					<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
 				</div>
-				<div className="row mb-2 justify-content-center">
-					<Link to="/follow">
-						<button type="button" className="btn btn-info">
-							Busca la enfermedad que te interese
-						</button>
-					</Link>
-				</div>
-				<div className="row  justify-content-center my-3">
+				{/* <div className="row  justify-content-center my-3">
 					<ul className="list-group" id="list-width">
 						<li className="list-group-item">
 							<div className="row justify-content-center">
@@ -90,8 +110,15 @@ export const Profile = () => {
 						</li>
 						{listFollows}
 					</ul>
-				</div>
+				</div> */}
 				<div className="card-deck d-flex align-content-around flex-wrap">{cardItems}</div>
+				{/* <div className="row mt-2 justify-content-center">
+					<Link to="/follow">
+						<button type="button" className="btn btn-info">
+							Busca la enfermedad que te interese
+						</button>
+					</Link>
+				</div> */}
 			</div>
 		);
 	}

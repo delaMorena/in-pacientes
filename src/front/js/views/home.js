@@ -8,7 +8,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="fluid-container">
+		<div className="card card-image">
 			<div className="jumbotron text-center bg-white mt-5">
 				<img src={Logo} />
 				<p>
@@ -16,7 +16,7 @@ export const Home = () => {
 					soledad porque quizá no encuentres a otras personas en tu misma situación en tu entorno más cercano.
 					Estamos impacientes porque te unas y entre todas las personas interesadas o que padecejn directa o
 					indirectamente una enfermedad rara podamos crear una tribu cada vez mayor.
-					<span>Te estamos buscando a tí</span>
+					<p>Te estamos buscando a tí</p>
 				</p>
 				<div className="row d-flex justify-content-around mt-5">
 					<div className="col-4">

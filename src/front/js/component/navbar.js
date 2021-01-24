@@ -72,7 +72,7 @@ export const Navbar = () => {
 					</Link>
 				</div>
 				<div className="p-2 bd-highlight">
-					<Link to="/" type="button" onClick={() => actions.logout()} style={{ color: "grey" }}>
+					<Link to="/bye" type="button" onClick={() => actions.logout()} style={{ color: "grey" }}>
 						Cerrar sesión
 					</Link>
 				</div>
