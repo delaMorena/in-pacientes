@@ -8,7 +8,7 @@
 .home-image {
     display: block;
     width: 80%;
-    height: auto;
+    height: 100%;
     border-radius: 3%;
 }
 .overlay {
@@ -17,8 +17,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: auto;
-    width: 80%;
+    height: 100%;
+    width: 40%;
     opacity: 0;
     transition: .5s ease;
     background-color: #f79a6b;
@@ -34,4 +34,12 @@
     left: 40%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+}
+.unsplash {
+    font-size: 10px;
+    position: absolute;
+    margin-top: 15px;
+}
+h4 {
+    color: black;
 }

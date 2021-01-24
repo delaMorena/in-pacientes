@@ -54,10 +54,79 @@ export const Home = () => {
 			</div> */}
 			<div className="fluid-container" id="style-container">
 				<div className="row justify-content-center">
-					<h3>IN-PACIENTES es para tí:</h3>
+					<h3>IN-PACIENTES es para tí si eres:</h3>
+				</div>
+				<div className="row mt-4 ml-5 justify-content-center">
+					<div className="home-container col-2">
+						<img src={Medico} alt="Marta" className="home-image" />
+						<div className="overlay">
+							<div className="home-text">
+								<h4>Médico</h4>
+								<span>
+									especialista en ER o tienes algún paciente y buscas información actualizada y
+									soporte
+								</span>
+								<p className="unsplash">
+									Photo by{" "}
+									<a href="https://unsplash.com/@cozyaid2020?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+										jodie covington
+									</a>{" "}
+									on{" "}
+									<a href="https://unsplash.com/s/photos/hospital?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+										Unsplash
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div className="home-container col-2">
+						<img src={Paciente} alt="Marta" className="home-image" />
+						<div className="overlay">
+							<div className="home-text">
+								<h4>Paciente</h4>
+								<span>
+									y te acabas de enterar que sufres una ER, estás en estado de shock y no sabes por
+									donde empezar. O hace ya años lo sabes pero quieres una red social propia para
+									hablar sin tapujos y compartir información
+								</span>
+								<p className="unsplash">
+									Photo by{" "}
+									<a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+										Bill Oxford
+									</a>{" "}
+									on{" "}
+									<a href="https://unsplash.com/s/photos/doctor?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+										Unsplash
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div className="home-container col-2">
+						<img src={Researcher} alt="Marta" className="home-image" />
+						<div className="overlay">
+							<div className="home-text">
+								<h4>Investigador</h4>
+								<span>
+									y trabajas con alguna ER y quieres recabar datos a los pacientes de estas
+									enfermedades o quieres hacer un seguimiento de tus pacientes
+								</span>
+								<p className="unsplash">
+									Photo by{" "}
+									<a href="https://unsplash.com/@cdc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+										CDC
+									</a>{" "}
+									on{" "}
+									<a href="https://unsplash.com/s/photos/doctor?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+										Unsplash
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div className="row mt-4 justify-content-center">
-					<div className="home-container col-3">
+					<div className="home-container col-2">
 						<img src={Eskeleton} alt="Marta" className="home-image" />
 						<div className="overlay">
 							<div className="home-text">
@@ -66,7 +135,7 @@ export const Home = () => {
 									y te interesan las enfermedades raras y buscas una comunidad. Aquí podrás encontrar
 									personas que necesitan tus servicios, tu apoyo o tu conocimiento
 								</span>
-								<p>
+								<p className="unsplash">
 									Photo by{" "}
 									<a href="https://unsplash.com/@owenbeard?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
 										Owen Beard
@@ -79,29 +148,29 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-					<div className="home-container col-3">
+					<div className="home-container col-2">
 						<img src={Medico} alt="Marta" className="home-image" />
 						<div className="overlay">
 							<div className="home-text">
-								<h4>si eres Doctor/a o enfermero/a</h4>
+								<h4>si eres Médico</h4>
 								<span>
-									especialista en enfermedades raras o buscando información actualizada para poder
-									atender a tus pacientes de la mejor manera
+									especialista en enfermedades raras o tienes algún paciente y buscas información
+									actualizada y soporte
 								</span>
-								<p>
+								<p className="unsplash">
 									Photo by{" "}
-									<a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-										Bill Oxford
+									<a href="https://unsplash.com/@cozyaid2020?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+										jodie covington
 									</a>{" "}
 									on{" "}
-									<a href="https://unsplash.com/s/photos/doctor?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+									<a href="https://unsplash.com/s/photos/hospital?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
 										Unsplash
 									</a>
 								</p>
 							</div>
 						</div>
 					</div>
-					<div className="home-container col-3">
+					<div className="home-container col-2">
 						<img src={Paciente} alt="Marta" className="home-image" />
 						<div className="overlay">
 							<div className="home-text">
@@ -111,32 +180,10 @@ export const Home = () => {
 									sabes por donde empezar. O hace ya años lo sabes pero quieres una red social propia
 									para hablar sin tapujos y compartir información
 								</span>
-								<p>
+								<p className="unsplash">
 									Photo by{" "}
 									<a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
 										Bill Oxford
-									</a>{" "}
-									on{" "}
-									<a href="https://unsplash.com/s/photos/doctor?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-										Unsplash
-									</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div className="home-container col-3">
-						<img src={Researcher} alt="Marta" className="home-image" />
-						<div className="overlay">
-							<div className="home-text">
-								<h4>si Investigas enfermedades raras</h4>
-								<span>
-									y quieres recabar datos a los pacientes de estas enfermedades o quieres hacer un
-									seguimiento de tus pacientes
-								</span>
-								<p>
-									Photo by{" "}
-									<a href="https://unsplash.com/@cdc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-										CDC
 									</a>{" "}
 									on{" "}
 									<a href="https://unsplash.com/s/photos/doctor?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
