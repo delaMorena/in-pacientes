@@ -6,6 +6,7 @@ import { Header } from "../component/header.js";
 import { CardFeed } from "../component/card-feed.js";
 import { NoToken } from "../component/no-token";
 import "../../styles/profile.scss";
+import { CardFeedCenter } from "../component/card-feed-center";
 
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
@@ -51,10 +52,17 @@ export const Profile = () => {
 	} else {
 		cardItems = store.userPosts.map((post, index) => {
 			return (
-				<div key={index}>
-					<Link to={`/post/${post.id}`}>
+				// <div key={index}>
+				// 	<Link to={`/post/${post.id}`}>
+				// 		<CardFeed post={post} />
+				// 	</Link>
+				// 	<CardFeedCenter post={index} />
+				// </div>
+				<div className="row justify-content-center my-3" key={index}>
+					{/* <Link to={`/post/${post.id}`}>
 						<CardFeed post={post} />
-					</Link>
+					</Link> */}
+					<CardFeedCenter post={post} />
 				</div>
 			);
 		});
@@ -72,12 +80,14 @@ export const Profile = () => {
 			<li key={index} className="list-group-item bg-light">
 				{" "}
 				<div className="row">
-					<div className="col-8 text-center">
+					<div className="col-8 d-flex align-items-center justify-content-center">
 						<Link to={`/onedisease/${follow.disease.id}`}>
-							<h5>{follow.disease.title}</h5>
+							<button type="button" className="btn btn-outline-info">
+								{follow.disease.title}
+							</button>
 						</Link>
 					</div>
-					<div className="col-4 text-center">
+					<div className="col-4 d-flex align-items-center justify-content-center">
 						<h5>{convRol(follow.role)}</h5>
 					</div>
 				</div>
@@ -90,9 +100,13 @@ export const Profile = () => {
 	} else {
 		return (
 			<div className="container">
-				{/* <div className="row mb-2 justify-content-center">
-					<h1>Perfil de usuario</h1>
-				</div> */}
+				<div className="row mb-2 justify-content-center">
+					<Link to="/test">
+						<button type="button" className="btn btn-info">
+							Volver a Inicio
+						</button>
+					</Link>
+				</div>
 				<div className="row mb-2 justify-content-center">
 					<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
 				</div>

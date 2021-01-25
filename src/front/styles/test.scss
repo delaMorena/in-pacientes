@@ -3,15 +3,17 @@
     margin: 0;
     padding: 0;
 }
-
+body {
+    background-color: #B9DCE3;
+}
 #style-container {
     margin: 0 30px;
 }
 
-#layout-boxes {
-    display: flex;
+// #layout-boxes {
+//     display: flex;
     
-}
+// }
 
 .box-size {
     height: auto;
@@ -19,19 +21,22 @@
 }
 
 #box-left {
-    background-color: lightblue;
+    // background-color: lightblue;
     width: 27.5%;
-    height: 800px;
+    height: auto
+
 }
 
 #box-center {
-    background-color: lightsalmon;
+    // background-color: lightsalmon;
     width: 45%;
+    height: auto;
 }
 
 #box-right {
-    background-color: lightslategrey;
+    // background-color: lightslategrey;
     width: 27.5%;
+    height: auto;
 }
 
 #form-style {
@@ -39,9 +44,21 @@
 }
 
 .form-container {
-    background-color: red;
+    
     width: 100%;
     height: auto;
     padding: 0 20px;
     
+}
+
+.orange-button {
+    background-color: #FD830A;
+}
+
+.orange-button:hover {
+    background-color: rgb(224, 114, 3);
+}
+
+.text-color {
+    color: #FD830A
 }
