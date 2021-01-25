@@ -21,7 +21,7 @@ export const OneDisease = () => {
 			<div className="card p-3 text-center">
 				<p>Aún no hay ninguna publicacion sobre esta enfermedad</p>
 				<div className="row my-3 justify-content-center">
-					<Link to="/test">
+					<Link to="/inicio">
 						<button type="button" className="btn btn-info">
 							Crea una publicacion
 						</button>
@@ -51,36 +51,49 @@ export const OneDisease = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="container minh-100">
+			<div className="fluid-container mx-3 mt-3">
 				<div className="row mb-2 justify-content-center">
-					<Link to="/test">
+					<Link to="/inicio">
 						<button type="button" className="btn btn-info">
 							Volver a Inicio
 						</button>
 					</Link>
 				</div>
-				<div className="row mb-2 justify-content-center">
-					<h1>Perfil de enfermedad</h1>
-				</div>
-				<div className="row mb-2 justify-content-center">
-					<Header itemName={store.oneDisease.title} qtyPost={store.diseasePost.length} />
-				</div>
 				<div className="row justify-content-center">
-					<div className="row">
-						<h3>Descripción</h3>
+					<div className="col-6">
+						<div className="row mb-2 justify-content-center">
+							<h2>Información de la enfermedad</h2>
+						</div>
+						<div className="row mb-2 justify-content-center">
+							<Header itemName={store.oneDisease.title} qtyPost={store.diseasePost.length} />
+						</div>
+						<div className="row justify-content-center mx-4">
+							<div className="row px-3">
+								<h3>Descripción</h3>
+							</div>
+							<div className="row text-justify card">
+								<div className="card-body">
+									<p className="card-text">{store.oneDisease.description}</p>
+								</div>
+							</div>
+						</div>
+						<div className="row my-4 justify-content-center">
+							<Link to="/follow">
+								<button type="button" className="btn orange-button">
+									Comienza a seguir esta enfermedad
+								</button>
+							</Link>
+						</div>
 					</div>
-					<div className="row text-justify">
-						<p>{store.oneDisease.description}</p>
+					<div className="col-6 px-5">
+						<div className="row mb-2 justify-content-center">
+							<h2>Publicaciones sobre la enfermedad</h2>
+						</div>
+						<div className="card-deck d-flex align-content-around flex-wrap mt-3">
+							{cardItemsFeedDisease}
+						</div>
 					</div>
 				</div>
-				{/* <div className="row my-4 justify-content-center">
-					<Link to="/follow">
-						<button type="button" className="btn btn-info">
-							Sigue esta enfermedad
-						</button>
-					</Link>
-				</div> */}
-				<div className="card-deck d-flex align-content-around flex-wrap">{cardItemsFeedDisease}</div>
 			</div>
 		);
 	}

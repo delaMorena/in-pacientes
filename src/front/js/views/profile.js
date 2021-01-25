@@ -36,14 +36,14 @@ export const Profile = () => {
 	};
 
 	let cardItems = "";
-	if (store.follows.length == 0) {
+	if (store.userPosts.length == 0) {
 		cardItems = (
 			<div className="card pt-3 mt-3 text-center">
-				<p>Aún no sigues ninguna enfermedad y no puedes ver las publicaciones</p>
+				<p>Aún no has publicado nada, ¡crea tu primera publicación!</p>
 				<div className="row my-3 justify-content-center">
-					<Link to="/follow">
+					<Link to="/inicio">
 						<button type="button" className="btn btn-info">
-							Busca la enfermedad que te interese
+							Crea una publicación
 						</button>
 					</Link>
 				</div>
@@ -99,40 +99,55 @@ export const Profile = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="container">
+			<div className="fluid-container mx-3 mt-3">
 				<div className="row mb-2 justify-content-center">
-					<Link to="/test">
+					<Link to="/inicio">
 						<button type="button" className="btn btn-info">
 							Volver a Inicio
 						</button>
 					</Link>
 				</div>
-				<div className="row mb-2 justify-content-center">
-					<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
+				<div className="row justify-content-center">
+					<div className="col-6">
+						<div className="row mb-2 justify-content-center">
+							<h2>Datos del usuario</h2>
+						</div>
+						<div className="row mb-2 justify-content-center">
+							<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
+						</div>
+						<div className="row justify-content-center px-3">
+							<h3>Enfermedades seguidas</h3>
+						</div>
+						<div className="row  justify-content-center my-3">
+							<ul className="list-group" id="list-width">
+								<li className="list-group-item">
+									<div className="row justify-content-center">
+										<div className="col-8 text-center">
+											<h4>Enfermedad</h4>
+										</div>
+										<div className="col-4 text-center">
+											<h4>Rol</h4>
+										</div>
+									</div>
+								</li>
+								{listFollows}
+							</ul>
+						</div>
+						<div className="row mt-2 justify-content-center">
+							<Link to="/follow">
+								<button type="button" className="btn orange-button">
+									Seguir a mas enfermedades
+								</button>
+							</Link>
+						</div>
+					</div>
+					<div className="col-6 px-5">
+						<div className="row mb-2 justify-content-center">
+							<h2>Mis publicaciones</h2>
+						</div>
+						<div className="card-deck d-flex align-content-around flex-wrap">{cardItems}</div>
+					</div>
 				</div>
-				<div className="row  justify-content-center my-3">
-					<ul className="list-group" id="list-width">
-						<li className="list-group-item">
-							<div className="row justify-content-center">
-								<div className="col-8 text-center">
-									<h4>Enfermedad</h4>
-								</div>
-								<div className="col-4 text-center">
-									<h4>Rol</h4>
-								</div>
-							</div>
-						</li>
-						{listFollows}
-					</ul>
-				</div>
-				<div className="card-deck d-flex align-content-around flex-wrap">{cardItems}</div>
-				{/* <div className="row mt-2 justify-content-center">
-					<Link to="/follow">
-						<button type="button" className="btn btn-info">
-							Busca la enfermedad que te interese
-						</button>
-					</Link>
-				</div> */}
 			</div>
 		);
 	}

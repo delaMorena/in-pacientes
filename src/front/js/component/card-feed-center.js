@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 export const CardFeedCenter = props => {
 	const { post } = props;
 
-	console.log(post.text);
-
 	const textTruncate = input => {
 		if (input.length >= 250) {
 			return input.substring(0, 250) + " ... Leer más.";

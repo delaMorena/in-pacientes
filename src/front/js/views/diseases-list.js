@@ -14,7 +14,7 @@ export const ListDiseases = () => {
 		return <ListItem key={index} id={disease.id} diseaseName={disease.title} diseaseDesc={disease.description} />;
 	});
 	return (
-		<div className="container">
+		<div className="container mt-3">
 			<div className="row justify-content-center">
 				<h1>Lista Enfermedades</h1>
 			</div>

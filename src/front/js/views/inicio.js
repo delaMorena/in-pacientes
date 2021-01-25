@@ -6,7 +6,7 @@ import { HeaderLeft } from "../component/header-left.js";
 import { NoToken } from "../component/no-token";
 import "../../styles/test.scss";
 
-export const Test = () => {
+export const Inicio = () => {
 	const { store, actions } = useContext(Context);
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
@@ -125,11 +125,11 @@ export const Test = () => {
 	let contentBoxCenter = "";
 	if (store.feed.length == 0) {
 		contentBoxCenter = (
-			<div className="card p-3 text-center">
+			<div className="card p-3 text-center mt-2">
 				<p>Aún no sigues ninguna enfermedad y no puedes ver las publicaciones</p>
 				<div className="row my-3 justify-content-center">
 					<Link to="/follow">
-						<button type="button" className="btn btn-info">
+						<button type="button" className="btn orange-button">
 							Busca la enfermedad que te interese
 						</button>
 					</Link>
@@ -172,7 +172,7 @@ export const Test = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="fluid-container" id="style-container">
+			<div className="fluid-container mt-3" id="style-container">
 				<div className="row justify-content-center">
 					<h1>Inicio</h1>
 				</div>

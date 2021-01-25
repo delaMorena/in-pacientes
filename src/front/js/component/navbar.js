@@ -18,7 +18,7 @@ export const Navbar = () => {
 
 	if (store.token == null) {
 		return (
-			<nav className="navbar mb-3 mx-2 bg-light">
+			<nav className="navbar bg-light">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<img id="smlogo" src={logonavbar} />
@@ -34,11 +34,16 @@ export const Navbar = () => {
 						<span>Asociaciones</span>
 					</Link>
 				</div>
+				<div className="p-2 bd-highlight">
+					<Link to="/about-us">
+						<span>About Us</span>
+					</Link>
+				</div>
 			</nav>
 		);
 	} else {
 		return (
-			<nav className="navbar mb-3 bg-light">
+			<nav className="navbar bg-light">
 				<div className="p-2 flex-grow-1 bd-highlight">
 					<Link to="/">
 						<img id="smlogo" src={logonavbar} />
@@ -46,15 +51,15 @@ export const Navbar = () => {
 				</div>
 
 				<div className="p-2 bd-highlight">
-					<Link to="/test">
-						<span>Test</span>
+					<Link to="/inicio">
+						<span>Inicio</span>
 					</Link>
 				</div>
-				<div className="p-2 bd-highlight">
+				{/* <div className="p-2 bd-highlight">
 					<Link to="/feed">
 						<span>Publicaciones</span>
 					</Link>
-				</div>
+				</div> */}
 				<div className="p-2 bd-highlight">
 					<Link to="/diseases">
 						<span>Enfermedades</span>
@@ -63,6 +68,11 @@ export const Navbar = () => {
 				<div className="p-2 bd-highlight">
 					<Link to="/associations">
 						<span>Asociaciones</span>
+					</Link>
+				</div>
+				<div className="p-2 bd-highlight">
+					<Link to="/about-us">
+						<span>About Us</span>
 					</Link>
 				</div>
 				<div className="">
