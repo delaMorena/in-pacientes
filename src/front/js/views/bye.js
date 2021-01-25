@@ -14,7 +14,8 @@ export const Bye = () => {
 				<div className="card text-center bg-info text-white pt-3 mt-3">
 					<p>
 						Esperamos que hayas encontrado lo que buscabas. Cualquier sugerencia que quieras hacernos,
-						estaremos encantados de escucharla. Ayúdanos a mejorar
+						estaremos encantados de escucharla.
+						<p>Ayúdanos a mejorar</p>
 						<p>¡ESPERAMOS VERTE DE NUEVO PRONTO!</p>
 					</p>
 				</div>
