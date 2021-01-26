@@ -24,11 +24,12 @@ export const CardFeedCenter = props => {
 
 			<div className="card-body">
 				<div className="row">
-					<p className="card-text">{textTruncate(post.text)}</p>
+					<p className="card-text px-3">{textTruncate(post.text)}</p>
+					{/* <p className="card-text px-3">{post.text}</p> */}
 				</div>
 				<div className="row justify-content-center mt-3">
 					<Link to={`/post/${post.id}`}>
-						<button type="button" className="btn btn-info">
+						<button type="button" className="btn orange-button">
 							Ir a la publicación
 						</button>
 					</Link>

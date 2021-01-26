@@ -72,7 +72,7 @@ export const Follow = () => {
 				<div className="row justify-content-center">
 					<Link to={`/onedisease/${id}`}>
 						<button type="submit" className="btn btn-info" onClick={OnSubmit}>
-							Submit
+							Comenzar a seguir
 						</button>
 					</Link>
 				</div>

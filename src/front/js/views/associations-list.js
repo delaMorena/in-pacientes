@@ -16,7 +16,7 @@ export const ListAssociation = () => {
 	});
 
 	return (
-		<div className="container">
+		<div className="container mt-3">
 			<div className="row justify-content-center">
 				<h1>Lista Asociaciones</h1>
 			</div>

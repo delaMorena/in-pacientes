@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 
 export const SignUp = () => {
 	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState("marta@gmail.com");
-	const [password, setPassword] = useState("12345");
-	const [firstName, setFirstName] = useState("Marta");
-	const [lastName, setLastName] = useState("De la Morena");
-	const [userName, setUserName] = useState("Delamorena");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [userName, setUserName] = useState("");
 	const [avatar, setAvatar] = useState("");
 	const history = useHistory();
 

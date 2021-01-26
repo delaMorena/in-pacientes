@@ -7,8 +7,8 @@ export const LogIn = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
-	const [email, setEmail] = useState("marta@gmail.com");
-	const [password, setPassword] = useState("12345");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const HandleClick = async event => {
 		const payload = {
@@ -17,43 +17,47 @@ export const LogIn = () => {
 		};
 		await actions.userLogin(payload); // HASTA QUE NO SE EJECUTA ESTA FUNCION NO PASA A LA SIGUIENTE LINEA DE CODIGO
 
-		history.push("/feed");
+		history.push("/inicio");
 	};
 
 	return (
-		<div className="fluid-container">
-			<div className="row">
+		<div className="fluid-container mx-3">
+			<div className="row mt-5 align-items-center" id="login-style">
 				<div className="col-6">
-					<img src="https://picsum.photos/200/300" alt="imagen-login" />
+					<div className="row justify-content-center">
+						<img src="https://picsum.photos/800/400" alt="imagen-login" />
+					</div>
 				</div>
-				<div className="col-6">
-					<div className="text-center mt-5">
+				<div className="col-6 align-items-center">
+					<div className="row justify-content-center">
 						<h1>Iniciar sesion</h1>
 					</div>
-					<form>
-						<div className="form-group">
-							<input
-								placeholder="Email"
-								type="email"
-								className="form-control"
-								aria-describedby="emailHelp"
-								value={email}
-								onChange={event => setEmail(event.target.value)}
-							/>
-						</div>
-						<div className="form-group">
-							<input
-								type="password"
-								placeholder="Contraseña"
-								className="form-control"
-								value={password}
-								onChange={event => setPassword(event.target.value)}
-							/>
-						</div>
-						<button type="button" className="btn btn-info btn-lg" onClick={HandleClick}>
-							Iniciar Sesión
-						</button>
-					</form>
+					<div className="row justify-content-center">
+						<form id="form-width">
+							<div className="form-group">
+								<input
+									placeholder="Email"
+									type="email"
+									className="form-control"
+									aria-describedby="emailHelp"
+									value={email}
+									onChange={event => setEmail(event.target.value)}
+								/>
+							</div>
+							<div className="form-group">
+								<input
+									type="password"
+									placeholder="Contraseña"
+									className="form-control"
+									value={password}
+									onChange={event => setPassword(event.target.value)}
+								/>
+							</div>
+							<button type="button" className="btn btn-info btn-lg" onClick={HandleClick}>
+								Iniciar Sesión
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
