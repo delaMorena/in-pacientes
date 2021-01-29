@@ -1,7 +1,6 @@
 // CREAR UN NUEVO POST
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link, useHistory } from "react-router-dom";
 import { NoToken } from "../component/no-token";
 
 export const CreatePost = () => {

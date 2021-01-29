@@ -1,0 +1,74 @@
+.style-h1 {
+    color: white;
+    font-family: 'Yusei Magic', sans-serif;
+}
+.sign-up-img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px;
+    border: 2px solid #070707;
+}
+//  input[type=text] {
+//   width: 100%;
+//   padding: 12px 20px;
+//   margin: 8px 0;
+//   box-sizing: border-box;
+// }
+.style-form {
+    margin-top: 50px;
+}
+.input-style {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 0px;
+    box-sizing: border-box;
+}  
+.style-label {
+    margin-bottom: 0px ;
+}
+::placeholder {
+    font-size: 15px;
+}
+.form-group {
+    margin: 5px ;
+}
+.register-button-style {
+    background-color:#B9DCE3;
+    border: 2px solid #070707;
+    color: #070707;
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 2px 0px 80px;
+    transition-duration: 0.4s;
+    
+}
+.register-button-style:hover {
+//   background-color: #477dbd;
+    border: 2px solid white;
+    background-color: #B9DCE3;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px rgb(136, 173, 180);
+}
+// .btn {
+    
+//     background-color: #fdddb5; 
+//     border: none;
+//     color: #e33826;
+//     padding: 16px 32px;
+//     text-align: center;
+//     text-decoration: none;
+//     display: inline-block;
+//     font-size: 16px;
+//     margin: 4px 2px;
+//     transition-duration: 0.5s;
+//     background-color: white; 
+//     color: black; 
+//     border: 1px solid #007bff;
+// }
+
+// .btn:hover {
+//   background-color: #477dbd;
+//   color: white;
+// }
