@@ -5,6 +5,13 @@
     position: relative;
     width: 50%;
 }
+.style-text {
+    width: 50%;
+    margin: 20px auto ;
+}
+.bold {
+    font-weight: bold;
+}
 .home-image {
     display: block;
     width: 100%;
@@ -43,4 +50,47 @@
 }
 h4 {
     color: black;
+}
+.register-button-style-home {
+    background-color:  white;
+    border: 1px solid #070707;
+    color: #070707;
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 2px 0px 80px;
+    transition-duration: 0.4s;
+    
+}
+.register-button-style-home:hover {
+//   background-color: #477dbd;
+    // border: none;
+    // background-color: lightgrey;
+    // color: white;
+    // box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px rgb(136, 173, 180);
+    border: 1px solid rgb(214, 209, 209);
+    background-color: rgb(214, 209, 209);
+    color: black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px rgb(136, 173, 180);
+}
+
+.login-button-style {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 2px 0px 80px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
+.login-button-style:hover {
+//   background-color: #477dbd;
+    border: 1px solid rgb(214, 209, 209);
+    background-color: rgb(214, 209, 209);
+    color: black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px rgb(136, 173, 180);
 }
