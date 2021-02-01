@@ -83,12 +83,12 @@ def handle_get_user(id):
 def handle_create_user():
     payload= request.get_json()
 
-   
-    required = ['email', 'password']
+    required = ['email', 'password', 'username']
 
     types = {
         'email': str, 
-        'password': str
+        'password': str,
+        'username': str
     }
 
     for key, value in payload.items():
@@ -107,13 +107,22 @@ def handle_create_user():
     payload['password'] = hmac.new(key, msg, algo).hexdigest()
     print("hash: ", payload['password'])
 
-
     user = Users(**payload)
     
     db.session.add(user)
     db.session.commit()
+
+    secret = JWT_SECRET.encode('utf-8')
+    payload_login = {"sub": payload['email']}
+    algo = "HS256"
+    token = jwt.encode(payload_login, secret, algorithm=algo)
+
+    # print(payload)
+    # print(user.serialize())
+    return jsonify({"token": token}), 201
+
     
-    return jsonify(user.serialize()), 201
+    # return jsonify(user.serialize()), 201
 
 
 @api.route("/test", methods=['GET'])
