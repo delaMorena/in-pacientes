@@ -19,7 +19,7 @@ export const Home = () => {
 	return (
 		<div>
 			<div className="row d-flex justify-content-center mb-5">
-				<div className="col-lg-5 col-10 mt-5 text-center">
+				<div className="col-lg-5 col-10 text-center">
 					<img className="style-logo-home" src={Logo} />
 					<p className="style-text text-left">
 						Sabemos que padecer una ENFERMEDAD RARA <span className="bold">no es tan raro</span>. Si tienes
@@ -29,8 +29,8 @@ export const Home = () => {
 					impacientes porque te unas y entre todas las personas interesadas o que padecen directa o
 					indirectamente una enfermedad rara podamos{" "}
 					<span className="bold">crear una tribu cada vez mayor.</span> */}
-						<p className="bold">Te estamos buscando a tí</p>
 					</p>
+					<p className="bold">Te estamos buscando a tí</p>
 
 					{/* <div className="row d-flex justify-content-center mt-5">
 								<div className="col-4">
@@ -49,7 +49,7 @@ export const Home = () => {
 								</div>
 							</div> */}
 				</div>
-				<div className="col-lg-4 col-10 text-center d-flex flex-column style-home-buttons">
+				<div className="col-lg-4 col-10 d-flex flex-column pt-5 flex-wrap align-content-center">
 					<Link to="/login">
 						<button type="button" className="btn login-button-style">
 							Entrar
@@ -64,9 +64,8 @@ export const Home = () => {
 			</div>
 
 			<div className="fluid-container" id="style-container">
-				<div className="row justify-content-center">
-					<h3>IN-PACIENTES es para tí si eres:</h3>
-				</div>
+				<h3 className="style-h3-home">IN-PACIENTES es para tí si eres:</h3>
+
 				<div className="row mt-4 ml-5 justify-content-center">
 					<PicturesHome
 						img={Paciente}
