@@ -113,6 +113,8 @@ def handle_create_user():
     db.session.add(user)
     db.session.commit()
     
+    # implentar función login con parámetros email y password. que devuelva el token de logeo. en el front que redireccione a pagina principal
+    
     return jsonify(user.serialize()), 201
 
 

@@ -31,16 +31,17 @@ export const SignUp = () => {
 	};
 
 	return (
-		<div className="container">
-			<div className="text-center my-5">
-				<h1 className="style-h1">Crea una cuenta</h1>
-			</div>
+		<div className="container-fluid">
 			<div className="row">
 				<div className="col-lg-7 col-12">
 					<img src={OpenDoor} alt="Opendoor" className="sign-up-img" />
 				</div>
 
 				<div className="col-lg-5 col-12 pl-5">
+					{/* <div className="text-center my-5">
+						<h1 className="style-h1">Crea una cuenta</h1>
+					</div> */}
+					<h1 className="style-h1">Crea una cuenta</h1>
 					<form className="style-form">
 						<div className="form-group">
 							<label className="style-label" htmlFor="exampleInputUsername">
@@ -49,7 +50,7 @@ export const SignUp = () => {
 							<input
 								type="text"
 								className="form-control input-style"
-								placeholder=""
+								placeholder="María"
 								value={firstName}
 								onChange={event => setFirstName(event.target.value)}
 							/>
@@ -61,7 +62,7 @@ export const SignUp = () => {
 							<input
 								type="text"
 								className="form-control input-style"
-								placeholder=""
+								placeholder="González"
 								value={lastName}
 								onChange={event => setLastName(event.target.value)}
 							/>
@@ -73,7 +74,7 @@ export const SignUp = () => {
 							<input
 								type="text"
 								className="form-control input-style"
-								placeholder=""
+								placeholder="María33"
 								value={userName}
 								onChange={event => setUserName(event.target.value)}
 							/>
@@ -94,7 +95,7 @@ export const SignUp = () => {
 							</label>
 							<input
 								type="email"
-								placeholder=""
+								placeholder="maria@ejemplo.es"
 								className="form-control input-style"
 								aria-describedby="emailHelp"
 								value={email}
@@ -112,7 +113,7 @@ export const SignUp = () => {
 							</label>
 							<input
 								type="password"
-								placeholder=""
+								placeholder="********"
 								className="form-control input-style"
 								value={password}
 								onChange={event => setPassword(event.target.value)}

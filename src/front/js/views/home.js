@@ -17,36 +17,52 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="card card-image">
-			<div className="jumbotron text-center bg-white mt-5">
-				<img src={Logo} />
-				<p className="style-text">
-					Sabemos que padecer una ENFERMEDAD RARA <span className="bold">no es tan raro</span>. Si tienes una
-					ER o te interesa por cualquier otro motivo, <span className="bold">esta es tu tribu. </span>
-					{/* Quizá no
+		<div>
+			<div className="row d-flex justify-content-center mb-5">
+				<div className="col-lg-5 col-10 mt-5 text-center">
+					<img className="style-logo-home" src={Logo} />
+					<p className="style-text text-left">
+						Sabemos que padecer una ENFERMEDAD RARA <span className="bold">no es tan raro</span>. Si tienes
+						una ER o te interesa por cualquier otro motivo, <span className="bold">esta es tu tribu. </span>
+						{/* Quizá no
 					encuentras gente en tu misma situación <span className="bold">cerca de ti</span>. Estamos
 					impacientes porque te unas y entre todas las personas interesadas o que padecen directa o
 					indirectamente una enfermedad rara podamos{" "}
 					<span className="bold">crear una tribu cada vez mayor.</span> */}
-					<p className="bold">Te estamos buscando a tí</p>
-				</p>
-				<div className="row d-flex justify-content-around mt-5">
-					<div className="col-4">
-						<Link to="/login">
-							<button type="button" className="btn login-button-style">
-								Entrar
-							</button>
-						</Link>
-					</div>
-					<div className="col-4">
-						<Link to="/signup">
-							<button type="button" className="btn register-button-style-home">
-								Registrarme
-							</button>
-						</Link>
-					</div>
+						<p className="bold">Te estamos buscando a tí</p>
+					</p>
+
+					{/* <div className="row d-flex justify-content-center mt-5">
+								<div className="col-4">
+									<Link to="/login">
+										<button type="button" className="btn login-button-style">
+											Entrar
+										</button>
+									</Link>
+								</div>
+								<div className="col-4">
+									<Link to="/signup">
+										<button type="button" className="btn register-button-style-home">
+											Registrarme
+										</button>
+									</Link>
+								</div>
+							</div> */}
+				</div>
+				<div className="col-lg-4 col-10 text-center d-flex flex-column style-home-buttons">
+					<Link to="/login">
+						<button type="button" className="btn login-button-style">
+							Entrar
+						</button>
+					</Link>
+					<Link to="/signup">
+						<button type="button" className="btn register-button-style-home">
+							Registrarme
+						</button>
+					</Link>
 				</div>
 			</div>
+
 			<div className="fluid-container" id="style-container">
 				<div className="row justify-content-center">
 					<h3>IN-PACIENTES es para tí si eres:</h3>

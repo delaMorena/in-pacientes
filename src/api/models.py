@@ -85,6 +85,7 @@ class Diseases(db.Model):
             ## "owner" : self.owner.serialize()
             ## aunque lo he probado pero tampoco funciono.
         }
+    #######################  SERGIO COMO HACER PARA TENER LA INFORMACION PREDERTERMINADA???? ############################
     
 
 class Posts(db.Model): 

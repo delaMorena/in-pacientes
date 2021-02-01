@@ -5,12 +5,20 @@
     position: relative;
     width: 50%;
 }
+.style-logo-home {
+    margin: 30px 0px 0px 30px;
+    width: 100%;
+
+}
 .style-text {
-    width: 20%;
-    margin: 20px auto ;
+    width: 80%;
+    margin-left: 100px;
 }
 .bold {
     font-weight: bold;
+}
+.style-home-buttons {
+    margin: 150px 0px;
 }
 .home-image {
     display: block;
@@ -40,8 +48,6 @@
     top: 10%;
     left: 10%;
     margin-right: 10px;
-    // transform: translate(-50%, -50%);
-    // -ms-transform: translate(-50%, -50%);
 }
 .unsplash {
     font-size: 10px;
@@ -64,15 +70,8 @@ h4 {
     
 }
 .register-button-style-home:hover {
-//   background-color: #477dbd;
-    // border: none;
-    // background-color: lightgrey;
-    // color: white;
-    // box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px rgb(136, 173, 180);
-    border: 1px solid rgb(214, 209, 209);
-    background-color: rgb(214, 209, 209);
     color: black;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px rgb(136, 173, 180);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
 }
 
 .login-button-style {
@@ -88,9 +87,6 @@ h4 {
     padding: 10px 45px;
 }
 .login-button-style:hover {
-//   background-color: #477dbd;
-    border: 1px solid rgb(214, 209, 209);
-    background-color: rgb(214, 209, 209);
-    color: black;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px rgb(136, 173, 180);
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
 }
