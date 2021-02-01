@@ -35,8 +35,11 @@ export const LogIn = () => {
 					<div className="row justify-content-center">
 						<form id="form-width">
 							<div className="form-group">
+								<label className="style-label" htmlFor={email}>
+									Correo electrónico
+								</label>
 								<input
-									placeholder="Email"
+									placeholder="nombre@ejemplo.es"
 									type="email"
 									className="form-control"
 									aria-describedby="emailHelp"
@@ -45,9 +48,12 @@ export const LogIn = () => {
 								/>
 							</div>
 							<div className="form-group">
+								<label className="style-label" htmlFor="exampleInputPassword1">
+									Contraseña
+								</label>
 								<input
 									type="password"
-									placeholder="Contraseña"
+									placeholder="********"
 									className="form-control"
 									value={password}
 									onChange={event => setPassword(event.target.value)}

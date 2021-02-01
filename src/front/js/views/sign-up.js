@@ -49,7 +49,7 @@ export const SignUp = () => {
 							<input
 								type="text"
 								className="form-control input-style"
-								placeholder="María"
+								placeholder="Nombre"
 								value={firstName}
 								onChange={event => setFirstName(event.target.value)}
 							/>
@@ -61,7 +61,7 @@ export const SignUp = () => {
 							<input
 								type="text"
 								className="form-control input-style"
-								placeholder="González"
+								placeholder="Apellido"
 								value={lastName}
 								onChange={event => setLastName(event.target.value)}
 							/>
@@ -73,7 +73,7 @@ export const SignUp = () => {
 							<input
 								type="text"
 								className="form-control input-style"
-								placeholder="María33"
+								placeholder="NombreUsuario"
 								value={userName}
 								onChange={event => setUserName(event.target.value)}
 							/>
@@ -94,7 +94,7 @@ export const SignUp = () => {
 							</label>
 							<input
 								type="email"
-								placeholder="maria@ejemplo.es"
+								placeholder="nombre@ejemplo.es"
 								className="form-control input-style"
 								aria-describedby="emailHelp"
 								value={email}
