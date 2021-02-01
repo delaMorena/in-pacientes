@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-a3208a97-bce9-49b1-9a0f-efcc0ed4933e.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-acdb96a5-ffb5-46b4-b8ea-d5af28365aa4.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -26,10 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const method = "POST";
 				const config = {
 					method: method,
-					// mode: "no-cors",
 					headers: {
 						"Content-Type": "application/json"
-						// "Access-Control-Allow-Origin": "*"
 					},
 					body: JSON.stringify({
 						email: input.email,
@@ -40,10 +38,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						avatar: input.avatar
 					})
 				};
-				fetch(endpoint, config).then(response => {
-					// console.log(response);
-					callback();
-				});
+
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						localStorage.setItem("token", data.token);
+						setStore({ token: data.token });
+						callback();
+					})
+					.catch(error => console.error("error: ", error));
 			},
 
 			userLogin: async input => {
@@ -62,13 +65,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						localStorage.setItem("token", data.token);
 						setStore({ token: data.token });
-						// console.log(store.token);
 					})
-					.catch(error => console.error("error: ", error)); // imprime el tipo error que se ha producido
+					.catch(error => console.error("error: ", error));
 			},
 			async getUser() {
 				const store = getStore();
-				// console.log("token: ", store.token);
 				const endpoint = `${baseUrl}/test`;
 				const method = "GET";
 				const headers = { "Content-Type": "application/json" };
