@@ -2,6 +2,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
+import OpenDoor from "../../img/open_door.jpg";
+import "../../styles/sign-up.scss";
 
 export const SignUp = () => {
 	const { store, actions } = useContext(Context);
@@ -31,39 +33,52 @@ export const SignUp = () => {
 	return (
 		<div className="container">
 			<div className="text-center my-5">
-				<h1>Registrar nuevo usuario</h1>
+				<h1 className="style-h1">Crea una cuenta</h1>
 			</div>
+			<div className="row">
+				<div className="col-lg-7 col-12">
+					<img src={OpenDoor} alt="Opendoor" className="sign-up-img" />
+				</div>
 
-			<form>
-				<div className="form-group">
-					<input
-						type="text"
-						className="form-control"
-						placeholder="Nombre"
-						value={firstName}
-						onChange={event => setFirstName(event.target.value)}
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="text"
-						className="form-control"
-						placeholder="Apellidos"
-						value={lastName}
-						onChange={event => setLastName(event.target.value)}
-					/>
-				</div>
-				<div className="form-group">
-					{/* <label htmlFor="exampleInputUsername">Username</label> */}
-					<input
-						type="text"
-						className="form-control"
-						placeholder="Username"
-						value={userName}
-						onChange={event => setUserName(event.target.value)}
-					/>
-				</div>
-				{/* <div className="form-group">
+				<div className="col-lg-5 col-12 pl-5">
+					<form className="style-form">
+						<div className="form-group">
+							<label className="style-label" htmlFor="exampleInputUsername">
+								Nombre
+							</label>
+							<input
+								type="text"
+								className="form-control input-style"
+								placeholder=""
+								value={firstName}
+								onChange={event => setFirstName(event.target.value)}
+							/>
+						</div>
+						<div className="form-group">
+							<label className="style-label" htmlFor="exampleInputUsername">
+								Apellidos
+							</label>
+							<input
+								type="text"
+								className="form-control input-style"
+								placeholder=""
+								value={lastName}
+								onChange={event => setLastName(event.target.value)}
+							/>
+						</div>
+						<div className="form-group">
+							<label className="style-label" htmlFor="exampleInputUsername">
+								Nombre de usuario
+							</label>
+							<input
+								type="text"
+								className="form-control input-style"
+								placeholder=""
+								value={userName}
+								onChange={event => setUserName(event.target.value)}
+							/>
+						</div>
+						{/* <div className="form-group">
 					<label htmlFor="exampleInputUsername">Avatar</label>
 					<input
 						type="url"
@@ -73,36 +88,43 @@ export const SignUp = () => {
 						onChange={event => setAvatar(event.target.value)}
 					/>
 				</div> */}
-				<div className="form-group">
-					{/* <label htmlFor={email}>Email</label> */}
-					<input
-						type="email"
-						placeholder="Email"
-						className="form-control"
-						aria-describedby="emailHelp"
-						value={email}
-						onChange={event => setEmail(event.target.value)}
-					/>
-					{/* <small id="emailHelp" className="form-text text-muted">
+						<div className="form-group">
+							<label className="style-label" htmlFor={email}>
+								Correo electrónico
+							</label>
+							<input
+								type="email"
+								placeholder=""
+								className="form-control input-style"
+								aria-describedby="emailHelp"
+								value={email}
+								onChange={event => setEmail(event.target.value)}
+							/>
+							{/* <small id="emailHelp" className="form-text text-muted">
 						We
 						{"'"}
 						ll never share your email with anyone else.
 					</small> */}
+						</div>
+						<div className="form-group">
+							<label className="style-label" htmlFor="exampleInputPassword1">
+								Contraseña
+							</label>
+							<input
+								type="password"
+								placeholder=""
+								className="form-control input-style"
+								value={password}
+								onChange={event => setPassword(event.target.value)}
+							/>
+						</div>
+						<button type="button" className="btn register-button-style" onClick={HandleClick}>
+							Registrarse
+						</button>
+					</form>
 				</div>
-				<div className="form-group">
-					{/* <label htmlFor="exampleInputPassword1">Contraseña</label> */}
-					<input
-						type="password"
-						placeholder="Contraseña"
-						className="form-control"
-						value={password}
-						onChange={event => setPassword(event.target.value)}
-					/>
-				</div>
-				<button type="button" className="btn btn-info btn-lg" onClick={HandleClick}>
-					Registrarse
-				</button>
-			</form>
+			</div>
+			{/* <a href="https://www.vecteezy.com/free-vector/grunge-background">Grunge Background Vectors by Vecteezy</a> */}
 		</div>
 	);
 };

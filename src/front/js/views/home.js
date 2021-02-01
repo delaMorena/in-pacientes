@@ -20,24 +20,27 @@ export const Home = () => {
 		<div className="card card-image">
 			<div className="jumbotron text-center bg-white mt-5">
 				<img src={Logo} />
-				<p>
-					Sabemos que padecer una enfermedad rara no es tan raro. También sabemos que puedes sentir una gran
-					soledad porque quizá no encuentres a otras personas en tu misma situación en tu entorno más cercano.
-					Estamos impacientes porque te unas y entre todas las personas interesadas o que padecejn directa o
-					indirectamente una enfermedad rara podamos crear una tribu cada vez mayor.
-					<p>Te estamos buscando a tí</p>
+				<p className="style-text">
+					Sabemos que padecer una ENFERMEDAD RARA <span className="bold">no es tan raro</span>. Si tienes una
+					ER o te interesa por cualquier otro motivo, <span className="bold">esta es tu tribu. </span>
+					{/* Quizá no
+					encuentras gente en tu misma situación <span className="bold">cerca de ti</span>. Estamos
+					impacientes porque te unas y entre todas las personas interesadas o que padecen directa o
+					indirectamente una enfermedad rara podamos{" "}
+					<span className="bold">crear una tribu cada vez mayor.</span> */}
+					<p className="bold">Te estamos buscando a tí</p>
 				</p>
 				<div className="row d-flex justify-content-around mt-5">
 					<div className="col-4">
 						<Link to="/login">
-							<button type="button" className="btn btn-info btn-lg">
-								Iniciar Sesión
+							<button type="button" className="btn login-button-style">
+								Entrar
 							</button>
 						</Link>
 					</div>
 					<div className="col-4">
 						<Link to="/signup">
-							<button type="button" className="btn btn-info btn-lg">
+							<button type="button" className="btn register-button-style-home">
 								Registrarme
 							</button>
 						</Link>
