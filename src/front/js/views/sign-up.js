@@ -25,8 +25,7 @@ export const SignUp = () => {
 			avatar: avatar
 		};
 		actions.createUser(payload, () => {
-			history.push("/welcome");
-			//pagina de bienvenida para logearte
+			history.push("/inicio");
 		});
 	};
 
