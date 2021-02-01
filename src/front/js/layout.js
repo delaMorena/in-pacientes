@@ -19,6 +19,7 @@ import { SolAssociation } from "./views/solicitud-asc";
 import { AboutUs } from "./views/about-us";
 import { Bye } from "./views/bye";
 import { Inicio } from "./views/inicio";
+import { TempInicio } from "./views/temp-inicio";
 
 import injectContext from "./store/appContext";
 
@@ -87,6 +88,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/inicio">
 							<Inicio />
+						</Route>
+						<Route exact path="/temp">
+							<TempInicio />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
