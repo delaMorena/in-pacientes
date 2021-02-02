@@ -1,5 +1,5 @@
 .box-user-inicio {
-    background-color: lightpink;
+    background-color: #c8c8c8;
     height: auto;
     border-radius: 5px;
 }
@@ -9,24 +9,78 @@
     border-radius: 75px;
 }
 
+.list-user-inicio {
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.table-user-inicio {
+    width: 100%;
+}
+
+
+
 .box-post-inicio {
-    background-color: lightskyblue;
+    background-color: #c8c8c8;
     height: auto;
     border-radius: 5px;
 }
 
 .box-content-inicio {
-    background-color: rgb(206, 206, 206);
+    background-color: #c8c8c8;
     height: auto;
     border-radius: 5px;
 }
 
 .card-post-inicio {
-    background-color: blue;
+    background-color: #ffffff;
     height: auto;
     border-radius: 5px;
 }
 
 .card-post-image img {
     width: 150px;
+    border-radius: 5px;
+}
+
+.text-post-height {
+    height: auto;
+}
+
+.text-post-height p{
+    height: auto;
+    margin: 0;
+}
+
+.button-publicar-post {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
+
+.button-select-inicio {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
+
+.button-noselect-inicio {
+    background-color:  white;
+    border: 1px solid #070707;
+    color: #070707;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
 }
