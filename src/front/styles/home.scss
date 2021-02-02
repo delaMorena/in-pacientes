@@ -1,24 +1,29 @@
-#style-container {
-    margin: 0 30px;
+.style-row-logo-buttons {
+    margin: 0 20% 5% 20%;
+}
+.style-row-pictures-home {
+    margin: 5% 20%;
 }
 .home-container {
     position: relative;
     width: 50%;
 }
 .style-logo-home {
-    margin: 30px 0px 0px 30px;
-    width: 100%;
-
+    width: 80%;
+    margin-bottom: 2%;
 }
 .style-text {
     width: 80%;
-    margin-left: 100px;
+    font-size: 17px;
 }
 .bold {
     font-weight: bold;
 }
+.style-home-col-buttons {
+    margin: 10% 0 0 0 ;
+}
 .style-h3-home {
-    margin-left: 17%;
+    margin: 5% 0 0 21%;
 }
 .home-image {
     display: block;
@@ -37,17 +42,35 @@
     opacity: 0;
     transition: .5s ease;
     background-color: #f79a6b;
+    border-radius: 3%;
 }
 .home-container:hover .overlay {
     opacity: 1;
 }
+@media screen and (max-width: 990px) {
+  div.home-text {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 990px) {
+  p.style-text {
+    font-size: 15px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 990px) {
+  img.style-logo-home {
+    width: 120%;
+  }
+}
 .home-text {
     color: white;
-    font-size: 15px;
+    font-size: 20px;
     position: absolute;
     top: 10%;
     left: 10%;
     margin-right: 10px;
+    
 }
 .unsplash {
     font-size: 10px;
@@ -65,7 +88,8 @@ h4 {
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    margin: 20px 2px 0px 80px;
+    // margin: 20px 2px 0px 80px;
+    margin: 3%;
     transition-duration: 0.4s;
     
 }
@@ -81,7 +105,8 @@ h4 {
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    margin: 20px 2px 0px 80px;
+    // margin: 20px 2px 0px 80px;
+    margin: 3%;
     transition-duration: 0.4s;
     padding: 10px 45px;
 }

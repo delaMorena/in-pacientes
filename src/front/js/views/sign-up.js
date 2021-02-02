@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
-import OpenDoor from "../../img/open_door.jpg";
+import Background from "../../img/background-signin.png";
 import "../../styles/sign-up.scss";
 
 export const SignUp = () => {
@@ -33,7 +33,7 @@ export const SignUp = () => {
 		<div className="container-fluid">
 			<div className="row">
 				<div className="col-lg-7 col-12">
-					<img src={OpenDoor} alt="Opendoor" className="sign-up-img" />
+					<img src={Background} alt="Opendoor" className="sign-up-img" />
 				</div>
 
 				<div className="col-lg-5 col-12 pl-5">

@@ -6,32 +6,34 @@ import { Link } from "react-router-dom";
 export const CardPost = props => {
 	const { post } = props;
 
-	// const textTruncate = input => {
-	// 	if (input.length >= 250) {
-	// 		return input.substring(0, 250) + " ... Leer más.";
-	// 	} else {
-	// 		return input;
-	// 	}
-	// };
+	const textTruncate = input => {
+		if (input.length >= 200) {
+			return input.substring(0, 200) + " ... Leer más.";
+		} else {
+			return input;
+		}
+	};
 
 	return (
-		<div className="card" id="style-card-feed">
-			<div className="card-header">
-				<h5 className="row justify-content-center">{post.disease_name}</h5>
-				<h5 className="row justify-content-center text-muted">Publicado por: {post.publisher}</h5>
+		<div className="row card-post-inicio mx-1 align-items-center mb-3 py-3">
+			<div className="col-md-3 text-center card-post-image img">
+				<img src="https://picsum.photos/800/800?random=2" alt="image-post" />
 			</div>
-
-			<div className="card-body">
-				<div className="row">
-					<p className="card-text px-3">{textTruncate(post.text)}</p>
-					{/* <p className="card-text px-3">{post.text}</p> */}
+			<div className="col-md-9">
+				<div className="row tex-muted">
+					<div className="col-12 mt-1">
+						<span>{post.created_at}</span>
+					</div>
 				</div>
-				<div className="row justify-content-center mt-3">
-					<Link to={`/post/${post.id}`}>
-						<button type="button" className="btn orange-button">
-							Ir a la publicación
-						</button>
-					</Link>
+				<div className="row">
+					<div className="col-12">
+						<h5>{post.disease_name}</h5>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12 text-post-height">
+						<p>{textTruncate(post.text)}</p>
+					</div>
 				</div>
 			</div>
 		</div>
