@@ -2,6 +2,8 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/log-in.scss";
+// import Background from "../../img/login-bg.png";
 
 export const LogIn = () => {
 	const { store, actions } = useContext(Context);
@@ -21,50 +23,40 @@ export const LogIn = () => {
 	};
 
 	return (
-		<div className="fluid-container mx-3">
-			<div className="row mt-5 align-items-center" id="login-style">
-				<div className="col-6">
-					<div className="row justify-content-center">
-						<img src="https://picsum.photos/800/400" alt="imagen-login" />
+		<div>
+			<div className="card style-login-card">
+				<h1 className="style-login-h1">Inicia sesión</h1>
+
+				<form className="style-login-form">
+					<div className="style-login-form-group">
+						<label className="style-login-label" htmlFor={email}>
+							Correo electrónico
+						</label>
+						<input
+							placeholder="nombre@ejemplo.es"
+							type="email"
+							className="form-control style-login-input"
+							aria-describedby="emailHelp"
+							value={email}
+							onChange={event => setEmail(event.target.value)}
+						/>
 					</div>
-				</div>
-				<div className="col-6 align-items-center">
-					<div className="row justify-content-center">
-						<h1>Iniciar sesion</h1>
+					<div className="style-login-form-group">
+						<label className="style-login-label " htmlFor="exampleInputPassword1">
+							Contraseña
+						</label>
+						<input
+							type="password"
+							placeholder="********"
+							className="form-control style-login-input"
+							value={password}
+							onChange={event => setPassword(event.target.value)}
+						/>
 					</div>
-					<div className="row justify-content-center">
-						<form id="form-width">
-							<div className="form-group">
-								<label className="style-label" htmlFor={email}>
-									Correo electrónico
-								</label>
-								<input
-									placeholder="nombre@ejemplo.es"
-									type="email"
-									className="form-control"
-									aria-describedby="emailHelp"
-									value={email}
-									onChange={event => setEmail(event.target.value)}
-								/>
-							</div>
-							<div className="form-group">
-								<label className="style-label" htmlFor="exampleInputPassword1">
-									Contraseña
-								</label>
-								<input
-									type="password"
-									placeholder="********"
-									className="form-control"
-									value={password}
-									onChange={event => setPassword(event.target.value)}
-								/>
-							</div>
-							<button type="button" className="btn btn-info btn-lg" onClick={HandleClick}>
-								Iniciar Sesión
-							</button>
-						</form>
-					</div>
-				</div>
+					<button type="button" className="style-login-button" onClick={HandleClick}>
+						Iniciar Sesión
+					</button>
+				</form>
 			</div>
 		</div>
 	);

@@ -6,7 +6,7 @@ export const PicturesHome = props => {
 	// const { association } = props;
 
 	return (
-		<div className="home-container col-md-3 col-lg-3 col-7">
+		<div className="home-container col-md-7 col-lg-4 col-12">
 			<img src={props.img} alt={props.alt} className="home-image" />
 			<div className="overlay">
 				<div className="home-text">
