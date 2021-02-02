@@ -1,0 +1,49 @@
+.style-login-card {
+    // background-image: `url(${Background})`;
+    background-image: url(../img/background-signin.png);
+    // background-image: url(../img/login-bg.png);
+
+    width: 500px;
+    margin: 100px auto 100px;
+    height: 500px;
+}
+.style-login-h1 {
+    font-family: 'Yusei Magic', sans-serif;
+    margin: 10px auto;
+}
+.style-login-form {
+    margin: auto;
+    width: 70%;
+}
+.style-login-form-group {
+    margin: 5px ;
+}
+.style-login-input {
+    width: 90%;
+    padding: 12px 20px;
+    // margin: px 0px 0px 0px;
+    box-sizing: border-box;
+}  
+.style-login-label {
+    margin-bottom: 0px ;
+        font-weight: bold;
+}
+::placeholder {
+    font-size: 15px;
+}
+.style-login-button {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 25px 0px 0px 15px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
+.style-login-button:hover {
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
+}
+
