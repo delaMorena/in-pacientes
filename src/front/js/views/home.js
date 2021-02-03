@@ -19,7 +19,7 @@ export const Home = () => {
 	return (
 		<div>
 			<div className="row style-row-logo-buttons d-flex justify-content-between">
-				<div className="col-lg-10 col-12 ">
+				<div className="col-lg-9 col-12 ">
 					<img className="style-logo-home" src={Logo} />
 					{/* <p className="style-text text-left">
 						Sabemos que padecer una ENFERMEDAD RARA <span className="bold">no es tan raro</span>. Si tienes
@@ -27,7 +27,7 @@ export const Home = () => {
 					</p>
 					<p className="bold style-text text-left">Te estamos buscando a tí</p> */}
 				</div>
-				<div className="col-lg-2 col-10 d-flex flex-column style-home-col-buttons">
+				<div className="col-lg-3 col-10 d-flex flex-column style-home-col-buttons">
 					<Link to="/login">
 						<button type="button" className="btn login-button-style">
 							Entrar

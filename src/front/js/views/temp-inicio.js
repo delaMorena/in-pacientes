@@ -57,7 +57,7 @@ export const TempInicio = () => {
 										<table className="table-user-inicio">
 											<tr>
 												<th>Enfermedad</th>
-												<th>Rol</th>
+												<th>Relación</th>
 											</tr>
 											<tr>
 												<td>Catarro común</td>

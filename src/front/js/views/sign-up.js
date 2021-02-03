@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
-import Background from "../../img/background-signin.png";
+import Background from "../../img/soft-bg.png";
 import "../../styles/sign-up.scss";
 
 export const SignUp = () => {

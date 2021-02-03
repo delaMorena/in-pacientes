@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { NoToken } from "../component/no-token";
+import "../../styles/follow.scss";
 
 export const Follow = () => {
 	const { store, actions } = useContext(Context);
@@ -43,39 +44,30 @@ export const Follow = () => {
 					<h1>Escoge una enfermedad y tu relación con ella</h1>
 				</div>
 				<form>
-					<div className="row">
-						<div className="form-group col-6">
-							<label>Elige la enfermedad que quieres empezar a seguir</label>
-							<div className="input-group ">
-								<select className="custom-select" onChange={e => setId(e.target.value)}>
-									<option defaultValue>Elige ...</option>
-									{diseasesOption}
-								</select>
-							</div>
-						</div>
-						<div className="form-group col-6">
-							<label>Selecciona tu rol</label>
-							<div className="input-group">
-								<select className="custom-select" onChange={e => setRole(e.target.value)}>
-									<option defaultValue>Elige ...</option>
-									<option value="1">Paciente</option>
-									<option value="2">Investigador</option>
-									<option value="3">Doctor</option>
-									<option value="4">Familiar</option>
-									<option value="5">Profesional</option>
-									<option value="6">Asociación</option>
-								</select>
-							</div>
-						</div>
+					<label>Elige la enfermedad que quieres empezar a seguir</label>
+					<div className="input-group ">
+						<select className="custom-select" onChange={e => setId(e.target.value)}>
+							<option defaultValue>Elige ...</option>
+							{diseasesOption}
+						</select>
 					</div>
-				</form>
-				<div className="row justify-content-center">
+					<label>¿Cuál es tu relación con esta enfermedad?</label>
+					<div className="input-group">
+						<select className="custom-select" onChange={e => setRole(e.target.value)}>
+							<option value="1">Paciente</option>
+							<option value="2">Investigador</option>
+							<option value="3">Doctor</option>
+							<option value="4">Familiar</option>
+							<option value="5">Profesional</option>
+							<option value="6">Asociación</option>
+						</select>
+					</div>
 					<Link to={`/onedisease/${id}`}>
-						<button type="submit" className="btn btn-info" onClick={OnSubmit}>
+						<button type="submit" className="style-button-follow" onClick={OnSubmit}>
 							Comenzar a seguir
 						</button>
 					</Link>
-				</div>
+				</form>
 			</div>
 		);
 	}
