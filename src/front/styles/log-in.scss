@@ -1,15 +1,14 @@
 .style-login-card {
     // background-image: `url(${Background})`;
-    background-image: url(../img/background-signin.png);
-    // background-image: url(../img/login-bg.png);
-
+    // background-image: url(../img/background-signin.png);
+    background-image: url(../img/soft-bg.png);
     width: 500px;
-    margin: 100px auto 100px;
+    margin: 80px auto 80px;
     height: 500px;
 }
 .style-login-h1 {
     font-family: 'Yusei Magic', sans-serif;
-    margin: 10px auto;
+    margin: 15px auto 5px auto;
 }
 .style-login-form {
     margin: auto;
