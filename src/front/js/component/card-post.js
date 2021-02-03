@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../../styles/card-post.scss";
 
 export const CardPost = props => {
 	const { post } = props;
@@ -15,7 +16,7 @@ export const CardPost = props => {
 	};
 
 	return (
-		<div className="row card-post-inicio mx-1 align-items-center mb-3 py-3">
+		<div className="row card-post-inicio mx-1 align-items-center my-3 py-3">
 			<div className="col-md-3 text-center card-post-image img">
 				<img src="https://picsum.photos/800/800?random=2" alt="image-post" />
 			</div>

@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-d29e14f9-022d-4023-bd3a-c5b609bb12e8.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-b6222a81-30c0-4cc7-b2d3-eff08eff0a7f.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			follows: [],
 			post: {},
 			comments: [],
-			feed: []
+			feed: [],
+			urlUser: "https://unsplash.com/photos/CUJjR4J_BlM"
 		},
 		actions: {
 			logout() {

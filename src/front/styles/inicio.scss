@@ -18,8 +18,6 @@
     width: 100%;
 }
 
-
-
 .box-post-inicio {
     background-color: #c8c8c8;
     height: auto;
@@ -31,25 +29,13 @@
     height: auto;
     border-radius: 5px;
 }
-
-.card-post-inicio {
-    background-color: #ffffff;
-    height: auto;
+.box-empty-feed {
+    background-color: white;
     border-radius: 5px;
 }
 
-.card-post-image img {
-    width: 150px;
-    border-radius: 5px;
-}
-
-.text-post-height {
-    height: auto;
-}
-
-.text-post-height p{
-    height: auto;
-    margin: 0;
+.box-empty-feed p {
+    margin: 0px;
 }
 
 .button-publicar-post {
