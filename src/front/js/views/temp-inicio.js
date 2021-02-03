@@ -7,6 +7,9 @@ import "../../styles/inicio.scss";
 
 export const TempInicio = () => {
 	const { store, actions } = useContext(Context);
+	const [url, setUrl] = useState("");
+	const [text, setText] = useState("");
+	const [diseaseId, setDiseaseId] = useState();
 
 	useEffect(() => {
 		actions.getFeed();
@@ -14,6 +17,19 @@ export const TempInicio = () => {
 		actions.getUser();
 		actions.getFollow();
 	}, []);
+
+	const OnSubmit = event => {
+		const payload = {
+			text: text,
+			url: url,
+			diseaseId: parseInt(diseaseId)
+		};
+
+		actions.createPost(payload);
+		setText("");
+		setUrl("");
+		window.location.reload();
+	};
 
 	const showFollows = () => {
 		const convRol = index => {
@@ -69,12 +85,42 @@ export const TempInicio = () => {
 		}
 	};
 
+	const showDiseaseOption = () => {
+		const diseasesOption = store.follows.map((follow, index) => {
+			return (
+				<option key={index} value={follow.disease.id}>
+					{follow.disease.title}
+				</option>
+			);
+		});
+		if (store.follows.length == 0) {
+			return (
+				<>
+					<option>Ops...No se han encontrado enfermedades</option>
+				</>
+			);
+		} else {
+			return diseasesOption;
+		}
+	};
+
 	const showContentFeed = () => {
 		const showFeedPost = store.feed.map((post, index) => {
 			return <CardPost key={index} post={post} />;
 		});
 
-		if (store.feed.length == 0) {
+		if (store.feed.length == 0 && store.follows.length != 0) {
+			return (
+				<div className="row my-3 box-empty-feed mx-1">
+					<div className="col-12 text-center">
+						<h3>Aun no hay publicaciones de tu interes</h3>
+					</div>
+					<div className="col-12 text-center">
+						<p>¡crea tu primera publicación!</p>
+					</div>
+				</div>
+			);
+		} else if (store.follows.length == 0) {
 			return (
 				<div className="row my-3 box-empty-feed mx-1">
 					<div className="col-12 text-center">
@@ -143,13 +189,11 @@ export const TempInicio = () => {
 									<div className="col-12">
 										<form className="my-3">
 											<div className="form-group">
-												<select className="form-control">
+												<select
+													className="form-control"
+													onChange={e => setDiseaseId(e.target.value)}>
 													<option>Elige una enfermedad</option>
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
+													{showDiseaseOption()}
 												</select>
 											</div>
 											<div className="form-group mt-1">
@@ -157,6 +201,8 @@ export const TempInicio = () => {
 													className="form-control"
 													placeholder="Escribe tu publicación"
 													rows="1"
+													value={text}
+													onChange={event => setText(event.target.value)}
 												/>
 											</div>
 											<div className="form-group mt-1">
@@ -167,13 +213,15 @@ export const TempInicio = () => {
 													aria-describedby="emailHelp"
 													rows="1"
 													placeholder="URL imagen"
+													value={url}
+													onChange={e => setUrl(e.target.value)}
 												/>
 											</div>
 										</form>
 									</div>
 									<div className="col-12">
 										<div className="row justify-content-center pb-3">
-											<button type="button" className="button-publicar-post">
+											<button type="button" className="button-publicar-post" onClick={OnSubmit}>
 												Publicar
 											</button>
 										</div>
