@@ -5,6 +5,8 @@ import datetime
 import hashlib
 import hmac
 import jwt
+# import cloudinary
+# import cloudinary.uploader
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows
@@ -745,3 +747,22 @@ def handle_list_all_associations():
     #     return "User not found", 404
 
     return get_all_from_models(Associations)
+
+
+
+################ upload files
+
+@api.route("/upload", methods=["POST"])
+def handle_upload_profile_picture():
+
+    # user = authorized_user()
+
+    
+    files = request.files
+    print(files)
+
+    return jsonify("Todo bien"), 200
+
+    
+
+    
