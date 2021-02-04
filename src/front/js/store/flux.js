@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-abccaf8a-a522-4c71-8d6c-13d8fcfb2b10.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-dbcaf337-b7d2-4cd5-9077-081cba86d208.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -246,6 +246,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createPost(input) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/posts`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
@@ -267,6 +268,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						// console.log(data);
+						actions.getFeed();
+						actions.getPostUser();
 					})
 					.catch(error => console.error("error: ", error));
 			},

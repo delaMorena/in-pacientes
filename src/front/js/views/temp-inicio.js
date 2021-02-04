@@ -24,11 +24,16 @@ export const TempInicio = () => {
 			url: url,
 			diseaseId: parseInt(diseaseId)
 		};
-
 		actions.createPost(payload);
+		// actions.getFeed();
+		// actions.getPostUser();
 		setText("");
 		setUrl("");
-		window.location.reload();
+
+		// actions.createPost(payload);
+		// setText("");
+		// setUrl("");
+		// window.location.reload();
 	};
 
 	const showFollows = () => {
@@ -106,7 +111,11 @@ export const TempInicio = () => {
 
 	const showContentFeed = () => {
 		const showFeedPost = store.feed.map((post, index) => {
-			return <CardPost key={index} post={post} />;
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
 		});
 
 		if (store.feed.length == 0 && store.follows.length != 0) {
@@ -127,9 +136,11 @@ export const TempInicio = () => {
 						<h3>Aun no sigues ninguna enfermedad</h3>
 					</div>
 					<div className="col-12 text-center">
-						<button type="button" className="btn btn-info">
-							Seguir
-						</button>
+						<Link to="/follow">
+							<button type="button" className="btn btn-info">
+								Seguir
+							</button>
+						</Link>
 					</div>
 				</div>
 			);
@@ -140,7 +151,11 @@ export const TempInicio = () => {
 
 	const showContentUserPost = () => {
 		const showUserPost = store.userPosts.map((post, index) => {
-			return <CardPost key={index} post={post} />;
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
 		});
 
 		if (store.userPosts.length == 0) {
