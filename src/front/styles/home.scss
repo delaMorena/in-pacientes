@@ -1,6 +1,11 @@
 .style-row-logo-buttons {
     margin: 0 20% 5% 20%;
 }
+@media screen and (max-width: 990px) {
+  div.style-row-logo-buttons {
+     margin: 0 20% 5% 0;
+  }
+}
 .style-row-pictures-home {
     margin: 5% 20%;
 }
@@ -20,7 +25,12 @@
     font-weight: bold;
 }
 .style-home-col-buttons {
-    margin: 10% 0 0 0 ;
+    margin: 10px 0 0 0 ;
+}
+@media screen and (max-width: 990px) {
+  div.style-home-col-buttons {
+    margin: 10px 0 0 32%;
+  }
 }
 .style-h3-home {
     margin: 5% 0 0 21%;
@@ -47,6 +57,7 @@
 .home-container:hover .overlay {
     opacity: 1;
 }
+
 @media screen and (max-width: 990px) {
   div.home-text {
     font-size: 15px;
@@ -58,9 +69,9 @@
     width: 100%;
   }
 }
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 600px) {
   img.style-logo-home {
-    width: 120%;
+    width: 130%;
   }
 }
 .home-text {

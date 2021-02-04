@@ -1,0 +1,23 @@
+form {
+    margin: 30px auto;
+    width: 60%;
+}
+label {
+    margin-top: 20px;
+}
+.style-button-follow {
+    background-color:  white;
+    border: 1px solid #070707;
+    color: #070707;
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0px;
+    transition-duration: 0.4s;
+    
+}
+.style-button-follow:hover {
+    color: black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+}
