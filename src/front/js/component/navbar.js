@@ -82,6 +82,12 @@ export const Navbar = () => {
 				<div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 					<ul className="navbar-nav style-ul-navbar">
 						<li className="nav-item active">
+							<Link className="nav-link" to="/temp">
+								Temp
+								<span className="sr-only">(current)</span>
+							</Link>
+						</li>
+						<li className="nav-item active">
 							<Link className="nav-link" to="/inicio">
 								Inicio
 								<span className="sr-only">(current)</span>
