@@ -1,24 +1,27 @@
 .post-img img{
     width: 1140px;
     height: 600px;
+    border-radius: 3px;
     
 }
 
-// .filter-img-text {
-//     position: absolute;
-//     top: 0;
-//     height: 600px;
-//     width: 570px;
-//     background-color: rgba(0, 0, 0, 0.3);
+.filter-img-text {
+    position: absolute;
+    top: 0;
+    height: 175px;
+    width: 100%;
+    border-radius: 3px;
+    // background-color: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0));
     
-// }
+}
 
 .text-up-image {
     color: white;
     width: 100%;
     position: absolute;
     top: 20px;
-    text-shadow: 1px 1px black;
+    // text-shadow: 1px 1px black;
 }
 
 .text-up-image img {
@@ -27,3 +30,7 @@
     border-radius: 40px;
 }
 
+.form-size-post {
+    width: 100%;
+    margin: 0;
+}

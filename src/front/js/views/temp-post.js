@@ -69,9 +69,31 @@ export const TempPost = () => {
 						</div>
 					</div>
 					<div className="col-12 mt-3">
-						<p>{store.post.text}</p>
+						<div className="row justify-content-center my-3">
+							<div className="col-10">
+								<p>{store.post.text}</p>
+							</div>
+						</div>
 					</div>
-					{showComments()}
+					<div className="col-12">
+						<div className="row">
+							<div className="col-7">{showComments()}</div>
+							<div className="col-5">
+								<form className="form-size-post">
+									<div className="form-group">
+										<textarea
+											className="form-control"
+											placeholder="Escribe tu comentario..."
+											rows="3"
+										/>
+									</div>
+								</form>
+								<button type="button" className="btn btn-info ml-1">
+									Comentar
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
