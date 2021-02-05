@@ -14,34 +14,66 @@ export const TempPost = () => {
 		actions.getOnePost(params.id);
 	}, []);
 
-	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-12">
-					<div className="row post-img">
-						<img src="https://picsum.photos/1710/900" alt="image-post" />
+	const showComments = () => {
+		const postComments = store.comments.map((comment, index) => {
+			return (
+				<div className="row" key={index}>
+					<div className="col-12">
+						<h5>{comment.user}</h5>
+						<p>{comment.text}</p>
+						<p>{comment.created_at}</p>
 					</div>
-					<div className="row filter-img-text" />
-					<div className="row text-up-image">
-						<div className="col-12">
-							<h3>{store.post.disease_name}</h3>
+				</div>
+			);
+		});
+
+		if (store.comments.length == 0) {
+			return (
+				<div className="row">
+					<div className="col-12">
+						<h3>Aun no hay comentarios</h3>
+						<p>¡Se el primero!</p>
+					</div>
+				</div>
+			);
+		} else {
+			return postComments;
+		}
+	};
+
+	if (store.token == null) {
+		return <NoToken />;
+	} else {
+		return (
+			<div className="container">
+				<div className="row my-3">
+					<div className="col-12">
+						<div className="row post-img">
+							<img src="https://picsum.photos/1710/900" alt="image-post" />
 						</div>
-						<div className="col-12">
-							<div className="row align-items-center">
-								<div className="col-1">
-									<img src="https://picsum.photos/300/300" alt="image-post" />
-								</div>
-								<div className="col-6 text-left">
-									<h3>{store.post.publisher}</h3>
+						<div className="row filter-img-text" />
+						<div className="row text-up-image">
+							<div className="col-12">
+								<h3>{store.post.disease_name}</h3>
+							</div>
+							<div className="col-12">
+								<div className="row align-items-center">
+									<div className="col-md-1">
+										<img src="https://picsum.photos/300/300" alt="image-post" />
+									</div>
+									<div className="col-md-5 text-left">
+										<h3>{store.post.publisher}</h3>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="col-12">
-					<p>{store.post.text}</p>
+					<div className="col-12 mt-3">
+						<p>{store.post.text}</p>
+					</div>
+					{showComments()}
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 };

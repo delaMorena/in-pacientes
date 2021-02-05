@@ -58,7 +58,7 @@ export const TempInicio = () => {
 		const listFollows = store.follows.map((follow, index) => {
 			return (
 				<tr key={index}>
-					<td>{follow.disease.title}</td>
+					<td className="text-left">{follow.disease.title}</td>
 					<td>{convRol(follow.role)}</td>
 				</tr>
 			);
