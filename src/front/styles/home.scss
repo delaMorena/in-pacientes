@@ -1,17 +1,18 @@
-.style-row-logo-buttons {
-    margin: 0 20% 5% 20%;
+.style-row-logo {
+    margin: auto;
 }
 @media screen and (max-width: 990px) {
-  div.style-row-logo-buttons {
+  div.style-row-logo {
      margin: 0 20% 5% 0;
   }
 }
 .style-row-pictures-home {
-    margin: 5% 20%;
+    margin: 2%;
 }
 .home-container {
     position: relative;
     width: 50%;
+    margin: 10px;
 }
 .style-logo-home {
     width: 80%;
@@ -20,6 +21,7 @@
 .style-text {
     width: 80%;
     font-size: 17px;
+    margin-left: 100px;
 }
 .bold {
     font-weight: bold;
@@ -33,7 +35,7 @@
   }
 }
 .style-h3-home {
-    margin: 5% 0 0 21%;
+    margin: 5% 0 0 15%;
 }
 .home-image {
     display: block;
