@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-ab9bfb8d-0ed9-47bf-b3c0-30ce0478a56a.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -48,13 +48,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("error: ", error));
 			},
-			uploadProfilePicture(inputFiles) {
+			uploadProfilePicture(files) {
 				const store = getStore();
 				const endpoint = `${baseUrl}/upload`;
 				const method = "POST";
 				const formData = new FormData();
-				formData.append("file", inputFiles[0]);
-				console.log("body: ", formData, inputFiles[0]);
+				formData.append("profile_image", files[0]);
+				console.log("body: ", formData, files[0]);
 				const config = {
 					method: method,
 					body: formData

@@ -5,8 +5,8 @@ import datetime
 import hashlib
 import hmac
 import jwt
-# import cloudinary
-# import cloudinary.uploader
+import cloudinary
+import cloudinary.uploader
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows
@@ -758,8 +758,26 @@ def handle_upload_profile_picture():
     # user = authorized_user()
 
     
-    files = request.files
-    print(files)
+    # files = request.files
+    # print(files)
+    result = cloudinary.uploader.upload(request.files['profile_image'],
+    public_id=f'In-pacientes/profile/sample_img'
+    # crop='limit',
+    #     width=450,
+    #     height=450,
+    #     eager=[{
+    #         'width': 200, 'height': 200,
+    #         'crop': 'thumb', 'gravity': 'face',
+    #         'radius': 100
+    #     },
+    #     ],
+    #     tags=['profile_picture']
+    )
+    # print(result['secure_url'])
+    user.avatar = result['secure_url']
+
+    db.session.add(user)
+    db.session.commit(user)
 
     return jsonify("Todo bien"), 200
 
