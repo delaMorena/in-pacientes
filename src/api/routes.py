@@ -317,6 +317,8 @@ def handle_list_posts_from_user():
     for post in user.posts:
         posts.append(post.serialize())
         
+    posts.sort(key=lambda x: x.get("updated_at"),reverse=True)
+
     return jsonify(posts), 200
 
 @api.route("/posts/<int:id>", methods=["GET"])
@@ -347,6 +349,8 @@ def handle_list_posts_from_disease(id):
     for post in disease.posts:
         posts.append(post.serialize())
         
+    posts.sort(key=lambda x: x.get("updated_at"),reverse=True)
+
     return jsonify(posts), 200
 
 # GENERAR UN POST
