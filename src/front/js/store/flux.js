@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-bronze-condor-gdevv8et.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-aquamarine-trout-3at9ospa.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			post: {},
 			comments: [],
 			feed: [],
-			urlUser: "https://unsplash.com/photos/CUJjR4J_BlM"
+			favorites: []
 		},
 		actions: {
 			logout() {
@@ -388,6 +388,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ associations: data });
 						// console.log(store.associations);
 					});
+			},
+			getFavorites() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/favorites`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log("para el feed", data);
+						setStore({ favorites: data });
+						console.log("favoritos: ", store.favorites);
+					});
+			},
+			addFavortites(input) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/favorites`;
+				const method = "POST";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers,
+					body: JSON.stringify({
+						post_id: input.postId
+					})
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => console.error("error: ", error));
 			}
 		}
 	};

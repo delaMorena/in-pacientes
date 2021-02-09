@@ -755,17 +755,17 @@ def handle_list_all_associations():
 @api.route("/favorites", methods=["GET"])
 def handle_list_favorites():
 
-    return get_all_from_models(Favorites)
+    # return get_all_from_models(Favorites)
 
-    # user = authorized_user()
+    user = authorized_user()
 
-    # favorite_list = []
-    # favorite_posts = Favorites.query.filter_by(user_id=user.id, deleted_at=None).all()
+    favorite_list = []
+    favorite_posts = Favorites.query.filter_by(user_id=user.id, deleted_at=None).all()
 
-    # for item in favorite_posts:
-    #     favorite_list.append(item.serialize())
+    for item in favorite_posts:
+        favorite_list.append(item.serialize())
 
-    # return jsonify(favorite_list), 200
+    return jsonify(favorite_list), 200
 
     # user = authorized_user()
     # list_diseases_follow = []
@@ -778,7 +778,7 @@ def handle_list_favorites():
 
 
 @api.route("/favorites", methods=["POST"])
-def handle_create_role_for_disease():
+def handle_add_favorite():
 
     user = authorized_user()
     if not user:
@@ -787,11 +787,10 @@ def handle_create_role_for_disease():
     payload = request.get_json()
     payload['user_id'] = user.id
 
-    required = ['user_id', 'disease_id']
+    required = ['post_id']
 
     types = {
-        'user_id': int,
-        'disease_id': int
+        'post_id': int
     }
 
     for key, value in payload.items():
@@ -803,8 +802,10 @@ def handle_create_role_for_disease():
             abort(400)
 
 
-    favorite = Relationships(**payload)
+    favorite = Favorites(**payload)
     # relation = Relationships(**payload)
+
+    
 
     db.session.add(favorite)
     db.session.commit()

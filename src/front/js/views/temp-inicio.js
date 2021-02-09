@@ -16,6 +16,7 @@ export const TempInicio = () => {
 		actions.getPostUser();
 		actions.getUser();
 		actions.getFollow();
+		actions.getFavorites();
 	}, []);
 
 	const OnSubmit = event => {

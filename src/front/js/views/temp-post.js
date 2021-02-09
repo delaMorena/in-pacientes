@@ -41,6 +41,15 @@ export const TempPost = () => {
 		}
 	};
 
+	const AddPostFavorites = async event => {
+		const payload = {
+			postId: parseInt(params.id)
+		};
+		await actions.addFavortites(payload);
+		console.log(typeof payload.postId);
+		alert("esta pasando algo");
+	};
+
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
@@ -73,6 +82,13 @@ export const TempPost = () => {
 							<div className="col-10">
 								<p>{store.post.text}</p>
 							</div>
+						</div>
+					</div>
+					<div className="col-12">
+						<div className="row">
+							<button type="button" className="btn btn-info" onClick={AddPostFavorites}>
+								Seguir
+							</button>
 						</div>
 					</div>
 					<div className="col-12">

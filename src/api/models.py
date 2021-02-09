@@ -30,6 +30,8 @@ class Users(db.Model):
 
     diseases = db.relationship("Diseases")
     posts = db.relationship("Posts")
+    favorites = db.relationship("Favorites")
+    
     # donations = db.relationship("Donations")
 
 
@@ -101,6 +103,7 @@ class Posts(db.Model):
     publisher = db.relationship("Users")
     disease = db.relationship("Diseases")
     comments = db.relationship("Comments")
+    favorites = db.relationship("Favorites")
 
 
     def __str__(self):
@@ -247,7 +250,8 @@ class Favorites(db.Model):
     post = db.relationship("Posts")
 
     def __str__(self):
-        return 'El usuario {} tiene como favorito {}' .format(self.user.username, self.post.text)
+        # return 'El usuario {} tiene como favorito {}' .format(self.user.username, self.post.text)
+        return '{}' .format(self.id)
 
     def serialize(self):
         return {
