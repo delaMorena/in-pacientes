@@ -9,7 +9,7 @@ import cloudinary
 import cloudinary.uploader
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
-from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows
+from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, UserImage
 from api.utils import generate_sitemap, APIException
 
 
@@ -755,29 +755,22 @@ def handle_list_all_associations():
 @api.route("/upload", methods=["POST"])
 def handle_upload_profile_picture():
 
-    # user = authorized_user()
+    payload = request.files
+
+    if 'profile_image' not in payload:
+        raise APIException("No image to upload")
 
     
-    # files = request.files
-    # print(files)
-    result = cloudinary.uploader.upload(request.files['profile_image'],
-    public_id=f'In-pacientes/profile/sample_img'
-    # crop='limit',
-    #     width=450,
-    #     height=450,
-    #     eager=[{
-    #         'width': 200, 'height': 200,
-    #         'crop': 'thumb', 'gravity': 'face',
-    #         'radius': 100
-    #     },
-    #     ],
-    #     tags=['profile_picture']
-    )
-    # print(result['secure_url'])
-    user.avatar = result['secure_url']
+    result = cloudinary.uploader.upload(payload['profile_image'],
+    public_id=f'In-pacientes/profile/sample_img')
+    print(result['secure_url'])
+    # user.avatar = result['secure_url']
+   
+    ## encontrar una forma de acertar con el user
 
+    user.avatar = result['secure_url']
     db.session.add(user)
-    db.session.commit(user)
+    db.session.commit()
 
     return jsonify("Todo bien"), 200
 

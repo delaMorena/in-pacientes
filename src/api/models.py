@@ -52,6 +52,21 @@ class Users(db.Model):
             # al probar en insomnia me daba error porque es campo nullable = False
         }
 
+class UserImage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, ForeignKey('users.id')) 
+    url = db.Column(db.String(255), unique=True, nullable=False)
+
+    user_profile_image = db.relationship("Users")
+
+    def __repr__(self):
+        return '<Image %r>' % self.id
+
+    def serialize(self):
+        return {
+            "url": self.url,
+            "id": self.id
+        }
 
 class Diseases(db.Model):
     id = db.Column(db.Integer, primary_key=True)
