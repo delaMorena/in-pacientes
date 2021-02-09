@@ -7,7 +7,7 @@ import hmac
 import jwt
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
-from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows
+from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Favorites
 from api.utils import generate_sitemap, APIException
 
 
@@ -716,12 +716,11 @@ def handle_create_role_for_disease():
         if field not in payload or payload[field] is None:
             abort(400)
 
-    # donation = Donations(**payload)
     relation = Relationships(**payload)
 
     db.session.add(relation)
     db.session.commit()
-    print(relation.serialize())
+   
     return jsonify(relation.serialize()), 201
 
 
@@ -749,3 +748,65 @@ def handle_list_all_associations():
     #     return "User not found", 404
 
     return get_all_from_models(Associations)
+
+
+####################################### Favorites ################################################
+
+@api.route("/favorites", methods=["GET"])
+def handle_list_favorites():
+
+    return get_all_from_models(Favorites)
+
+    # user = authorized_user()
+
+    # favorite_list = []
+    # favorite_posts = Favorites.query.filter_by(user_id=user.id, deleted_at=None).all()
+
+    # for item in favorite_posts:
+    #     favorite_list.append(item.serialize())
+
+    # return jsonify(favorite_list), 200
+
+    # user = authorized_user()
+    # list_diseases_follow = []
+    # follow_by_user = Follows.query.filter_by(user_id=user.id, deleted_at=None).all()
+
+    # for follow in follow_by_user:
+    #     list_diseases_follow.append(follow.serialize())
+
+    # return jsonify(list_diseases_follow), 200
+
+
+@api.route("/favorites", methods=["POST"])
+def handle_create_role_for_disease():
+
+    user = authorized_user()
+    if not user:
+        return "User not found", 404
+
+    payload = request.get_json()
+    payload['user_id'] = user.id
+
+    required = ['user_id', 'disease_id']
+
+    types = {
+        'user_id': int,
+        'disease_id': int
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
+
+    favorite = Relationships(**payload)
+    # relation = Relationships(**payload)
+
+    db.session.add(favorite)
+    db.session.commit()
+   
+    return jsonify(favorite.serialize()), 201

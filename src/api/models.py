@@ -235,6 +235,28 @@ class Follows(db.Model):
         }
 
 
+class Favorites(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, ForeignKey('posts.id'))
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
+    deleted_at = db.Column(db.DateTime)
+
+    user = db.relationship("Users")
+    post = db.relationship("Posts")
+
+    def __str__(self):
+        return 'El usuario {} tiene como favorito {}' .format(self.user.username, self.post.text)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user.serialize(),
+            "post": self.post.serialize()
+        }
+
+
 # class Relationships(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     user_id = db.Column(db.Integer, ForeignKey('users.id'))
