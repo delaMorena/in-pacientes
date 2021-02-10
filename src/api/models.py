@@ -64,8 +64,9 @@ class UserImage(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "url": self.url,
-            "id": self.id
+            "user": self.user.username
         }
 
 class Diseases(db.Model):

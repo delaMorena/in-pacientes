@@ -118,11 +118,11 @@ export const Navbar = () => {
 								Publicaciones
 							</Link>
 						</li>
-						<li className="nav-item">
+						{/* <li className="nav-item">
 							<Link className="nav-link" to="/about-us">
 								Quienes somos
 							</Link>
-						</li>
+						</li> */}
 						<li className="nav-item dropdown color-username">
 							<a
 								className="nav-link dropdown-toggle color-username"

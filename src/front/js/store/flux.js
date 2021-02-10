@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
-=======
-const baseUrl = "https://3001-abccaf8a-a522-4c71-8d6c-13d8fcfb2b10.ws-eu03.gitpod.io/api";
->>>>>>> 585d3f803981da8b36c7b3f9564475ed9ca6416e
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");

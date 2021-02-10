@@ -163,37 +163,37 @@ def login():
     # print(user.serialize())
     return jsonify({"token": token}), 201
 
-@api.route("/users", methods=["PUT"])
-def handle_update_user():
+# @api.route("/users", methods=["PUT"])
+# def handle_update_user():
 
-    user = authorized_user()
+#     user = authorized_user()
 
-    user.id
+#     user.id
 
-    if not user or user.deleted_at is not None:
-        return "User not found", 404
+#     if not user or user.deleted_at is not None:
+#         return "User not found", 404
 
-    payload = request.get_json()
+#     payload = request.get_json()
 
-    if "first_name" in payload:
-        user.first_name = payload["first_name"]
+#     if "first_name" in payload:
+#         user.first_name = payload["first_name"]
 
-    if "last_name" in payload:
-        user.last_name = payload["last_name"]
+#     if "last_name" in payload:
+#         user.last_name = payload["last_name"]
 
-    if "email" in payload:
-        user.email = payload["email"]
+#     if "email" in payload:
+#         user.email = payload["email"]
 
-    if "username" in payload:
-        user.username = payload["username"]
+#     if "username" in payload:
+#         user.username = payload["username"]
 
-    if "avatar" in payload:
-        user.avatar = payload["avatar"]
+#     if "avatar" in payload:
+#         user.avatar = payload["avatar"]
 
-    db.session.add(user)
-    db.session.commit()
+#     db.session.add(user)
+#     db.session.commit()
 
-    return jsonify(user.serialize()), 200
+#     return jsonify(user.serialize()), 200
 
 
 @api.route("/users/<int:id>", methods=["DELETE"])
@@ -750,7 +750,7 @@ def handle_list_all_associations():
 
 
 
-################ upload files
+############### upload files
 
 @api.route("/upload", methods=["POST"])
 def handle_upload_profile_picture():
@@ -764,16 +764,13 @@ def handle_upload_profile_picture():
     result = cloudinary.uploader.upload(payload['profile_image'],
     public_id=f'In-pacientes/profile/sample_img')
     print(result['secure_url'])
-    # user.avatar = result['secure_url']
+    
    
-    ## encontrar una forma de acertar con el user
-
-    user.avatar = result['secure_url']
-    db.session.add(user)
-    db.session.commit()
+    
 
     return jsonify("Todo bien"), 200
 
-    
 
-    
+
+
+
