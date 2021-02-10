@@ -765,16 +765,14 @@ def handle_list_favorites():
     for item in favorite_posts:
         favorite_list.append(item.serialize())
 
-    return jsonify(favorite_list), 200
+    def content_post(item):
+        return item["post"]
 
-    # user = authorized_user()
-    # list_diseases_follow = []
-    # follow_by_user = Follows.query.filter_by(user_id=user.id, deleted_at=None).all()
+    new_list = list(map(content_post, favorite_list))
 
-    # for follow in follow_by_user:
-    #     list_diseases_follow.append(follow.serialize())
-
-    # return jsonify(list_diseases_follow), 200
+    print(new_list)
+    
+    return jsonify(new_list), 200
 
 
 @api.route("/favorites", methods=["POST"])
@@ -801,13 +799,25 @@ def handle_add_favorite():
         if field not in payload or payload[field] is None:
             abort(400)
 
-
     favorite = Favorites(**payload)
-    # relation = Relationships(**payload)
-
     
-
     db.session.add(favorite)
     db.session.commit()
    
     return jsonify(favorite.serialize()), 201
+
+
+# @api.route("/temppost/<int:id>", methods=["DELETE"])
+# def handle_delete_user(id):
+#     user = Users.query.filter_by(id=id, deleted_at=None).first()
+
+#     if not user:
+#         return "User not found", 404
+
+#     user.deleted_at = datetime.datetime.utcnow()
+
+#     db.session.add(user)
+#     db.session.commit()
+
+#     return jsonify(user.serialize()), 200
+#     # return delete_one_from_models(Users) 

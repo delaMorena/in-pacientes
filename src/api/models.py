@@ -250,8 +250,8 @@ class Favorites(db.Model):
     post = db.relationship("Posts")
 
     def __str__(self):
-        # return 'El usuario {} tiene como favorito {}' .format(self.user.username, self.post.text)
-        return '{}' .format(self.id)
+        return 'El usuario {} tiene como favorito {}' .format(self.user.username, self.post.id)
+        # return '{}' .format(self.id)
 
     def serialize(self):
         return {

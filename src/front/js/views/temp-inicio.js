@@ -175,6 +175,31 @@ export const TempInicio = () => {
 		}
 	};
 
+	const showContentFavorites = () => {
+		const showFavorites = store.favorites.map((post, index) => {
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
+		});
+
+		if (store.favorites.length == 0) {
+			return (
+				<div className="row my-3 box-empty-feed mx-1">
+					<div className="col-12 text-center">
+						<h3>Aun no hay nada en favorito</h3>
+					</div>
+					<div className="col-12 text-center">
+						<p>¡marca como favorita alguna publicación!</p>
+					</div>
+				</div>
+			);
+		} else {
+			return showFavorites;
+		}
+	};
+
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
@@ -248,7 +273,7 @@ export const TempInicio = () => {
 								<div className="row box-content-inicio">
 									<div className="col-12">
 										<ul
-											className="nav nav-pills mt-3 d-flex justify-content-around"
+											className="nav nav-pills mt-3 d-flex justify-content-between"
 											id="pills-tab"
 											role="tablist">
 											<li className="nav-item" role="presentation">
@@ -276,6 +301,19 @@ export const TempInicio = () => {
 													Mis publicaciones
 												</a>
 											</li>
+
+											<li className="nav-item" role="presentation">
+												<a
+													className="nav-link"
+													id="pills-profile-tab"
+													data-toggle="pill"
+													href="#post-fav"
+													role="tab"
+													aria-controls="pills-profile"
+													aria-selected="false">
+													Mis favoritos
+												</a>
+											</li>
 										</ul>
 									</div>
 									<div className="col-12">
@@ -293,6 +331,13 @@ export const TempInicio = () => {
 												role="tabpanel"
 												aria-labelledby="pills-home-tab">
 												{showContentUserPost()}
+											</div>
+											<div
+												className="tab-pane fade"
+												id="post-fav"
+												role="tabpanel"
+												aria-labelledby="pills-home-tab">
+												{showContentFavorites()}
 											</div>
 										</div>
 									</div>
