@@ -163,37 +163,37 @@ def login():
     # print(user.serialize())
     return jsonify({"token": token}), 201
 
-# @api.route("/users", methods=["PUT"])
-# def handle_update_user():
+@api.route("/users", methods=["PUT"])
+def handle_update_user():
 
-#     user = authorized_user()
+    user = authorized_user()
 
-#     user.id
+    user.id
 
-#     if not user or user.deleted_at is not None:
-#         return "User not found", 404
+    if not user or user.deleted_at is not None:
+        return "User not found", 404
 
-#     payload = request.get_json()
+    payload = request.get_json()
 
-#     if "first_name" in payload:
-#         user.first_name = payload["first_name"]
+    if "first_name" in payload:
+        user.first_name = payload["first_name"]
 
-#     if "last_name" in payload:
-#         user.last_name = payload["last_name"]
+    if "last_name" in payload:
+        user.last_name = payload["last_name"]
 
-#     if "email" in payload:
-#         user.email = payload["email"]
+    if "email" in payload:
+        user.email = payload["email"]
 
-#     if "username" in payload:
-#         user.username = payload["username"]
+    if "username" in payload:
+        user.username = payload["username"]
 
-#     if "avatar" in payload:
-#         user.avatar = payload["avatar"]
+    if "avatar" in payload:
+        user.avatar = payload["avatar"]
 
-#     db.session.add(user)
-#     db.session.commit()
+    db.session.add(user)
+    db.session.commit()
 
-#     return jsonify(user.serialize()), 200
+    return jsonify(user.serialize()), 200
 
 
 @api.route("/users/<int:id>", methods=["DELETE"])
@@ -757,13 +757,19 @@ def handle_upload_profile_picture():
 
     payload = request.files
 
-    if 'profile_image' not in payload:
+    if 'avatar' not in payload:
         raise APIException("No image to upload")
 
-    
-    result = cloudinary.uploader.upload(payload['profile_image'],
+    # user_avatar = UserImage.query.filter_by(user_id=id).first()
+    result = cloudinary.uploader.upload(payload['avatar'],
     public_id=f'In-pacientes/profile/sample_img')
     print(result['secure_url'])
+
+    # user_avatar.url= result['secure_url']
+
+    # db.session.add(user_avatar)
+    # db.session.commit()
+    ## Me gustaría poder hacer un PUT a /users cuando el usuario está autentificado 
     
    
     

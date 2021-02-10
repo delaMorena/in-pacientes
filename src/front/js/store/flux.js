@@ -54,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const endpoint = `${baseUrl}/upload`;
 				const method = "POST";
 				const formData = new FormData();
-				formData.append("profile_image", files[0]);
+				formData.append("avatar", files[0]);
 				console.log("body: ", formData, files[0]);
 				const config = {
 					method: method,
