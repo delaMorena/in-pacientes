@@ -564,19 +564,19 @@ def handle_feed():
     if not user:
         abort(404)
 
-    newList = []
+    new_list = []
     
     post_list = Follows.query.filter_by(user_id=user.id, deleted_at=None).all()
 
     for item in post_list:
         for post in item.disease.posts:
-            newList.append(post.serialize())
+            new_list.append(post.serialize())
 
     
-    newList.sort(key=lambda x: x.get("updated_at"),reverse=True)
+    new_list.sort(key=lambda x: x.get("updated_at"),reverse=True)
    
    
-    return jsonify(newList), 201
+    return jsonify(new_list), 201
 
 @api.route("/diseases/<int:disease_id>/follows", methods=["GET"])
 def handle_get_follow_by_disease(disease_id):
@@ -770,7 +770,7 @@ def handle_list_favorites():
 
     new_list = list(map(content_post, favorite_list))
 
-    print(new_list)
+    new_list.sort(key=lambda x: x.get("updated_at"),reverse=True)
     
     return jsonify(new_list), 200
 
