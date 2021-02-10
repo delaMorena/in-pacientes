@@ -762,6 +762,8 @@ def handle_list_favorites():
     favorite_list = []
     favorite_posts = Favorites.query.filter_by(user_id=user.id, deleted_at=None).all()
 
+    
+
     for item in favorite_posts:
         favorite_list.append(item.serialize())
 
