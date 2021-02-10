@@ -50,6 +50,10 @@ export const TempPost = () => {
 		alert("esta pasando algo");
 	};
 
+	const DeleteFavorites = event => {
+		actions.deleteFavorite(params.id);
+	};
+
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
@@ -87,7 +91,14 @@ export const TempPost = () => {
 					<div className="col-12">
 						<div className="row">
 							<button type="button" className="btn btn-info" onClick={AddPostFavorites}>
-								Seguir
+								Marcar como favorito
+							</button>
+						</div>
+					</div>
+					<div className="col-12">
+						<div className="row">
+							<button type="button" className="btn btn-warning" onClick={DeleteFavorites}>
+								Eliminar de favorito
 							</button>
 						</div>
 					</div>

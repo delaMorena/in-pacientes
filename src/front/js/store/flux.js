@@ -434,6 +434,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(data);
 					})
 					.catch(error => console.error("error: ", error));
+			},
+			deleteFavorite(id) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/temppost/${id}`;
+				const method = "DELETE";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log("eliminado de favoritos: ", data);
+						// setStore({ oneDisease: data });
+						// console.log("info enfermedad", store.oneDisease);
+						// console.log(store.token);
+					});
 			}
 		}
 	};

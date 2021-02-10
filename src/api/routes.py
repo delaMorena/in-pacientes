@@ -809,17 +809,28 @@ def handle_add_favorite():
     return jsonify(favorite.serialize()), 201
 
 
-# @api.route("/temppost/<int:id>", methods=["DELETE"])
-# def handle_delete_user(id):
-#     user = Users.query.filter_by(id=id, deleted_at=None).first()
+@api.route("/temppost/<int:id>", methods=["DELETE"])
+def handle_delete_fav(id):
 
-#     if not user:
-#         return "User not found", 404
+    user = authorized_user()
 
-#     user.deleted_at = datetime.datetime.utcnow()
+    if not user:
+        return "User not found", 404
 
-#     db.session.add(user)
-#     db.session.commit()
+    post = Favorites.query.filter_by(post_id=id, user_id=user.id).first()
 
-#     return jsonify(user.serialize()), 200
-#     # return delete_one_from_models(Users) 
+    print(post)
+
+    if not post:
+        abort(404)
+        
+    post.deleted_at = datetime.datetime.utcnow()
+
+    db.session.add(post)
+    db.session.commit()
+
+    # db.session.delete(post)
+    # db.session.commit()
+
+    return jsonify(post.serialize()), 200
+     
