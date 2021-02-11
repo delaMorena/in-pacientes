@@ -16,6 +16,8 @@ export const Follow = () => {
 		actions.getDiseases();
 	}, []);
 
+	console.log("enfermedades: ", store.diseases);
+
 	const diseasesOption = store.diseases.map((disease, index) => {
 		return (
 			<option key={index} value={disease.id}>

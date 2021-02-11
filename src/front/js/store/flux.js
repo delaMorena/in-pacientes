@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-aquamarine-lemming-opeworpk.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-scarlet-yak-c9eseey7.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -273,8 +273,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("error: ", error));
 			},
-			async createComment(input) {
+			createComment(input) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/comments`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
@@ -291,10 +292,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						text: input.comment
 					})
 				};
-				await fetch(endpoint, config)
+				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
 						// console.log(data);
+						actions.getOnePost(input.postId);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -413,6 +415,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFavortites(input) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/favorites`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
@@ -432,11 +435,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						console.log(data);
+						actions.getFavorites();
 					})
 					.catch(error => console.error("error: ", error));
 			},
 			deleteFavorite(id) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/temppost/${id}`;
 				const method = "DELETE";
 				const headers = { "Content-Type": "application/json" };
@@ -453,6 +458,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						console.log("eliminado de favoritos: ", data);
+						actions.getFavorites();
 						// setStore({ oneDisease: data });
 						// console.log("info enfermedad", store.oneDisease);
 						// console.log(store.token);

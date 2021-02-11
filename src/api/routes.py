@@ -755,14 +755,10 @@ def handle_list_all_associations():
 @api.route("/favorites", methods=["GET"])
 def handle_list_favorites():
 
-    # return get_all_from_models(Favorites)
-
     user = authorized_user()
 
     favorite_list = []
     favorite_posts = Favorites.query.filter_by(user_id=user.id, deleted_at=None).all()
-
-    
 
     for item in favorite_posts:
         favorite_list.append(item.serialize())
@@ -824,13 +820,13 @@ def handle_delete_fav(id):
     if not post:
         abort(404)
         
-    post.deleted_at = datetime.datetime.utcnow()
+    # post.deleted_at = datetime.datetime.utcnow()
 
-    db.session.add(post)
-    db.session.commit()
-
-    # db.session.delete(post)
+    # db.session.add(post)
     # db.session.commit()
+
+    db.session.delete(post)
+    db.session.commit()
 
     return jsonify(post.serialize()), 200
      
