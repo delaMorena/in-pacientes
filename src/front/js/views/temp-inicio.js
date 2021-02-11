@@ -173,7 +173,7 @@ export const TempInicio = () => {
 								<div className="row align-items-center mt-3">
 									<Link to={`/upload/${store.user.id}`}>
 										<div className="col-md-6 box-user-image text-center">
-											<img src="https://picsum.photos/800/800?random=1" alt="user-pic" />
+											<img src={store.user.avatar} alt="user-pic" />
 										</div>
 									</Link>
 									<div className="col-md-6 box-user-image text-center">
