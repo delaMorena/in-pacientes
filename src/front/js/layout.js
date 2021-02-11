@@ -93,7 +93,7 @@ const Layout = () => {
 						<Route exact path="/temp">
 							<TempInicio />
 						</Route>
-						<Route exact path="/upload">
+						<Route exact path="/upload/:id">
 							<Upload />
 						</Route>
 						<Route>

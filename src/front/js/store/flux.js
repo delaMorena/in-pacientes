@@ -49,16 +49,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("error: ", error));
 			},
-			uploadProfilePicture(files) {
+			uploadProfilePicture(files, id) {
 				const store = getStore();
-				const endpoint = `${baseUrl}/upload`;
+				const endpoint = `${baseUrl}/upload/${id}`;
 				const method = "POST";
 				const formData = new FormData();
 				formData.append("avatar", files[0]);
 				console.log("body: ", formData, files[0]);
+				const headers = { Authorization: `Bearer ${store.token}` };
+
 				const config = {
 					method: method,
-					body: formData
+					body: formData,
+					headers: headers
 				};
 
 				fetch(endpoint, config)

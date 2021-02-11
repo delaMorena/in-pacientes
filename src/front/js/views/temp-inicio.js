@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+// import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { NoToken } from "../component/no-token";
 import { CardPost } from "../component/card-post";
@@ -10,6 +11,7 @@ export const TempInicio = () => {
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
 	const [diseaseId, setDiseaseId] = useState();
+	// const { id } = props;
 
 	useEffect(() => {
 		actions.getFeed();
@@ -169,9 +171,11 @@ export const TempInicio = () => {
 						<div className="row mx-1 box-user-inicio mt-3">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
-									<div className="col-md-6 box-user-image text-center">
-										<img src="https://picsum.photos/800/800?random=1" alt="user-pic" />
-									</div>
+									<Link to={`/upload/${store.user.id}`}>
+										<div className="col-md-6 box-user-image text-center">
+											<img src="https://picsum.photos/800/800?random=1" alt="user-pic" />
+										</div>
+									</Link>
 									<div className="col-md-6 box-user-image text-center">
 										<h5>{store.user.username}</h5>
 									</div>
@@ -289,3 +293,7 @@ export const TempInicio = () => {
 		);
 	}
 };
+
+// TempInicio.propTypes = {
+// 	id: PropTypes.number
+// };

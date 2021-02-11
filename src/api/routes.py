@@ -752,24 +752,24 @@ def handle_list_all_associations():
 
 ############### upload files
 
-@api.route("/upload", methods=["POST"])
-def handle_upload_profile_picture():
-
+@api.route("/upload/<int:id>", methods=["POST"])
+def handle_upload_profile_picture(id):
+    print(id)
     payload = request.files
 
     if 'avatar' not in payload:
         raise APIException("No image to upload")
 
-    # user_avatar = UserImage.query.filter_by(user_id=id).first()
+    user = authorized_user()
+    print(user)
     result = cloudinary.uploader.upload(payload['avatar'],
-    public_id=f'In-pacientes/profile/sample_img')
+    public_id=f'In-pacientes/profile/{user.username}')
     print(result['secure_url'])
 
-    # user_avatar.url= result['secure_url']
+    user.avatar = result['secure_url']
 
-    # db.session.add(user_avatar)
-    # db.session.commit()
-    ## Me gustaría poder hacer un PUT a /users cuando el usuario está autentificado 
+    db.session.commit()
+    
     
    
     
