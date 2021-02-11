@@ -7,7 +7,7 @@ import "../../styles/post.scss";
 
 export const TempPost = () => {
 	const { store, actions } = useContext(Context);
-	const [comment, setComment] = useState("tu putisima madre");
+	const [comment, setComment] = useState("");
 	const params = useParams();
 
 	useEffect(() => {
@@ -16,31 +16,20 @@ export const TempPost = () => {
 	}, []);
 
 	const IsFavorite = () => {
-		let i;
 		const oneItem = store.post;
 		const listItem = store.favorites;
 
 		if (listItem.length == 0) {
-			return (
-				<button type="button" className="btn btn-warning" onClick={AddPostFavorites}>
-					Marcar como favorito
-				</button>
-			);
-		} else {
-			for (i = 0; i < listItem.length; i++) {
-				if (listItem[i]["id"] === oneItem["id"]) {
-					return (
-						<button type="button" className="btn btn-danger" onClick={DeleteFavorites}>
-							Eliminar de favorito
-						</button>
-					);
-				} else {
-					return (
-						<button type="button" className="btn btn-warning" onClick={AddPostFavorites}>
-							Marcar como favorito
-						</button>
-					);
-				}
+			return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
+		}
+
+		let i;
+
+		for (i = 0; i < listItem.length; i++) {
+			if (listItem[i]["id"] === oneItem["id"]) {
+				return <i className="fas fa-bookmark fa-2x post-cursor-click" onClick={DeleteFavorites} />;
+			} else {
+				return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
 			}
 		}
 	};
@@ -59,11 +48,11 @@ export const TempPost = () => {
 	const showComments = () => {
 		const postComments = store.comments.map((comment, index) => {
 			return (
-				<div className="row" key={index}>
+				<div className="row my-1" key={index}>
 					<div className="col-12">
-						<h5>{comment.user}</h5>
+						<p className="font-weight-bolder">{comment.user}</p>
 						<p>{comment.text}</p>
-						<p>{comment.created_at}</p>
+						<p className="text-muted">{comment.created_at}</p>
 					</div>
 				</div>
 			);
@@ -126,13 +115,26 @@ export const TempPost = () => {
 						</div>
 					</div>
 					<div className="col-12 mt-3">
-						<div className="row justify-content-center my-3">
+						<div className="row justify-content-center mt-3">
 							<div className="col-8">
 								<p>{store.post.text}</p>
 							</div>
 						</div>
 					</div>
-
+					<div className="col-12">
+						<div className="row justify-content-center">
+							<div className="col-8">
+								<hr className="post-divisor-line" />
+							</div>
+						</div>
+					</div>
+					<div className="col-12">
+						<div className="row justify-content-center mt-1">
+							<div className="col-8">
+								<h3 className="font-weight-bolder">Comentarios</h3>
+							</div>
+						</div>
+					</div>
 					<div className="col-12">
 						<div className="row justify-content-center">
 							<div className="col-8">{showComments()}</div>
@@ -140,11 +142,11 @@ export const TempPost = () => {
 					</div>
 					<div className="col-12">
 						<div className="row justify-content-center">
-							<div className="col-8">
+							<div className="col-8 text-center">
 								<form className="form-size-post">
 									<div className="form-group">
 										<textarea
-											className="form-control"
+											className="form-control post-textarea-style"
 											placeholder="Escribe tu comentario..."
 											rows="3"
 											value={comment}
@@ -152,7 +154,7 @@ export const TempPost = () => {
 										/>
 									</div>
 								</form>
-								<button type="button" className="btn btn-info ml-1" onClick={SendComment}>
+								<button type="button" className="btn post-button-comment" onClick={SendComment}>
 									Comentar
 								</button>
 							</div>
