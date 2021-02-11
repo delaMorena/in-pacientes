@@ -1,6 +1,6 @@
 .box-user-inicio {
     background-color: #c8c8c8;
-    height: auto;
+    height: 218px;
     border-radius: 5px;
 }
 
@@ -69,4 +69,8 @@
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
+}
+
+.inicio-divisor-line{
+    border-top: 1px solid black
 }

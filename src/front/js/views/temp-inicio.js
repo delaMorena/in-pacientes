@@ -207,17 +207,19 @@ export const TempInicio = () => {
 			<div className="container">
 				<div className="row mb-3">
 					<div className="col-xl-4">
-						<div className="row mx-1 box-user-inicio mt-3">
+						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
-								<div className="row align-items-center mt-3">
-									<div className="col-md-6 box-user-image text-center">
-										<img src="https://picsum.photos/800/800?random=1" alt="user-pic" />
-									</div>
-									<div className="col-md-6 box-user-image text-center">
-										<h5>{store.user.username}</h5>
-									</div>
+								<div className="row box-user-image justify-content-center">
+									<img src="https://picsum.photos/800/800?random=1" alt="user-pic" />
 								</div>
 							</div>
+							<div className="col-12">
+								<div className="row box-user-image justify-content-center">
+									<h5>{store.user.username}</h5>
+								</div>
+							</div>
+						</div>
+						<div className="row mx-1 mt-3">
 							<div className="col-12">
 								<div className="row my-3 py-2 mx-1 list-user-inicio">{showFollows()}</div>
 							</div>
