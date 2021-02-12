@@ -5,9 +5,12 @@ import datetime
 import hashlib
 import hmac
 import jwt
+import cloudinary
+import cloudinary.uploader
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
-from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Favorites
+from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Favorites, UserImage
+
 from api.utils import generate_sitemap, APIException
 
 
@@ -830,3 +833,34 @@ def handle_delete_fav(id):
 
     return jsonify(post.serialize()), 200
      
+
+############### upload files
+
+@api.route("/upload/<int:id>", methods=["POST"])
+def handle_upload_profile_picture(id):
+    print(id)
+    payload = request.files
+
+    if 'avatar' not in payload:
+        raise APIException("No image to upload")
+
+    user = authorized_user()
+    print(user)
+    result = cloudinary.uploader.upload(payload['avatar'],
+    public_id=f'In-pacientes/profile/{user.username}')
+    print(result['secure_url'])
+
+    user.avatar = result['secure_url']
+
+    db.session.commit()
+    
+    
+   
+    
+
+    return jsonify("Todo bien"), 200
+
+
+
+
+

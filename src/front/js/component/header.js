@@ -5,7 +5,7 @@ import "../../styles/header.scss";
 
 export const Header = props => {
 	const { store, actions } = useContext(Context);
-	const { itemName, qtyPost } = props;
+	const { itemName, qtyPost, profilePicture } = props;
 
 	// useEffect(() => {
 	// 	actions.getPostUser();
@@ -17,7 +17,7 @@ export const Header = props => {
 		<div className="card my-3 bg-light" id="styleHeader">
 			<div className="row no-gutters align-items-center">
 				<div className="col-4">
-					<img src="https://source.unsplash.com/random/125x150" className="card-img" alt="avatar" />
+					<img src={profilePicture} className="card-img" alt="avatar" />
 				</div>
 				<div className="col-8 text-center">
 					<div className="card-body">
@@ -31,5 +31,6 @@ export const Header = props => {
 };
 Header.propTypes = {
 	itemName: PropTypes.string,
-	qtyPost: PropTypes.number
+	qtyPost: PropTypes.number,
+	profilePicture: PropTypes.number
 };

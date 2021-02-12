@@ -5,7 +5,7 @@
 .sign-up-img {
     width: 100%;
     height: auto;
-    margin: 10px;
+    margin: 60px 30px 20px 0px;
 }
 //  input[type=text] {
 //   width: 100%;
@@ -22,14 +22,14 @@
     // margin: px 0px 0px 0px;
     box-sizing: border-box;
 }  
-// .style-label {
-//     margin-bottom: 0px ;
-// }
+.style-label {
+    margin: 15px 0px;
+}
 ::placeholder {
     font-size: 15px;
 }
 .form-group {
-    margin: 5px ;
+    margin: 10px ;
 }
 .register-button-style {
     background-color:  white;

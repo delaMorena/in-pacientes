@@ -113,7 +113,11 @@ export const Profile = () => {
 							<h2>Datos del usuario</h2>
 						</div>
 						<div className="row mb-2 justify-content-center">
-							<Header itemName={store.user.username} qtyPost={store.userPosts.length} />
+							<Header
+								itemName={store.user.username}
+								qtyPost={store.userPosts.length}
+								profilePicture={store.user.avatar}
+							/>
 						</div>
 						<div className="row justify-content-center px-3">
 							<h3>Enfermedades seguidas</h3>

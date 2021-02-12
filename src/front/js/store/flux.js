@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-purple-cricket-nnc0ykk7.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -48,6 +48,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 						callback();
 					})
 					.catch(error => console.error("error: ", error));
+			},
+			uploadProfilePicture(files, id) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/upload/${id}`;
+				const method = "POST";
+				const formData = new FormData();
+				formData.append("avatar", files[0]);
+				console.log("body: ", formData, files[0]);
+				const headers = { Authorization: `Bearer ${store.token}` };
+
+				const config = {
+					method: method,
+					body: formData,
+					headers: headers
+				};
+
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => console.log("Bieeeeeen", data))
+					.catch(error => console.log("Error!!!", error));
 			},
 
 			userLogin: async input => {

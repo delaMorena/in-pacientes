@@ -47,15 +47,15 @@ export const Follow = () => {
 				<div className="text-center mt-5">
 					<h1>Escoge una enfermedad y tu relación con ella</h1>
 				</div>
-				<form>
-					<label>Elige la enfermedad que quieres empezar a seguir</label>
+				<form className="style-form-follow ">
+					<label className="style-label-follow">Elige la enfermedad que quieres empezar a seguir</label>
 					<div className="input-group ">
 						<select className="custom-select" onChange={e => setId(e.target.value)}>
 							<option defaultValue>Elige ...</option>
 							{diseasesOption}
 						</select>
 					</div>
-					<label>¿Cuál es tu relación con esta enfermedad?</label>
+					<label className="style-label-follow">¿Cuál es tu relación con esta enfermedad?</label>
 					<div className="input-group">
 						<select className="custom-select" onChange={e => setRole(e.target.value)}>
 							<option defaultValue>Elige ...</option>

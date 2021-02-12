@@ -18,5 +18,8 @@ export const Footer = () => (
 			Made with <i className="fa fa-heart text-danger" /> by Alex {"&"} Marta 2021
 			<a href="http://www.4geeksacademy.com"> 4Geeks Academy</a>
 		</p>
+		<Link className="nav-link" to="/about-us">
+			Quienes somos
+		</Link>
 	</footer>
 );

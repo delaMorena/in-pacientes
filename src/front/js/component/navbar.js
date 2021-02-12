@@ -19,11 +19,9 @@ export const Navbar = () => {
 	if (store.token == null) {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light">
-				<a className="navbar-brand" href="#">
-					<Link to="/">
-						<img src={logonavbar} className="d-inline-block align-top style-logo-navbar" alt="logo" />
-					</Link>
-				</a>
+				<Link className="navbar-brand" to="/">
+					<img src={logonavbar} className="d-inline-block align-top style-logo-navbar" alt="logo" />
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -53,10 +51,24 @@ export const Navbar = () => {
 							</Link>
 						</li>
 						<li className="nav-item">
+							<Link to="/login">
+								<button type="button" className="btn login-button-style">
+									Entrar
+								</button>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/signup">
+								<button type="button" className="btn register-button-style-navbar">
+									Registrarme
+								</button>
+							</Link>
+						</li>
+						{/* <li className="nav-item">
 							<Link className="nav-link" to="/about-us">
 								Quienes somos
 							</Link>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</nav>
@@ -64,11 +76,9 @@ export const Navbar = () => {
 	} else {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
-				<a className="navbar-brand" href="#">
-					<Link to="/">
-						<img src={logonavbar} className="d-inline-block align-top style-logo-navbar" alt="logo" />
-					</Link>
-				</a>
+				<Link className="navbar-brand" to="/">
+					<img src={logonavbar} className="d-inline-block align-top style-logo-navbar" alt="logo" />
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -108,11 +118,11 @@ export const Navbar = () => {
 								Publicaciones
 							</Link>
 						</li>
-						<li className="nav-item">
+						{/* <li className="nav-item">
 							<Link className="nav-link" to="/about-us">
 								Quienes somos
 							</Link>
-						</li>
+						</li> */}
 						<li className="nav-item dropdown color-username">
 							<a
 								className="nav-link dropdown-toggle color-username"
