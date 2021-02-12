@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			post: {},
 			comments: [],
 			feed: [],
-			urlUser: "https://unsplash.com/photos/CUJjR4J_BlM"
+			favorites: []
 		},
 		actions: {
 			logout() {
@@ -266,6 +266,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createPost(input) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/posts`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
@@ -287,11 +288,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						// console.log(data);
+						actions.getFeed();
+						actions.getPostUser();
 					})
 					.catch(error => console.error("error: ", error));
 			},
-			async createComment(input) {
+			createComment(input) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/comments`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
@@ -308,10 +312,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						text: input.comment
 					})
 				};
-				await fetch(endpoint, config)
+				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
 						// console.log(data);
+						actions.getOnePost(input.postId);
 					})
 					.catch(error => console.error("error: ", error));
 			},
@@ -404,6 +409,79 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// console.log(data)
 						setStore({ associations: data });
 						// console.log(store.associations);
+					});
+			},
+			getFavorites() {
+				const store = getStore();
+				const endpoint = `${baseUrl}/favorites`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log("para el feed", data);
+						setStore({ favorites: data });
+						console.log("favoritos: ", store.favorites);
+					});
+			},
+			addFavortites(input) {
+				const store = getStore();
+				const actions = getActions();
+				const endpoint = `${baseUrl}/favorites`;
+				const method = "POST";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers,
+					body: JSON.stringify({
+						post_id: input.postId
+					})
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+						actions.getFavorites();
+					})
+					.catch(error => console.error("error: ", error));
+			},
+			deleteFavorite(id) {
+				const store = getStore();
+				const actions = getActions();
+				const endpoint = `${baseUrl}/temppost/${id}`;
+				const method = "DELETE";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log("eliminado de favoritos: ", data);
+						actions.getFavorites();
+						// setStore({ oneDisease: data });
+						// console.log("info enfermedad", store.oneDisease);
+						// console.log(store.token);
 					});
 			}
 		}

@@ -20,6 +20,7 @@ import { AboutUs } from "./views/about-us";
 import { Bye } from "./views/bye";
 import { Inicio } from "./views/inicio";
 import { TempInicio } from "./views/temp-inicio";
+import { TempPost } from "./views/temp-post";
 import { Upload } from "./views/upload";
 
 import injectContext from "./store/appContext";
@@ -53,6 +54,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/post/:id">
 							<Post />
+						</Route>
+						<Route exact path="/temppost/:id">
+							<TempPost />
 						</Route>
 						<Route exact path="/onedisease/:id">
 							<OneDisease />

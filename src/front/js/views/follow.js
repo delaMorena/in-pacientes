@@ -16,6 +16,8 @@ export const Follow = () => {
 		actions.getDiseases();
 	}, []);
 
+	console.log("enfermedades: ", store.diseases);
+
 	const diseasesOption = store.diseases.map((disease, index) => {
 		return (
 			<option key={index} value={disease.id}>
@@ -24,13 +26,15 @@ export const Follow = () => {
 		);
 	});
 
-	const OnSubmit = e => {
+	const OnSubmit = async e => {
 		const payload = {
 			role: role,
 			diseaseId: parseInt(id)
 		};
 
-		actions.createRole(payload);
+		await actions.createRole(payload);
+		console.log("esto hay que leer: ", payload);
+
 		// console.log("id de enfermedad seleccionada", id);
 		// console.log(payload);
 	};
@@ -54,6 +58,7 @@ export const Follow = () => {
 					<label className="style-label-follow">¿Cuál es tu relación con esta enfermedad?</label>
 					<div className="input-group">
 						<select className="custom-select" onChange={e => setRole(e.target.value)}>
+							<option defaultValue>Elige ...</option>
 							<option value="1">Paciente</option>
 							<option value="2">Investigador</option>
 							<option value="3">Doctor</option>

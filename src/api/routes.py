@@ -9,7 +9,8 @@ import cloudinary
 import cloudinary.uploader
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
-from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, UserImage
+from api.models import db, Users, Diseases, Posts, Comments, Associations, Follows, Favorites, UserImage
+
 from api.utils import generate_sitemap, APIException
 
 
@@ -319,6 +320,8 @@ def handle_list_posts_from_user():
     for post in user.posts:
         posts.append(post.serialize())
         
+    posts.sort(key=lambda x: x.get("updated_at"),reverse=True)
+
     return jsonify(posts), 200
 
 @api.route("/posts/<int:id>", methods=["GET"])
@@ -349,6 +352,8 @@ def handle_list_posts_from_disease(id):
     for post in disease.posts:
         posts.append(post.serialize())
         
+    posts.sort(key=lambda x: x.get("updated_at"),reverse=True)
+
     return jsonify(posts), 200
 
 # GENERAR UN POST
@@ -562,19 +567,19 @@ def handle_feed():
     if not user:
         abort(404)
 
-    newList = []
+    new_list = []
     
     post_list = Follows.query.filter_by(user_id=user.id, deleted_at=None).all()
 
     for item in post_list:
         for post in item.disease.posts:
-            newList.append(post.serialize())
+            new_list.append(post.serialize())
 
     
-    newList.sort(key=lambda x: x.get("updated_at"),reverse=True)
+    new_list.sort(key=lambda x: x.get("updated_at"),reverse=True)
    
    
-    return jsonify(newList), 201
+    return jsonify(new_list), 201
 
 @api.route("/diseases/<int:disease_id>/follows", methods=["GET"])
 def handle_get_follow_by_disease(disease_id):
@@ -714,12 +719,11 @@ def handle_create_role_for_disease():
         if field not in payload or payload[field] is None:
             abort(400)
 
-    # donation = Donations(**payload)
     relation = Relationships(**payload)
 
     db.session.add(relation)
     db.session.commit()
-    print(relation.serialize())
+   
     return jsonify(relation.serialize()), 201
 
 
@@ -749,6 +753,86 @@ def handle_list_all_associations():
     return get_all_from_models(Associations)
 
 
+####################################### Favorites ################################################
+
+@api.route("/favorites", methods=["GET"])
+def handle_list_favorites():
+
+    user = authorized_user()
+
+    favorite_list = []
+    favorite_posts = Favorites.query.filter_by(user_id=user.id, deleted_at=None).all()
+
+    for item in favorite_posts:
+        favorite_list.append(item.serialize())
+
+    def content_post(item):
+        return item["post"]
+
+    new_list = list(map(content_post, favorite_list))
+
+    new_list.sort(key=lambda x: x.get("updated_at"),reverse=True)
+    
+    return jsonify(new_list), 200
+
+
+@api.route("/favorites", methods=["POST"])
+def handle_add_favorite():
+
+    user = authorized_user()
+    if not user:
+        return "User not found", 404
+
+    payload = request.get_json()
+    payload['user_id'] = user.id
+
+    required = ['post_id']
+
+    types = {
+        'post_id': int
+    }
+
+    for key, value in payload.items():
+        if key in types and not isinstance(value, types[key]):
+            abort(400, f"{key} is not {types[key]}")
+    
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(400)
+
+    favorite = Favorites(**payload)
+    
+    db.session.add(favorite)
+    db.session.commit()
+   
+    return jsonify(favorite.serialize()), 201
+
+
+@api.route("/temppost/<int:id>", methods=["DELETE"])
+def handle_delete_fav(id):
+
+    user = authorized_user()
+
+    if not user:
+        return "User not found", 404
+
+    post = Favorites.query.filter_by(post_id=id, user_id=user.id).first()
+
+    print(post)
+
+    if not post:
+        abort(404)
+        
+    # post.deleted_at = datetime.datetime.utcnow()
+
+    # db.session.add(post)
+    # db.session.commit()
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return jsonify(post.serialize()), 200
+     
 
 ############### upload files
 

@@ -18,6 +18,7 @@ export const TempInicio = () => {
 		actions.getPostUser();
 		actions.getUser();
 		actions.getFollow();
+		actions.getFavorites();
 	}, []);
 
 	const OnSubmit = event => {
@@ -26,11 +27,16 @@ export const TempInicio = () => {
 			url: url,
 			diseaseId: parseInt(diseaseId)
 		};
-
 		actions.createPost(payload);
+		// actions.getFeed();
+		// actions.getPostUser();
 		setText("");
 		setUrl("");
-		window.location.reload();
+
+		// actions.createPost(payload);
+		// setText("");
+		// setUrl("");
+		// window.location.reload();
 	};
 
 	const showFollows = () => {
@@ -55,7 +61,7 @@ export const TempInicio = () => {
 		const listFollows = store.follows.map((follow, index) => {
 			return (
 				<tr key={index}>
-					<td>{follow.disease.title}</td>
+					<td className="text-left">{follow.disease.title}</td>
 					<td>{convRol(follow.role)}</td>
 				</tr>
 			);
@@ -108,7 +114,11 @@ export const TempInicio = () => {
 
 	const showContentFeed = () => {
 		const showFeedPost = store.feed.map((post, index) => {
-			return <CardPost key={index} post={post} />;
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
 		});
 
 		if (store.feed.length == 0 && store.follows.length != 0) {
@@ -129,9 +139,11 @@ export const TempInicio = () => {
 						<h3>Aun no sigues ninguna enfermedad</h3>
 					</div>
 					<div className="col-12 text-center">
-						<button type="button" className="btn btn-info">
-							Seguir
-						</button>
+						<Link to="/follow">
+							<button type="button" className="btn btn-info">
+								Seguir
+							</button>
+						</Link>
 					</div>
 				</div>
 			);
@@ -142,7 +154,11 @@ export const TempInicio = () => {
 
 	const showContentUserPost = () => {
 		const showUserPost = store.userPosts.map((post, index) => {
-			return <CardPost key={index} post={post} />;
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
 		});
 
 		if (store.userPosts.length == 0) {
@@ -161,6 +177,31 @@ export const TempInicio = () => {
 		}
 	};
 
+	const showContentFavorites = () => {
+		const showFavorites = store.favorites.map((post, index) => {
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
+		});
+
+		if (store.favorites.length == 0) {
+			return (
+				<div className="row my-3 box-empty-feed mx-1">
+					<div className="col-12 text-center">
+						<h3>Aun no hay nada en favorito</h3>
+					</div>
+					<div className="col-12 text-center">
+						<p>¡marca como favorita alguna publicación!</p>
+					</div>
+				</div>
+			);
+		} else {
+			return showFavorites;
+		}
+	};
+
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
@@ -168,7 +209,7 @@ export const TempInicio = () => {
 			<div className="container">
 				<div className="row mb-3">
 					<div className="col-xl-4">
-						<div className="row mx-1 box-user-inicio mt-3">
+						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
 									<Link to={`/upload/${store.user.id}`}>
@@ -181,6 +222,8 @@ export const TempInicio = () => {
 									</div>
 								</div>
 							</div>
+						</div>
+						<div className="row mx-1 mt-3">
 							<div className="col-12">
 								<div className="row my-3 py-2 mx-1 list-user-inicio">{showFollows()}</div>
 							</div>
@@ -236,7 +279,7 @@ export const TempInicio = () => {
 								<div className="row box-content-inicio">
 									<div className="col-12">
 										<ul
-											className="nav nav-pills mt-3 d-flex justify-content-around"
+											className="nav nav-pills mt-3 d-flex justify-content-between"
 											id="pills-tab"
 											role="tablist">
 											<li className="nav-item" role="presentation">
@@ -264,6 +307,19 @@ export const TempInicio = () => {
 													Mis publicaciones
 												</a>
 											</li>
+
+											<li className="nav-item" role="presentation">
+												<a
+													className="nav-link"
+													id="pills-profile-tab"
+													data-toggle="pill"
+													href="#post-fav"
+													role="tab"
+													aria-controls="pills-profile"
+													aria-selected="false">
+													Mis favoritos
+												</a>
+											</li>
 										</ul>
 									</div>
 									<div className="col-12">
@@ -281,6 +337,13 @@ export const TempInicio = () => {
 												role="tabpanel"
 												aria-labelledby="pills-home-tab">
 												{showContentUserPost()}
+											</div>
+											<div
+												className="tab-pane fade"
+												id="post-fav"
+												role="tabpanel"
+												aria-labelledby="pills-home-tab">
+												{showContentFavorites()}
 											</div>
 										</div>
 									</div>

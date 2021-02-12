@@ -1,4 +1,69 @@
-#post-width {
-    width: 70%;;
+.post-img img{
+    width: 1140px;
+    height: 600px;
+    border-radius: 3px;
 }
 
+.filter-img-text {
+    position: absolute;
+    top: 0;
+    height: 175px;
+    width: 100%;
+    border-radius: 3px;
+    // background-color: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0));
+}
+
+.text-up-image {
+    color: white;
+    width: 100%;
+    position: absolute;
+    top: 20px;
+    // text-shadow: 1px 1px black;
+}
+
+.text-up-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+}
+
+.form-size-post {
+    width: 100%;
+    margin: 0;
+}
+
+.post-cursor-click {
+    cursor: pointer;
+}
+
+.post-divisor-line{
+    border-top: 1px solid black
+}
+
+.post-textarea-style {
+    background-color: #efefef;
+    border: none;
+    box-shadow: 0px 0px 20px #d1d1d1;
+}
+
+.post-textarea-style::placeholder {
+    color: black;
+}
+
+.post-button-comment {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 25px 0px 0px 15px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
+
+.post-button-comment:hover {
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
+}

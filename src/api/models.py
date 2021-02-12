@@ -30,6 +30,8 @@ class Users(db.Model):
 
     diseases = db.relationship("Diseases")
     posts = db.relationship("Posts")
+    favorites = db.relationship("Favorites")
+    
     # donations = db.relationship("Donations")
 
 
@@ -117,6 +119,7 @@ class Posts(db.Model):
     publisher = db.relationship("Users")
     disease = db.relationship("Diseases")
     comments = db.relationship("Comments")
+    favorites = db.relationship("Favorites")
 
 
     def __str__(self):
@@ -248,6 +251,29 @@ class Follows(db.Model):
             "user": self.user.serialize(),
             "disease": self.disease.serialize(),
             "role": self.role.value
+        }
+
+
+class Favorites(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, ForeignKey('posts.id'))
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
+    deleted_at = db.Column(db.DateTime)
+
+    user = db.relationship("Users")
+    post = db.relationship("Posts")
+
+    def __str__(self):
+        return 'El usuario {} tiene como favorito {}' .format(self.user.username, self.post.id)
+        # return '{}' .format(self.id)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user.serialize(),
+            "post": self.post.serialize()
         }
 
 
