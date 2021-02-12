@@ -207,8 +207,8 @@ export const TempInicio = () => {
 	} else {
 		return (
 			<div className="container">
-				<div className="row mb-3">
-					<div className="col-xl-4">
+				<div className="row">
+					<div className="col-4">
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
@@ -223,58 +223,63 @@ export const TempInicio = () => {
 								</div>
 							</div>
 						</div>
-						<div className="row mx-1 mt-3">
+					</div>
+					<div className="col-8">
+						<div className="row">
 							<div className="col-12">
-								<div className="row my-3 py-2 mx-1 list-user-inicio">{showFollows()}</div>
+								<form className="my-3">
+									<div className="form-group">
+										<select className="form-control" onChange={e => setDiseaseId(e.target.value)}>
+											<option>Elige una enfermedad</option>
+											{showDiseaseOption()}
+										</select>
+									</div>
+									<div className="form-group mt-1">
+										<textarea
+											className="form-control"
+											placeholder="Escribe tu publicación"
+											rows="1"
+											value={text}
+											onChange={event => setText(event.target.value)}
+										/>
+									</div>
+									<div className="form-group mt-1">
+										<input
+											type="url"
+											className="form-control"
+											id="exampleInputEmail1"
+											aria-describedby="emailHelp"
+											rows="1"
+											placeholder="URL imagen"
+											value={url}
+											onChange={e => setUrl(e.target.value)}
+										/>
+									</div>
+								</form>
+							</div>
+							<div className="col-12">
+								<div className="row justify-content-center pb-3">
+									<button type="button" className="button-publicar-post" onClick={OnSubmit}>
+										Publicar
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div className="col-xl-8">
-						<div className="row mx-1">
-							<div className="col-12">
-								<div className="row box-post-inicio my-3">
-									<div className="col-12">
-										<form className="my-3">
-											<div className="form-group">
-												<select
-													className="form-control"
-													onChange={e => setDiseaseId(e.target.value)}>
-													<option>Elige una enfermedad</option>
-													{showDiseaseOption()}
-												</select>
-											</div>
-											<div className="form-group mt-1">
-												<textarea
-													className="form-control"
-													placeholder="Escribe tu publicación"
-													rows="1"
-													value={text}
-													onChange={event => setText(event.target.value)}
-												/>
-											</div>
-											<div className="form-group mt-1">
-												<input
-													type="url"
-													className="form-control"
-													id="exampleInputEmail1"
-													aria-describedby="emailHelp"
-													rows="1"
-													placeholder="URL imagen"
-													value={url}
-													onChange={e => setUrl(e.target.value)}
-												/>
-											</div>
-										</form>
-									</div>
-									<div className="col-12">
-										<div className="row justify-content-center pb-3">
-											<button type="button" className="button-publicar-post" onClick={OnSubmit}>
-												Publicar
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
+				</div>
+				<div className="row mt-1">
+					<div className="col-12">
+						<hr className="post-divisor-line" />
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-4">
+						<div className="col-12">
+							<div className="row my-3 py-2 mx-1 list-user-inicio">{showFollows()}</div>
+						</div>
+					</div>
+					<div className="col-8">
+						<div className="row">
 							<div className="col-12">
 								<div className="row box-content-inicio">
 									<div className="col-12">

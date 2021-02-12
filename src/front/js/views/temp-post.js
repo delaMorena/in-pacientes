@@ -20,14 +20,19 @@ export const TempPost = () => {
 		const listItem = store.favorites;
 
 		if (listItem.length == 0) {
-			return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
+			return <i className="far fa-bookmark fa-2x" onClick={AddPostFavorites} />;
 		}
 
 		let i;
 
 		for (i = 0; i < listItem.length; i++) {
 			if (listItem[i]["id"] === oneItem["id"]) {
-				return <i className="fas fa-bookmark fa-2x post-cursor-click" onClick={DeleteFavorites} />;
+				return (
+					<i
+						className="fas fa-bookmark fa-2x post-cursor-click post-bookmark-selected"
+						onClick={DeleteFavorites}
+					/>
+				);
 			} else {
 				return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
 			}
