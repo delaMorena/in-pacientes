@@ -848,6 +848,16 @@ def handle_upload_profile_picture(id):
     print(user)
     result = cloudinary.uploader.upload(payload['avatar'],
     public_id=f'In-pacientes/profile/{user.username}')
+    # ,crop='limit',
+    #     # width=125,
+    #     # height=100,
+    #     radius = 100,
+    #     eager=[{
+    #         'width': 200, 'height': 200,
+    #         'crop': 'thumb', 'gravity': 'face',
+    #         'radius': 100
+    #     },
+    #     ])
     print(result['secure_url'])
 
     user.avatar = result['secure_url']

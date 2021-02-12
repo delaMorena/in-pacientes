@@ -22,6 +22,7 @@ import { Inicio } from "./views/inicio";
 import { TempInicio } from "./views/temp-inicio";
 import { TempPost } from "./views/temp-post";
 import { Upload } from "./views/upload";
+import { UploadPost } from "./views/upload-post";
 
 import injectContext from "./store/appContext";
 
@@ -99,6 +100,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/upload/:id">
 							<Upload />
+						</Route>
+						<Route exact path="/upload-post">
+							<UploadPost />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

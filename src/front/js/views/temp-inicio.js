@@ -8,10 +8,11 @@ import "../../styles/inicio.scss";
 
 export const TempInicio = () => {
 	const { store, actions } = useContext(Context);
-	const [url, setUrl] = useState("");
+	// const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
 	const [diseaseId, setDiseaseId] = useState();
 	// const { id } = props;
+	const [postFiles, setpostFiles] = useState(0);
 
 	useEffect(() => {
 		actions.getFeed();
@@ -24,7 +25,7 @@ export const TempInicio = () => {
 	const OnSubmit = event => {
 		const payload = {
 			text: text,
-			url: url,
+			// url: url,
 			diseaseId: parseInt(diseaseId)
 		};
 		actions.createPost(payload);
@@ -37,6 +38,10 @@ export const TempInicio = () => {
 		// setText("");
 		// setUrl("");
 		// window.location.reload();
+	};
+	const uploadPostImage = event => {
+		event.preventDefault();
+		actions.uploadProfilePicture(postFiles);
 	};
 
 	const showFollows = () => {
@@ -212,11 +217,23 @@ export const TempInicio = () => {
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
-									<Link to={`/upload/${store.user.id}`}>
-										<div className="col-md-6 box-user-image text-center">
-											<img src={store.user.avatar} alt="user-pic" />
+									<div className="col-md-6 box-user-image text-center">
+										<img src={store.user.avatar} alt="user-pic" />
+										<div className="row">
+											<div className="col-8 mt-2">
+												<h6>Edita tu foto de perfil</h6>
+
+												{/* <Link to={`/upload/${store.user.id}`}>
+													<i className="fas fa-pencil-alt" />
+												</Link> */}
+											</div>
+											<div className="col-2 mt-4">
+												<Link to={`/upload/${store.user.id}`}>
+													<i className="fas fa-pencil-alt" />
+												</Link>
+											</div>
 										</div>
-									</Link>
+									</div>
 									<div className="col-md-6 box-user-image text-center">
 										<h5>{store.user.username}</h5>
 									</div>
@@ -253,7 +270,7 @@ export const TempInicio = () => {
 												/>
 											</div>
 											<div className="form-group mt-1">
-												<input
+												{/* <input
 													type="url"
 													className="form-control"
 													id="exampleInputEmail1"
@@ -262,7 +279,15 @@ export const TempInicio = () => {
 													placeholder="URL imagen"
 													value={url}
 													onChange={e => setUrl(e.target.value)}
-												/>
+												/> */}
+
+												<form onSubmit={uploadPostImage}>
+													<input
+														type="file"
+														onChange={() => setpostFiles(event.target.files)}
+													/>
+													<button>Upload Post Files</button>
+												</form>
 											</div>
 										</form>
 									</div>
