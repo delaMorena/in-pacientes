@@ -18,16 +18,16 @@ export const Home = () => {
 
 	return (
 		<div>
-			<div className="row style-row-logo-buttons d-flex justify-content-between">
-				<div className="col-lg-9 col-12 ">
+			<div className="row style-row-logo d-flex justify-content-center">
+				<div className="col-lg-9 col-12 text-center">
 					<img className="style-logo-home" src={Logo} />
-					{/* <p className="style-text text-left">
+					<p className="style-text text-left">
 						Sabemos que padecer una ENFERMEDAD RARA <span className="bold">no es tan raro</span>. Si tienes
 						una ER o te interesa por cualquier otro motivo, <span className="bold">esta es tu tribu. </span>
 					</p>
-					<p className="bold style-text text-left">Te estamos buscando a tí</p> */}
+					<p className="bold style-text text-left">Te estamos buscando a tí</p>
 				</div>
-				<div className="col-lg-3 col-10 d-flex flex-column style-home-col-buttons">
+				{/* <div className="col-lg-3 col-10 d-flex flex-column style-home-col-buttons">
 					<Link to="/login">
 						<button type="button" className="btn login-button-style">
 							Entrar
@@ -38,7 +38,7 @@ export const Home = () => {
 							Registrarme
 						</button>
 					</Link>
-				</div>
+				</div> */}
 			</div>
 
 			<h3 className="style-h3-home">IN-PACIENTES es para tí si eres:</h3>

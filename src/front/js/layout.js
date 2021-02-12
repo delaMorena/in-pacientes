@@ -20,6 +20,7 @@ import { AboutUs } from "./views/about-us";
 import { Bye } from "./views/bye";
 import { Inicio } from "./views/inicio";
 import { TempInicio } from "./views/temp-inicio";
+import { Upload } from "./views/upload";
 
 import injectContext from "./store/appContext";
 
@@ -91,6 +92,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/temp">
 							<TempInicio />
+						</Route>
+						<Route exact path="/upload/:id">
+							<Upload />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
