@@ -28,15 +28,8 @@ export const Inicio = () => {
 			diseaseId: parseInt(diseaseId)
 		};
 		actions.createPost(payload);
-		// actions.getFeed();
-		// actions.getPostUser();
 		setText("");
 		setUrl("");
-
-		// actions.createPost(payload);
-		// setText("");
-		// setUrl("");
-		// window.location.reload();
 	};
 
 	const showFollows = () => {
@@ -60,10 +53,22 @@ export const Inicio = () => {
 
 		const listFollows = store.follows.map((follow, index) => {
 			return (
-				<tr key={index}>
-					<td className="text-left">{follow.disease.title}</td>
-					<td>{convRol(follow.role)}</td>
-				</tr>
+				// <tr key={index}>
+				// 	<td className="text-left">{follow.disease.title}</td>
+				// 	<td>{convRol(follow.role)}</td>
+				// </tr>
+				// <tr key={index}>
+				// 	<td className="text-left">{follow.disease.title}</td>
+				// 	<td>{convRol(follow.role)}</td>
+				// </tr>
+				<div className="row mb-2 inicio-tag-follow align-items-center" key={index}>
+					<div className="col-12 post-cursor-click text-center py-1">
+						<p>{follow.disease.title}</p>
+					</div>
+					{/* <div className="col-5 inicio-remove-margin">
+						<p>{convRol(follow.role)}</p>
+					</div> */}
+				</div>
 			);
 		});
 
@@ -76,17 +81,21 @@ export const Inicio = () => {
 		} else {
 			return (
 				<>
-					<div className="col-12 text-center">
-						<h6>Lista de seguimiento</h6>
+					<div className="col-12 mb-1">
+						<p>Lista de seguimiento</p>
 					</div>
-					<div className="col-12 text-center mb-1">
-						<table className="table-user-inicio">
+					<div className="col-12">
+						{/* <table className="table-user-inicio">
 							<tr>
 								<th>Enfermedad</th>
 								<th>Rol</th>
 							</tr>
 							{listFollows}
-						</table>
+						</table> */}
+						{listFollows}
+					</div>
+					<div className="col-12 text-right">
+						<p>Seguir mas enfermedades</p>
 					</div>
 				</>
 			);
@@ -267,15 +276,15 @@ export const Inicio = () => {
 						</div>
 					</div>
 				</div>
-				<div className="row mt-1">
+				<div className="row">
 					<div className="col-12">
 						<hr className="post-divisor-line" />
 					</div>
 				</div>
-				<div className="row">
+				<div className="row mt-3">
 					<div className="col-4">
 						<div className="col-12">
-							<div className="row my-3 py-2 mx-1 list-user-inicio">{showFollows()}</div>
+							<div className="row list-user-inicio">{showFollows()}</div>
 						</div>
 					</div>
 					<div className="col-8">
@@ -284,7 +293,7 @@ export const Inicio = () => {
 								<div className="row box-content-inicio">
 									<div className="col-12">
 										<ul
-											className="nav nav-pills mt-3 d-flex justify-content-between"
+											className="nav nav-pills d-flex justify-content-between"
 											id="pills-tab"
 											role="tablist">
 											<li className="nav-item" role="presentation">

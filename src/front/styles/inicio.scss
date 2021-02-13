@@ -1,3 +1,7 @@
+p {
+    margin: 0;
+}
+
 .box-user-inicio {
     background-color: #c8c8c8;
     height: 197px;
@@ -10,8 +14,7 @@
 }
 
 .list-user-inicio {
-    background-color: #ffffff;
-    border-radius: 5px;
+    padding: 0;
 }
 
 .table-user-inicio {
@@ -74,3 +77,11 @@
 .inicio-divisor-line{
     border-top: 1px solid black
 }
+
+.inicio-tag-follow {
+    background-color: #efefef;
+    border-radius: 3px;
+}
+
+
+

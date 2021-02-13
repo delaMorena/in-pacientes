@@ -27,12 +27,7 @@ export const TempPost = () => {
 
 		for (i = 0; i < listItem.length; i++) {
 			if (listItem[i]["id"] === oneItem["id"]) {
-				return (
-					<i
-						className="fas fa-bookmark fa-2x post-cursor-click post-bookmark-selected"
-						onClick={DeleteFavorites}
-					/>
-				);
+				return <i className="fas fa-bookmark fa-2x post-cursor-click" onClick={DeleteFavorites} />;
 			} else {
 				return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
 			}
