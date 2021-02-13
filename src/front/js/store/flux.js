@@ -280,8 +280,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: headers,
 					body: JSON.stringify({
 						disease_id: input.diseaseId,
-						text: input.text,
-						imagen: input.url
+						text: input.text
+						// imagen: input.url
 					})
 				};
 				fetch(endpoint, config)
@@ -292,6 +292,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 						actions.getPostUser();
 					})
 					.catch(error => console.error("error: ", error));
+			},
+			uploadPostPicture(files, id) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/upload-post/${id}`;
+				const method = "POST";
+				const formData = new FormData();
+				formData.append("imagen", files[0]);
+				console.log("body: ", formData, files[0]);
+				const headers = { Authorization: `Bearer ${store.token}` };
+
+				const config = {
+					method: method,
+					body: formData,
+					headers: headers
+				};
+
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => console.log("Bieeeeeen", data))
+					.catch(error => console.log("Error!!!", error));
 			},
 			createComment(input) {
 				const store = getStore();

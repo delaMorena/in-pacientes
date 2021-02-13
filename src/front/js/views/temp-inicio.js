@@ -32,7 +32,7 @@ export const TempInicio = () => {
 		// actions.getFeed();
 		// actions.getPostUser();
 		setText("");
-		setUrl("");
+		// setUrl("");
 
 		// actions.createPost(payload);
 		// setText("");
@@ -41,7 +41,7 @@ export const TempInicio = () => {
 	};
 	const uploadPostImage = event => {
 		event.preventDefault();
-		actions.uploadProfilePicture(postFiles);
+		actions.uploadProfilePicture(postFiles, store.post.id);
 	};
 
 	const showFollows = () => {
@@ -222,10 +222,6 @@ export const TempInicio = () => {
 										<div className="row">
 											<div className="col-8 mt-2">
 												<h6>Edita tu foto de perfil</h6>
-
-												{/* <Link to={`/upload/${store.user.id}`}>
-													<i className="fas fa-pencil-alt" />
-												</Link> */}
 											</div>
 											<div className="col-2 mt-4">
 												<Link to={`/upload/${store.user.id}`}>
@@ -280,15 +276,11 @@ export const TempInicio = () => {
 													value={url}
 													onChange={e => setUrl(e.target.value)}
 												/> */}
-
-												<form onSubmit={uploadPostImage}>
-													<input
-														type="file"
-														onChange={() => setpostFiles(event.target.files)}
-													/>
-													<button>Upload Post Files</button>
-												</form>
 											</div>
+										</form>
+										<form onSubmit={uploadPostImage}>
+											<input type="file" onChange={() => setpostFiles(event.target.files)} />
+											<button>Upload Post Files</button>
 										</form>
 									</div>
 									<div className="col-12">
