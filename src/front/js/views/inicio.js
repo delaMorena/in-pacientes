@@ -1,34 +1,45 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+// import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
-import { CardFeedCenter } from "../component/card-feed-center.js";
-import { HeaderLeft } from "../component/header-left.js";
 import { NoToken } from "../component/no-token";
-import "../../styles/test.scss";
+import { CardPost } from "../component/card-post";
+import "../../styles/inicio.scss";
 
 export const Inicio = () => {
 	const { store, actions } = useContext(Context);
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
 	const [diseaseId, setDiseaseId] = useState();
+	// const { id } = props;
 
 	useEffect(() => {
 		actions.getFeed();
 		actions.getPostUser();
 		actions.getUser();
 		actions.getFollow();
+		actions.getFavorites();
 	}, []);
 
-	useEffect(
-		() => {
-			actions.getFeed();
-		},
-		[store.userPosts]
-	);
+	const OnSubmit = event => {
+		const payload = {
+			text: text,
+			url: url,
+			diseaseId: parseInt(diseaseId)
+		};
+		actions.createPost(payload);
+		// actions.getFeed();
+		// actions.getPostUser();
+		setText("");
+		setUrl("");
 
-	// variables para box-left
+		// actions.createPost(payload);
+		// setText("");
+		// setUrl("");
+		// window.location.reload();
+	};
 
-	const listFollow = () => {
+	const showFollows = () => {
 		const convRol = index => {
 			if (index == 1) {
 				return "Paciente";
@@ -47,189 +58,302 @@ export const Inicio = () => {
 			}
 		};
 
-		const mapFollows = store.follows.map((follow, index) => {
+		const listFollows = store.follows.map((follow, index) => {
 			return (
-				<li key={index} className="list-group-item bg-light">
-					{" "}
-					<div className="row">
-						<div className="col-8 text-center d-flex align-items-center justify-content-center">
-							<Link to={`/onedisease/${follow.disease.id}`}>
-								<button type="button" className="btn btn-outline-info">
-									{follow.disease.title}
-								</button>
-							</Link>
-						</div>
-						<div className="col-4 text-center d-flex align-items-center justify-content-center">
-							<span>{convRol(follow.role)}</span>
-						</div>
-					</div>
-				</li>
+				<tr key={index}>
+					<td className="text-left">{follow.disease.title}</td>
+					<td>{convRol(follow.role)}</td>
+				</tr>
 			);
 		});
 
 		if (store.follows.length == 0) {
 			return (
-				<>
-					{/* <div className="row px-5">
-						<p>Aún no sigues ninguna enfermedad y no puedes ver las publicaciones</p>
-					</div>
-					<div className="row justify-content-center">
-						<Link to="/follow">
-							<button type="button" className="btn orange-button">
-								Busca la enfermedad que te interese
-							</button>
-						</Link>
-					</div> */}
-				</>
+				<div className="col-12 text-center">
+					<p>Aun no sigues ninguna enfermedad</p>
+				</div>
 			);
 		} else {
 			return (
 				<>
-					<div className="row justify-content-center">
-						<Link to="/profile">
-							<button type="button" className="btn mb-3 orange-button">
-								Ver mis publicaciones
-							</button>
-						</Link>
+					<div className="col-12 text-center">
+						<h6>Lista de seguimiento</h6>
 					</div>
-					<ul className="list-group" id="list-width">
-						<div className="row justify-content-center">
-							<h6> Enfermedades seguidas</h6>
-						</div>
-						<li className="list-group-item">
-							<div className="row justify-content-center">
-								<div className="col-8 text-center">
-									<span>Enfermedad</span>
-								</div>
-								<div className="col-4 text-center">
-									<span>Rol</span>
-								</div>
-							</div>
-						</li>
-						{mapFollows}
-					</ul>
-					<div className="row justify-content-center mt-3">
-						<Link to="/follow">
-							<button type="button" className="btn mb-3 orange-button">
-								Seguir una nueva enfermedad
-							</button>
-						</Link>
+					<div className="col-12 text-center mb-1">
+						<table className="table-user-inicio">
+							<tr>
+								<th>Enfermedad</th>
+								<th>Rol</th>
+							</tr>
+							{listFollows}
+						</table>
 					</div>
 				</>
 			);
 		}
 	};
 
-	// variables para box-center
-
-	let contentBoxCenter = "";
-	if (store.feed.length == 0) {
-		contentBoxCenter = (
-			<div className="card p-3 text-center mt-2">
-				<p>Aún no sigues ninguna enfermedad y no puedes ver las publicaciones</p>
-				<div className="row my-3 justify-content-center">
-					<Link to="/follow">
-						<button type="button" className="btn orange-button">
-							Busca la enfermedad que te interese
-						</button>
-					</Link>
-				</div>
-			</div>
-		);
-	} else {
-		contentBoxCenter = store.feed.map((post, index) => {
+	const showDiseaseOption = () => {
+		const diseasesOption = store.follows.map((follow, index) => {
 			return (
-				<div className="row justify-content-center my-2" key={index}>
-					<CardFeedCenter post={post} />
-				</div>
+				<option key={index} value={follow.disease.id}>
+					{follow.disease.title}
+				</option>
 			);
 		});
-	}
-
-	// variables para box-right
-	const OnSubmit = event => {
-		const payload = {
-			text: text,
-			url: url,
-			diseaseId: parseInt(diseaseId)
-		};
-		actions.createPost(payload);
-		actions.getFeed();
-		actions.getPostUser();
-		setText("");
-		setUrl("");
+		if (store.follows.length == 0) {
+			return (
+				<>
+					<option>Ops...No se han encontrado enfermedades</option>
+				</>
+			);
+		} else {
+			return diseasesOption;
+		}
 	};
 
-	const diseasesOption = store.follows.map((follow, index) => {
-		return (
-			<option key={index} value={follow.disease.id}>
-				{follow.disease.title}
-			</option>
-		);
-	});
+	const showContentFeed = () => {
+		const showFeedPost = store.feed.map((post, index) => {
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
+		});
+
+		if (store.feed.length == 0 && store.follows.length != 0) {
+			return (
+				<div className="row my-3 box-empty-feed mx-1">
+					<div className="col-12 text-center">
+						<h3>Aun no hay publicaciones de tu interes</h3>
+					</div>
+					<div className="col-12 text-center">
+						<p>¡crea tu primera publicación!</p>
+					</div>
+				</div>
+			);
+		} else if (store.follows.length == 0) {
+			return (
+				<div className="row my-3 box-empty-feed mx-1">
+					<div className="col-12 text-center">
+						<h3>Aun no sigues ninguna enfermedad</h3>
+					</div>
+					<div className="col-12 text-center">
+						<Link to="/follow">
+							<button type="button" className="btn btn-info">
+								Seguir
+							</button>
+						</Link>
+					</div>
+				</div>
+			);
+		} else {
+			return showFeedPost;
+		}
+	};
+
+	const showContentUserPost = () => {
+		const showUserPost = store.userPosts.map((post, index) => {
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
+		});
+
+		if (store.userPosts.length == 0) {
+			return (
+				<div className="row my-3 box-empty-feed mx-1">
+					<div className="col-12 text-center">
+						<h3>Aun no has publicado nada</h3>
+					</div>
+					<div className="col-12 text-center">
+						<p>¡crea tu primera publicación!</p>
+					</div>
+				</div>
+			);
+		} else {
+			return showUserPost;
+		}
+	};
+
+	const showContentFavorites = () => {
+		const showFavorites = store.favorites.map((post, index) => {
+			return (
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
+			);
+		});
+
+		if (store.favorites.length == 0) {
+			return (
+				<div className="row my-3 box-empty-feed mx-1">
+					<div className="col-12 text-center">
+						<h3>Aun no hay nada en favorito</h3>
+					</div>
+					<div className="col-12 text-center">
+						<p>¡marca como favorita alguna publicación!</p>
+					</div>
+				</div>
+			);
+		} else {
+			return showFavorites;
+		}
+	};
 
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="fluid-container mt-3" id="style-container">
-				<div className="row justify-content-center">
-					<h1>Inicio</h1>
-				</div>
+			<div className="container">
 				<div className="row">
-					<div className="box-size" id="box-left">
-						<div className="row justify-content-center">
-							<h3>Tu perfil</h3>
-						</div>
-						<div className="row justify-content-center my-4">
-							<HeaderLeft itemName={store.user.username} qtyPost={store.userPosts.length} />
-						</div>
-
-						<div className="row justify-content-center">{listFollow()}</div>
-					</div>
-					<div className="box-size mb-4" id="box-center">
-						<div className="row justify-content-center">
-							<h3>Publicaciones de tu interés</h3>
-						</div>
-						<div className="row justify-content-center mt-3">{contentBoxCenter}</div>
-					</div>
-					<div className="box-size" id="box-right">
-						<div className="row justify-content-center">
-							<h3>Crea una publicación</h3>
-						</div>
-						<div className="form-container mt-4">
-							<form>
-								<div className="form-group">
-									<select className="form-control" onChange={e => setDiseaseId(e.target.value)}>
-										<option defaultValue>Elige una enfermedad</option>
-										{diseasesOption}
-									</select>
+					<div className="col-4">
+						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
+							<div className="col-12">
+								<div className="row align-items-center mt-3">
+									<Link to={`/upload/${store.user.id}`}>
+										<div className="col-md-6 box-user-image text-center">
+											<img src={store.user.avatar} alt="user-pic" />
+										</div>
+									</Link>
+									<div className="col-md-6 box-user-image text-center">
+										<h5>{store.user.username}</h5>
+									</div>
 								</div>
-								<div className="form-group">
-									<textarea
-										className="form-control"
-										placeholder="Escribe tu publicación..."
-										rows="5"
-										value={text}
-										onChange={event => setText(event.target.value)}
-									/>
-								</div>
-								{/* <div className="form-group">
-                                    <label htmlFor="exampleFormControlInput1">URL imagen</label>
-                                    <input
-                                        type="url"
-                                        className="form-control"
-                                        placeholder="url"
-                                        value={url}
-                                        onChange={event => setUrl(event.target.value)}
-                                    />
-                                </div> */}
-								<div className="row justify-content-center">
-									<button type="button" className="btn orange-button" onClick={OnSubmit}>
+							</div>
+						</div>
+					</div>
+					<div className="col-8">
+						<div className="row">
+							<div className="col-12">
+								<form className="my-3">
+									<div className="form-group">
+										<select className="form-control" onChange={e => setDiseaseId(e.target.value)}>
+											<option>Elige una enfermedad</option>
+											{showDiseaseOption()}
+										</select>
+									</div>
+									<div className="form-group mt-1">
+										<textarea
+											className="form-control"
+											placeholder="Escribe tu publicación"
+											rows="1"
+											value={text}
+											onChange={event => setText(event.target.value)}
+										/>
+									</div>
+									<div className="form-group mt-1">
+										<input
+											type="url"
+											className="form-control"
+											id="exampleInputEmail1"
+											aria-describedby="emailHelp"
+											rows="1"
+											placeholder="URL imagen"
+											value={url}
+											onChange={e => setUrl(e.target.value)}
+										/>
+									</div>
+								</form>
+							</div>
+							<div className="col-12">
+								<div className="row justify-content-center pb-3">
+									<button type="button" className="button-publicar-post" onClick={OnSubmit}>
 										Publicar
 									</button>
 								</div>
-							</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="row mt-1">
+					<div className="col-12">
+						<hr className="post-divisor-line" />
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-4">
+						<div className="col-12">
+							<div className="row my-3 py-2 mx-1 list-user-inicio">{showFollows()}</div>
+						</div>
+					</div>
+					<div className="col-8">
+						<div className="row">
+							<div className="col-12">
+								<div className="row box-content-inicio">
+									<div className="col-12">
+										<ul
+											className="nav nav-pills mt-3 d-flex justify-content-between"
+											id="pills-tab"
+											role="tablist">
+											<li className="nav-item" role="presentation">
+												<a
+													className="nav-link active"
+													id="pills-home-tab"
+													data-toggle="pill"
+													href="#post-feed"
+													role="tab"
+													aria-controls="pills-home"
+													aria-selected="true">
+													Publicaciones de mi interes
+												</a>
+											</li>
+
+											<li className="nav-item" role="presentation">
+												<a
+													className="nav-link"
+													id="pills-profile-tab"
+													data-toggle="pill"
+													href="#post-user"
+													role="tab"
+													aria-controls="pills-profile"
+													aria-selected="false">
+													Mis publicaciones
+												</a>
+											</li>
+
+											<li className="nav-item" role="presentation">
+												<a
+													className="nav-link"
+													id="pills-profile-tab"
+													data-toggle="pill"
+													href="#post-fav"
+													role="tab"
+													aria-controls="pills-profile"
+													aria-selected="false">
+													Mis favoritos
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div className="col-12">
+										<div className="tab-content" id="pills-tabContent">
+											<div
+												className="tab-pane fade show active"
+												id="post-feed"
+												role="tabpanel"
+												aria-labelledby="pills-profile-tab">
+												{showContentFeed()}
+											</div>
+											<div
+												className="tab-pane fade"
+												id="post-user"
+												role="tabpanel"
+												aria-labelledby="pills-home-tab">
+												{showContentUserPost()}
+											</div>
+											<div
+												className="tab-pane fade"
+												id="post-fav"
+												role="tabpanel"
+												aria-labelledby="pills-home-tab">
+												{showContentFavorites()}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -237,3 +361,7 @@ export const Inicio = () => {
 		);
 	}
 };
+
+// TempInicio.propTypes = {
+// 	id: PropTypes.number
+// };
