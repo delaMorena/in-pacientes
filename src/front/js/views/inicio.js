@@ -292,7 +292,7 @@ export const Inicio = () => {
 													href="#post-feed"
 													role="tab"
 													onClick={() => setSelected("interes")}>
-													Publicaciones de mi interes
+													Novedades
 												</a>
 											</li>
 
@@ -324,7 +324,7 @@ export const Inicio = () => {
 													href="#post-fav"
 													role="tab"
 													onClick={() => setSelected("favoritos")}>
-													Mis favoritos
+													Favoritos
 												</a>
 											</li>
 										</ul>
