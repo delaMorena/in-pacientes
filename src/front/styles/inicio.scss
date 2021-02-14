@@ -41,39 +41,6 @@ p {
     margin: 0px;
 }
 
-.button-publicar-post {
-    background-color:#070707;
-    border: 1px solid #070707;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
-    padding: 10px 45px;
-}
-
-.button-select-inicio {
-    background-color:#070707;
-    border: 1px solid #070707;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
-    padding: 10px 45px;
-}
-
-.button-noselect-inicio {
-    background-color:  white;
-    border: 1px solid #070707;
-    color: #070707;
-    padding: 10px 20px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
-}
-
 .inicio-divisor-line{
     border-top: 1px solid black
 }
@@ -83,5 +50,54 @@ p {
     border-radius: 3px;
 }
 
+.inicio-button-publicar {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    // margin: 25px 0px 0px 15px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
 
+.inicio-button-publicar:hover {
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
+}
 
+.inicio-button-activated {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    // margin: 25px 0px 0px 15px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
+
+.inicio-button-activated:hover {
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
+}
+
+.inicio-button-disabled {
+    background-color:  white;
+    border: 1px solid #070707;
+    color: #070707;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    // margin: 20px 2px 0px 80px;
+    margin: 3%;
+    transition-duration: 0.4s;
+    
+}
+.inicio-button-disabled:hover {
+    color: black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+}

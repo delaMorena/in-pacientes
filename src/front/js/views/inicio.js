@@ -11,6 +11,7 @@ export const Inicio = () => {
 	const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
 	const [diseaseId, setDiseaseId] = useState();
+	const [selected, setSelected] = useState("interes");
 	// const { id } = props;
 
 	useEffect(() => {
@@ -53,14 +54,6 @@ export const Inicio = () => {
 
 		const listFollows = store.follows.map((follow, index) => {
 			return (
-				// <tr key={index}>
-				// 	<td className="text-left">{follow.disease.title}</td>
-				// 	<td>{convRol(follow.role)}</td>
-				// </tr>
-				// <tr key={index}>
-				// 	<td className="text-left">{follow.disease.title}</td>
-				// 	<td>{convRol(follow.role)}</td>
-				// </tr>
 				<div className="row mb-2 inicio-tag-follow align-items-center" key={index}>
 					<div className="col-12 post-cursor-click text-center py-1">
 						<p>{follow.disease.title}</p>
@@ -84,16 +77,7 @@ export const Inicio = () => {
 					<div className="col-12 mb-1">
 						<p>Lista de seguimiento</p>
 					</div>
-					<div className="col-12">
-						{/* <table className="table-user-inicio">
-							<tr>
-								<th>Enfermedad</th>
-								<th>Rol</th>
-							</tr>
-							{listFollows}
-						</table> */}
-						{listFollows}
-					</div>
+					<div className="col-12">{listFollows}</div>
 					<div className="col-12 text-right">
 						<p>Seguir mas enfermedades</p>
 					</div>
@@ -267,8 +251,8 @@ export const Inicio = () => {
 								</form>
 							</div>
 							<div className="col-12">
-								<div className="row justify-content-center pb-3">
-									<button type="button" className="button-publicar-post" onClick={OnSubmit}>
+								<div className="row justify-content-center">
+									<button type="button" className="btn inicio-button-publicar" onClick={OnSubmit}>
 										Publicar
 									</button>
 								</div>
@@ -298,39 +282,48 @@ export const Inicio = () => {
 											role="tablist">
 											<li className="nav-item" role="presentation">
 												<a
-													className="nav-link active"
+													className={
+														selected == "interes"
+															? "btn inicio-button-activated"
+															: "btn inicio-button-disabled"
+													}
 													id="pills-home-tab"
 													data-toggle="pill"
 													href="#post-feed"
 													role="tab"
-													aria-controls="pills-home"
-													aria-selected="true">
+													onClick={() => setSelected("interes")}>
 													Publicaciones de mi interes
 												</a>
 											</li>
 
 											<li className="nav-item" role="presentation">
 												<a
-													className="nav-link"
+													className={
+														selected == "publicaciones"
+															? "btn inicio-button-activated"
+															: "btn inicio-button-disabled"
+													}
 													id="pills-profile-tab"
 													data-toggle="pill"
 													href="#post-user"
 													role="tab"
-													aria-controls="pills-profile"
-													aria-selected="false">
+													onClick={() => setSelected("publicaciones")}>
 													Mis publicaciones
 												</a>
 											</li>
 
 											<li className="nav-item" role="presentation">
 												<a
-													className="nav-link"
+													className={
+														selected == "favoritos"
+															? "btn inicio-button-activated"
+															: "btn inicio-button-disabled"
+													}
 													id="pills-profile-tab"
 													data-toggle="pill"
 													href="#post-fav"
 													role="tab"
-													aria-controls="pills-profile"
-													aria-selected="false">
+													onClick={() => setSelected("favoritos")}>
 													Mis favoritos
 												</a>
 											</li>
