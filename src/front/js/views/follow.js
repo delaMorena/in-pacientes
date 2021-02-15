@@ -26,17 +26,13 @@ export const Follow = () => {
 		);
 	});
 
-	const OnSubmit = async e => {
+	const OnSubmit = e => {
 		const payload = {
 			role: role,
 			diseaseId: parseInt(id)
 		};
 
-		await actions.createRole(payload);
-		console.log("esto hay que leer: ", payload);
-
-		// console.log("id de enfermedad seleccionada", id);
-		// console.log(payload);
+		actions.createRole(payload);
 	};
 
 	if (store.token == null) {

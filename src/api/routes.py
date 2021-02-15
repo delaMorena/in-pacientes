@@ -636,11 +636,23 @@ def handle_follow_for_disease():
 #     return jsonify(response)
 
 
-@api.route("/diseases/<int:disease_id>/follows", methods =["DELETE"])
+@api.route("/onedisease/<int:disease_id>", methods =["DELETE"])
 def handle_delete_follow(disease_id):
-    """Delete follow"""
-    response = {'message': 'success'}
-    return jsonify(response)
+
+    follow = Follows.query.filter_by(disease_id=id, deleted_at=None).first()
+    
+    if not follow:
+        return "follow not found", 404
+
+    follow.deleted_at = datetime.datetime.utcnow()
+
+    print(follow)
+
+    db.session.add(follow)
+    db.session.commit()
+
+    return jsonify(follow.serialize()), 200
+
 
 
 ######################################## Relationships #######################################
@@ -817,8 +829,6 @@ def handle_delete_fav(id):
         return "User not found", 404
 
     post = Favorites.query.filter_by(post_id=id, user_id=user.id).first()
-
-    print(post)
 
     if not post:
         abort(404)

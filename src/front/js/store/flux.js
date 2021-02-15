@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-magenta-seahorse-bp33jlrh.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -396,6 +396,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createRole(input) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/follows`;
 				const method = "POST";
 				const headers = { "Content-Type": "application/json" };
@@ -416,8 +417,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						console.log(data);
+						actions.getFollow();
 					})
 					.catch(error => console.error("error: ", error));
+			},
+			deleteFollow(id) {
+				const store = getStore();
+				const actions = getActions();
+				const endpoint = `${baseUrl}/onedisease/${id}`;
+				const method = "DELETE";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log("eliminado de follows: ", data);
+						actions.getFollow();
+						// setStore({ oneDisease: data });
+						// console.log("info enfermedad", store.oneDisease);
+						// console.log(store.token);
+					});
 			},
 			getAssociations() {
 				const store = getStore();

@@ -7,7 +7,7 @@ import { Follow } from "./views/follow";
 import { CreatePost } from "./views/create-post";
 import { Feed } from "./views/feed";
 import { Post } from "./views/post";
-import { OneDisease } from "./views/one-disease";
+
 import { Profile } from "./views/profile";
 import { SignUp } from "./views/sign-up";
 import { LogIn } from "./views/log-in";
@@ -18,11 +18,12 @@ import { SolDisease } from "./views/solicitud-enf";
 import { SolAssociation } from "./views/solicitud-asc";
 import { AboutUs } from "./views/about-us";
 import { Bye } from "./views/bye";
+
 import { Inicio } from "./views/inicio";
-import { TempInicio } from "./views/temp-inicio";
 import { TempPost } from "./views/temp-post";
 import { Upload } from "./views/upload";
 import { UploadPost } from "./views/upload-post";
+import { OneDisease } from "./views/one-disease";
 
 import injectContext from "./store/appContext";
 
@@ -92,11 +93,9 @@ const Layout = () => {
 						<Route exact path="/about-us">
 							<AboutUs />
 						</Route>
+
 						<Route exact path="/inicio">
 							<Inicio />
-						</Route>
-						<Route exact path="/temp">
-							<TempInicio />
 						</Route>
 						<Route exact path="/upload/:id">
 							<Upload />
