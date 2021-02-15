@@ -14,6 +14,7 @@ export const OneDisease = () => {
 	useEffect(() => {
 		actions.getPostsDisease(params.id);
 		actions.getOneDisease(params.id);
+		actions.getFollowByDisease(params.id);
 		actions.getFollow();
 	}, []);
 
@@ -75,8 +76,11 @@ export const OneDisease = () => {
 				</div>
 				<div className="container">
 					<div className="row">
-						<div className="col-12">
+						<div className="col-10 text-left">
 							<h1>{store.oneDisease.title}</h1>
+						</div>
+						<div className="col-2 text-right">
+							<h1>{store.followers.length}</h1>
 						</div>
 					</div>
 					<div className="row">
