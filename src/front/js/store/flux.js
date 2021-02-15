@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			post: {},
 			comments: [],
 			feed: [],
-			favorites: []
+			favorites: [],
+			followers: []
 		},
 		actions: {
 			logout() {
@@ -146,6 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getOneDisease(id) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/diseases/${id}`;
 				const method = "GET";
 				const headers = { "Content-Type": "application/json" };
@@ -163,6 +165,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ oneDisease: data });
+						actions.getFollowByDisease(id);
 						console.log("info enfermedad", store.oneDisease);
 						// console.log(store.token);
 					});
@@ -373,6 +376,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("store.follows flux: ", store.follows);
 					});
 			},
+			getFollowByDisease(id) {
+				const store = getStore();
+				const endpoint = `${baseUrl}/follows/${id}`;
+				const method = "GET";
+				const headers = { "Content-Type": "application/json" };
+
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
+
+				const config = {
+					method: method,
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						// console.log(data)
+						setStore({ followers: data });
+						console.log("followers: ", store.followers);
+					});
+			},
 			getFeed() {
 				const store = getStore();
 				const endpoint = `${baseUrl}/feed`;
@@ -425,7 +450,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			deleteFollow(id) {
 				const store = getStore();
 				const actions = getActions();
-				const endpoint = `${baseUrl}/onedisease/${id}`;
+				const endpoint = `${baseUrl}/follows/${id}`;
 				const method = "DELETE";
 				const headers = { "Content-Type": "application/json" };
 

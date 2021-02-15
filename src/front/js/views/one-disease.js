@@ -1,6 +1,6 @@
 // MUESTRA TODOS LOS POST DE UNA ENFERMEDAD. AÑADIR BOTON DE SEGUIR ENFERMEDAD.
 import React, { useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { NoToken } from "../component/no-token";
 import { CardPost } from "../component/card-post";
@@ -9,10 +9,12 @@ import "../../styles/one-disease.scss";
 export const OneDisease = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	const history = useHistory();
 
 	useEffect(() => {
 		actions.getPostsDisease(params.id);
 		actions.getOneDisease(params.id);
+		actions.getFollowByDisease(params.id);
 		actions.getFollow();
 	}, []);
 
@@ -22,6 +24,15 @@ export const OneDisease = () => {
 			newList.push(follow.disease.title);
 		});
 		return newList.includes(store.oneDisease.title);
+	};
+
+	const ButtonFollow = e => {
+		console.log("esta funcionando el boton de eliminar el follow");
+		if (IsFollowed() === true) {
+			actions.deleteFollow(params.id);
+		} else {
+			history.push("/follow");
+		}
 	};
 
 	const ShowDiseasePost = () => {
@@ -49,11 +60,6 @@ export const OneDisease = () => {
 		}
 	};
 
-	const LeaveFollow = e => {
-		console.log("esta funcionando el boton de eliminar el follow");
-		actions.deleteFollow(params.id);
-	};
-
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
@@ -70,8 +76,11 @@ export const OneDisease = () => {
 				</div>
 				<div className="container">
 					<div className="row">
-						<div className="col-12">
+						<div className="col-10 text-left">
 							<h1>{store.oneDisease.title}</h1>
+						</div>
+						<div className="col-2 text-right">
+							<h1>{store.followers.length}</h1>
 						</div>
 					</div>
 					<div className="row">
@@ -80,11 +89,8 @@ export const OneDisease = () => {
 						</div>
 					</div>
 					<div className="row justify-content-center">
-						<button type="button" className="btn btn-primary">
+						<button type="button" className="btn btn-primary" onClick={e => ButtonFollow(e)}>
 							{IsFollowed() == true ? "Dejar de seguir" : "Seguir"}
-						</button>
-						<button type="button" className="btn btn-primary ml-3">
-							Eliminar seguimiento
 						</button>
 					</div>
 					<div className="row">

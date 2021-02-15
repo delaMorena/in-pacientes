@@ -553,6 +553,7 @@ def handle_follow_by_user():
     user = authorized_user()
     list_diseases_follow = []
     follow_by_user = Follows.query.filter_by(user_id=user.id, deleted_at=None).all()
+    # follow_by_user = Follows.query.filter_by(user_id=1, deleted_at=None).all() PRUEBA PARA ELIMINAR UN FOLLOW CON POSTMAN º.
 
     for follow in follow_by_user:
         list_diseases_follow.append(follow.serialize())
@@ -581,10 +582,21 @@ def handle_feed():
    
     return jsonify(new_list), 201
 
-@api.route("/diseases/<int:disease_id>/follows", methods=["GET"])
-def handle_get_follow_by_disease(disease_id):
-    """ Return the list of follows of one disease """
-    return "Get the follows of disease #{} .".format(disease_id)
+
+@api.route("/follows/<int:id>", methods=["GET"])
+def handle_follow_by_disease(id):
+
+    user = authorized_user()
+    list_user_follow = []
+    follow_by_disease = Follows.query.filter_by(disease_id=id, deleted_at=None).all()
+    # follow_by_user = Follows.query.filter_by(user_id=1, deleted_at=None).all() PRUEBA PARA ELIMINAR UN FOLLOW CON POSTMAN º.
+
+    for follow in follow_by_disease:
+        list_user_follow.append(follow.serialize())
+
+    print(list_user_follow)
+
+    return jsonify(list_user_follow), 200
 
 
 @api.route("/users/<int:user_id>/follows", methods=["GET"])
@@ -636,10 +648,12 @@ def handle_follow_for_disease():
 #     return jsonify(response)
 
 
-@api.route("/onedisease/<int:disease_id>", methods =["DELETE"])
-def handle_delete_follow(disease_id):
+@api.route("/follows/<int:id>", methods =["DELETE"])
+def handle_delete_follow(id):
+    # este id de entrada es el id de la enfermedad 
+    user = authorized_user()
 
-    follow = Follows.query.filter_by(disease_id=id, deleted_at=None).first()
+    follow = Follows.query.filter_by(disease_id=id, user_id=user.id , deleted_at=None).first()
     
     if not follow:
         return "follow not found", 404
