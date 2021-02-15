@@ -20,7 +20,7 @@ export const TempPost = () => {
 		const listItem = store.favorites;
 
 		if (listItem.length == 0) {
-			return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
+			return <i className="far fa-bookmark fa-2x" onClick={AddPostFavorites} />;
 		}
 
 		let i;
