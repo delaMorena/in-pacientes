@@ -141,6 +141,7 @@ class Posts(db.Model):
             "imagen": self.imagen,
             "disease_name": self.disease.title,
             "disease_id": self.disease_id,
+            "publisher_avatar": self.publisher.avatar,
 
             "comments": list_comments
         }

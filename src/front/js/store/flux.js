@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-olive-cow-o02svt41.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -323,6 +323,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						actions.getFeed();
 						actions.getPostUser();
 						actions.getFavorites();
+						actions.getOnePost(id);
 					})
 					.catch(error => console.log("Error!!!", error));
 			},
