@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-magenta-seahorse-bp33jlrh.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-olive-cow-o02svt41.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
@@ -424,7 +424,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			deleteFollow(id) {
 				const store = getStore();
 				const actions = getActions();
-				const endpoint = `${baseUrl}/onedisease/${id}`;
+				const endpoint = `${baseUrl}/follows/${id}`;
 				const method = "DELETE";
 				const headers = { "Content-Type": "application/json" };
 
