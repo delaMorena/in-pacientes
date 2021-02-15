@@ -33,7 +33,7 @@ export const Navbar = () => {
 					<span className="navbar-toggler-icon" />
 				</button>
 				<div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-					<ul className="navbar-nav style-ul-navbar">
+					<ul className="navbar-nav style-ul-navbar dropdown-menu-right">
 						{/* <li className="nav-item active">
 							<Link className="nav-link" to="/inicio">
 								Inicio
