@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { NoToken } from "../component/no-token";
+import { useHistory, useParams, Link } from "react-router-dom";
 
 export const CreatePost = () => {
 	const { store, actions } = useContext(Context);

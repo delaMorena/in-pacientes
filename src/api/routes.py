@@ -858,9 +858,51 @@ def handle_upload_profile_picture(id):
     print(user)
     result = cloudinary.uploader.upload(payload['avatar'],
     public_id=f'In-pacientes/profile/{user.username}')
+    # ,crop='limit',
+    #     # width=125,
+    #     # height=100,
+    #     radius = 100,
+    #     eager=[{
+    #         'width': 200, 'height': 200,
+    #         'crop': 'thumb', 'gravity': 'face',
+    #         'radius': 100
+    #     },
+    #     ])
     print(result['secure_url'])
 
     user.avatar = result['secure_url']
+
+    db.session.commit()
+
+    return jsonify("Todo bien"), 200
+
+
+
+@api.route("/upload-post/<int:id>", methods=["POST"])
+def handle_upload_post_picture(id):
+    print(id)
+    payload = request.files
+
+    if 'imagen' not in payload:
+        raise APIException("No image to upload")
+
+    post = Posts.query.filter_by(id=id, deleted_at=None).first()
+    print(post)
+    result = cloudinary.uploader.upload(payload['imagen'],
+    public_id=f'In-pacientes/post/{post.publisher.username}')
+    # ,crop='limit',
+    #     # width=125,
+    #     # height=100,
+    #     radius = 100,
+    #     eager=[{
+    #         'width': 200, 'height': 200,
+    #         'crop': 'thumb', 'gravity': 'face',
+    #         'radius': 100
+    #     },
+    #     ])
+    print(result['secure_url'])
+
+    post.imagen = result['secure_url']
 
     db.session.commit()
     
@@ -869,8 +911,4 @@ def handle_upload_profile_picture(id):
     
 
     return jsonify("Todo bien"), 200
-
-
-
-
 

@@ -3,31 +3,31 @@ import { useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import propsTypes from "prop-types";
 
-export const Upload = () => {
+export const UploadPost = () => {
 	const { store, actions } = useContext(Context);
-	const [files, setFiles] = useState(0);
+	const [postFiles, setpostFiles] = useState(0);
 	const params = useParams();
 	const history = useHistory();
 
-	const uploadProfileImage = event => {
-		if (files == 0) {
+	const uploadPostImage = event => {
+		if (postFiles == 0) {
 			alert("no has subido ninguna foto");
 		}
 		event.preventDefault();
-		actions.uploadProfilePicture(files, params.id);
+		actions.uploadPostPicture(postFiles, params.id);
 		history.push("/temp");
 	};
 
 	return (
 		<div className="jumbotron">
-			<form onSubmit={uploadProfileImage}>
-				<input type="file" onChange={() => setFiles(event.target.files)} />
-				<button>Upload</button>
+			<form onSubmit={uploadPostImage}>
+				<input type="file" onChange={() => setpostFiles(event.target.files)} />
+				<button>Upload Post Files</button>
 			</form>
 		</div>
 	);
 };
 
-Upload.propsTypes = {
+UploadPost.propsTypes = {
 	match: propsTypes.object
 };

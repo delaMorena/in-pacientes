@@ -30,7 +30,7 @@ export const ListDiseases = () => {
 			</div>
 			<hr />
 
-			<div className="row d-flex flex-wrap align-content-start">{diseaseList}</div>
+			<div className="row d-flex flex-wrap align-content-start justify-content-around">{diseaseList}</div>
 			<hr />
 			<div className="justify-content-center my-5">
 				<p>¿No esta la enfermedad que te interesa? Solicita su creación ahora!</p>

@@ -7,11 +7,11 @@ import "../../styles/card-post.scss";
 export const CardPost = props => {
 	const { post } = props;
 
-	const randomImage = () => {
-		const url = "https://picsum.photos/800/800?random=";
-		let nunRandom = Math.floor(Math.random() * 10) + 1;
-		return url + nunRandom;
-	};
+	// const randomImage = () => {
+	// 	const url = "https://picsum.photos/800/800?random=";
+	// 	let nunRandom = Math.floor(Math.random() * 10) + 1;
+	// 	return url + nunRandom;
+	// };
 
 	const textTruncate = input => {
 		if (input.length >= 200) {
@@ -24,7 +24,14 @@ export const CardPost = props => {
 	return (
 		<div className="row card-post-inicio mx-1 align-items-center my-3 py-3">
 			<div className="col-md-3 text-center card-post-image img">
-				<img src={randomImage()} alt="image-post" />
+				<img
+					src={post.imagen}
+					// src={randomImage()}
+					alt="image-post"
+				/>
+				<Link to={`/upload-post/${post.id}`}>
+					<i className="fas fa-pencil-alt" />
+				</Link>
 			</div>
 			<div className="col-md-9">
 				<div className="row tex-muted">

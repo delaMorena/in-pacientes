@@ -90,7 +90,7 @@ export const TempPost = () => {
 				<div className="row my-3">
 					<div className="col-12">
 						<div className="row post-img">
-							<img src="https://picsum.photos/1710/900" alt="image-post" />
+							<img src={store.post.imagen} alt="image-post" />
 						</div>
 						<div className="row filter-img-text" />
 						<div className="row text-up-image">
@@ -105,7 +105,7 @@ export const TempPost = () => {
 							<div className="col-12">
 								<div className="row align-items-center">
 									<div className="col-md-1">
-										<img src="https://picsum.photos/300/300" alt="image-post" />
+										<img src={store.user.avatar} alt="image-post" />
 									</div>
 									<div className="col-md-5 text-left">
 										<h3>{store.post.publisher}</h3>
