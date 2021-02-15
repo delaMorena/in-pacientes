@@ -51,6 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			uploadProfilePicture(files, id) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/upload/${id}`;
 				const method = "POST";
 				const formData = new FormData();
@@ -66,7 +67,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then(data => console.log("Bieeeeeen", data))
+					.then(data => {
+						console.log("Bieeeeeen", data);
+						actions.getUser();
+					})
 					.catch(error => console.log("Error!!!", error));
 			},
 
@@ -295,6 +299,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			uploadPostPicture(files, id) {
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/upload-post/${id}`;
 				const method = "POST";
 				const formData = new FormData();
@@ -310,7 +315,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then(data => console.log("Bieeeeeen", data))
+					.then(data => {
+						console.log("Bieeeeeen", data);
+						actions.getFeed();
+						actions.getPostUser();
+						actions.getFavorites();
+					})
 					.catch(error => console.log("Error!!!", error));
 			},
 			createComment(input) {
