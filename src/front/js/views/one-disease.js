@@ -49,6 +49,11 @@ export const OneDisease = () => {
 		}
 	};
 
+	const LeaveFollow = e => {
+		console.log("esta funcionando el boton de eliminar el follow");
+		actions.deleteFollow(params.id);
+	};
+
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
@@ -77,6 +82,9 @@ export const OneDisease = () => {
 					<div className="row justify-content-center">
 						<button type="button" className="btn btn-primary">
 							{IsFollowed() == true ? "Dejar de seguir" : "Seguir"}
+						</button>
+						<button type="button" className="btn btn-primary ml-3">
+							Eliminar seguimiento
 						</button>
 					</div>
 					<div className="row">
