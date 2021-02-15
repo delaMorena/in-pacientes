@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 // import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { NoToken } from "../component/no-token";
@@ -8,10 +8,13 @@ import "../../styles/inicio.scss";
 
 export const Inicio = () => {
 	const { store, actions } = useContext(Context);
-	const [url, setUrl] = useState("");
+	const history = useHistory();
+	// const [url, setUrl] = useState("");
 	const [text, setText] = useState("");
 	const [diseaseId, setDiseaseId] = useState();
 	const [selected, setSelected] = useState("interes");
+	const [postFiles, setpostFiles] = useState(0);
+	const [files, setFiles] = useState(0);
 	// const { id } = props;
 
 	useEffect(() => {
@@ -25,12 +28,26 @@ export const Inicio = () => {
 	const OnSubmit = event => {
 		const payload = {
 			text: text,
-			url: url,
+			// url: url,
 			diseaseId: parseInt(diseaseId)
 		};
 		actions.createPost(payload);
 		setText("");
-		setUrl("");
+		// setUrl("");
+	};
+
+	const uploadPostImage = event => {
+		event.preventDefault();
+		actions.uploadProfilePicture(postFiles, store.post.id);
+	};
+
+	const uploadProfileImage = event => {
+		if (files == 0) {
+			alert("no has subido ninguna foto");
+		}
+		event.preventDefault();
+		actions.uploadProfilePicture(files, store.user.id);
+		history.push("/inicio");
 	};
 
 	const showFollows = () => {
@@ -196,6 +213,14 @@ export const Inicio = () => {
 		}
 	};
 
+	const showProfileImage = () => {
+		if (store.user.avatar == undefined) {
+			return <i className="icono-user-style fas fa-user-alt fa-5x" />;
+		} else {
+			return <img src={store.user.avatar} alt="user-pic" />;
+		}
+	};
+
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
@@ -206,11 +231,68 @@ export const Inicio = () => {
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
-									<Link to={`/upload/${store.user.id}`}>
-										<div className="col-md-6 box-user-image text-center">
-											<img src={store.user.avatar} alt="user-pic" />
+									<div className="col-md-6 box-user-image text-center">
+										{showProfileImage()}
+										<div className="row">
+											<div className="col-7 offset-1 mt-4">
+												<p className="p-edit-profile-font">Edita tu foto</p>
+											</div>
+											<div className="col-2 mt-4">
+												<div
+													className="pencil-inicio-clickable"
+													// type="button"
+													// className="btn btn-primary"
+													data-toggle="modal"
+													data-target="#exampleModal">
+													<i className="fas fa-pencil-alt" />
+												</div>
+											</div>
+											<div
+												className="modal fade"
+												id="exampleModal"
+												tabIndex="-1"
+												role="dialog"
+												aria-labelledby="exampleModalLabel"
+												aria-hidden="true">
+												<div className="modal-dialog" role="document">
+													<div className="modal-content">
+														<div className="modal-header">
+															<h5 className="modal-title" id="exampleModalLabel">
+																Edita tu foto de perfil
+															</h5>
+															<button
+																type="button"
+																className="close"
+																data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div className="modal-body">
+															<div className="jumbotron">
+																<form onSubmit={uploadProfileImage}>
+																	<input
+																		type="file"
+																		onChange={() => setFiles(event.target.files)}
+																	/>
+																	<button>Actualizar</button>
+																</form>
+															</div>
+														</div>
+														<div className="modal-footer">
+															<button
+																type="button"
+																className="btn btn-secondary"
+																data-dismiss="modal">
+																Cerrar
+															</button>
+															<button type="button" className="btn" />
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
-									</Link>
+									</div>
 									<div className="col-md-6 box-user-image text-center">
 										<h5>{store.user.username}</h5>
 									</div>
@@ -238,7 +320,7 @@ export const Inicio = () => {
 										/>
 									</div>
 									<div className="form-group mt-1">
-										<input
+										{/* <input
 											type="url"
 											className="form-control"
 											id="exampleInputEmail1"
@@ -247,9 +329,13 @@ export const Inicio = () => {
 											placeholder="URL imagen"
 											value={url}
 											onChange={e => setUrl(e.target.value)}
-										/>
+										/> */}
 									</div>
 								</form>
+								{/* <form onSubmit={uploadPostImage}>
+									<input type="file" onChange={() => setpostFiles(event.target.files)} />
+									<button>Upload Post Files</button>
+								</form> */}
 							</div>
 							<div className="col-12">
 								<div className="row justify-content-center">

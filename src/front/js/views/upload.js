@@ -15,7 +15,7 @@ export const Upload = () => {
 		}
 		event.preventDefault();
 		actions.uploadProfilePicture(files, params.id);
-		history.push("/temp");
+		history.push("/inicio");
 	};
 
 	return (
