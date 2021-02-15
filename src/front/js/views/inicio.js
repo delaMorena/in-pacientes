@@ -13,7 +13,6 @@ export const Inicio = () => {
 	const [text, setText] = useState("");
 	const [diseaseId, setDiseaseId] = useState();
 	const [selected, setSelected] = useState("interes");
-	const [postFiles, setpostFiles] = useState(0);
 	const [files, setFiles] = useState(0);
 	// const { id } = props;
 
@@ -34,11 +33,6 @@ export const Inicio = () => {
 		actions.createPost(payload);
 		setText("");
 		// setUrl("");
-	};
-
-	const uploadPostImage = event => {
-		event.preventDefault();
-		actions.uploadProfilePicture(postFiles, store.post.id);
 	};
 
 	const uploadProfileImage = event => {

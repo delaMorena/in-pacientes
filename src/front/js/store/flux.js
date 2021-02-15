@@ -320,6 +320,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						actions.getFeed();
 						actions.getPostUser();
 						actions.getFavorites();
+						actions.getOnePost(id);
 					})
 					.catch(error => console.log("Error!!!", error));
 			},

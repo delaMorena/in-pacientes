@@ -9,11 +9,32 @@ export const TempPost = () => {
 	const { store, actions } = useContext(Context);
 	const [comment, setComment] = useState("");
 	const params = useParams();
+	const [files, setFiles] = useState(0);
 
 	useEffect(() => {
 		actions.getOnePost(params.id);
 		actions.getFavorites();
 	}, []);
+
+	const uploadPostImage = event => {
+		event.preventDefault();
+		actions.uploadPostPicture(files, store.post.id);
+		actions.getOnePost(params.id);
+	};
+	const showPostImage = () => {
+		if (store.post.imagen == undefined) {
+			return <i className="fas fa-image fa-7x" />;
+		} else {
+			return <img src={store.post.imagen} alt="user-pic" />;
+		}
+	};
+	const showProfilePublisherImage = () => {
+		if (store.post.publisher_avatar == undefined) {
+			return <i className="icono-user-style fas fa-user-alt fa-2x" />;
+		} else {
+			return <img src={store.post.publisher_avatar} alt="user-pic" />;
+		}
+	};
 
 	const IsFavorite = () => {
 		const oneItem = store.post;
@@ -89,9 +110,7 @@ export const TempPost = () => {
 			<div className="container">
 				<div className="row my-3">
 					<div className="col-12">
-						<div className="row post-img">
-							<img src={store.post.imagen} alt="image-post" />
-						</div>
+						<div className="row post-img">{showPostImage()}</div>
 						<div className="row filter-img-text" />
 						<div className="row text-up-image">
 							<div className="col-12">
@@ -105,10 +124,62 @@ export const TempPost = () => {
 							<div className="col-12">
 								<div className="row align-items-center">
 									<div className="col-md-1">
-										<img src={store.user.avatar} alt="image-post" />
+										{/* <img src={store.user.avatar} alt="user-avatar" /> */}
+										{showProfilePublisherImage()}
 									</div>
 									<div className="col-md-5 text-left">
 										<h3>{store.post.publisher}</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-12 mt-2 " type="button" data-toggle="modal" data-target="#exampleModal">
+							<p className="p-edit-profile-font">Edita tu foto</p>
+							<i className="fas fa-pencil-alt pencil-inicio-clickable" />
+						</div>
+						{/* <div className="col-2 mt-4">
+							<div
+								className="pencil-inicio-clickable"
+								// type="button"
+                                // className="btn btn-primary"
+                                type="button"
+								data-toggle="modal"
+								data-target="#exampleModal">
+								<i className="fas fa-pencil-alt" />
+							</div>
+						</div> */}
+						<div
+							className="modal fade"
+							id="exampleModal"
+							tabIndex="-1"
+							role="dialog"
+							aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div className="modal-dialog" role="document">
+								<div className="modal-content">
+									<div className="modal-header">
+										<h5 className="modal-title" id="exampleModalLabel">
+											Añade una foto a tu publicación
+										</h5>
+										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div className="modal-body">
+										<div className="jumbotron">
+											<form onSubmit={uploadPostImage}>
+												<input type="file" onChange={() => setFiles(event.target.files)} />
+												<button>Actualizar</button>
+											</form>
+										</div>
+									</div>
+									<div className="modal-footer">
+										<button type="button" className="btn btn-secondary" data-dismiss="modal">
+											Cerrar
+										</button>
+										<button type="button" className="btn" />
 									</div>
 								</div>
 							</div>
