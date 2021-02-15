@@ -225,7 +225,7 @@ export const Inicio = () => {
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
-									<div className="col-md-6 box-user-image text-center">
+									<div className="col-12 box-user-image text-center">
 										{showProfileImage()}
 										<div className="row">
 											<div className="col-7 offset-1 mt-4">
@@ -287,7 +287,7 @@ export const Inicio = () => {
 											</div>
 										</div>
 									</div>
-									<div className="col-md-6 box-user-image text-center">
+									<div className="col-12 box-user-image text-center">
 										<h5>{store.user.username}</h5>
 									</div>
 								</div>
@@ -299,14 +299,16 @@ export const Inicio = () => {
 							<div className="col-12">
 								<form className="my-3">
 									<div className="form-group">
-										<select className="form-control" onChange={e => setDiseaseId(e.target.value)}>
+										<select
+											className="form-control inicio-input-style"
+											onChange={e => setDiseaseId(e.target.value)}>
 											<option>Elige una enfermedad</option>
 											{showDiseaseOption()}
 										</select>
 									</div>
-									<div className="form-group mt-1">
+									<div className="form-group mt-3">
 										<textarea
-											className="form-control"
+											className="form-control inicio-input-style"
 											placeholder="Escribe tu publicación"
 											rows="1"
 											value={text}
@@ -414,7 +416,7 @@ export const Inicio = () => {
 											</div>
 										</ul>
 									</div>
-									<div className="col-12">
+									<div className="col-12 mt-2">
 										<div className="tab-content" id="pills-tabContent">
 											<div
 												className="tab-pane fade show active"

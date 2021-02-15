@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import { ListItem } from "../component/list-item";
+import { CardDisease } from "../component/card-disease";
+import "../../styles/list-item.scss";
 
 export const ListDiseases = () => {
 	const { store, actions } = useContext(Context);
@@ -10,35 +11,61 @@ export const ListDiseases = () => {
 		actions.getDiseases();
 	}, []);
 
-	const diseaseList = store.diseases.map((disease, index) => {
-		return <ListItem key={index} id={disease.id} diseaseName={disease.title} diseaseDesc={disease.description} />;
-	});
+	const ShowDiseases = () => {
+		const diseaseCard = store.diseases.map((disease, index) => {
+			return (
+				<div className="col-5" key={index}>
+					<Link to={`/onedisease/${disease.id}`}>
+						<CardDisease disease={disease} />
+					</Link>
+				</div>
+			);
+		});
+
+		if (store.diseases.length == 0) {
+			return (
+				<div className="row">
+					<div className="col-12">
+						<h3>No hay enfermedades creadas</h3>
+					</div>
+				</div>
+			);
+		} else {
+			return diseaseCard;
+		}
+	};
 	return (
 		<div className="container">
-			<div className="row justify-content-center d-flex flex-column">
-				<div className="col-md-7 offset-lg-4 col-10 offset-md-3">
-					<h1>Lista Enfermedades</h1>
+			<div className="row">
+				<div className="col-12">
+					<h1>Lista de enfermedades</h1>
 				</div>
-				<div className="col-12 col-lg-9 col-md-6 offset-lg-2 mt-3">
-					<p>
-						Esta es la lista de enfermedades Raras que puedes encontrar en In-pacientes. Icing pie gummies
-						cotton candy marshmallow carrot cake lemon drops lemon drops. I love soufflé sweet roll sugar
-						plum tart lollipop. Chocolate bar dragée candy canes wafer cake sweet roll tiramisu liquorice
-						macaroon. Dessert topping biscuit croissant icing donut sweet roll pastry.
-					</p>
+				<div className="col-12">
+					<p>texto</p>
 				</div>
 			</div>
-			<hr />
-
-			<div className="row d-flex flex-wrap align-content-start justify-content-around">{diseaseList}</div>
-			<hr />
-			<div className="justify-content-center my-5">
-				<p>¿No esta la enfermedad que te interesa? Solicita su creación ahora!</p>
-				<Link to="/request/disease">
-					<button type="button" className="btn">
-						Crear solicitud
-					</button>
-				</Link>
+			<div className="row">
+				<div className="col-12">
+					<hr className="list-divisor-line" />
+				</div>
+			</div>
+			<div className="row justify-content-center">{ShowDiseases()}</div>
+			<div className="row">
+				<div className="col-12">
+					<hr className="list-divisor-line" />
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-12 text-center">
+					<p>¿No esta la enfermedad que te interesa? Solicita su creación ahora!</p>
+				</div>
+				<div className="col-12 text-center mt-2">
+					<Link to="/request/disease">
+						<button type="button" className="btn btn-primary">
+							Crear solicitud
+						</button>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

@@ -27,7 +27,6 @@ export const OneDisease = () => {
 	};
 
 	const ButtonFollow = e => {
-		console.log("esta funcionando el boton de eliminar el follow");
 		if (IsFollowed() === true) {
 			actions.deleteFollow(params.id);
 		} else {
@@ -67,19 +66,24 @@ export const OneDisease = () => {
 			<>
 				<div className="fluid-container">
 					<div className="row mx-1">
-						<div className="col-12">
+						<div className="col-3">
 							<div className="row">
-								<p>breadcrumbs</p>
+								<div className="col-4">
+									<p>Inicio</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className="container">
-					<div className="row">
+					<div className="row align-items-center">
 						<div className="col-10 text-left">
 							<h1>{store.oneDisease.title}</h1>
 						</div>
-						<div className="col-2 text-right">
+						<div className="col-1 text-muted text-rigth">
+							<i className="fas fa-users fa-3x" />
+						</div>
+						<div className="col-1 text-muted text-left">
 							<h1>{store.followers.length}</h1>
 						</div>
 					</div>
@@ -88,8 +92,13 @@ export const OneDisease = () => {
 							<p>{store.oneDisease.description}</p>
 						</div>
 					</div>
-					<div className="row justify-content-center">
-						<button type="button" className="btn btn-primary" onClick={e => ButtonFollow(e)}>
+					<div className="row justify-content-center mt-2">
+						<button
+							type="button"
+							className={
+								IsFollowed() == true ? "btn disease-button-unfollow" : "btn disease-button-follow"
+							}
+							onClick={e => ButtonFollow(e)}>
 							{IsFollowed() == true ? "Dejar de seguir" : "Seguir"}
 						</button>
 					</div>
