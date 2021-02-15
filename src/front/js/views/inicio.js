@@ -55,12 +55,11 @@ export const Inicio = () => {
 		const listFollows = store.follows.map((follow, index) => {
 			return (
 				<div className="row mb-2 inicio-tag-follow align-items-center" key={index}>
-					<div className="col-12 post-cursor-click text-center py-1">
-						<p>{follow.disease.title}</p>
-					</div>
-					{/* <div className="col-5 inicio-remove-margin">
-						<p>{convRol(follow.role)}</p>
-					</div> */}
+					<Link to={`/onedisease/${follow.disease.id}`}>
+						<div className="col-12 post-cursor-click py-1">
+							<p>{follow.disease.title}</p>
+						</div>
+					</Link>
 				</div>
 			);
 		});
@@ -79,7 +78,9 @@ export const Inicio = () => {
 					</div>
 					<div className="col-12">{listFollows}</div>
 					<div className="col-12 text-right">
-						<p>Seguir mas enfermedades</p>
+						<Link to="/follow">
+							<p>Seguir mas enfermedades</p>
+						</Link>
 					</div>
 				</>
 			);
@@ -201,7 +202,7 @@ export const Inicio = () => {
 		return (
 			<div className="container">
 				<div className="row">
-					<div className="col-4">
+					<div className="col-xl-4">
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
@@ -217,7 +218,7 @@ export const Inicio = () => {
 							</div>
 						</div>
 					</div>
-					<div className="col-8">
+					<div className="col-xl-8">
 						<div className="row">
 							<div className="col-12">
 								<form className="my-3">
@@ -266,67 +267,71 @@ export const Inicio = () => {
 					</div>
 				</div>
 				<div className="row mt-3">
-					<div className="col-4">
+					<div className="col-xl-4">
 						<div className="col-12">
 							<div className="row list-user-inicio">{showFollows()}</div>
 						</div>
 					</div>
-					<div className="col-8">
+					<div className="col-xl-8">
 						<div className="row">
 							<div className="col-12">
 								<div className="row box-content-inicio">
 									<div className="col-12">
 										<ul
-											className="nav nav-pills d-flex justify-content-between"
+											className="nav nav-pills d-flex justify-content-between align-items-center"
 											id="pills-tab"
 											role="tablist">
-											<li className="nav-item" role="presentation">
-												<a
-													className={
-														selected == "interes"
-															? "btn inicio-button-activated"
-															: "btn inicio-button-disabled"
-													}
-													id="pills-home-tab"
-													data-toggle="pill"
-													href="#post-feed"
-													role="tab"
-													onClick={() => setSelected("interes")}>
-													Novedades
-												</a>
-											</li>
-
-											<li className="nav-item" role="presentation">
-												<a
-													className={
-														selected == "publicaciones"
-															? "btn inicio-button-activated"
-															: "btn inicio-button-disabled"
-													}
-													id="pills-profile-tab"
-													data-toggle="pill"
-													href="#post-user"
-													role="tab"
-													onClick={() => setSelected("publicaciones")}>
-													Mis publicaciones
-												</a>
-											</li>
-
-											<li className="nav-item" role="presentation">
-												<a
-													className={
-														selected == "favoritos"
-															? "btn inicio-button-activated"
-															: "btn inicio-button-disabled"
-													}
-													id="pills-profile-tab"
-													data-toggle="pill"
-													href="#post-fav"
-													role="tab"
-													onClick={() => setSelected("favoritos")}>
-													Favoritos
-												</a>
-											</li>
+											<div className="col-xl-4 text-center">
+												<li className="nav-item" role="presentation">
+													<a
+														className={
+															selected == "interes"
+																? "btn inicio-button-activated"
+																: "btn inicio-button-disabled"
+														}
+														id="pills-home-tab"
+														data-toggle="pill"
+														href="#post-feed"
+														role="tab"
+														onClick={() => setSelected("interes")}>
+														Novedades
+													</a>
+												</li>
+											</div>
+											<div className="col-xl-4 text-center">
+												<li className="nav-item" role="presentation">
+													<a
+														className={
+															selected == "publicaciones"
+																? "btn inicio-button-activated"
+																: "btn inicio-button-disabled"
+														}
+														id="pills-profile-tab"
+														data-toggle="pill"
+														href="#post-user"
+														role="tab"
+														onClick={() => setSelected("publicaciones")}>
+														Mis publicaciones
+													</a>
+												</li>
+											</div>
+											<div className="col-xl-4 text-center">
+												<li className="nav-item" role="presentation">
+													<a
+														className={
+															selected == "favoritos"
+																? "btn inicio-button-activated"
+																: "btn inicio-button-disabled"
+														}
+														id="pills-profile-tab"
+														data-toggle="pill"
+														href="#post-fav"
+														role="tab"
+														onClick={() => setSelected("favoritos")}>
+														Favoritos
+													</a>
+												</li>
+											</div>
 										</ul>
 									</div>
 									<div className="col-12">

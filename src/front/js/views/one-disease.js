@@ -2,9 +2,9 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { Header } from "../component/header.js";
-import { CardFeedCenter } from "../component/card-feed-center.js";
 import { NoToken } from "../component/no-token";
+import { CardPost } from "../component/card-post";
+import "../../styles/one-disease.scss";
 
 export const OneDisease = () => {
 	const { store, actions } = useContext(Context);
@@ -13,88 +13,82 @@ export const OneDisease = () => {
 	useEffect(() => {
 		actions.getPostsDisease(params.id);
 		actions.getOneDisease(params.id);
+		actions.getFollow();
 	}, []);
 
-	let cardItemsFeedDisease = "";
-	if (store.diseasePost.length == 0) {
-		cardItemsFeedDisease = (
-			<div className="card p-3 text-center">
-				<p>Aún no hay ninguna publicacion sobre esta enfermedad</p>
-				<div className="row my-3 justify-content-center">
-					<Link to="/inicio">
-						<button type="button" className="btn btn-info">
-							Crea una publicacion
-						</button>
-					</Link>
-				</div>
-			</div>
-		);
-	} else {
-		cardItemsFeedDisease = store.diseasePost.map((post, index) => {
+	const IsFollowed = () => {
+		const newList = [];
+		const showfollow = store.follows.map((follow, index) => {
+			newList.push(follow.disease.title);
+		});
+		return newList.includes(store.oneDisease.title);
+	};
+
+	const ShowDiseasePost = () => {
+		const showPost = store.diseasePost.map((post, index) => {
 			return (
-				<div className="row justify-content-center my-2" key={index}>
-					<CardFeedCenter post={post} />
-				</div>
+				<Link key={index} to={`/temppost/${post.id}`}>
+					<CardPost post={post} />
+				</Link>
 			);
 		});
-	}
 
-	// const cardItemsFeedDisease = store.diseasePost.map((postDisease, index) => {
-	// 	return (
-	// 		<Link key={index} to={`/post/${postDisease.id}`}>
-	// 			<CardFeed post={postDisease} />
-	// 		</Link>
-	// 	);
-	// });
+		if (store.diseasePost.length == 0) {
+			return (
+				<div className="row">
+					<div className="col-12 text-center">
+						<h3>Aun no hay publicaciones sobre esta enfermedad</h3>
+					</div>
+					<div className="col-12 text-center">
+						<p>¡sé el primero en crear una publicación!</p>
+					</div>
+				</div>
+			);
+		} else {
+			return showPost;
+		}
+	};
 
 	if (store.token == null) {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="fluid-container mx-3 mt-3">
-				<div className="row mb-2 justify-content-center">
-					<Link to="/inicio">
-						<button type="button" className="btn btn-info">
-							Volver a Inicio
+			<>
+				<div className="fluid-container">
+					<div className="row mx-1">
+						<div className="col-12">
+							<div className="row">
+								<p>breadcrumbs</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="container">
+					<div className="row">
+						<div className="col-12">
+							<h1>{store.oneDisease.title}</h1>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-12">
+							<p>{store.oneDisease.description}</p>
+						</div>
+					</div>
+					<div className="row justify-content-center">
+						<button type="button" className="btn btn-primary">
+							{IsFollowed() == true ? "Dejar de seguir" : "Seguir"}
 						</button>
-					</Link>
-				</div>
-				<div className="row justify-content-center">
-					<div className="col-6">
-						<div className="row mb-2 justify-content-center">
-							<h2>Información de la enfermedad</h2>
-						</div>
-						<div className="row mb-2 justify-content-center">
-							<Header itemName={store.oneDisease.title} qtyPost={store.diseasePost.length} />
-						</div>
-						<div className="row justify-content-center mx-4">
-							<div className="row px-3">
-								<h3>Descripción</h3>
-							</div>
-							<div className="row text-justify card">
-								<div className="card-body">
-									<p className="card-text">{store.oneDisease.description}</p>
-								</div>
-							</div>
-						</div>
-						<div className="row my-4 justify-content-center">
-							<Link to="/follow">
-								<button type="button" className="btn orange-button">
-									Comienza a seguir esta enfermedad
-								</button>
-							</Link>
+					</div>
+					<div className="row">
+						<div className="col-12">
+							<hr className="disease-divisor-line" />
 						</div>
 					</div>
-					<div className="col-6 px-5">
-						<div className="row mb-2 justify-content-center">
-							<h2>Publicaciones sobre la enfermedad</h2>
-						</div>
-						<div className="card-deck d-flex align-content-around flex-wrap mt-3">
-							{cardItemsFeedDisease}
-						</div>
+					<div className="row justify-content-center">
+						<div className="col-8">{ShowDiseasePost()}</div>
 					</div>
 				</div>
-			</div>
+			</>
 		);
 	}
 };

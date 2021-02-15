@@ -7,7 +7,7 @@ import { Follow } from "./views/follow";
 import { CreatePost } from "./views/create-post";
 import { Feed } from "./views/feed";
 import { Post } from "./views/post";
-import { OneDisease } from "./views/one-disease";
+
 import { Profile } from "./views/profile";
 import { SignUp } from "./views/sign-up";
 import { LogIn } from "./views/log-in";
@@ -22,6 +22,7 @@ import { Bye } from "./views/bye";
 import { Inicio } from "./views/inicio";
 import { TempPost } from "./views/temp-post";
 import { Upload } from "./views/upload";
+import { OneDisease } from "./views/one-disease";
 
 import injectContext from "./store/appContext";
 
