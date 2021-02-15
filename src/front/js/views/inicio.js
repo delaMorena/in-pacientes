@@ -14,6 +14,7 @@ export const Inicio = () => {
 	const [diseaseId, setDiseaseId] = useState();
 	const [selected, setSelected] = useState("interes");
 	const [files, setFiles] = useState(0);
+	const [postFiles, setPostFiles] = useState(0);
 	// const { id } = props;
 
 	useEffect(() => {
@@ -30,7 +31,8 @@ export const Inicio = () => {
 			// url: url,
 			diseaseId: parseInt(diseaseId)
 		};
-		actions.createPost(payload);
+
+		actions.createPost(payload, postFiles);
 		setText("");
 		// setUrl("");
 	};
@@ -326,6 +328,7 @@ export const Inicio = () => {
 											value={url}
 											onChange={e => setUrl(e.target.value)}
 										/> */}
+										<input type="file" onChange={() => setPostFiles(event.target.files)} />
 									</div>
 								</form>
 								{/* <form onSubmit={uploadPostImage}>

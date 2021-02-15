@@ -114,7 +114,7 @@ class Posts(db.Model):
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     deleted_at = db.Column(db.DateTime) 
     text = db.Column(db.Text, nullable=False) 
-    imagen = db.Column(db.String(255), nullable=True)
+    image = db.Column(db.String(255), nullable=True)
 
     publisher = db.relationship("Users")
     disease = db.relationship("Diseases")

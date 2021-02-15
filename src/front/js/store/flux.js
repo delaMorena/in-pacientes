@@ -270,25 +270,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// .catch(error => console.error("error: ", error));
 					.catch(error => alert("error: ", error));
 			},
-			createPost(input) {
+			createPost(input, files) {
 				const store = getStore();
 				const actions = getActions();
 				const endpoint = `${baseUrl}/posts`;
 				const method = "POST";
-				const headers = { "Content-Type": "application/json" };
+				const headers = { Authorization: `Bearer ${store.token}` };
+				const formData = new FormData();
 
-				if (store.token) {
-					headers["Authorization"] = `Bearer ${store.token}`;
-				}
+				formData.append("disease_id", input.diseaseId);
+				formData.append("text", input.text);
+				formData.append("imagen", files[0]);
 
 				const config = {
 					method: method,
 					headers: headers,
-					body: JSON.stringify({
-						disease_id: input.diseaseId,
-						text: input.text
-						// imagen: input.url
-					})
+					body: formData
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())

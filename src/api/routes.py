@@ -360,7 +360,7 @@ def handle_list_posts_from_disease(id):
 @api.route("/posts", methods= ["POST"])
 def handle_create_post():
 
-    payload = request.get_json()
+    payload = request.form.to_dict()
 
     user = authorized_user()
 
@@ -370,10 +370,10 @@ def handle_create_post():
 
     types = {
         'text': str,
-        'disease_id': int,
-        'imagen': str
+        'disease_id': str,
     }
-    
+   
+
     for key, value in payload.items():
         if key in types and not isinstance(value, types[key]):
             abort(400, f"{key} is not {types[key]}")
@@ -387,7 +387,54 @@ def handle_create_post():
     db.session.add(post)
     db.session.commit()
 
+    files = request.files #cualquier files que vaya en el payload lo guarda aqui
+    print(files)
+
+    if 'imagen' not in files:
+        raise APIException("No image to upload")
+
+    result = cloudinary.uploader.upload(files['imagen'],
+    public_id=f'In-pacientes/post/{post.publisher.username}')
+  
+    print(result['secure_url'])
+
+    post.image = result['secure_url']
+
+    db.session.commit()
+
     return jsonify(post.serialize()), 201
+
+
+@api.route("/upload-post/<int:id>", methods=["POST"])
+def handle_upload_post_picture(id):
+    print(id)
+    payload = request.files
+
+    if 'imagen' not in payload:
+        raise APIException("No image to upload")
+
+    post = Posts.query.filter_by(id=id, deleted_at=None).first()
+    print(post)
+    result = cloudinary.uploader.upload(payload['imagen'],
+    public_id=f'In-pacientes/post/{post.publisher.username}')
+    # ,crop='limit',
+    #     # width=125,
+    #     # height=100,
+    #     radius = 100,
+    #     eager=[{
+    #         'width': 200, 'height': 200,
+    #         'crop': 'thumb', 'gravity': 'face',
+    #         'radius': 100
+    #     },
+    #     ])
+    print(result['secure_url'])
+
+    post.imagen = result['secure_url']
+
+    db.session.commit()
+
+    return jsonify("Todo bien"), 200
+
     
 # EDITA UN POST, PERO EN NINGUNO DE LOS METODOS GET ANTERIORES SE OBTIENE EL ID PROPIO DEL POST
 @api.route("/posts/<int:id>", methods=["PUT"])
@@ -892,37 +939,4 @@ def handle_upload_profile_picture(id):
 
 
 
-@api.route("/upload-post/<int:id>", methods=["POST"])
-def handle_upload_post_picture(id):
-    print(id)
-    payload = request.files
-
-    if 'imagen' not in payload:
-        raise APIException("No image to upload")
-
-    post = Posts.query.filter_by(id=id, deleted_at=None).first()
-    print(post)
-    result = cloudinary.uploader.upload(payload['imagen'],
-    public_id=f'In-pacientes/post/{post.publisher.username}')
-    # ,crop='limit',
-    #     # width=125,
-    #     # height=100,
-    #     radius = 100,
-    #     eager=[{
-    #         'width': 200, 'height': 200,
-    #         'crop': 'thumb', 'gravity': 'face',
-    #         'radius': 100
-    #     },
-    #     ])
-    print(result['secure_url'])
-
-    post.imagen = result['secure_url']
-
-    db.session.commit()
-    
-    
-   
-    
-
-    return jsonify("Todo bien"), 200
 
