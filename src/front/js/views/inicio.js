@@ -32,7 +32,7 @@ export const Inicio = () => {
 			diseaseId: parseInt(diseaseId)
 		};
 		console.log("tipo dato: ", typeof payload.diseaseId);
-		actions.createPost(payload, files);
+		actions.createPost(payload, postFiles);
 		setText("");
 		// setUrl("");
 	};
@@ -249,9 +249,6 @@ export const Inicio = () => {
 									<div className="col-12 box-user-image text-center">
 										{showProfileImage()}
 										<div className="row">
-											<div className="col-7 offset-1 mt-4">
-												<p className="p-edit-profile-font">Edita tu foto</p>
-											</div>
 											<div className="col-2 mt-4">
 												<div
 													className="pencil-inicio-clickable"
@@ -283,21 +280,22 @@ export const Inicio = () => {
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>
-														<div className="modal-body">
-															<div className="jumbotron">
-																<form onSubmit={uploadProfileImage}>
-																	<input
-																		type="file"
-																		onChange={() => setFiles(event.target.files)}
-																	/>
-																	<button>Actualizar</button>
-																</form>
-															</div>
+														<div className="modal-body text-left">
+															<form onSubmit={uploadProfileImage}>
+																<input
+																	className="modal-inicio-style"
+																	type="file"
+																	onChange={() => setFiles(event.target.files)}
+																/>
+																<button className="btn modal-actualizar-button-style">
+																	Actualizar
+																</button>
+															</form>
 														</div>
 														<div className="modal-footer">
 															<button
 																type="button"
-																className="btn btn-secondary"
+																className="btn modal-actualizar-button-style"
 																data-dismiss="modal">
 																Cerrar
 															</button>
@@ -327,7 +325,7 @@ export const Inicio = () => {
 											{showDiseaseOption()}
 										</select>
 									</div>
-									<div className="form-group mt-3">
+									<div className="form-group my-3">
 										<textarea
 											className="form-control inicio-input-style"
 											placeholder="Escribe tu publicación"
