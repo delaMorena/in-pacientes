@@ -10,9 +10,9 @@ nav {
   right: 0px;
   left: auto;
 }
-// .style-ul-navbar{
-//     padding: 0 20% 0 80%;
-// }
+.style-ul-navbar{
+    text-align: end;
+}
 .color-username {
     color: #FD830A
 }
@@ -29,6 +29,7 @@ nav {
     transition-duration: 0.4s;
     
 }
+
 .register-button-style-navbar:hover {
     color: black;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);

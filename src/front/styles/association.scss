@@ -1,0 +1,16 @@
+.button-request-association-black {
+    background-color:#070707;
+    border: 1px solid #070707;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    // margin: 25px 0px 0px 15px;
+    transition-duration: 0.4s;
+    padding: 10px 32px;
+}
+.button-request-association-black:hover {
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
+
+}
