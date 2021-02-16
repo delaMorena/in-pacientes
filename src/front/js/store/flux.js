@@ -1,3 +1,4 @@
+
 const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -271,27 +272,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// .catch(error => console.error("error: ", error));
 					.catch(error => alert("error: ", error));
 			},
-			createPost(input, files) {
+			// createPost(input, files) {
+			// 	const store = getStore();
+			// 	const actions = getActions();
+			// 	const endpoint = `${baseUrl}/posts`;
+			// 	const method = "POST";
+			// 	const headers = { Authorization: `Bearer ${store.token}` };
+			// 	const formData = new FormData();
+
+			// 	formData.append("disease_id", input.diseaseId);
+			// 	formData.append("text", input.text);
+			// 	formData.append("imagen", files[0]);
+
+			// 	const config = {
+			// 		method: method,
+			// 		headers: headers,
+			// 		body: formData
+			// 	};
+			// 	fetch(endpoint, config)
+			// 		.then(response => response.json())
+			// 		.then(data => {
+			// 			// console.log(data);
+			// 			actions.getFeed();
+			// 			actions.getPostUser();
+			// 		})
+			// 		.catch(error => console.error("error: ", error));
+			// },
+			createPost(input, item) {
 				const store = getStore();
 				const actions = getActions();
 				const endpoint = `${baseUrl}/posts`;
 				const method = "POST";
-				const headers = { Authorization: `Bearer ${store.token}` };
-				const formData = new FormData();
+				const headers = { "Content-Type": "application/json" };
 
-				formData.append("disease_id", input.diseaseId);
-				formData.append("text", input.text);
-				formData.append("imagen", files[0]);
+				if (store.token) {
+					headers["Authorization"] = `Bearer ${store.token}`;
+				}
 
 				const config = {
 					method: method,
 					headers: headers,
-					body: formData
+					body: JSON.stringify({
+						disease_id: input.diseaseId,
+						text: input.text
+					})
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						// console.log(data);
+						console.log("lo que viene del back: ", data);
+						console.log(typeof data);
+						actions.uploadPostPicture(item, data);
 						actions.getFeed();
 						actions.getPostUser();
 					})
@@ -303,7 +334,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const endpoint = `${baseUrl}/upload-post/${id}`;
 				const method = "POST";
 				const formData = new FormData();
-				formData.append("imagen", files[0]);
+				formData.append("image", files[0]);
 				console.log("body: ", formData, files[0]);
 				const headers = { Authorization: `Bearer ${store.token}` };
 

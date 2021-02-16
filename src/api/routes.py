@@ -357,20 +357,22 @@ def handle_list_posts_from_disease(id):
     return jsonify(posts), 200
 
 # GENERAR UN POST
+
 @api.route("/posts", methods= ["POST"])
 def handle_create_post():
 
-    payload = request.form.to_dict()
+    payload = request.get_json()
 
     user = authorized_user()
 
     payload['publisher_id'] = user.id
     required = ['text', 'publisher_id', 'disease_id']
    
+    print(type(payload["disease_id"]))
 
     types = {
         'text': str,
-        'disease_id': str,
+        'disease_id': int,
     }
    
 
@@ -387,22 +389,56 @@ def handle_create_post():
     db.session.add(post)
     db.session.commit()
 
-    files = request.files #cualquier files que vaya en el payload lo guarda aqui
-    print(files)
+    return jsonify(post.id), 201
 
-    if 'imagen' not in files:
-        raise APIException("No image to upload")
 
-    result = cloudinary.uploader.upload(files['imagen'],
-    public_id=f'In-pacientes/post/{post.publisher.username}')
+# METODO DE CREAR POST CON LA IMAGEN
+# @api.route("/posts", methods= ["POST"])
+# def handle_create_post():
+
+#     payload = request.form.to_dict()
+
+#     user = authorized_user()
+
+#     payload['publisher_id'] = user.id
+#     required = ['text', 'publisher_id', 'disease_id']
+   
+#     print(type(payload["disease_id"]))
+#     types = {
+#         'text': str,
+#         'disease_id': str,
+#     }
+   
+
+#     for key, value in payload.items():
+#         if key in types and not isinstance(value, types[key]):
+#             abort(400, f"{key} is not {types[key]}")
+    
+#     for field in required:
+#         if field not in payload or payload[field] is None:
+#             abort(400)
+
+#     post = Posts(**payload)
+
+#     db.session.add(post)
+#     db.session.commit()
+
+#     files = request.files #cualquier files que vaya en el payload lo guarda aqui
+#     print(files)
+
+#     if 'imagen' not in files:
+#         raise APIException("No image to upload")
+
+#     result = cloudinary.uploader.upload(files['imagen'],
+#     public_id=f'In-pacientes/post/{post.publisher.username}')
   
-    print(result['secure_url'])
+#     print(result['secure_url'])
 
-    post.image = result['secure_url']
+#     post.image = result['secure_url']
 
-    db.session.commit()
+#     db.session.commit()
 
-    return jsonify(post.serialize()), 201
+#     return jsonify(post.serialize()), 201
 
 
 @api.route("/upload-post/<int:id>", methods=["POST"])
@@ -410,12 +446,13 @@ def handle_upload_post_picture(id):
     print(id)
     payload = request.files
 
-    if 'imagen' not in payload:
+    if 'image' not in payload:
         raise APIException("No image to upload")
-
+    
+    print("ha pasado el if")
     post = Posts.query.filter_by(id=id, deleted_at=None).first()
     print(post)
-    result = cloudinary.uploader.upload(payload['imagen'],
+    result = cloudinary.uploader.upload(payload['image'],
     public_id=f'In-pacientes/post/{post.publisher.username}')
     # ,crop='limit',
     #     # width=125,
