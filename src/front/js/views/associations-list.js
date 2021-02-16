@@ -38,7 +38,7 @@ export const ListAssociation = () => {
 				<div className="col-12 text-center">
 					<p>¿Aun no has registrado tu asociación? ¡Solicita su registro ahora!</p>
 				</div>
-				<div className="col-12 text-center mt-2">
+				<div className="col-12 text-center my-5">
 					<Link to="/request/association">
 						<button type="button" className="btn button-request-association-black">
 							Crear solicitud
