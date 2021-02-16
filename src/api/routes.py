@@ -389,7 +389,7 @@ def handle_create_post():
     db.session.add(post)
     db.session.commit()
 
-    return jsonify(post.serialize()), 201
+    return jsonify(post.id), 201
 
 
 # METODO DE CREAR POST CON LA IMAGEN
@@ -446,12 +446,13 @@ def handle_upload_post_picture(id):
     print(id)
     payload = request.files
 
-    if 'imagen' not in payload:
+    if 'image' not in payload:
         raise APIException("No image to upload")
-
+    
+    print("ha pasado el if")
     post = Posts.query.filter_by(id=id, deleted_at=None).first()
     print(post)
-    result = cloudinary.uploader.upload(payload['imagen'],
+    result = cloudinary.uploader.upload(payload['image'],
     public_id=f'In-pacientes/post/{post.publisher.username}')
     # ,crop='limit',
     #     # width=125,

@@ -32,9 +32,15 @@ export const Inicio = () => {
 			diseaseId: parseInt(diseaseId)
 		};
 		console.log("tipo dato: ", typeof payload.diseaseId);
-		actions.createPost(payload);
+		actions.createPost(payload, files);
 		setText("");
 		// setUrl("");
+	};
+
+	const uploadPostImage = event => {
+		event.preventDefault();
+		actions.uploadPostPicture(files, store.post.id);
+		actions.getOnePost(params.id);
 	};
 
 	// POST CON IMAGEN
@@ -225,8 +231,6 @@ export const Inicio = () => {
 	};
 
 	const showProfileImage = () => {
-		console.log("store.user.avatar: ", store.user.avatar);
-
 		if (store.user.avatar == undefined) {
 			return <i className="icono-user-style fas fa-user-alt fa-5x" />;
 		} else if (store.user.avatar == "") {

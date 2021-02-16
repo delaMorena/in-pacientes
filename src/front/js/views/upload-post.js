@@ -9,14 +9,14 @@ export const UploadPost = () => {
 	const params = useParams();
 	const history = useHistory();
 
-	const uploadPostImage = event => {
-		if (postFiles == 0) {
-			alert("no has subido ninguna foto");
-		}
-		event.preventDefault();
-		actions.uploadPostPicture(postFiles, params.id);
-		history.push("/temp");
-	};
+	// const uploadPostImage = event => {
+	// 	if (postFiles == 0) {
+	// 		alert("no has subido ninguna foto");
+	// 	}
+	// 	event.preventDefault();
+	// 	actions.uploadPostPicture(postFiles, params.id);
+	// 	history.push("/temp");
+	// };
 
 	return (
 		<div className="jumbotron">

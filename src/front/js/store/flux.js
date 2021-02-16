@@ -296,7 +296,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		})
 			// 		.catch(error => console.error("error: ", error));
 			// },
-			createPost(input) {
+			createPost(input, item) {
 				const store = getStore();
 				const actions = getActions();
 				const endpoint = `${baseUrl}/posts`;
@@ -318,7 +318,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						// console.log(data);
+						console.log("lo que viene del back: ", data);
+						console.log(typeof data);
+						actions.uploadPostPicture(item, data);
 						actions.getFeed();
 						actions.getPostUser();
 					})
@@ -330,7 +332,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const endpoint = `${baseUrl}/upload-post/${id}`;
 				const method = "POST";
 				const formData = new FormData();
-				formData.append("imagen", files[0]);
+				formData.append("image", files[0]);
 				console.log("body: ", formData, files[0]);
 				const headers = { Authorization: `Bearer ${store.token}` };
 
