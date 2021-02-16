@@ -249,9 +249,6 @@ export const Inicio = () => {
 									<div className="col-12 box-user-image text-center">
 										{showProfileImage()}
 										<div className="row">
-											<div className="col-7 offset-1 mt-4">
-												<p className="p-edit-profile-font">Edita tu foto</p>
-											</div>
 											<div className="col-2 mt-4">
 												<div
 													className="pencil-inicio-clickable"

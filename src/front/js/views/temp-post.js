@@ -21,13 +21,13 @@ export const TempPost = () => {
 		actions.uploadPostPicture(files, store.post.id);
 		actions.getOnePost(params.id);
 	};
-	const showPostImage = () => {
-		if (store.post.image == undefined) {
-			return <i className="fas fa-image fa-7x" />;
-		} else {
-			return <img src={store.post.image} alt="user-pic" />;
-		}
-	};
+	// const showPostImage = () => {
+	// 	if (store.post.image == undefined) {
+	// 		return <i className="fas fa-image fa-7x" />;
+	// 	} else {
+	// 		return <img src={store.post.image} alt="user-pic" />;
+	// 	}
+	// };
 	const showProfilePublisherImage = () => {
 		if (store.post.publisher_avatar == undefined) {
 			return <i className="icono-user-style fas fa-user-alt fa-2x" />;
@@ -110,25 +110,27 @@ export const TempPost = () => {
 			<div className="container">
 				<div className="row my-3">
 					<div className="col-12">
-						<div className="row post-img">{showPostImage()}</div>
-						<div className="row filter-img-text" />
-						<div className="row text-up-image">
-							<div className="col-12">
-								<div className="row">
-									<div className="col-9">
-										<h3>{store.post.disease_name}</h3>
+						<div className="row post-img">
+							<img src={store.post.image} />
+						</div>
+						<div className="row filter-img-text">
+							<div className="row text-up-image">
+								<div className="col-12">
+									<div className="row ml-2">
+										<div className="col-9">
+											<h3>{store.post.disease_name}</h3>
+										</div>
+										<div className="col-3 text-right">{IsFavorite()}</div>
 									</div>
-									<div className="col-3 text-right">{IsFavorite()}</div>
 								</div>
-							</div>
-							<div className="col-12">
-								<div className="row align-items-center">
-									<div className="col-md-1">
-										{/* <img src={store.user.avatar} alt="user-avatar" /> */}
-										{showProfilePublisherImage()}
-									</div>
-									<div className="col-md-5 text-left">
-										<h3>{store.post.publisher}</h3>
+								<div className="col-12">
+									<div className="row d-flex flex-column">
+										<div className="col-2 temp-post-user-image-round img">
+											{showProfilePublisherImage()}
+										</div>
+										<div className="col-2 text-center">
+											<h3>{store.post.publisher}</h3>
+										</div>
 									</div>
 								</div>
 							</div>

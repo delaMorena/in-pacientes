@@ -17,7 +17,8 @@ p {
 }
 
 .box-user-image img {
-    width: 125px;
+    width: 100%;
+    clip-path: circle(104px at center);
     // border-radius: 75px;
 }
 
