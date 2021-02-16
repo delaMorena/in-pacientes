@@ -32,7 +32,7 @@ export const Inicio = () => {
 			diseaseId: parseInt(diseaseId)
 		};
 		console.log("tipo dato: ", typeof payload.diseaseId);
-		actions.createPost(payload, files);
+		actions.createPost(payload, postFiles);
 		setText("");
 		// setUrl("");
 	};

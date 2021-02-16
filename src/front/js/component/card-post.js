@@ -28,10 +28,10 @@ export const CardPost = props => {
 		actions.uploadProfilePicture(postFiles, store.post.id);
 	};
 	const showPostImage = () => {
-		if (post.imagen == undefined) {
+		if (post.image == undefined) {
 			return <i className="fas fa-image fa-7x" />;
 		} else {
-			return <img src={post.imagen} alt="user-pic" />;
+			return <img src={post.image} alt="user-pic" />;
 		}
 	};
 

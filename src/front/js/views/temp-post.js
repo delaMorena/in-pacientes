@@ -22,10 +22,10 @@ export const TempPost = () => {
 		actions.getOnePost(params.id);
 	};
 	const showPostImage = () => {
-		if (store.post.imagen == undefined) {
+		if (store.post.image == undefined) {
 			return <i className="fas fa-image fa-7x" />;
 		} else {
-			return <img src={store.post.imagen} alt="user-pic" />;
+			return <img src={store.post.image} alt="user-pic" />;
 		}
 	};
 	const showProfilePublisherImage = () => {
