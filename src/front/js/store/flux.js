@@ -1,4 +1,5 @@
-const baseUrl = "https://3001-sapphire-prawn-pccy1ph4.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
 	return {

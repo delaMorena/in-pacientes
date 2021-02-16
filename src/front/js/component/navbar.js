@@ -119,7 +119,7 @@ export const Navbar = () => {
 						</li> */}
 						<li className="nav-item dropdown color-username">
 							<a
-								className="nav-link dropdown-toggle color-username"
+								className="nav-link dropdown-toggle"
 								href="#"
 								id="navbarDropdownMenuLink"
 								data-toggle="dropdown"
