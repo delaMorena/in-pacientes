@@ -8,20 +8,20 @@ export const CardAssociation = props => {
 	const { association } = props;
 
 	return (
-		<div className="card widthListItem mt-4">
+		<div className="widthListItem mt-4 bg-light">
 			<div className="card-body">
-				<h5 className="card-title text-center">{association.name}</h5>
-				<h6 className="card-subtitle mb-2 text-muted text-center">{association.location}</h6>
-				<hr />
+				<h5 className="card-title text-center py-2">{association.name}</h5>
+				<h6 className="card-subtitle pb-4 text-muted text-center">{association.location}</h6>
+
 				<p className="card-text text-justify">{association.description}</p>
-				<div className="row justify-content-around">
+				<div className="row pt-5 justify-content-around">
 					<div className="col-8">
-						<button type="button" className="btn ">
+						<button type="button" className="btn button-web-association-black">
 							Sitio web
 						</button>
 					</div>
 					<div className="col-4">
-						<button type="button" className="btn ">
+						<button type="button" className="btn button-donation-association-white">
 							<span>Haz tu donación </span>
 							<i className="fas fa-euro-sign" />
 						</button>

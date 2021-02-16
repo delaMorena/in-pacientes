@@ -99,11 +99,7 @@ export const Inicio = () => {
 		});
 
 		if (store.follows.length == 0) {
-			return (
-				<div className="col-12 text-center">
-					<p>Aun no sigues ninguna enfermedad</p>
-				</div>
-			);
+			return;
 		} else {
 			return (
 				<>
@@ -168,7 +164,7 @@ export const Inicio = () => {
 					</div>
 					<div className="col-12 text-center">
 						<Link to="/follow">
-							<button type="button" className="btn btn-info">
+							<button type="button" className="btn inicio-button-activated">
 								Seguir
 							</button>
 						</Link>

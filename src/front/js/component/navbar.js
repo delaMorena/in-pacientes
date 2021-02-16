@@ -107,11 +107,6 @@ export const Navbar = () => {
 								Enfermedades
 							</Link>
 						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="/feed">
-								Publicaciones
-							</Link>
-						</li>
 						{/* <li className="nav-item">
 							<Link className="nav-link" to="/about-us">
 								Quienes somos
@@ -119,7 +114,7 @@ export const Navbar = () => {
 						</li> */}
 						<li className="nav-item dropdown color-username">
 							<a
-								className="nav-link dropdown-toggle color-username"
+								className="nav-link dropdown-toggle"
 								href="#"
 								id="navbarDropdownMenuLink"
 								data-toggle="dropdown"
@@ -128,9 +123,6 @@ export const Navbar = () => {
 								{store.user.username}
 							</a>
 							<div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								<Link className="dropdown-item" to="/profile">
-									<span>Perfil</span>
-								</Link>
 								<Link
 									className="dropdown-item"
 									to="/bye"

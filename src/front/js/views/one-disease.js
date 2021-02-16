@@ -50,7 +50,9 @@ export const OneDisease = () => {
 						<h3>Aun no hay publicaciones sobre esta enfermedad</h3>
 					</div>
 					<div className="col-12 text-center">
-						<p>¡sé el primero en crear una publicación!</p>
+						<Link to="/inicio">
+							<p>¡sé el primero en crear una publicación!</p>
+						</Link>
 					</div>
 				</div>
 			);
