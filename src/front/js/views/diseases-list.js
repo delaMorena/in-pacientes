@@ -13,13 +13,7 @@ export const ListDiseases = () => {
 
 	const ShowDiseases = () => {
 		const diseaseCard = store.diseases.map((disease, index) => {
-			return (
-				<div className="col-5" key={index}>
-					<Link to={`/onedisease/${disease.id}`}>
-						<CardDisease disease={disease} />
-					</Link>
-				</div>
-			);
+			return <CardDisease key={index} disease={disease} />;
 		});
 
 		if (store.diseases.length == 0) {
@@ -49,7 +43,7 @@ export const ListDiseases = () => {
 					<hr className="list-divisor-line" />
 				</div>
 			</div>
-			<div className="row justify-content-center">{ShowDiseases()}</div>
+			<div className="row justify-content-between">{ShowDiseases()}</div>
 			<div className="row">
 				<div className="col-12">
 					<hr className="list-divisor-line" />

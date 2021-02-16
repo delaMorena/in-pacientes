@@ -16,16 +16,22 @@ export const CardDisease = props => {
 			return input;
 		}
 	};
-	const uploadPostImage = event => {
-		event.preventDefault();
-		actions.uploadProfilePicture(postFiles, store.post.id);
-	};
 
 	return (
 		<div className="col-5">
-			<div className="row">
+			<div className="row diseaselist-box-style my-2 mx-1 p-2">
+				<div className="col-12 text-center">
+					<h5>{disease.title}</h5>
+				</div>
 				<div className="col-12">
-					<h6>{disease.title}</h6>
+					<p>{textTruncate(disease.description)}</p>
+				</div>
+				<div className="col-12">
+					<Link to={`/onedisease/${disease.id}`}>
+						<button type="button" className="btn post-button-comment">
+							+ Info
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>

@@ -187,7 +187,7 @@ export const TempPost = () => {
 					</div>
 					<div className="col-12 mt-3">
 						<div className="row justify-content-center mt-3">
-							<div className="col-8">
+							<div className="col-md-8">
 								<p>{store.post.text}</p>
 							</div>
 						</div>
@@ -201,19 +201,19 @@ export const TempPost = () => {
 					</div>
 					<div className="col-12">
 						<div className="row justify-content-center mt-1">
-							<div className="col-8">
+							<div className="col-md-8">
 								<h3 className="font-weight-bolder">Comentarios</h3>
 							</div>
 						</div>
 					</div>
 					<div className="col-12">
 						<div className="row justify-content-center">
-							<div className="col-8">{showComments()}</div>
+							<div className="col-md-8">{showComments()}</div>
 						</div>
 					</div>
 					<div className="col-12">
 						<div className="row justify-content-center">
-							<div className="col-8 text-center">
+							<div className="col-md-8 text-center">
 								<form className="form-size-post">
 									<div className="form-group">
 										<textarea
