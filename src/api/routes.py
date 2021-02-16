@@ -429,7 +429,7 @@ def handle_upload_post_picture(id):
     #     ])
     print(result['secure_url'])
 
-    post.imagen = result['secure_url']
+    post.image = result['secure_url']
 
     db.session.commit()
 
