@@ -75,7 +75,7 @@ export const Navbar = () => {
 		);
 	} else {
 		return (
-			<nav className="navbar navbar-expand-lg navbar-light bg-light">
+			<nav className="navbar navbar-expand-lg navbar-light">
 				<Link className="navbar-brand" to="/">
 					<img src={logonavbar} className="d-inline-block align-top style-logo-navbar" alt="logo" />
 				</Link>

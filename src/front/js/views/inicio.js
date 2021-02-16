@@ -208,7 +208,11 @@ export const Inicio = () => {
 	};
 
 	const showProfileImage = () => {
+		console.log("store.user.avatar: ", store.user.avatar);
+
 		if (store.user.avatar == undefined) {
+			return <i className="icono-user-style fas fa-user-alt fa-5x" />;
+		} else if (store.user.avatar == "") {
 			return <i className="icono-user-style fas fa-user-alt fa-5x" />;
 		} else {
 			return <img src={store.user.avatar} alt="user-pic" />;
