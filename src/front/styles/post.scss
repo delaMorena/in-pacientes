@@ -1,6 +1,5 @@
 .post-img img{
-    width: 1140px;
-    height: 600px;
+    width: 100%;
     border-radius: 3px;
 }
 
@@ -21,12 +20,16 @@
     top: 20px;
     // text-shadow: 1px 1px black;
 }
-
-.text-up-image img {
-    width: 80px;
-    height: 80px;
-    border-radius: 40px;
+.temp-post-user-image-round img {
+    width: 100%;
+    // height: 200px;
+    clip-path: circle(40px at center);
 }
+// .text-up-image img {
+//     // width: 100%;
+//     height: 200px;
+//     clip-path: circle(40px at center);
+// }
 
 .form-size-post {
     width: 100%;
