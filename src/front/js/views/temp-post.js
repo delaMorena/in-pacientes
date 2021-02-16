@@ -124,7 +124,7 @@ export const TempPost = () => {
 									</div>
 								</div>
 								<div className="col-12">
-									<div className="row d-flex flex-column">
+									<div className="row d-flex flex-column ml-2">
 										<div className="col-2 temp-post-user-image-round img">
 											{showProfilePublisherImage()}
 										</div>

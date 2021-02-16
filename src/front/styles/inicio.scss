@@ -17,9 +17,14 @@ p {
 }
 
 .box-user-image img {
-    width: 100%;
-    clip-path: circle(104px at center);
+    // width: 100%;
+    // max-height: 208px;
+    // clip-path: circle(104px at center);
     // border-radius: 75px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 75px;
 }
 
 .list-user-inicio {

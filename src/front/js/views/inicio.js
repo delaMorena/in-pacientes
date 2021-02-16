@@ -242,7 +242,7 @@ export const Inicio = () => {
 		return (
 			<div className="container">
 				<div className="row">
-					<div className="col-xl-4">
+					<div className="col-lg-4">
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
@@ -313,7 +313,7 @@ export const Inicio = () => {
 							</div>
 						</div>
 					</div>
-					<div className="col-xl-8">
+					<div className="col-lg-8">
 						<div className="row">
 							<div className="col-12">
 								<form className="my-3">
