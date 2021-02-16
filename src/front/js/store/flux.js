@@ -1,5 +1,4 @@
-const baseUrl = "https://3001-azure-bedbug-496v28hr.ws-eu03.gitpod.io/api";
-
+const baseUrl = "https://3001-sapphire-prawn-pccy1ph4.ws-eu03.gitpod.io/api";
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
 	return {
@@ -189,7 +188,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						// console.log(data)
 						setStore({ diseases: data });
-						console.log(store.diseases);
+						console.log("todas las enfermedades", store.diseases);
 
 						// console.log("contacto", store.user);
 					});
@@ -271,25 +270,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// .catch(error => console.error("error: ", error));
 					.catch(error => alert("error: ", error));
 			},
-			createPost(input) {
+			createPost(input, files) {
 				const store = getStore();
 				const actions = getActions();
 				const endpoint = `${baseUrl}/posts`;
 				const method = "POST";
-				const headers = { "Content-Type": "application/json" };
+				const headers = { Authorization: `Bearer ${store.token}` };
+				const formData = new FormData();
 
-				if (store.token) {
-					headers["Authorization"] = `Bearer ${store.token}`;
-				}
+				formData.append("disease_id", input.diseaseId);
+				formData.append("text", input.text);
+				formData.append("imagen", files[0]);
 
 				const config = {
 					method: method,
 					headers: headers,
-					body: JSON.stringify({
-						disease_id: input.diseaseId,
-						text: input.text
-						// imagen: input.url
-					})
+					body: formData
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
@@ -467,6 +463,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log("eliminado de follows: ", data);
 						actions.getFollow();
+						actions.getFollowByDisease(id);
 						// setStore({ oneDisease: data });
 						// console.log("info enfermedad", store.oneDisease);
 						// console.log(store.token);
