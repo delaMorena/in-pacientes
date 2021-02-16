@@ -138,7 +138,7 @@ class Posts(db.Model):
             "publisher": self.publisher.username,
             "publisher_email": self.publisher.email,
             "text": self.text,
-            "imagen": self.imagen,
+            "image": self.image,
             "disease_name": self.disease.title,
             "disease_id": self.disease_id,
             "publisher_avatar": self.publisher.avatar,

@@ -31,11 +31,26 @@ export const Inicio = () => {
 			// url: url,
 			diseaseId: parseInt(diseaseId)
 		};
-
-		actions.createPost(payload, postFiles);
+		console.log("tipo dato: ", typeof payload.diseaseId);
+		actions.createPost(payload);
 		setText("");
 		// setUrl("");
 	};
+
+	// POST CON IMAGEN
+	// const OnSubmit = event => {
+	// 	const payload = {
+	// 		text: text,
+	// 		// url: url,
+	// 		diseaseId: parseInt(diseaseId)
+	// 	};
+
+	// 	console.log("tipo dato: ", typeof payload.diseaseId);
+
+	// 	actions.createPost(payload, postFiles);
+	// 	setText("");
+	// 	// setUrl("");
+	// };
 
 	const uploadProfileImage = event => {
 		if (files == 0) {
