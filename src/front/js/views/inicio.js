@@ -240,7 +240,7 @@ export const Inicio = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="container">
+			<div className="container prueba">
 				<div className="row">
 					<div className="col-lg-4">
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">

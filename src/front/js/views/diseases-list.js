@@ -31,7 +31,7 @@ export const ListDiseases = () => {
 	return (
 		<div className="container">
 			<div className="row">
-				<div className="col-12">
+				<div className="col-12 text-center">
 					<h1>Lista de enfermedades</h1>
 				</div>
 				<div className="col-12">
@@ -52,7 +52,7 @@ export const ListDiseases = () => {
 					<hr className="list-divisor-line" />
 				</div>
 			</div>
-			<div className="row justify-content-between">{ShowDiseases()}</div>
+			<div className="row justify-content-between mx-1">{ShowDiseases()}</div>
 			<div className="row">
 				<div className="col-12">
 					<hr className="list-divisor-line" />

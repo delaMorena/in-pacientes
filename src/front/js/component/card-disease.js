@@ -18,9 +18,9 @@ export const CardDisease = props => {
 	};
 
 	return (
-		<div className="col-5 diseaselist-box-style my-3">
+		<div className="col-lg-5 diseaselist-box-style my-4">
 			<div className="row disease-list-title align-items-center">
-				<div className="col-12 text-center">
+				<div className="col-12 text-center list-title-bold">
 					<h5>{disease.title}</h5>
 				</div>
 			</div>

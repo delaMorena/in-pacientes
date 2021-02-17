@@ -21,13 +21,13 @@ export const TempPost = () => {
 		actions.uploadPostPicture(files, store.post.id);
 		actions.getOnePost(params.id);
 	};
-	// const showPostImage = () => {
-	// 	if (store.post.image == undefined) {
-	// 		return <i className="fas fa-image fa-7x" />;
-	// 	} else {
-	// 		return <img src={store.post.image} alt="user-pic" />;
-	// 	}
-	// };
+	const showPostImage = () => {
+		if (store.post.image == undefined) {
+			return <i className="fas fa-image fa-7x" />;
+		} else {
+			return <img src={store.post.image} alt="user-pic" />;
+		}
+	};
 	const showProfilePublisherImage = () => {
 		if (store.post.publisher_avatar == undefined) {
 			return <i className="icono-user-style fas fa-user-alt fa-2x" />;
@@ -41,7 +41,7 @@ export const TempPost = () => {
 		const listItem = store.favorites;
 
 		if (listItem.length == 0) {
-			return <i className="far fa-bookmark fa-2x" onClick={AddPostFavorites} />;
+			return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
 		}
 
 		let i;
@@ -136,12 +136,12 @@ export const TempPost = () => {
 							</div>
 						</div>
 					</div>
-					<div className="row">
+					{/* <div className="row">
 						<div className="col-12 mt-2 " type="button" data-toggle="modal" data-target="#exampleModal">
 							<p className="p-edit-profile-font">Edita tu foto</p>
 							<i className="fas fa-pencil-alt pencil-inicio-clickable" />
 						</div>
-						{/* <div className="col-2 mt-4">
+						<div className="col-2 mt-4">
 							<div
 								className="pencil-inicio-clickable"
 								// type="button"
@@ -151,7 +151,7 @@ export const TempPost = () => {
 								data-target="#exampleModal">
 								<i className="fas fa-pencil-alt" />
 							</div>
-						</div> */}
+						</div>
 						<div
 							className="modal fade"
 							id="exampleModal"
@@ -186,7 +186,7 @@ export const TempPost = () => {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> */}
 					<div className="col-12 mt-3">
 						<div className="row justify-content-center mt-3">
 							<div className="col-md-8">
