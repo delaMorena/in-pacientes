@@ -66,7 +66,7 @@ export const OneDisease = () => {
 	} else {
 		return (
 			<>
-				<div className="fluid-container">
+				{/* <div className="fluid-container">
 					<div className="row mx-1">
 						<div className="col-3">
 							<div className="row">
@@ -76,16 +76,16 @@ export const OneDisease = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<div className="container">
 					<div className="row align-items-center">
-						<div className="col-10 text-left">
+						<div className="col-md-10 text-left">
 							<h1>{store.oneDisease.title}</h1>
 						</div>
-						<div className="col-1 text-muted text-rigth">
+						<div className="col-md-1 text-muted text-rigth">
 							<i className="fas fa-users fa-3x" />
 						</div>
-						<div className="col-1 text-muted text-left">
+						<div className="col-md-1 text-muted text-left">
 							<h1>{store.followers.length}</h1>
 						</div>
 					</div>
@@ -110,7 +110,7 @@ export const OneDisease = () => {
 						</div>
 					</div>
 					<div className="row justify-content-center">
-						<div className="col-8">{ShowDiseasePost()}</div>
+						<div className="col-md-8">{ShowDiseasePost()}</div>
 					</div>
 				</div>
 			</>

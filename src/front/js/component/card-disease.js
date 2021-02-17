@@ -10,22 +10,32 @@ export const CardDisease = props => {
 	const { store, actions } = useContext(Context);
 
 	const textTruncate = input => {
-		if (input.length >= 200) {
-			return input.substring(0, 200) + " ... Leer más.";
+		if (input.length >= 175) {
+			return input.substring(0, 170) + " ... Leer más.";
 		} else {
 			return input;
 		}
 	};
-	const uploadPostImage = event => {
-		event.preventDefault();
-		actions.uploadProfilePicture(postFiles, store.post.id);
-	};
 
 	return (
-		<div className="col-5">
-			<div className="row">
+		<div className="col-lg-5 diseaselist-box-style my-4">
+			<div className="row disease-list-title align-items-center">
+				<div className="col-12 text-center list-title-bold">
+					<h5>{disease.title}</h5>
+				</div>
+			</div>
+			<div className="row mt-2 disease-list-text">
 				<div className="col-12">
-					<h6>{disease.title}</h6>
+					<p>{textTruncate(disease.description)}</p>
+				</div>
+			</div>
+			<div className="row mt-2 mb-3">
+				<div className="col-12 text-center">
+					<Link to={`/onedisease/${disease.id}`}>
+						<button type="button" className="btn disease-list-button">
+							+ Info
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>

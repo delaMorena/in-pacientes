@@ -914,6 +914,7 @@ def handle_add_favorite():
     
     db.session.add(favorite)
     db.session.commit()
+    print(favorite)
    
     return jsonify(favorite.serialize()), 201
 
@@ -926,8 +927,10 @@ def handle_delete_fav(id):
     if not user:
         return "User not found", 404
 
-    post = Favorites.query.filter_by(post_id=id, user_id=user.id).first()
+    
 
+    post = Favorites.query.filter_by(post_id=id, user_id=user.id).first()
+    print(post)
     if not post:
         abort(404)
         

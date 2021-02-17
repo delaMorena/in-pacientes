@@ -21,13 +21,13 @@ export const TempPost = () => {
 		actions.uploadPostPicture(files, store.post.id);
 		actions.getOnePost(params.id);
 	};
-	// const showPostImage = () => {
-	// 	if (store.post.image == undefined) {
-	// 		return <i className="fas fa-image fa-7x" />;
-	// 	} else {
-	// 		return <img src={store.post.image} alt="user-pic" />;
-	// 	}
-	// };
+	const showPostImage = () => {
+		if (store.post.image == undefined) {
+			return <i className="fas fa-image fa-7x" />;
+		} else {
+			return <img src={store.post.image} alt="user-pic" />;
+		}
+	};
 	const showProfilePublisherImage = () => {
 		if (store.post.publisher_avatar == undefined) {
 			return <i className="icono-user-style fas fa-user-alt fa-2x" />;
@@ -41,7 +41,7 @@ export const TempPost = () => {
 		const listItem = store.favorites;
 
 		if (listItem.length == 0) {
-			return <i className="far fa-bookmark fa-2x" onClick={AddPostFavorites} />;
+			return <i className="far fa-bookmark fa-2x post-cursor-click" onClick={AddPostFavorites} />;
 		}
 
 		let i;
@@ -84,7 +84,7 @@ export const TempPost = () => {
 				<div className="row">
 					<div className="col-12">
 						<h3>Aun no hay comentarios</h3>
-						<p>¡Se el primero!</p>
+						<p>¡Sé el primero!</p>
 					</div>
 				</div>
 			);
@@ -124,24 +124,24 @@ export const TempPost = () => {
 									</div>
 								</div>
 								<div className="col-12">
-									<div className="row d-flex flex-column">
-										<div className="col-2 temp-post-user-image-round img">
+									<div className="row d-flex flex-column ml-2">
+										<div className="col-2 temp-post-user-image-round img text-center">
 											{showProfilePublisherImage()}
 										</div>
 										<div className="col-2 text-center">
-											<h3>{store.post.publisher}</h3>
+											<h5>{store.post.publisher}</h5>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="row">
+					{/* <div className="row">
 						<div className="col-12 mt-2 " type="button" data-toggle="modal" data-target="#exampleModal">
 							<p className="p-edit-profile-font">Edita tu foto</p>
 							<i className="fas fa-pencil-alt pencil-inicio-clickable" />
 						</div>
-						{/* <div className="col-2 mt-4">
+						<div className="col-2 mt-4">
 							<div
 								className="pencil-inicio-clickable"
 								// type="button"
@@ -151,7 +151,7 @@ export const TempPost = () => {
 								data-target="#exampleModal">
 								<i className="fas fa-pencil-alt" />
 							</div>
-						</div> */}
+						</div>
 						<div
 							className="modal fade"
 							id="exampleModal"
@@ -186,10 +186,10 @@ export const TempPost = () => {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> */}
 					<div className="col-12 mt-3">
 						<div className="row justify-content-center mt-3">
-							<div className="col-8">
+							<div className="col-md-8">
 								<p>{store.post.text}</p>
 							</div>
 						</div>
@@ -203,19 +203,19 @@ export const TempPost = () => {
 					</div>
 					<div className="col-12">
 						<div className="row justify-content-center mt-1">
-							<div className="col-8">
+							<div className="col-md-8">
 								<h3 className="font-weight-bolder">Comentarios</h3>
 							</div>
 						</div>
 					</div>
 					<div className="col-12">
 						<div className="row justify-content-center">
-							<div className="col-8">{showComments()}</div>
+							<div className="col-md-8">{showComments()}</div>
 						</div>
 					</div>
 					<div className="col-12">
 						<div className="row justify-content-center">
-							<div className="col-8 text-center">
+							<div className="col-md-8 text-center">
 								<form className="form-size-post">
 									<div className="form-group">
 										<textarea
@@ -227,7 +227,7 @@ export const TempPost = () => {
 										/>
 									</div>
 								</form>
-								<button type="button" className="btn post-button-comment" onClick={SendComment}>
+								<button type="button" className="btn post-button-comment mt-2" onClick={SendComment}>
 									Comentar
 								</button>
 							</div>

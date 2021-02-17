@@ -3,8 +3,8 @@
 }
 
 .disease-button-follow {
-    background-color:#070707;
-    border: 1px solid #070707;
+    background-color:#137DC5;
+    border: 1px solid #137DC5;
     color: white;
     text-align: center;
     display: inline-block;
@@ -21,8 +21,8 @@
 
 .disease-button-unfollow {
     background-color:  white;
-    border: 1px solid #070707;
-    color: #070707;
+    border: 1px solid #137DC5;
+    color: #137DC5;
     padding: 10px 45px;
     text-align: center;
     display: inline-block;
@@ -33,6 +33,6 @@
     
 }
 .disease-button-unfollow:hover {
-    color: black;
+    color: #137DC5;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
 }
