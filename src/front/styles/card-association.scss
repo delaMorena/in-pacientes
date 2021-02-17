@@ -1,5 +1,9 @@
 .widthListItem {
     width: 700px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #D1D1D1;
+    background: #efefef;
+
 }
 .button-web-association-black {
     background-color:#137DC5;
@@ -13,7 +17,7 @@
     padding: 10px 32px;
 }
 .button-web-association-black:hover {
-    color: #137DC5;
+    color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
 }
 .button-donation-association-white {
