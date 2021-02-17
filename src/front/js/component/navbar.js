@@ -34,20 +34,14 @@ export const Navbar = () => {
 				</button>
 				<div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 					<ul className="navbar-nav style-ul-navbar dropdown-menu-right">
-						{/* <li className="nav-item active">
-							<Link className="nav-link" to="/inicio">
-								Inicio
-								<span className="sr-only">(current)</span>
-							</Link>
-						</li> */}
-						<li className="nav-item ">
-							<Link className="nav-link" to="/associations">
-								Asociaciones
-							</Link>
-						</li>
 						<li className="nav-item">
 							<Link className="nav-link" to="/diseases">
 								Enfermedades
+							</Link>
+						</li>
+						<li className="nav-item ">
+							<Link className="nav-link" to="/associations">
+								Asociaciones
 							</Link>
 						</li>
 						<li className="nav-item">
@@ -97,21 +91,16 @@ export const Navbar = () => {
 								<span className="sr-only">(current)</span>
 							</Link>
 						</li>
-						<li className="nav-item ">
-							<Link className="nav-link" to="/associations">
-								Asociaciones
-							</Link>
-						</li>
 						<li className="nav-item">
 							<Link className="nav-link" to="/diseases">
 								Enfermedades
 							</Link>
 						</li>
-						{/* <li className="nav-item">
-							<Link className="nav-link" to="/about-us">
-								Quienes somos
+						<li className="nav-item ">
+							<Link className="nav-link" to="/associations">
+								Asociaciones
 							</Link>
-						</li> */}
+						</li>
 						<li className="nav-item dropdown color-username">
 							<a
 								className="nav-link dropdown-toggle"

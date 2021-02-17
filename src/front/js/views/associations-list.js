@@ -24,10 +24,11 @@ export const ListAssociation = () => {
 				</div>
 				<div className="col-12">
 					<p>
-						Esta es la lista de enfermedades Raras que puedes encontrar en In-pacientes. Icing pie gummies
-						cotton candy marshmallow carrot cake lemon drops lemon drops. I love soufflé sweet roll sugar
-						plum tart lollipop. Chocolate bar dragée candy canes wafer cake sweet roll tiramisu liquorice
-						macaroon. Dessert topping biscuit croissant icing donut sweet roll pastry.
+						Esta es la lista de enfermedades Raras que puedes encontrar en In-pacientes. Puedes ponerte en
+						contacto directamente con ellas o a través de su página web. Tb puedes realizar tu donación a la
+						asociación que te interese. Hay muchas asociaciones de enfermedades raras pero si no encuentras
+						la que buscas dínoslo. También te animamos a crear una si no existe la que buscas. Ya sabes, la
+						unión hace la fuerza...
 					</p>
 				</div>
 			</div>

@@ -112,7 +112,7 @@ export const SignUp = () => {
 							</label>
 							<input
 								type="password"
-								placeholder="********"
+								placeholder=""
 								className="form-control input-style"
 								value={password}
 								onChange={event => setPassword(event.target.value)}
