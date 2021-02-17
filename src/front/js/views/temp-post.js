@@ -84,7 +84,7 @@ export const TempPost = () => {
 				<div className="row">
 					<div className="col-12">
 						<h3>Aun no hay comentarios</h3>
-						<p>¡Se el primero!</p>
+						<p>¡Sé el primero!</p>
 					</div>
 				</div>
 			);
@@ -125,11 +125,11 @@ export const TempPost = () => {
 								</div>
 								<div className="col-12">
 									<div className="row d-flex flex-column ml-2">
-										<div className="col-2 temp-post-user-image-round img">
+										<div className="col-2 temp-post-user-image-round img text-center">
 											{showProfilePublisherImage()}
 										</div>
 										<div className="col-2 text-center">
-											<h3>{store.post.publisher}</h3>
+											<h5>{store.post.publisher}</h5>
 										</div>
 									</div>
 								</div>
@@ -227,7 +227,7 @@ export const TempPost = () => {
 										/>
 									</div>
 								</form>
-								<button type="button" className="btn post-button-comment" onClick={SendComment}>
+								<button type="button" className="btn post-button-comment mt-2" onClick={SendComment}>
 									Comentar
 								</button>
 							</div>

@@ -6,7 +6,7 @@
 .filter-img-text {
     position: absolute;
     top: 0;
-    height: 175px;
+    height: 250px;
     width: 100%;
     border-radius: 3px;
     // background-color: rgba(0, 0, 0, 0.3);
@@ -21,9 +21,13 @@
     // text-shadow: 1px 1px black;
 }
 .temp-post-user-image-round img {
-    width: 100%;
+    // width: 100%;
     // height: 200px;
-    clip-path: circle(40px at center);
+    // clip-path: circle(40px at center);
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50px;
 }
 // .text-up-image img {
 //     // width: 100%;
@@ -55,13 +59,13 @@
 }
 
 .post-button-comment {
-    background-color:#070707;
-    border: 1px solid #070707;
+    background-color:#137DC5;
+    border: 1px solid #137DC5;
     color: white;
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    margin: 25px 0px 0px 15px;
+    // margin: 25px 0px 0px 15px;
     transition-duration: 0.4s;
     padding: 10px 45px;
 }

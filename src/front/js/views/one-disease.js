@@ -66,7 +66,7 @@ export const OneDisease = () => {
 	} else {
 		return (
 			<>
-				<div className="fluid-container">
+				{/* <div className="fluid-container">
 					<div className="row mx-1">
 						<div className="col-3">
 							<div className="row">
@@ -76,7 +76,7 @@ export const OneDisease = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<div className="container">
 					<div className="row align-items-center">
 						<div className="col-md-10 text-left">

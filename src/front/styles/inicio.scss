@@ -10,9 +10,15 @@ p {
 .pencil-inicio-clickable {
     cursor: pointer;
 }
+
+.inicio-position-pencil {
+    position: relative;
+    top: -150px;
+}
+
 .box-user-inicio {
-    background-color: #efefef;
-    height: auto;
+    // background-color: #efefef;
+    height: 215px;
     border-radius: 5px;
 }
 
@@ -25,6 +31,12 @@ p {
     height: 150px;
     object-fit: cover;
     border-radius: 75px;
+    box-shadow: 0px 0px 15px rgb(141, 141, 141);
+}
+
+.box-user-username {
+    position: relative;
+    top: -12px
 }
 
 .list-user-inicio {
@@ -62,11 +74,12 @@ p {
 .inicio-tag-follow {
     background-color: #efefef;
     border-radius: 3px;
+    box-shadow: 0px 0px 10px #d1d1d1;
 }
 
 .inicio-button-publicar {
-    background-color:#070707;
-    border: 1px solid #070707;
+    background-color:#137DC5;
+    border: 1px solid #137DC5;
     color: white;
     text-align: center;
     display: inline-block;
@@ -82,8 +95,8 @@ p {
 }
 
 .inicio-button-activated {
-    background-color:#070707;
-    border: 1px solid #070707;
+    background-color:#137DC5;
+    border: 1px solid #137DC5;
     color: white;
     text-align: center;
     display: inline-block;
@@ -100,8 +113,10 @@ p {
 
 .inicio-button-disabled {
     background-color:  white;
-    border: 1px solid #070707;
-    color: #070707;
+    // border: 1px solid #070707;
+    // color: #070707;
+    border: 1px solid #137DC5;
+    color: #137DC5;
     padding: 10px 32px;
     text-align: center;
     display: inline-block;
@@ -112,7 +127,7 @@ p {
     
 }
 .inicio-button-disabled:hover {
-    color: black;
+    color: #137DC5;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
 }
 
@@ -143,5 +158,24 @@ p {
 }
 .modal-actualizar-button-style:hover {
     color: black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+}
+
+.inicio-button-image {
+    background-color:  white;
+    border: 1px solid #137DC5;
+    color: #137DC5;
+    padding: 10px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    // margin: 20px 2px 0px 80px;
+    // margin: 3%;
+    transition-duration: 0.4s;
+}
+
+
+.inicio-button-image:hover {
+    color: #137DC5;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
 }
