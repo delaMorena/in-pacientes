@@ -13,13 +13,7 @@ export const ListDiseases = () => {
 
 	const ShowDiseases = () => {
 		const diseaseCard = store.diseases.map((disease, index) => {
-			return (
-				<div className="col-5" key={index}>
-					<Link to={`/onedisease/${disease.id}`}>
-						<CardDisease disease={disease} />
-					</Link>
-				</div>
-			);
+			return <CardDisease key={index} disease={disease} />;
 		});
 
 		if (store.diseases.length == 0) {
@@ -37,11 +31,12 @@ export const ListDiseases = () => {
 	return (
 		<div className="container">
 			<div className="row">
-				<div className="col-12">
+				<div className="col-12 text-center">
 					<h1>Lista de enfermedades</h1>
 				</div>
 				<div className="col-12">
 					<p>
+<<<<<<< HEAD
 						Aquí puedes encontrar todas las Enfermedades Raras recogidas en In-pcientes.{" "}
 						<span className="bold">Puedes comenzar a seguirlas u obtener más información.</span> Si echas en
 						falta alguna enfermedad rara a la que poder seguir y empezara a crear red no dudes en
@@ -49,6 +44,16 @@ export const ListDiseases = () => {
 						<span className="bold">
 							se solicita seriedad a la hora de compartir información con respecto a las enfermedades
 						</span>
+=======
+						Lorem fistrum se calle ustée a wan ese pedazo de la caidita ese que llega a gramenawer. Ese
+						hombree llevame al sircoo diodeno condemor a gramenawer tiene musho peligro amatomaa. Ese que
+						llega papaar papaar ese que llega al ataquerl amatomaa pecador por la gloria de mi madre tiene
+						musho peligro jarl pupita. Va usté muy cargadoo está la cosa muy malar diodeno mamaar. Se calle
+						ustée benemeritaar no te digo trigo por no llamarte Rodrigor no puedor qué dise usteer pupita te
+						voy a borrar el cerito está la cosa muy malar pecador qué dise usteer por la gloria de mi madre.
+						Amatomaa a peich se calle ustée ese pedazo de. Se calle ustée de la pradera qué dise usteer de
+						la pradera a gramenawer a wan.
+>>>>>>> 17ad0fde80ff6b88bf8d503c332df11b614259c1
 					</p>
 				</div>
 			</div>
@@ -57,7 +62,7 @@ export const ListDiseases = () => {
 					<hr className="list-divisor-line" />
 				</div>
 			</div>
-			<div className="row justify-content-center">{ShowDiseases()}</div>
+			<div className="row justify-content-between mx-1">{ShowDiseases()}</div>
 			<div className="row">
 				<div className="col-12">
 					<hr className="list-divisor-line" />

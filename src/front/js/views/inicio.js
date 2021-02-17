@@ -34,7 +34,7 @@ export const Inicio = () => {
 		console.log("tipo dato: ", typeof payload.diseaseId);
 		actions.createPost(payload, postFiles);
 		setText("");
-		// setUrl("");
+		setPostFiles(0);
 	};
 
 	const uploadPostImage = event => {
@@ -88,7 +88,7 @@ export const Inicio = () => {
 
 		const listFollows = store.follows.map((follow, index) => {
 			return (
-				<div className="row mb-2 inicio-tag-follow align-items-center" key={index}>
+				<div className="row my-3 inicio-tag-follow align-items-center" key={index}>
 					<Link to={`/onedisease/${follow.disease.id}`}>
 						<div className="col-12 post-cursor-click py-1">
 							<p>{follow.disease.title}</p>
@@ -128,7 +128,7 @@ export const Inicio = () => {
 		if (store.follows.length == 0) {
 			return (
 				<>
-					<option>Ops...No se han encontrado enfermedades</option>
+					<option>No se han encontrado enfermedades</option>
 				</>
 			);
 		} else {
@@ -240,16 +240,16 @@ export const Inicio = () => {
 		return <NoToken />;
 	} else {
 		return (
-			<div className="container">
+			<div className="container prueba">
 				<div className="row">
-					<div className="col-xl-4">
+					<div className="col-lg-4">
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
 								<div className="row align-items-center mt-3">
-									<div className="col-12 box-user-image text-center">
-										{showProfileImage()}
-										<div className="row">
-											<div className="col-2 mt-4">
+									<div className="col-12 box-user-image text-center">{showProfileImage()}</div>
+									<div className="col-12">
+										<div className="row inicio-position-pencil justify-content-end">
+											<div className="col-3 text-left">
 												<div
 													className="pencil-inicio-clickable"
 													// type="button"
@@ -306,14 +306,14 @@ export const Inicio = () => {
 											</div>
 										</div>
 									</div>
-									<div className="col-12 box-user-image text-center">
+									<div className="col-12 box-user-username text-center">
 										<h5>{store.user.username}</h5>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="col-xl-8">
+					<div className="col-lg-8">
 						<div className="row">
 							<div className="col-12">
 								<form className="my-3">
@@ -335,26 +335,58 @@ export const Inicio = () => {
 										/>
 									</div>
 									<div className="form-group mt-1">
-										{/* <input
-											type="url"
-											className="form-control"
-											id="exampleInputEmail1"
-											aria-describedby="emailHelp"
-											rows="1"
-											placeholder="URL imagen"
-											value={url}
-											onChange={e => setUrl(e.target.value)}
-										/> */}
-										<input type="file" onChange={() => setPostFiles(event.target.files)} />
+										<div className="row justify-content-center">
+											<button
+												type="button"
+												className="btn inicio-button-image"
+												data-toggle="modal"
+												data-target="#addImagePost">
+												<i className="fas fa-camera mr-3" />
+												Añade una imagen
+											</button>
+											<div
+												className="modal fade"
+												id="addImagePost"
+												tabIndex="-1"
+												aria-labelledby="exampleModalLabel"
+												aria-hidden="true">
+												<div className="modal-dialog">
+													<div className="modal-content">
+														<div className="modal-header">
+															<h5 className="modal-title" id="exampleModalLabel">
+																Añade una foto a la publicación
+															</h5>
+															<button
+																type="button"
+																className="close"
+																data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div className="modal-body">
+															<input
+																type="file"
+																onChange={() => setPostFiles(event.target.files)}
+															/>
+														</div>
+														<div className="modal-footer">
+															<button
+																type="button"
+																className="btn btn-secondary"
+																data-dismiss="modal">
+																Close
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</form>
-								{/* <form onSubmit={uploadPostImage}>
-									<input type="file" onChange={() => setpostFiles(event.target.files)} />
-									<button>Upload Post Files</button>
-								</form> */}
 							</div>
 							<div className="col-12">
-								<div className="row justify-content-center">
+								<div className="row justify-content-center mb-2">
 									<button type="button" className="btn inicio-button-publicar" onClick={OnSubmit}>
 										Publicar
 									</button>
@@ -365,11 +397,11 @@ export const Inicio = () => {
 				</div>
 				<div className="row">
 					<div className="col-12">
-						<hr className="post-divisor-line" />
+						<hr className="inicio-divisor-line" />
 					</div>
 				</div>
 				<div className="row mt-3">
-					<div className="col-xl-4">
+					<div className="col-xl-4 mb-4">
 						<div className="col-12">
 							<div className="row list-user-inicio">{showFollows()}</div>
 						</div>
@@ -383,7 +415,7 @@ export const Inicio = () => {
 											className="nav nav-pills d-flex justify-content-between align-items-center"
 											id="pills-tab"
 											role="tablist">
-											<div className="col-xl-4 text-center">
+											<div className="col-xl-4 text-center mb-2">
 												<li className="nav-item" role="presentation">
 													<a
 														className={
@@ -400,7 +432,7 @@ export const Inicio = () => {
 													</a>
 												</li>
 											</div>
-											<div className="col-xl-4 text-center">
+											<div className="col-xl-4 text-center mb-2">
 												<li className="nav-item" role="presentation">
 													<a
 														className={
@@ -417,7 +449,7 @@ export const Inicio = () => {
 													</a>
 												</li>
 											</div>
-											<div className="col-xl-4 text-center">
+											<div className="col-xl-4 text-center mb-2">
 												<li className="nav-item" role="presentation">
 													<a
 														className={
@@ -436,7 +468,7 @@ export const Inicio = () => {
 											</div>
 										</ul>
 									</div>
-									<div className="col-12 mt-2">
+									<div className="col-12">
 										<div className="tab-content" id="pills-tabContent">
 											<div
 												className="tab-pane fade show active"
