@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: [
-    "@babel-polyfill",
+    "@babel/polyfill",
     './src/front/js/index.js'
   ],
   output: {
