@@ -36,14 +36,13 @@ export const ListDiseases = () => {
 				</div>
 				<div className="col-12">
 					<p>
-						Lorem fistrum se calle ustée a wan ese pedazo de la caidita ese que llega a gramenawer. Ese
-						hombree llevame al sircoo diodeno condemor a gramenawer tiene musho peligro amatomaa. Ese que
-						llega papaar papaar ese que llega al ataquerl amatomaa pecador por la gloria de mi madre tiene
-						musho peligro jarl pupita. Va usté muy cargadoo está la cosa muy malar diodeno mamaar. Se calle
-						ustée benemeritaar no te digo trigo por no llamarte Rodrigor no puedor qué dise usteer pupita te
-						voy a borrar el cerito está la cosa muy malar pecador qué dise usteer por la gloria de mi madre.
-						Amatomaa a peich se calle ustée ese pedazo de. Se calle ustée de la pradera qué dise usteer de
-						la pradera a gramenawer a wan.
+						Aquí puedes encontrar todas las Enfermedades Raras recogidas en In-pcientes.{" "}
+						<span className="bold">Puedes comenzar a seguirlas u obtener más información.</span> Si echas en
+						falta alguna enfermedad rara a la que poder seguir y empezara a crear red no dudes en
+						contárnoslo. Recuerda que{" "}
+						<span className="bold">
+							se solicita seriedad a la hora de compartir información con respecto a las enfermedades
+						</span>
 					</p>
 				</div>
 			</div>

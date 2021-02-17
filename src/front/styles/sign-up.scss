@@ -22,11 +22,21 @@
     // margin: px 0px 0px 0px;
     box-sizing: border-box;
 }  
+
+
+// .input-style::placeholder { 
+// 	font-family: 'FontAwesome', "Open Sans", Verdana, sans-serif;
+//     font-style: normal;
+//     font-weight: normal;
+//     text-decoration: inherit;
+// }
+
 .style-label {
     margin: 15px 0px;
 }
 ::placeholder {
     font-size: 15px;
+    font-family: 'Montserrat', sans-serif; 
 }
 .form-group {
     margin: 10px ;

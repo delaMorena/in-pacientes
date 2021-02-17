@@ -8,13 +8,13 @@ export const CardAssociation = props => {
 	const { association } = props;
 
 	return (
-		<div className="widthListItem mt-4 bg-light">
+		<div className="widthListItem mt-4">
 			<div className="card-body">
-				<h5 className="card-title text-center py-2">{association.name}</h5>
+				<h5 className="card-title text-center py-2 bold">{association.name}</h5>
 				<h6 className="card-subtitle pb-4 text-muted text-center">{association.location}</h6>
 
 				<p className="card-text text-justify">{association.description}</p>
-				<div className="row pt-5 justify-content-around">
+				<div className="row pt-5 justify-content-between">
 					<div className="col-8">
 						<button type="button" className="btn button-web-association-black">
 							Sitio web
