@@ -24,7 +24,7 @@ export const ListAssociation = () => {
 				</div>
 				<div className="col-12">
 					<p>
-						Esta es la lista de enfermedades Raras que puedes encontrar en In-pacientes. Puedes ponerte en
+						Esta es la lista de Enfermedades Raras que puedes encontrar en In-pacientes. Puedes ponerte en
 						contacto directamente con ellas o a través de su página web.{" "}
 						<span className="bold">
 							También puedes realizar tu donación a la asociación que te interese.

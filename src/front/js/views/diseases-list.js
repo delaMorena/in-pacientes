@@ -41,7 +41,15 @@ export const ListDiseases = () => {
 					<h1>Lista de enfermedades</h1>
 				</div>
 				<div className="col-12">
-					<p>texto</p>
+					<p>
+						Aquí puedes encontrar todas las Enfermedades Raras recogidas en In-pcientes.{" "}
+						<span className="bold">Puedes comenzar a seguirlas u obtener más información.</span> Si echas en
+						falta alguna enfermedad rara a la que poder seguir y empezara a crear red no dudes en
+						contárnoslo. Recuerda que{" "}
+						<span className="bold">
+							se solicita seriedad a la hora de compartir información con respecto a las enfermedades
+						</span>
+					</p>
 				</div>
 			</div>
 			<div className="row">
