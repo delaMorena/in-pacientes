@@ -241,7 +241,7 @@ export const Inicio = () => {
 	} else {
 		return (
 			<div className="container prueba">
-				<div className="row">
+				<div className="row mb-2">
 					<div className="col-lg-4">
 						<div className="row mx-1 box-user-inicio mt-3 align-items-center">
 							<div className="col-12">
@@ -366,6 +366,7 @@ export const Inicio = () => {
 														</div>
 														<div className="modal-body">
 															<input
+																className="modal-inicio-style"
 																type="file"
 																onChange={() => setPostFiles(event.target.files)}
 															/>

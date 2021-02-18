@@ -70,7 +70,7 @@ export const TempPost = () => {
 	const showComments = () => {
 		const postComments = store.comments.map((comment, index) => {
 			return (
-				<div className="row my-1" key={index}>
+				<div className="row my-3" key={index}>
 					<div className="col-12">
 						<p className="font-weight-bolder">{comment.user}</p>
 						<p>{comment.text}</p>
