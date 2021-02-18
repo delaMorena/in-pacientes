@@ -74,7 +74,7 @@ export const TempPost = () => {
 					<div className="col-12">
 						<p className="font-weight-bolder">{comment.user}</p>
 						<p>{comment.text}</p>
-						<p className="text-muted">{comment.created_at}</p>
+						<p className="post-size-time">{comment.created_at}</p>
 					</div>
 				</div>
 			);
