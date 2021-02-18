@@ -14,12 +14,18 @@ export const Footer = () => (
 	// 	</div>
 	// </footer>
 	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by Alex {"&"} Marta 2021
-			<a href="http://www.4geeksacademy.com"> 4Geeks Academy</a>
-		</p>
-		<Link className="nav-link" to="/about-us">
-			Quienes somos
-		</Link>
+		<div className="row align-items-center mx-3">
+			<div className="col-lg-6 text-center">
+				<p>
+					Made with <i className="fa fa-heart text-danger" /> by Alex {"&"} Marta 2021
+					<a href="http://www.4geeksacademy.com"> 4Geeks Academy</a>
+				</p>
+			</div>
+			<div className="col-lg-6 text-center">
+				<Link className="nav-link" to="/about-us">
+					¿Quienes somos?
+				</Link>
+			</div>
+		</div>
 	</footer>
 );

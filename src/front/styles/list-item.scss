@@ -1,3 +1,20 @@
 .list-divisor-line {
     border-top: 1px solid black;
 }
+
+.disease-list-button-request {
+    background-color:#137DC5;
+    border: 1px solid #137DC5;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    // margin: 25px 0px 0px 15px;
+    transition-duration: 0.4s;
+    padding: 10px 45px;
+}
+
+.disease-list-button-request:hover {
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
+}
