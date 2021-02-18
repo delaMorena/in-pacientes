@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-violet-gayal-ieo99iq9.ws-eu03.gitpod.io/api";
+const baseUrl = "https://in-pacientes.herokuapp.com/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
