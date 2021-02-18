@@ -30,10 +30,10 @@ export const TempPost = () => {
 		}
 	};
 	const showProfilePublisherImage = () => {
-		if (store.user.avatar == undefined || store.user.avatar == "") {
-			return <i className="icono-user-style fas fa-user-alt fa-2x" />;
+		if (store.post.publisher_avatar == undefined || store.post.publisher_avatar == "") {
+			return <i className="icono-user-style fas fa-user-alt fa-4x mb-1" />;
 		} else {
-			return <img src={store.user.avatar} alt="user-pic" />;
+			return <img src={store.post.publisher_avatar} alt="user-pic" />;
 		}
 	};
 

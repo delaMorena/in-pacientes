@@ -306,7 +306,7 @@ export const Inicio = () => {
 											</div>
 										</div>
 									</div>
-									<div className="col-12 box-user-username text-center">
+									<div className="col-12 box-user-username inicio-username-bold text-center">
 										<h5>{store.user.username}</h5>
 									</div>
 								</div>
@@ -375,7 +375,7 @@ export const Inicio = () => {
 																type="button"
 																className="btn btn-secondary"
 																data-dismiss="modal">
-																Close
+																Subir
 															</button>
 														</div>
 													</div>
