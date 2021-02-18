@@ -25,7 +25,7 @@ export const Home = () => {
 						<p className="style-text text-center">
 							Sabemos que padecer una ENFERMEDAD RARA <span className="bold">no es tan raro</span>. Si
 							tienes una ER o te interesa por cualquier otro motivo,{" "}
-							<span className="bold">esta es tu tribu. </span>
+							<span className="bold">esta es tu tribu </span>
 						</p>
 						<p className="bold style-text text-center">Te estamos buscando a tí</p>
 					</div>
