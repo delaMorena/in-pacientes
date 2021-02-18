@@ -57,6 +57,6 @@ mysql://tqqa0ui0cga32nxd:eqi8nchjbpwth82v@c584md9egjnm02sk.5btxwkvyhwsf.us-east-
 4. Copy the connection string and create a new environment variable on your project settings.
 5. Run migrations on heroku: After your database is connected, you have to create the tables and structure, you can do that by running the `pipenv run upgrade` command on the production server like this:
 ```
-$ heroku run -a=<your_app_name> pipenv run upgrade
+$ heroku run -a=in-pacientes pipenv run upgrade
 ```
 :warning: Note: Notice that you have to replace `<your app name>` with your application name, you also have to be logged into heroku in your terminal (you can do that by typing `heroku login -i`)

@@ -25,7 +25,7 @@ export const CardDisease = props => {
 				</div>
 			</div>
 			<div className="row mt-2 disease-list-text">
-				<div className="col-12">
+				<div className="col-12 text-justify">
 					<p>{textTruncate(disease.description)}</p>
 				</div>
 			</div>
@@ -33,7 +33,7 @@ export const CardDisease = props => {
 				<div className="col-12 text-center">
 					<Link to={`/onedisease/${disease.id}`}>
 						<button type="button" className="btn disease-list-button">
-							+ Info
+							+info
 						</button>
 					</Link>
 				</div>

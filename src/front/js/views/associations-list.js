@@ -38,13 +38,13 @@ export const ListAssociation = () => {
 				</div>
 			</div>
 			<hr className="list-divisor-line" />
-			<div className="row justify-content-center">{cardItem}</div>
-			<hr className="list-divisor-line" />
+			<div className="row justify-content-center mx-1">{cardItem}</div>
+			<hr className="list-divisor-line mt-4" />
 			<div className="row">
 				<div className="col-12 text-center">
 					<p>¿Aun no has registrado tu asociación? ¡Solicita su registro ahora!</p>
 				</div>
-				<div className="col-12 text-center my-5">
+				<div className="col-12 text-center my-3">
 					<Link to="/request/association">
 						<button type="button" className="btn button-request-association-black">
 							Crear solicitud
