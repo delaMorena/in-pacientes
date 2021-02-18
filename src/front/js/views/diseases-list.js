@@ -61,9 +61,9 @@ export const ListDiseases = () => {
 				<div className="col-12 text-center">
 					<p>¿No esta la enfermedad que te interesa? Solicita su creación ahora!</p>
 				</div>
-				<div className="col-12 text-center mt-2">
+				<div className="col-12 text-center my-3">
 					<Link to="/request/disease">
-						<button type="button" className="btn btn-primary">
+						<button type="button" className="btn disease-list-button-request">
 							Crear solicitud
 						</button>
 					</Link>

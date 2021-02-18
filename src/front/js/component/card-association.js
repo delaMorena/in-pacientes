@@ -14,13 +14,13 @@ export const CardAssociation = props => {
 				<h6 className="card-subtitle pb-4 text-muted text-center">{association.location}</h6>
 
 				<p className="card-text text-justify">{association.description}</p>
-				<div className="row pt-5 justify-content-between">
-					<div className="col-8">
+				<div className="row mt-4 justify-content-between">
+					<div className="col-6 text-left">
 						<button type="button" className="btn button-web-association-black">
 							Sitio web
 						</button>
 					</div>
-					<div className="col-4">
+					<div className="col-6 text-right">
 						<button type="button" className="btn button-donation-association-white">
 							<span>Haz tu donación </span>
 							<i className="fas fa-euro-sign" />

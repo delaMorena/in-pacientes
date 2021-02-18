@@ -14,6 +14,7 @@ export const TempPost = () => {
 	useEffect(() => {
 		actions.getOnePost(params.id);
 		actions.getFavorites();
+		actions.getUser();
 	}, []);
 
 	const uploadPostImage = event => {
@@ -29,10 +30,10 @@ export const TempPost = () => {
 		}
 	};
 	const showProfilePublisherImage = () => {
-		if (store.post.publisher_avatar == undefined) {
+		if (store.user.avatar == undefined || store.user.avatar == "") {
 			return <i className="icono-user-style fas fa-user-alt fa-2x" />;
 		} else {
-			return <img src={store.post.publisher_avatar} alt="user-pic" />;
+			return <img src={store.user.avatar} alt="user-pic" />;
 		}
 	};
 
