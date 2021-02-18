@@ -22,7 +22,7 @@ export const ListAssociation = () => {
 				<div className="col-md-7 offset-lg-4 col-10 offset-md-3">
 					<h1>Asociaciones de ER</h1>
 				</div>
-				<div className="col-12">
+				<div className="col-12 my-3">
 					<p>
 						Esta es la lista de Enfermedades Raras que puedes encontrar en In-pacientes. Puedes ponerte en
 						contacto directamente con ellas o a través de su página web.{" "}
@@ -39,7 +39,7 @@ export const ListAssociation = () => {
 			</div>
 			<hr className="list-divisor-line" />
 			<div className="row justify-content-center mx-1">{cardItem}</div>
-			<hr className="list-divisor-line mt-4" />
+			<hr className="list-divisor-line" />
 			<div className="row">
 				<div className="col-12 text-center">
 					<p>¿Aun no has registrado tu asociación? ¡Solicita su registro ahora!</p>

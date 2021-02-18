@@ -34,7 +34,7 @@ export const ListDiseases = () => {
 				<div className="col-12 text-center">
 					<h1>Lista de enfermedades</h1>
 				</div>
-				<div className="col-12">
+				<div className="col-12 my-3">
 					<p>
 						Aquí puedes encontrar todas las Enfermedades Raras recogidas en In-pcientes.{" "}
 						<span className="bold">Puedes comenzar a seguirlas u obtener más información.</span> Si echas en

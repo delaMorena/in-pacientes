@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useHistory } from "react-router-dom";
+import "../../styles/solicitudes.scss";
 
 export const SolDisease = () => {
 	const { store, actions } = useContext(Context);
@@ -19,32 +20,37 @@ export const SolDisease = () => {
 
 	return (
 		<div className="container">
-			<div className="text-center mt-5">
-				<h1>Solicita la creación de una enfermedad rara</h1>
+			<div className="row justify-content-center">
+				<div className="col-10">
+					<div className="text-center mt-5">
+						<h1>Solicita la creación de una enfermedad rara</h1>
+					</div>
+					<form>
+						<div className="form-group">
+							<label htmlFor="exampleInputEmail1">Enfermedad</label>
+							<input
+								type="text"
+								className="form-control"
+								aria-describedby="emailHelp"
+								placeholder="Nombre enfermedad"
+							/>
+						</div>
+						<div className="form-group">
+							<label>Descripción</label>
+							<textarea
+								placeholder="Sintomas, dolencias, tratamiento, etc..."
+								className="form-control"
+								rows="4"
+							/>
+						</div>
+					</form>
+				</div>
 			</div>
-			<form>
-				<div className="form-group">
-					<label htmlFor="exampleInputEmail1">Enfermedad</label>
-					<input
-						type="text"
-						className="form-control"
-						aria-describedby="emailHelp"
-						placeholder="Nombre enfermedad"
-					/>
-				</div>
-				<div className="form-group">
-					<label>Descripción</label>
-					<textarea
-						placeholder="Sintomas, dolencias, tratamiento, etc..."
-						className="form-control"
-						rows="5"
-					/>
-				</div>
-
-				<button type="button" className="btn btn-info btn-lg" onClick={OnSubmit}>
+			<div className="row justify-content-center mt-3">
+				<button type="button" className="btn solicitud-button-enviar" onClick={OnSubmit}>
 					Enviar
 				</button>
-			</form>
+			</div>
 		</div>
 	);
 };
