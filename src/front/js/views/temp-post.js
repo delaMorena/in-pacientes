@@ -30,10 +30,10 @@ export const TempPost = () => {
 		}
 	};
 	const showProfilePublisherImage = () => {
-		if (store.user.avatar == undefined || store.user.avatar == "") {
-			return <i className="icono-user-style fas fa-user-alt fa-2x" />;
+		if (store.post.publisher_avatar == undefined || store.post.publisher_avatar == "") {
+			return <i className="icono-user-style fas fa-user-alt fa-4x mb-1" />;
 		} else {
-			return <img src={store.user.avatar} alt="user-pic" />;
+			return <img src={store.post.publisher_avatar} alt="user-pic" />;
 		}
 	};
 
@@ -70,11 +70,11 @@ export const TempPost = () => {
 	const showComments = () => {
 		const postComments = store.comments.map((comment, index) => {
 			return (
-				<div className="row my-1" key={index}>
+				<div className="row my-3" key={index}>
 					<div className="col-12">
 						<p className="font-weight-bolder">{comment.user}</p>
 						<p>{comment.text}</p>
-						<p className="text-muted">{comment.created_at}</p>
+						<p className="post-size-time">{comment.created_at}</p>
 					</div>
 				</div>
 			);
