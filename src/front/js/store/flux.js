@@ -1,4 +1,5 @@
-const baseUrl = "https://in-pacientes.herokuapp.com/api";
+// const baseUrl = "https://in-pacientes.herokuapp.com/api";
+const baseUrl = process.env.BACKEND_URL;
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const token = localStorage.getItem("token");
